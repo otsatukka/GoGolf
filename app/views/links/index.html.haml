@@ -1,0 +1,27 @@
+%table
+  %tr
+    %th Title
+    %th Url
+    %th Body
+    %th
+    %th
+    %th
+  - @links.each do |link|
+    %tr
+      %td= link.title
+      %td= link.autolink.linkurl_html
+      %td= link.body
+      %td
+        - if can? :read, @link
+          = link_to 'Näytä', link
+      %td
+        - if can? :edit, @link
+          = link_to 'Edit', edit_link_path(link)
+      %td
+        - if can? :destroy, @link
+          = link_to 'Destroy', link, :confirm => 'Are you sure?', :method => :delete
+%br/
+- if can? :create, Link
+  .new_link
+    = link_to 'New Link', new_link_path
+

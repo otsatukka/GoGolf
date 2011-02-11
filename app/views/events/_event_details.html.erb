@@ -1,0 +1,23 @@
+<div class="module" style="background-color:white;">
+	<div class="module_head">Event Details</div>
+	<div class="module_body">
+		<div id="event_description">
+			<div class="event_detail_name"><%= @event.name %></div>
+			Time: <%= @event.start_time.to_s(:event_brief) %><br/>
+			
+			Location: <%#= @event.course %><br/>
+			Organized By: <%= @event.user.name %>					
+		</div>
+		<% if logged_in? %>
+			<div id="event_attendance">
+				<% if current_user.events.include?(@event) %>
+					You are attending this event
+					<%= link_to '(X)', '/attendances/destroy?user_id='+current_user.id.to_s + '&event_id=' + @event.id.to_s %>
+				<% else %>
+					<%= link_to 'Attend this Event', '/attendances/create' %>
+				<% end %>
+			</div>
+		<% end %>
+		<div style="clear:both"></div>
+	</div>
+</div>

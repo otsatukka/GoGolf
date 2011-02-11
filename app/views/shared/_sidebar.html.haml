@@ -1,0 +1,24 @@
+.ui-widget
+  - if user_signed_in?
+    .ui-widget-header
+      Hei
+      - if current_user.name != nil
+        = current_user.email
+      - else
+        current_user.name
+    .ui-widget-content
+      %table
+        %tr
+          %td{:rowspan => "5"}= user_thumb(current_user)
+        %tr
+          %td Pelatut Kierrokset
+          %td= current_user.rounds.count
+        %tr
+          %td Jaetut linkit
+          %td= current_user.links.count
+        %tr
+          %td Julkaistut jutut
+          %td= current_user.rounds.count
+        %tr
+          %td
+      .button= link_to "Kirjaudu ulos", destroy_user_session_path

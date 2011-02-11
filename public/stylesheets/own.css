@@ -1,0 +1,167 @@
+/* OWN CSS */
+
+/* BASIC */
+body {
+  /*background-color: #776235;*/
+  /* background: #fff url(/images/gogolflayout1.jpg); */
+}
+
+/* TYPOGRAPHY */
+p { line-height: 1.0; margin: 0 0 1.25em; padding: 0; }
+a, a:link, a:visited	{ color: #000; text-decoration: none; }
+a:hover { color: #ccc; }
+.ui-widget-header h2 {
+  text-shadow: 1px 1px 1px #fff;
+}
+.header1 {
+  text-shadow: #000 2px -2px 2px;
+  color: #3D9200;
+}
+#header {
+  padding:5px 0 0 0;
+}
+
+/* BLOCKS */
+.post_excerpt_body img {
+  display: none;
+}
+.post_excerpt_img img {
+  height: 80px;
+  width: 80px;
+}
+.post_excerpt td {
+  height: 80px;
+  width: 80px;
+}
+.post_excerpt_img_big img {
+  width: 425px;
+  height: 276px;
+}
+.button_s {
+  font-size: 0.8em;
+}
+.button {
+  font-size: 1em;
+}
+.sign_in_button {
+  font-size: 0.8em;
+}
+.selected {
+  /*background-color: #5FA92A;*/
+  background-color: #000;
+}
+.nav {
+  border-bottom: 2px #000 solid;
+  height: 32px;
+  background-color: #3D9200;
+  margin: 0px 0px 0px 0px;
+  
+}
+.nav ul {
+  list-style-type: none;
+  list-style-position: outside;
+  list-style: none;
+  margin-bottom:0;
+}
+.nav li {
+  display: block;
+  overflow: hidden;
+  padding: 7px 10px;
+  list-style: none;
+  float: left;
+  color: #fff;
+}
+.nav li p, .nav li a {
+  margin: 0;
+  display: block;
+  color: #FFF;
+  text-align: center;
+  text-decoration: none;
+}
+.nav li:hover {
+  background: #5FA92A;
+  /*background: #000;*/
+}
+
+#main {
+   background-color: #F5F5F5; 
+   border: 1px solid #D3D1C7;
+   padding: 10px;
+}
+
+#notice {
+	border: 1px #000 solid;
+	padding: 5px;
+}
+
+.emphasized {
+  font-style: italic;
+  border: 1px solid #888;
+  padding: 0.5em;
+}
+
+#recentposts table {
+  border-top-color:#ddd;
+  border-top-style:solid;
+  border-top-width:2px;
+  padding-bottom:5px;
+  padding-left:0;
+  padding-right:0;
+  padding-top:7px;
+}
+#recentposts h3 {
+  margin : 0;
+}
+
+/* SIDEBAR */
+.widgetcontainer		{ font-weight: 700; font-size: 11px; border: solid #CCC; border-width: 1px; background: repeat-x #FFF; line-height: 1.4em; }
+.widgetcontainer a		{ font-weight: 700; }
+.widgettitle			{ background-color: #204000; color: #FFF;  padding: 5px 10px; border-bottom: 1px solid #CCC; }
+.widgettitle a			{ color: #FFF; }
+.widgetcontent { padding: 0px; }
+
+/* FRONT PAGE SLIDER */
+.slider table, .slider td, .slider th { padding:0;}
+#myslide {width:425px;overflow:hidden;position: relative;height:276px; }
+#myslide .cover{
+  width:1275px; /*------- class mystuff width * number of mystuff divs (425 * 3 = 480)---------- */
+  position: absolute;
+  height:276px;
+}
+#myslide .mystuff {width:425px;float:left;}
+#myslide table, #myslide th, #myslide td, #myslide th {padding: 0;}
+
+#button_slider ul {
+  list-style-position: outside;
+  list-style: none;
+  padding:0;
+  margin-bottom: 0;
+}
+
+.button1,.button2,.button3 {
+  background:#222;
+  padding: 35px 27px;
+  display:block;
+  float:left;
+  width:200px;
+}
+.button1 strong,.button2 strong,.button3 strong {
+  color: #fff;
+  font-size: 13px;
+}
+.active_s{background:#ddd;padding:27px;display:block;float:left;outline:none;width:200px;}
+ 
+.description{
+  position:absolute; /* absolute position (so we can position it where we want)*/
+  bottom:0px; /* position will be on bottom */
+  width:425px;
+  /* styling bellow */
+  background-color:black;
+  font-family: 'tahoma';
+  font-size:15px;
+  color:white;
+  opacity:0.6; /* transparency */
+  filter:alpha(opacity=60); /* IE transparency */
+}
+
+p.description_content{padding:10px;margin:0px;}

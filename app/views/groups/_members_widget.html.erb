@@ -1,0 +1,29 @@
+<div class="module">
+	<div class="module_head">Members</div>
+	<div class="module_body">
+		<% count = 0 %>
+		<div style="float:left;clear:both;width:100%;">
+		<% unless @group.users.empty? %>
+			<% @group.users.each do |u| %>
+				<% count = count + 1 %>
+				<div class="member_widget_user">
+          No photo
+				</div>
+				<% if count > 11 %>
+					<% break %>
+				<% end %>
+				<% if count%3 == 0%>
+					</div><div style="float:left;clear:both;margin-top:5px;width:100%;">
+				<% end %>
+			<% end %>
+			</div>
+			<div style="clear:both;"></div>
+		<% else %>
+			</div>
+		<% end %>
+		<% if @group.users.length == 0 %>
+			No members in this group.
+		<% end %>
+	</div>
+	<div class="module_foot"><%= link_to "View All (#{@group.users.length})", group_memberships_path(@group) %></div>
+</div>

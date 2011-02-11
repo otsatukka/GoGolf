@@ -1,0 +1,11 @@
+%h1
+  = @link.title
+%p
+  %b Url:
+  = @link.autolink.linkurl
+%p
+  %b Body:
+  = @link.body
+= link_to 'Edit', edit_link_path(@link)
+|
+= link_to 'Back', links_path

@@ -1,0 +1,23 @@
+<div class="module">
+	<div class="module_head">Group Announcements</div>
+	<div class="module_body">
+		<% if @group.announcements && @group.announcements.length != 0 %>
+			<%= @group.announcements %>
+		<% else %>
+			<% if logged_in? && current_user.is_group_admin(@group) %>
+				<span class="help_text">
+					<%= link_to 'Enter some text here now...', edit_group_path(@group) %>
+				</span>
+			<% else %>
+				<span class="help_text">
+					No announcements exist yet...
+				</span>
+			<% end %>
+		<% end %>
+	</div>
+	<% if logged_in? && current_user.is_group_admin(@group) %>
+		<div class="module_foot">
+			<%= link_to 'Edit', edit_group_url(@group) %>
+		</div>
+	<% end %>
+</div>

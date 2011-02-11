@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		GoGolf - <%= @title %>
+	</title>
+	<%= stylesheet_link_tag :all %>
+	<%= javascript_include_tag :defaults %>
+	<%= csrf_meta_tag %>
+</head>
+<body>
+	<div class="container">
+		<div class="span-24 last">
+			<div id="header">
+				<br />
+				<h1>GoGolf</h1>
+			</div>
+		</div>
+		<div class="span-24 last">
+			<div id="nav">
+				<%= nav_link "Etusivu", "/site" %> | 
+				<%= nav_link "Uutiset", posts_path %> |
+				<%= nav_link "Linkit", links_path %> |
+				<%= nav_link "Tietoja", "/site", "about" %> | 
+				<%= nav_link "Apua", "/site", "help" %>
+				<% if user_signed_in? %> |
+					<%= link_to "Profiili", "/users/#{current_user.id}" %>
+				<% end %>
+			</div>
+		</div>
+		<div class="span-18">
+		
+			<div id="content">
+			
+			
+				<%= yield %>
+				<% if ENV["RAILS_ENV"] == "development" %>
+				   <%= debug(params) %>
+				<% end %>
+			</div>
+		</div>
+		<div class="span-6 last">
+		  <% flash.each do |name, msg| %>
+		  <br />
+			  <div id="notice">
+				   <%= content_tag :div, msg, :id => "flash_#{name}" %>
+				</div>
+			<% end %>
+			<div id="user_nav">
+				<% if user_signed_in? %>
+					Kirjauduttu nimellä <br />
+					<%= current_user.email %><br />
+					<%= link_to "Kirjaudu ulos", destroy_user_session_path %>
+				<% else %>
+					<%= link_to "Rekisteröidy", "/users/new" %>
+					 tai 
+					<%= link_to "Kirjaudu sisään", new_user_session_path %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<h1>Profiili</h1>
+<br />
+<table>
+	<tr>
+		<td>
+			Nimi:
+		</td>
+		<td>
+			<%= @name %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Email:
+		</td>
+		<td>
+			<%= @email %>
+		</td>
+	</tr>
+</table>
+<br />
+<%= link_to "Muokkaa profiilia", "users/edit" %>
+<br />
+<h2>Blogit</h2>
+<table>
+  <tr>
+    <th>Otsikko</th>
+    <th>Luotu</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= post.title %></td>
+	<td><%= post.created_at.to_s(:long) %></td>
+    <td><%= link_to 'Show', post %></td>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

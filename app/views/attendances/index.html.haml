@@ -1,0 +1,12 @@
+%h2
+  Kutsuttuja käyttäjiä
+  = @event.requested_attendees.size
+- for attendee in @requested_attendees
+  = attendee.name
+  %br/
+  = user_thumb(attendee)
+  %br/
+    
+  
+= link_to "Takaisin tapahtumaan", @event
+

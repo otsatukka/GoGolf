@@ -1,0 +1,7 @@
+= javascript_include_tag :ckeditor
+%h1 Muokkaa
+= render "shared/error_messages", :target => @post
+= render 'form'
+= link_to 'Show', @post
+|
+= link_to 'Back', posts_path

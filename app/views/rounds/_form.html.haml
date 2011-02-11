@@ -1,0 +1,13 @@
+= form_for [@user, @round] do |f|
+  .field
+    = f.label :strokes
+    %br/
+    = f.text_field :strokes
+  .field
+    = f.label "Kenttä"
+    - for course in Course.all
+      %div
+        = radio_button_tag "round[course_id]", course.id, @round.course_id == course.id
+        = course.name
+  .actions
+    = f.submit

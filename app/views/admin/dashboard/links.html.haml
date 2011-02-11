@@ -1,0 +1,29 @@
+%p
+  = link_to "KATEGORIAT", "/admin/dashboard/index"
+  = link_to "POSTAUKSET", "/admin/dashboard/posts"
+  = link_to "KÄYTTÄJÄT", "/admin/dashboard/users"
+  = link_to "KENTÄT", "/admin/dashboard/courses"
+  = link_to "LINKIT", "/admin/dashboard/links"
+  
+%table
+  %tr
+    %th Title
+    %th Url
+    %th Body
+    %th
+    %th
+    %th
+  - @links.each do |link|
+    %tr
+      %td= link.title
+      %td= link.autolink.linkurl
+      %td= link.body
+      %td
+        = link_to 'Näytä', link
+      %td
+        = link_to 'Edit', edit_link_path(link)
+      %td
+        = link_to 'Destroy', link, :confirm => 'Are you sure?', :method => :delete
+%br/
+.new_link
+  = link_to 'New Link', new_link_path

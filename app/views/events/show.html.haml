@@ -1,0 +1,10 @@
+= render :partial => 'event_details'
+%br/
+Event Description
+= @event.desc
+- if (current_user && current_user.role?(:super_admin)) || current_user == @event.user
+  Event Admin
+  = link_to 'Edit Event', edit_event_url(@event)
+  %br/
+  = render :partial => 'attendance_widget'
+  = link_to 'Destroy', @event, :method => :delete, :confirm => "Are you sure?"

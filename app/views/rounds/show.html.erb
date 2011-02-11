@@ -1,0 +1,8 @@
+<p>
+  <b>Strokes:</b>
+  <%= @round.strokes %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_round_path(@round, :user_id => current_user.id) %> |
+<%= link_to 'Back', user_rounds_path(@round.user) %>

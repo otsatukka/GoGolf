@@ -1,0 +1,6 @@
+<h1>Editing round</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', user_round_path(@round, :user_id => current_user.id) %> |
+<%= link_to 'Back', user_rounds_path(current_user) %>

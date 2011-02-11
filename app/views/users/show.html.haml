@@ -1,0 +1,65 @@
+.button= link_to "Kierrokset", user_rounds_path(@user)
+%h2= @user.name
+.button_s= link_to_if(can?(:update, @user), "Edit", edit_user_path(@user)) {}
+.button_s= link_to_if(can?(:delete, @user), "Delete", user_path(@user), :confirm => "Are you sure?", :method => :delete) {}
+=render :partial => 'friendship/friends'
+%br/
+%p Avatar:
+%br/
+
+%table.one-column-emphasis
+  %tbody
+    %tr
+      %td{:rowspan => "8"}= image_tag @user.avatar.url(:medium)
+    %tr
+      %td.oce-first Email:
+      %td= @user.email
+    %tr
+      %td.oce-first Name:
+      %td= @user.name
+    %tr
+      %td.oce-first Role:
+      %td= @user.roles.first.name
+    - if can?(:see_timestamps,User)
+      %tr
+        %td.oce-first Created at:
+        %td= @user.created_at
+      %tr
+        %td.oce-first Last Sign In:
+        %td= @user.last_sign_in_at
+      %tr
+        %td.oce-first Sign In Count:
+        %td= @user.sign_in_count
+%h2 Blogit
+%table
+  %tr
+    %th Otsikko
+    %th Luotu
+    %th
+    %th
+  - @posts.each do |post|
+    %tr
+      %td= post.title
+      %td= post.created_at.to_s(:long)
+      - if can? :manage, @post
+        %td= link_to 'Show', post
+        %td= link_to 'Muokkaa', edit_post_path(post)
+        %td= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete
+%h2 Linkit
+%table
+  %tr
+    %th Otsikko
+    %th Luotu
+    %th
+    %th
+  - @links.each do |link|
+    %tr
+      %td= link.title
+      %td= link.created_at.to_s(:long)
+      %td= link_to 'Show', link
+      %td= link_to 'Edit', edit_link_path(link)
+      %td= link_to 'Destroy', link, :confirm => 'Are you sure?', :method => :delete
+
+= friendship_status(current_user, @user)
+  - unless Friendship.exists? (current_user, @user)
+  = link_to "Request friendship with #{@user.name}", { :controller => "friendship", :action => "create", :id => @user.id }, :confirm => "Lähetä kaveri pyyntö käyttäjälle #{@user.name}"

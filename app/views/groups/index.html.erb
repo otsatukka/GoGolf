@@ -1,0 +1,22 @@
+<%= stylesheet_link_tag 'common' %>
+<%= stylesheet_link_tag 'groups' %>
+
+<div id="groups_links">
+	<% if logged_in? %>
+		<div id="groups_all"><%= link_to 'All Groups' %></div>
+		<div id="groups_my"><%= link_to 'My Groups', user_groups_path(current_user) %></div>
+		<div id="groups_add"><%= link_to 'Add a Group', new_group_path %></div>
+	<% end %>
+</div>
+<% if @user %>
+	<h1>My Groups (<%= @groups.size %>)</h1>
+<% else %>
+	<h1>All Groups (<%= @groups.size %>)</h1>
+<% end %>
+
+<div id="content_table">
+	<% for group in @groups %>
+		<%= render :partial => 'group_brief', :locals=>{:group=>group} %>
+	<% end %>
+</div>
+

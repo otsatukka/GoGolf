@@ -1,0 +1,22 @@
+%table
+  %tr
+    %th{:align => "left", :colspan => "3"}
+      = pluralize(@user.friends.count, "RailsSpace friend")
+  - @user.friends.each do |friend|
+    %tr
+      %td{:width => "50"}= link_to user_thumb(friend), friend
+      %td= link_to friend.name, friend
+
+- unless @user.requested_friends.empty? 
+  %table
+    %tr
+      %th
+        Pyynnöt
+      %th
+        = @user.requested_friends.count
+    - @user.requested_friends.each do |requester|
+      %tr
+        %td= requester.name
+        %td= link_to "Accept", :controller => "friendship", :action => "accept", :id => requester.id
+  
+   

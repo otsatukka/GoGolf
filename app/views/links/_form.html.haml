@@ -1,0 +1,17 @@
+= form_for(@link) do |f|
+  .field
+    = f.label :title
+    %br/
+    = f.text_field :title
+  .field
+    = f.label :body
+    %br/
+    = f.text_area :body
+  #comment_form
+    = f.fields_for :autolink do |t|
+      .field
+        = t.label :linkurl
+        %br/
+        = t.text_field :linkurl
+  .actions
+    = f.submit

@@ -1,0 +1,18 @@
+<div class="module">
+	<div class="module_head">Who's Attending</div>
+	<div class="module_body">
+		<% unless @event.attendees.empty? %>
+			<% @event.attendees[0..10].each do |u| %>
+			  <%= u.name %>
+			  <br/>
+			<% end %>
+			<div style="clear:both;"></div>
+		<% end %>
+		<% if @event.attendees.length == 0 %>
+			No one is attending yet.
+		<% end %>
+	</div>
+	<div class="module_foot">
+		<%= link_to 'View All ('+ @event.attendees.length.to_s + ')', event_attendances_path(@event) %>
+	</div>
+</div>

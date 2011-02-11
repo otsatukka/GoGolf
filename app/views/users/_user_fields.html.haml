@@ -1,0 +1,19 @@
+%p
+  = f.label :email
+  %br/
+  = f.text_field :email
+%p
+  = f.label :name
+  %br/
+  = f.text_field :name
+- if can? :edit, Role
+  %p
+    = f.label :role
+    - for role in Role.find(:all)
+      %div
+        = check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role)
+        = role.name
+%p
+  = f.label :avatar
+  %br/
+  = f.file_field :avatar

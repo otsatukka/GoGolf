@@ -1,0 +1,73 @@
+
+.widgetcontainer
+  .widgettitle
+    AJANKOHTAISTA
+  .widgetcontent
+    .slider
+      %table
+        %tr
+          %td
+            #myslide
+              .cover
+                - if @recent_posts != nil
+                  - @recent_posts.each do |post|
+                    .mystuff
+                      .post_excerpt_img_big= find_img(post)
+                      .description
+                        %p{:class => "description_content post_excerpt_body"}
+                          = truncate_body(post)
+                
+            %td
+              #button_slider
+                %ul
+                  %li
+                    %a{:rel => "1", :class => "button1 active_s", :href => "#"}
+                      %strong= @recent_posts.first.title
+                  %li
+                    %a{:rel => "2", :class => "button2", :href => "#"}
+                      %strong= @recent_posts.second.title
+                  %li
+                    %a{:rel => "3", :class => "button3", :href => "#"}
+                      %strong= @recent_posts.third.title
+.widgetcontainer
+  .widgettitle
+    Uusimmat jutut
+  .widgetcontent
+    #recentposts
+      - if @recent_posts != nil
+        - @recent_posts.each do |post|
+          %table
+            %tr
+              %td{:rowspan => "4", :width => "100px"}
+                .post_excerpt_img= find_img(post)
+            %tr
+              %th
+                %h3= link_to post.title, post
+            %tr
+              %td
+                .post_excerpt_body
+                  = truncate_body(post)
+            %tr
+              %td
+                Kirjoittanut
+                - if post.user != nil
+                  = link_to post.user.name, post.user
+                  = post.created_at.to_s(:long)
+%br/
+%h2 Uusimmat linkit
+- if @recent_links != nil
+  - @recent_links.each do |link|
+    %table
+      %tr
+        %th
+          %h3= link_to link.title, link.autolink.linkurl
+      %tr
+        %td
+          = link.body
+      %tr
+        %td
+          %p 
+            Kirjoittanut
+            - if link.user != nil
+              = link_to link.user.name, link.user
+              = link.created_at.to_s(:long)

@@ -1,0 +1,20 @@
+<p>
+  <b>Nimi:</b>
+  <%= @course.name %>
+</p>
+
+<p>
+  <b>Osoite:</b>
+  <%= @course.address %>
+</p>
+
+<p>
+  <b>Admin:</b>
+  <% if @course.admin != nil %>
+    <%= @course.admin.name %>
+  <% end %>
+</p>
+
+
+<%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Back', courses_path %>

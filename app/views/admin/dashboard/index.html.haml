@@ -1,0 +1,22 @@
+%p
+  = link_to "KATEGORIAT", "/admin/dashboard/index"
+  = link_to "POSTAUKSET", "/admin/dashboard/posts"
+  = link_to "KÄYTTÄJÄT", "/admin/dashboard/users"
+  = link_to "KENTÄT", "/admin/dashboard/courses"
+  = link_to "LINKIT", "/admin/dashboard/links"
+
+%table
+  %tr
+    %th Category name
+    %th
+    %th
+    %th
+
+  - @categories.each do |admin_category|
+    %tr
+      %td= admin_category.category_name
+      %td= link_to 'Show', admin_category
+      %td= link_to 'Edit', edit_admin_category_path(admin_category)
+      %td= link_to 'Destroy', admin_category, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to 'New Category', new_admin_category_path

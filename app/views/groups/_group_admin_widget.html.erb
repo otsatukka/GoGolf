@@ -1,0 +1,10 @@
+<div class="module">
+	<div class="module_head">Members</div>
+	<div class="module_body">
+		<%= link_to 'Edit Group', edit_group_url(@group) %><br/>
+		<%= link_to 'Manage Group Members', group_memberships_path(@group) %><br/>
+		<% if current_user.is_admin %>
+			<%= link_to 'Delete Group' %>
+		<% end %>
+	</div>
+</div>

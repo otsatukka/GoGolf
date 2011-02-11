@@ -1,0 +1,26 @@
+%p
+  = link_to "KATEGORIAT", "/admin/dashboard/index"
+  = link_to "POSTAUKSET", "/admin/dashboard/posts"
+  = link_to "KÄYTTÄJÄT", "/admin/dashboard/users"
+  = link_to "KENTÄT", "/admin/dashboard/courses"
+  = link_to "LINKIT", "/admin/dashboard/links"
+  
+  %table
+    %tr
+      %th Username
+      %th Luotu
+      %th Postaukset
+      %th Linkit
+      %th
+      %th
+      %th
+
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= user.created_at.to_s(:short)
+        %td= user.posts.count
+        %td= user.links.count
+        %td= link_to 'Show', user
+        %td= link_to 'Edit', edit_user_path(user)
+        %td= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete
