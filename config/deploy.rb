@@ -1,28 +1,32 @@
-set :application, "gogolf"
-set :repository,  "git@github.com:gogolf/GoGolf.git"
-set :deploy_to, "/public_html/gogolf"
-set :user, "gogolf"
-set :scm_passphrase, "TY3pDOvd"
-set :branch, "master"
-set :git_enable_submodules, 1
+set :application, "gogolf" # Your application location on your server goes here
+
+default_run_options[:pty] = true
+
+set :repository,  "."
+set :scm, :none
+set :deploy_via, :copy
+
+set :checkout, 'export'
+
+set :user, 'gogolf' # Your username goes here
 set :use_sudo, false
+set :domain, 'gogolf.fi' # Your domain goes here
+set :applicationdir, "/home/#{user}/#{application}"
+set :deploy_to, applicationdir
 
-set :scm, :git
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+role :web, "ssh.sjr.fi"                 
+role :app, "ssh.sjr.fi"                          
+role :db,  "ssh.sjr.fi", :primary => true 
 
-role :web, "www.gogolf.fi"                          # Your HTTP server, Apache/etc
-role :app, "www.gogolf.fi"                          # This may be the same as your `Web` server
-role :db,  "sql.sjr.fi", :primary => true # This is where Rails migrations will run
-role :db,  "sql.sjr.fi"
 
-# If you are using Passenger mod_rails uncomment this:
-# if you're still using the script/reapear helper you will need
-# these http://github.com/rails/irs_process_scripts
+set :chmod755, "app config db lib public vendor script script/* public/disp*"
 
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+namespace :deploy do
+  
+  task :start do ; end
+  task :stop do ; end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+  
+end
