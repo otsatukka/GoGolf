@@ -2,7 +2,8 @@ set :application, "gogolf"
 set :repository,  "git@github.com:gogolf/GoGolf.git"
 set :deploy_to, "/public_html/gogolf"
 set :user, "gogolf"
-set :branch, "release"
+set :scm_passphrase, "TY3pDOvd"
+set :branch, "master"
 set :git_enable_submodules, 1
 set :use_sudo, false
 
