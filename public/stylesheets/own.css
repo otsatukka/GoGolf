@@ -3,7 +3,8 @@
 /* BASIC */
 body {
   /*background-color: #776235;*/
-  /* background: #fff url(/images/gogolflayout1.jpg); */
+  background: #5c8b25 url(/images/layout/bg.jpg);
+  background-repeat: repeat-x;
 }
 
 /* TYPOGRAPHY */
@@ -19,6 +20,16 @@ a:hover { color: #ccc; }
 }
 #header {
   padding:5px 0 0 0;
+}
+#banner_top, #banner_top img{
+  padding:0px;
+  line-height:0;
+  margin: 0px;
+  font-size:0;
+}
+#banner_top1 {
+  background: #5c8b25 url(/images/layout/top.jpg);
+  height:48px;
 }
 
 /* BLOCKS */

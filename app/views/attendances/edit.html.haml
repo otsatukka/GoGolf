@@ -3,9 +3,8 @@
     = f.label "Kutsu pelaajia"
     - for attendee in User.all
       %div
-        - if !@event.requested_attendees.include?(attendee)
-          = check_box_tag "attendee_ids[]", attendee.id
-          = attendee.name
+        = check_box_tag "attendee_ids[]", attendee.id, @event.attendees.include?(attendee)
+        = attendee.name
   .field
     = f.label "Valitse pelikaverit"
     =# f.autocomplete_field :attendee_email, autocomplete_attendee_email_event_attendances_path

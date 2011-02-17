@@ -6,7 +6,7 @@ class AttendancesController < ApplicationController
   def index
     @event = Event.find(params[:event_id])
     @attendees = @event.attendees
-    @requested_attendees = @event.requested_attendees
+    @attendances = @event.attendances
     @title = "Attendees for #{@event.name}"
   end
   
@@ -24,6 +24,7 @@ class AttendancesController < ApplicationController
  # end
   def new
     @event = Event.find(params[:event_id])
+    @requested_attendees = @event.requested_attendees
     @attendance = @event.attendances.build
   end
   

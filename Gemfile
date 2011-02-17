@@ -1,11 +1,10 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0'
+gem 'rails', '3.0.3'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'devise'
 gem 'i18n', '0.4.1'
 gem 'cancan'
-gem 'admin_data', '1.1.10'
 gem 'net-ssh', '2.1.0'
 gem 'net-scp', '1.0.4'
 gem 'formtastic'
@@ -49,4 +48,5 @@ group :development, :test do
   gem "rspec-rails", "~> 2.4"
   gem 'capybara'
   gem 'factory_girl'
+  gem 'admin_data'
 end

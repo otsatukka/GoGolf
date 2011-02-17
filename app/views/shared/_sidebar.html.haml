@@ -1,5 +1,13 @@
 .ui-widget
-  - if user_signed_in?
+  - if !user_signed_in?
+    .ui-widget-header
+      Kirjautuminen
+    .ui-widget-content
+      %a.sign_in_button= "Kirjaudu sisään"
+      #sign_in2= render :partial => 'devise/sessions/signin'
+      %a
+        .button_s= link_to "Rekisteröidy", "/users/new"
+  -else
     .ui-widget-header
       Hei
       - if current_user.name != nil

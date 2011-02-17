@@ -10,18 +10,15 @@
   %body
     .container
       .span-24.last
+        #banner_top1
+      .span-24.last
         #banner_top
-      .span-20
-        #header
-          %img{:src => "/images/logoGrass1-small.jpg", :alt => "GoGolf.fi"}
-      .span-4.last
-        #header
-          -if !user_signed_in?
-            %a.sign_in_button= "Kirjaudu sisään"
-            #sign_in2= render :partial => 'devise/sessions/signin'
-            %br/
-            %a
-              .button_s= link_to "Rekisteröidy", "/users/new"
+          %img{:src => "/images/layout/left_1.jpg", :alt => "GoGolf.fi"}
+          %img{:src => "/images/layout/gogolf.jpg", :alt => "GoGolf.fi"}
+          %img{:src => "/images/layout/goguide.jpg", :alt => "GoGolf.fi"}
+          %img{:src => "/images/layout/godeal.jpg", :alt => "GoGolf.fi"}
+          %img{:src => "/images/layout/mygolf.jpg", :alt => "GoGolf.fi"}
+          %img{:src => "/images/layout/empty_nav.jpg", :width => "125", :height => "91", :alt => "GoGolf.fi"}
       .span-24.last
         .nav
           %ul.nav
