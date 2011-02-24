@@ -1,0 +1,18 @@
+.widgetcontainer{:class => "ui-corner-all"}
+  .widgettitle{:class => "ui-corner-all"}
+    Viikon avaus
+  .widgetcontent
+    %table
+      %tr
+        %td
+          %h3= @uusin_niken_juttu.title
+      %tr
+        %td
+          %table
+            %tr
+              %td
+                = image_tag @uusin_niken_juttu.photo.url(:thumb)
+                = @uusin_niken_juttu.body.html_safe
+              %td
+                = image_tag @uusin_niken_juttu.photo.url(:thumb)
+                = @uusin_niken_juttu.body.html_safe

@@ -1,0 +1,25 @@
+- if @active_tab == "gogolf" # Home tab
+  = link_to image_tag("/images/layout/buttons/gogolf_button_active.jpg", :size => "116x87", :alt => "GoGolf", :border => 0), "/site/index"
+- else
+  = link_to image_tag("/images/layout/buttons/gogolf_button.jpg", :size => "116x87", :alt => "GoGolf", :mouseover => "/images/layout/buttons/gogolf_button_on.jpg"), "/site/index"
+  
+- if @active_tab == "goguide" # Home tab
+  = link_to image_tag("/images/layout/buttons/goguide_button_active.jpg", :size => "126x87", :alt => "GoGolf", :border => 0), courses_path
+- else
+  = link_to image_tag("/images/layout/buttons/goguide_button.jpg", :size => "126x87", :alt => "GoGolf", :mouseover => "/images/layout/buttons/goguide_button_on.jpg"), courses_path
+  
+- if @active_tab == "godeal" # Home tab
+  = link_to image_tag("/images/layout/buttons/golfdeal_button_active.jpg", :size => "116x87", :alt => "GoGolf", :border => 0), "/site/index"
+- else
+  = link_to image_tag("/images/layout/buttons/golfdeal_button.jpg", :size => "116x87", :alt => "GoGolf", :mouseover => "/images/layout/buttons/golfdeal_button_on.jpg"), "/site/index"
+
+- if user_signed_in?
+  - if @active_tab == "mygolf" # Home tab
+    = link_to image_tag("/images/layout/buttons/mygolf_button_active.jpg", :size => "124x87", :alt => "GoGolf", :border => 0), "/users/#{current_user.id}"
+  - else
+    = link_to image_tag("/images/layout/buttons/mygolf_button.jpg", :size => "124x87", :alt => "GoGolf", :mouseover => "/images/layout/buttons/mygolf_button_on.jpg"), "/users/#{current_user.id}"
+- else
+  - if @active_tab == "mygolf" # Home tab
+    = link_to image_tag("/images/layout/buttons/mygolf_button_active.jpg", :size => "124x87", :alt => "GoGolf", :border => 0), "/site/notuser"
+  - else
+    = link_to image_tag("/images/layout/buttons/mygolf_button.jpg", :size => "124x87", :alt => "GoGolf", :mouseover => "/images/layout/buttons/mygolf_button_on.jpg"), "/site/notuser"

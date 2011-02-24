@@ -1,0 +1,21 @@
+
+.nav
+  %ul.nav
+    - if @active_tab == "gogolf"
+      %li= nav_link "Etusivu", "/site"
+      %li= nav_link "Viikon aihe", "site", "topic"
+      %li= nav_link "Uutiset", posts_path
+      %li= nav_link "Linkit", links_path
+    - elsif @active_tab == "goguide"
+      %li= nav_link "Kentät", courses_path
+    - elsif @active_tab == "godeal"
+      %li= nav_link "Etusivu", "/site"
+    - elsif @active_tab == "mygolf"
+      - if user_signed_in?
+        %li= link_to_unless_current "Oma Golf", "/users/#{current_user.id}"
+        %li= nav_link "Ryhmät", groups_path
+        %li= nav_link "Pelit", events_path
+        %li= link_to_unless_current "Peliseurahaku", "/event/peliseura"
+        %li= link_to_unless_current "Kierrokset", "/users/#{current_user.id}/rounds"
+        %li= nav_link "Käyttäjät", users_path
+        
