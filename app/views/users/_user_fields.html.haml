@@ -1,19 +1,30 @@
 %p
-  = f.label :email
+  = f.label :email, "Sähköposti"
   %br/
   = f.text_field :email
 %p
-  = f.label :name
+  = f.label :name, "Käyttäjänimi"
+  %i Näkyy kaikille
   %br/
   = f.text_field :name
+%p
+  = f.label :realname, "Nimi"
+  %i Näkyy vain kavereille (ellei "Näytä Nimi kaikille" ole valittuna)
+  %br/
+  = f.text_field :realname
+%p
+  = f.label :privacy_name, "Näytä Nimi kaikille"
+  %br/
+  = f.check_box :privacy_name
+
 - if can? :edit, Role
   %p
-    = f.label :role
+    = f.label :role, "Rooli"
     - for role in Role.find(:all)
       %div
         = check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role)
         = role.name
 %p
-  = f.label :avatar
+  = f.label :avatar, "Profiilikuva"
   %br/
   = f.file_field :avatar

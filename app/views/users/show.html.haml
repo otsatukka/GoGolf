@@ -62,4 +62,4 @@
 
 = friendship_status(current_user, @user)
   - unless Friendship.exists? (current_user, @user)
-  = link_to "Request friendship with #{@user.name}", { :controller => "friendship", :action => "create", :id => @user.id }, :confirm => "Lähetä kaveri pyyntö käyttäjälle #{@user.name}"
+  = link_to "Request friendship with #{@user.end_user_name}", { :controller => "friendship", :action => "create", :id => @user.id }, :confirm => "Lähetä kaveri pyyntö käyttäjälle #{@user.end_user_name}"

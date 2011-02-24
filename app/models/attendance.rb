@@ -32,7 +32,6 @@ class Attendance < ActiveRecord::Base
       accepted_at = Time.now
       request = find_by_attendee_id_and_event_id(attendee, event)
       request.status = 'accepted'
-      request.accepted_at = accepted_at
       request.save!
     end
   end

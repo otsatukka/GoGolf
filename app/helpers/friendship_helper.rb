@@ -1,14 +1,14 @@
 module FriendshipHelper
   def friendship_status(user, friend)
     friendship = Friendship.find_by_user_id_and_friend_id(user, friend)
-    return "#{friend.name} is not your friend (yet)." if friendship.nil?
+    return "#{friend.end_user_name} ei ole kaverisi (vielä)." if friendship.nil?
     case friendship.status
     when 'requested'
-      "#{friend.name} would like to be your friend."
+      "#{friend.end_user_name} haluaisi olla kaverisi."
     when 'pending'
-      "You have requested friendship from #{friend.name}."
+      "Olet lähettänyt kaveripyynnön #{friend.end_user_name}:lle."
     when 'accepted'
-      "#{friend.name} is your friend."
+      "#{friend.end_user_name} on kaverisi."
     end
   end
 end

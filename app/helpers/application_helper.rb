@@ -5,10 +5,22 @@ module ApplicationHelper
   end
   
   def truncate_body(post)
-    text = truncate(strip_tags(post.body), :length => 200)
+    text = truncate(strip_tags(post.body), :length => 70)
     return text.to_s.gsub(/&nbsp;/, '')
   end
+  
+  # TODO: FIX!!1
   def find_img(post)
+    if post.photo.url != nil
+      html = "<%= image_tag(#{post.photo.url(:thumb)})"
+      html_end = "%>"
+      pic = post.photo.url(:thumb)
+      final = (html + post.photo.url(:thumb) + html_end).html_safe
+      return html.html_safe
+    end
+  end
+  
+  def find_img_hpricot(post)
     doc = Hpricot(post.body)
     final = doc.search("img[@style]").remove_attr("style").first
     if final != nil

@@ -1,10 +1,44 @@
-= render :partial => 'event_details'
+.widgetcontainer
+  .widgettitle 
+    Pelin yksityiskohdat
+  .widgetcontent
+    %table
+      %tr
+        %td
+          = @event.name
+          Arvioitu aika: 
+          = @event.start_time.to_s(:event_brief)
+          %br/
+          Kenttä:
+          = @event.course_name
+          %br/
+          Järjestäjä:
+          = @event.user.end_user_name
+          - if logged_in?
+
+        %td
+          Kuvaus
+          = @event.desc
+          #event_attendance
+            - if current_user.events.include?(@event)
+              Osallistut peliin!
+              .button_s= link_to 'Lähde pelistä pois', '/attendance/leave?attendee_id='+current_user.id.to_s + '&event_id=' + @event.id.to_s
+            - else
+              - if @event.requested_attendees.include?(current_user)
+                .button_s= link_to 'Osallistu peliin', '/attendance/agree?user_id='+current_user.id.to_s + '&event_id=' + @event.id.to_s
+
 %br/
-Event Description
-= @event.desc
 - if (current_user && current_user.role?(:super_admin)) || current_user == @event.user
-  Event Admin
-  = link_to 'Edit Event', edit_event_url(@event)
-  %br/
-  = render :partial => 'attendance_widget'
-  = link_to 'Destroy', @event, :method => :delete, :confirm => "Are you sure?"
+  .widgetcontainer
+    .widgettitle 
+      Hallitse peliä
+    .widgetcontent
+      %table
+        %tr
+          %td
+            = link_to 'Muokkaa', edit_event_url(@event)
+            %br/
+            = render :partial => 'attendance_widget'
+            = link_to 'Destroy', @event, :method => :delete, :confirm => "Are you sure?"
+%br/
+%div{:style => "clear:both"}

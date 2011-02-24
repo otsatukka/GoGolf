@@ -5,7 +5,7 @@
   - @user.friends.each do |friend|
     %tr
       %td{:width => "50"}= link_to user_thumb(friend), friend
-      %td= link_to friend.name, friend
+      %td= link_to friend.end_user_name, friend
 
 - unless @user.requested_friends.empty? 
   %table
@@ -16,7 +16,7 @@
         = @user.requested_friends.count
     - @user.requested_friends.each do |requester|
       %tr
-        %td= requester.name
+        %td= requester.end_user_name
         %td= link_to "Accept", :controller => "friendship", :action => "accept", :id => requester.id
   
    

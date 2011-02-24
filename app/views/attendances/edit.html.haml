@@ -4,7 +4,7 @@
     - for attendee in User.all
       %div
         = check_box_tag "attendee_ids[]", attendee.id, @event.attendees.include?(attendee)
-        = attendee.name
+        = attendee.end_user_name
   .field
     = f.label "Valitse pelikaverit"
     =# f.autocomplete_field :attendee_email, autocomplete_attendee_email_event_attendances_path

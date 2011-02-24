@@ -1,5 +1,9 @@
 class Admin::DashboardController < ApplicationController
-  before_filter :auth
+  before_filter :auth, :tabify
+  
+  def tabify
+    @active_tab = "admin"
+  end
   
   def auth
     authorize! :manage, :all

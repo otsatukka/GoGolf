@@ -1,18 +1,31 @@
-= form_for @post do |f|
-  .field
-    = f.label "Otsikko"
-    %br/
-    = f.text_field :title
-    %br/
+= semantic_form_for @post, :html => { :multipart => true } do |f|
+  = f.inputs do
+    = f.input :title, :label => "Otsikko"
     - if can? :new, Post
       %p
-        = f.label "Kategoria"
+        = f.label :category_id, "Kategoria"
+        %br/
         - for category in Admin::Category.find(:all)
           %div
-            = radio_button_tag "post[category_id]", category.id, @post.category_id == category.id
+            = radio_button_tag "post[category_id]", category.id, @post.category_id = category.id
             = category.category_name
-  .field
-    = f.cktext_area :body, :toolbar => 'Post', :width=>'600px', :height=>'500px', :language=>'fi'
-    %br/
+      %br/
+    - if current_user != nil && logged_in?
+      = f.input :photo, :label => "Kuva", :hint => "Lataa ensisijainen kuva"
+      - if @post != nil
+        = image_tag @post.photo.url(:medium)
+        %br/
+        Nykyinen kuva
+        %br/
+  - if current_user.role?(:author) || current_user.role?(:super_admin)
+    .field
+      = f.cktext_area :body, :toolbar => 'Author', :width=>'600px', :height=>'500px', :language=>'fi'
+      %br/
+  - else
+    - if current_user.role?(:basic)
+      .field
+        = f.cktext_area :body, :toolbar => 'Basic', :width=>'600px', :height=>'500px', :language=>'fi'
+        %br/
   .actions
-    = f.submit "Lähetä"
+    = f.buttons
+    

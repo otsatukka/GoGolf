@@ -1,22 +1,19 @@
-%h3= @user == @current_user ? "Your Account Settings" : "Edit User"
+%h3= @user == @current_user ? "Käyttäjätilisi asetukset" : "Muokkaa käyttäjää"
+%br/
 =render "shared/error_messages", :target => @user
   
 = form_for(@user, :html => { :method => :put, :multipart => true }) do |f|
   = render :partial => 'user_fields', :locals => { :f => f }
-  %p
-    = f.label :password
-    %i (leave blank if you don't want to change it)
-    %br/
-    = f.password_field :password
-  %p
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation
-  %p
-    = f.label :current_password
-    %i (we need your current password to confirm your changes)
-    %br/
-    = f.password_field :current_password
-  %p 
-    = f.submit "Update"
-    = link_to "Back", :back
+  - if @user.rpx_identifier == nil
+    %p
+      = f.label :password
+      %i (leave blank if you don't want to change it)
+      %br/
+      = f.password_field :password
+    %p
+      = f.label :password_confirmation
+      %br/
+      = f.password_field :password_confirmation
+ 
+  = f.submit "Päivitä", {:class => "button_s"}
+  .button_s= link_to "Takaisin", :back

@@ -2,10 +2,13 @@
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "please-change-me@config-initializers-devise.com"
+  config.mailer_sender = "gogolf@gogolf.fi"
   
   config.rpx_application_name = "gogolf"
-  RPXNow.api_key = "2dd8eb6264ea4faff239c8890c9a87f0b23839ff"
+  RPXNow.api_key = "107aca11d200d1e2c7be9facef727e77b4cefe3c"
+  
+  config.rpx_auto_create_account = false # false if you don't want to create users automaticaly. True by default.
+  # config.rpx_additional_user_data = [:name, :preferredUsername] # default [], get some extra profile info from RPXnow
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating an user. By default is
   # just :email. You can configure it to use [:username, :subdomain], so for
@@ -52,7 +55,7 @@ Devise.setup do |config|
   # config.password_length = 6..20
 
   # Regex to use to validate the email address
-  # config.email_regexp = /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
+  config.email_regexp = /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
 
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this

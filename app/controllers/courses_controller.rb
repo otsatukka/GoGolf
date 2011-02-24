@@ -1,5 +1,9 @@
 class CoursesController < ApplicationController
+  before_filter :tabify
   
+  def tabify
+    @active_tab = "goguide"
+  end
   # load_and_authorize_resource
   
   # GET /courses

@@ -14,6 +14,8 @@ a:hover { color: #ccc; }
 .ui-widget-header h2 {
   text-shadow: 1px 1px 1px #fff;
 }
+
+/* HEADER STUFF */
 .header1 {
   text-shadow: #000 2px -2px 2px;
   color: #3D9200;
@@ -28,43 +30,24 @@ a:hover { color: #ccc; }
   font-size:0;
 }
 #banner_top1 {
-  background: #5c8b25 url(/images/layout/top.jpg);
-  height:48px;
+  background: #5c8b25 url(/images/layout/top_left.jpg);
+  height:65px;
 }
 
-/* BLOCKS */
-.post_excerpt_body img {
-  display: none;
+/* NAVIGATION */
+#navigation {
+  background: #5c8b25 url(/images/layout/bottom_left.jpg);
+  height:51px;  
 }
-.post_excerpt_img img {
-  height: 80px;
-  width: 80px;
+#navigation ul {
+  padding:10px 0px 0px 20px;
 }
-.post_excerpt td {
-  height: 80px;
-  width: 80px;
-}
-.post_excerpt_img_big img {
-  width: 425px;
-  height: 276px;
-}
-.button_s {
-  font-size: 0.8em;
-}
-.button {
-  font-size: 1em;
-}
-.sign_in_button {
-  font-size: 0.8em;
-}
-.selected {
-  /*background-color: #5FA92A;*/
-  background-color: #000;
-}
+
 .nav {
-  border-bottom: 2px #000 solid;
+  /*border-bottom: 2px #000 solid;*/
   height: 32px;
-  background-color: #3D9200;
+  /*background-color: #3D9200;*/
+  background-color: #75993c;
   margin: 0px 0px 0px 0px;
   
 }
@@ -94,10 +77,48 @@ a:hover { color: #ccc; }
   /*background: #000;*/
 }
 
+/* BLOCKS */
+.post_excerpt_body img {
+  display: none;
+}
+.post_excerpt_img img {
+  height: 80px;
+  width: 80px;
+}
+.post_excerpt td {
+  height: 80px;
+  width: 80px;
+}
+.post_excerpt_img_big img {
+  width: 425px;
+  height: 276px;
+}
+.padding {
+  padding:10px;
+}
+
+/* BUTTONS */
+.button_s {
+  font-size: 0.8em;
+}
+.button {
+  font-size: 1em;
+}
+.sign_in_button {
+  font-size: 0.8em;
+}
+.selected {
+  background-color: #5FA92A;
+  /*background-color: #000;*/
+}
+
+.content_all {
+  background: #5c8b25 url(/images/layout/content_bg.jpg);
+  margin:0;
+}
+
 #main {
-   background-color: #F5F5F5; 
-   border: 1px solid #D3D1C7;
-   padding: 10px;
+   padding: 2px;
 }
 
 #notice {
@@ -112,10 +133,10 @@ a:hover { color: #ccc; }
 }
 
 #recentposts table {
-  border-top-color:#ddd;
+  /*border-top-color:#ddd;
   border-top-style:solid;
   border-top-width:2px;
-  padding-bottom:5px;
+  padding-bottom:5px;*/
   padding-left:0;
   padding-right:0;
   padding-top:7px;
@@ -123,56 +144,25 @@ a:hover { color: #ccc; }
 #recentposts h3 {
   margin : 0;
 }
+#events_add h2 {
+  margin : 0;
+  line-height:1.0;
+}
+#new_event textarea {
+  height: 100px;
+  width: 400px;
+}
 
 /* SIDEBAR */
-.widgetcontainer		{ font-weight: 700; font-size: 11px; border: solid #CCC; border-width: 1px; background: repeat-x #FFF; line-height: 1.4em; }
-.widgetcontainer a		{ font-weight: 700; }
-.widgettitle			{ background-color: #204000; color: #FFF;  padding: 5px 10px; border-bottom: 1px solid #CCC; }
+.widgetcontainer		{ border: solid #999; border-width: 1px; background: repeat-x #FFF; -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px; }
+.widgetcontainer a		{ }
+.widgettitle			{ background-color: #204000; color: #FFF;  padding: 5px 5px; -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
 .widgettitle a			{ color: #FFF; }
-.widgetcontent { padding: 0px; }
+.widgetcontent { padding: 10px; }
+.widgetcontent_editors_pick { padding: 0px; }
 
-/* FRONT PAGE SLIDER */
-.slider table, .slider td, .slider th { padding:0;}
-#myslide {width:425px;overflow:hidden;position: relative;height:276px; }
-#myslide .cover{
-  width:1275px; /*------- class mystuff width * number of mystuff divs (425 * 3 = 480)---------- */
-  position: absolute;
-  height:276px;
-}
-#myslide .mystuff {width:425px;float:left;}
-#myslide table, #myslide th, #myslide td, #myslide th {padding: 0;}
-
-#button_slider ul {
-  list-style-position: outside;
-  list-style: none;
-  padding:0;
-  margin-bottom: 0;
-}
-
-.button1,.button2,.button3 {
-  background:#222;
-  padding: 35px 27px;
-  display:block;
-  float:left;
-  width:200px;
-}
-.button1 strong,.button2 strong,.button3 strong {
-  color: #fff;
-  font-size: 13px;
-}
 .active_s{background:#ddd;padding:27px;display:block;float:left;outline:none;width:200px;}
  
-.description{
-  position:absolute; /* absolute position (so we can position it where we want)*/
-  bottom:0px; /* position will be on bottom */
-  width:425px;
-  /* styling bellow */
-  background-color:black;
-  font-family: 'tahoma';
-  font-size:15px;
-  color:white;
-  opacity:0.6; /* transparency */
-  filter:alpha(opacity=60); /* IE transparency */
-}
+
 
 p.description_content{padding:10px;margin:0px;}

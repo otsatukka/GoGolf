@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
   has_many :rounds
   has_many :courses, :through => :rounds
   
+  def before_rpx_auto_create(rpx_user)
+    self.realname = rpx_user[:name][:formatted]
+  end
+  
   # KAVERIT
   has_many :friendships
   has_many :friends, :through => :friendships, :conditions => "status = 'accepted'", :order => :name
@@ -21,6 +25,18 @@ class User < ActiveRecord::Base
   
   before_create :add_basic_role
   
+  # PRIVACY
+  ##################################################################
+  
+  def end_user_name
+    if self.privacy_name
+      self.realname
+    else
+      self.name
+    end
+  end
+    
+  
   # PAPERCLIP
   ##################################################################
   
@@ -28,8 +44,8 @@ class User < ActiveRecord::Base
                     :styles => { :medium => "300x300>",
                                  :thumb => "100x100>" }
                                  
- # validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png', 'image/gif']
- # validates_attachment_size :avatar, :less_than => 1.megabyte
+ validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png', 'image/gif']
+ validates_attachment_size :avatar, :less_than => 1.megabyte
  
  # DEVISE
  ##################################################################
@@ -40,7 +56,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :rpx_connectable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :name, :role_ids, :avatar
+  attr_accessible :email, :password, :password_confirmation, :role_ids, :avatar, :name, :realname,
+                  :privacy_name
+  validates_presence_of :name, :realname
   
   # ROLE
   ##################################################################
@@ -100,6 +118,7 @@ class User < ActiveRecord::Base
     end
   end
   
+  
 #  SCREEN_NAME_MIN_LENGTH = 4
 #  SCREEN_NAME_MAX_LENGTH = 20
 #  PASSWORD_MIN_LENGTH = 4
@@ -107,7 +126,7 @@ class User < ActiveRecord::Base
 #  EMAIL_MAX_LENGTH = 50
 #  SCREEN_NAME_RANGE = SCREEN_NAME_MIN_LENGTH..SCREEN_NAME_MAX_LENGTH 
 #  PASSWORD_RANGE = PASSWORD_MIN_LENGTH..PASSWORD_MAX_LENGTH
-  
+
 #  validates_uniqueness_of   :screen_name, :email
 #  validates_length_of       :screen_name, :within =>  SCREEN_NAME_RANGE
 #  validates_length_of       :password,    :within =>  PASSWORD_RANGE

@@ -1,5 +1,9 @@
 class RoundsController < ApplicationController
-  before_filter :get_user, :get_title
+  before_filter :get_user, :get_title, :tabify
+  
+  def tabify
+    @active_tab = "mygolf"
+  end
   
   # load_and_authorize_resource
   
@@ -7,6 +11,11 @@ class RoundsController < ApplicationController
   # GET /rounds.xml
   def index
     @rounds = @user.rounds
+    
+    if @user == current_user
+      @title = "Omat kierrokset"
+    end
+    
   end
 
   # GET /rounds/1

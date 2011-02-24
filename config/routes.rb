@@ -27,9 +27,10 @@ Gogolfrails::Application.routes.draw do
   end
   
   resources :events do
+    get :autocomplete_course_name, :on => :collection
     resources :users
-    resources :attendances do 
-      get :autocomplete_user_email, :on => :collection
+    resources :attendances do
+      get "accept"
     end
   end
   
@@ -40,18 +41,18 @@ Gogolfrails::Application.routes.draw do
   
   resources :posts
   
-  match 'profiili', :to => 'profile#index'
+  match "event/peliseura", :controller => 'events', :action => 'search'
   match 'users/edit', :to => 'devise/registrations#edit'
-  
   get "friendship/create"
   get "friendship/accept"
   get "friendship/decline"
+  match "attendance/agree", :controller => 'attendances', :action => 'accept'
+  match "attendance/leave", :controller => 'attendances', :action => 'destroy'
   get "site/about"
   get "site/index"
   get "site/help"
-  get "attendances/create"
-  get "attendances/index"
-  get "attendances/destroy"
+  get "site/notuser"
+  get "site/topic"
   resources :memberships, :collection => {:find=>:get}
   
   root :to => 'site#index'

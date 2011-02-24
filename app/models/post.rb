@@ -11,6 +11,18 @@ class Post < ActiveRecord::Base
   validates_length_of           :title, :in => 2..200
   validates_length_of           :body, :in => 2..2000
   
+  attr_accessible :photo, :title, :body, :category, :user, :published, :weektopic, :editors_pick
+  
+   # PAPERCLIP
+   ##################################################################
+
+   has_attached_file :photo, 
+                     :styles => { :medium => "300x300>",
+                                  :thumb => "100x100>" }
+
+  #validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
+  #validates_attachment_size :photo, :less_than => 1.megabyte
+  
   def self.search(search)
     if search
       where('title LIKE ?', "%#{search}%")

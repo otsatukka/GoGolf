@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110209133210) do
+ActiveRecord::Schema.define(:version => 20110222222131) do
 
   create_table "achievements", :force => true do |t|
     t.string   "type"
@@ -75,6 +75,10 @@ ActiveRecord::Schema.define(:version => 20110209133210) do
     t.datetime "start_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "morning"
+    t.boolean  "private",     :default => true
+    t.string   "game_type"
+    t.string   "course_name"
   end
 
   create_table "friendships", :force => true do |t|
@@ -127,12 +131,17 @@ ActiveRecord::Schema.define(:version => 20110209133210) do
   create_table "posts", :force => true do |t|
     t.string   "title"
     t.text     "body"
-    t.boolean  "published",    :default => false
-    t.boolean  "editors_pick", :default => false
+    t.boolean  "published",          :default => false
+    t.boolean  "editors_pick",       :default => false
     t.integer  "user_id"
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.boolean  "weektopic",          :default => false
   end
 
   create_table "roles", :force => true do |t|
@@ -158,9 +167,9 @@ ActiveRecord::Schema.define(:version => 20110209133210) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "email",                               :default => "",    :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "",    :null => false
+    t.string   "password_salt",                       :default => "",    :null => false
     t.string   "name"
     t.string   "reset_password_token"
     t.string   "remember_token"
@@ -177,6 +186,9 @@ ActiveRecord::Schema.define(:version => 20110209133210) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "rpx_identifier"
+    t.boolean  "privacy_name",                        :default => false
+    t.boolean  "privacy_search",                      :default => false
+    t.string   "realname"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

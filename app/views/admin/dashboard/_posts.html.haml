@@ -1,10 +1,3 @@
-= hidden_field_tag :category, params[:category]
-= text_field_tag :search, params[:search]
-%p
-  =link_to "Kaikki"
-  - @categories.each do |c|
-    = link_to c.category_name, params.merge(:category => c.id, :page => nil)
-
 %table
   %tr
     %th Otsikko
@@ -12,12 +5,16 @@
     %th Luotu
     %th
     %th
+    %th
+    %th Älä näytä
+    %th Viikon aihe
+    %th Toimituksen valinta
   - @posts.each do |post|
     %tr
       %td= post.title
       %td
         - if post.user != nil
-          = post.user.name
+          = post.user.end_user_name
       %td= post.created_at.to_s(:long)
       %td
         = link_to 'Näytä', post
@@ -25,6 +22,16 @@
         = link_to 'Muokkaa', edit_post_path(post)
       %td
         = link_to 'Poista', post, :confirm => 'Are you sure?', :method => :delete
+      = semantic_form_for post do |f|
+        %td
+          = f.input :published, :label => ""
+        %td
+          = f.input :weektopic, :label => ""
+        %td
+          = f.input :editors_pick, :label => ""
+        %td
+          = f.submit "Päivitä"
+          
 %br/
 
 %p

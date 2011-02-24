@@ -1,6 +1,6 @@
 .ui-widget
   - if !user_signed_in?
-    .ui-widget-header
+    .ui-widget-header{:class => "ui-corner-all"}
       Kirjautuminen
     .ui-widget-content
       %a.sign_in_button= "Kirjaudu sisään"
@@ -10,10 +10,10 @@
   -else
     .ui-widget-header
       Hei
-      - if current_user.name != nil
+      - if current_user.realname == nil
         = current_user.email
       - else
-        current_user.name
+        = current_user.realname.split(' ').first
     .ui-widget-content
       %table
         %tr

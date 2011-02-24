@@ -20,7 +20,22 @@ $(function() {
       return false;
     });
 });
+$(document).ready(function() {
+  $.featureList(
+    $("#tabs li a"),
+    $("#output li"), $("#description1 li"), {
+      start_item : 1
+      }
+    );
+});
 
+/* ADMIN OSIO 
+$(document).ready(function() {
+  jQuery('.submittable').live('change', function() {
+    $(this).parents('form').submit();
+    return false;
+  });
+});*/
 
 jQuery.ajaxSetup({ 'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")} })
 
@@ -39,13 +54,9 @@ $(document).ready(function() {
   jQuery("#spede").click(function() {
     jQuery("#spede").hide();
   });
+  
 
-/*  jQuery(".sign_in_button").click(function() {
-    jQuery("#sign_in").slideToggle("slow");
-    	  $(this).toggleClass("active");
-  });
-});*/
-
+  
   jQuery(".sign_in_button").click(function() {
     jQuery("#sign_in2").dialog({
       title: "Kirjaudu sisään",
@@ -59,20 +70,5 @@ $(document).ready(function() {
 
 /* NAVI */
 $(document).ready(function() {
-  
-/*  jQuery(function(){
-    var path = location.pathname.substring(1);
-    if ( path )
-      jQuery('.nav li a[href$="' + path + '"]').attr('class', 'selected');
-  });
-  jQuery(function(){
-    var path = location.pathname.substring(1);
-    if ( path )
-      jQuery('.nav a[href$="' + path + '"]').attr('class', 'highlighted');
-  });*/
   jQuery('.nav li:not(:has(a))').addClass('selected');
 });
-
-/* FRONT PAGE SLIDER */
-$(document).ready(function(){$('#button_slider a').click(function(){var integer=$(this).attr('rel');$('#myslide .cover').animate({left:-425*(parseInt(integer)-1)})
-$('#button_slider a').each(function(){$(this).removeClass('active_s');if($(this).hasClass('button'+integer)){$(this).addClass('active_s')}});});});

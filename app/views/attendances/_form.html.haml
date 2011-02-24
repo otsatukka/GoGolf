@@ -5,7 +5,7 @@
       %div
         - if !@event.requested_attendees.include?(attendee)
           = check_box_tag "attendee_ids[]", attendee.id
-          = attendee.name
+          = attendee.end_user_name
   .field
     = f.label "Valitse pelikaverit"
     =# f.autocomplete_field :attendee_email, autocomplete_attendee_email_event_attendances_path

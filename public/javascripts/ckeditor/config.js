@@ -41,7 +41,7 @@ CKEDITOR.editorConfig = function( config )
         ['Image','Embed','Flash','Attachment','Table','HorizontalRule','Smiley','SpecialChar','PageBreak']
     ];
     
-    config.toolbar_Post =
+    config.toolbar_Author =
       [
           ['Cut','Copy','Paste'],
           ['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
@@ -49,6 +49,15 @@ CKEDITOR.editorConfig = function( config )
           ['NumberedList','BulletedList'],
           ['Link','Unlink','Anchor'],
           ['Image','Embed']
+      ];
+    config.toolbar_Basic =
+      [
+          ['Cut','Copy','Paste'],
+          ['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
+          ['Bold','Italic'],
+          ['NumberedList','BulletedList'],
+          ['Link','Unlink','Anchor'],
+          ['Embed']
       ];
 };
 

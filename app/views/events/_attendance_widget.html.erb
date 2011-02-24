@@ -3,7 +3,7 @@
 	<div class="module_body">
 		<% unless @event.attendees.empty? %>
 			<% @event.attendees[0..10].each do |u| %>
-			  <%= u.name %>
+			  <%= u.end_user_name %>
 			  <br/>
 			<% end %>
 			<div style="clear:both;"></div>

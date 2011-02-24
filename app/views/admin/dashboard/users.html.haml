@@ -17,7 +17,7 @@
 
     - @users.each do |user|
       %tr
-        %td= user.name
+        %td= user.end_user_name
         %td= user.created_at.to_s(:short)
         %td= user.posts.count
         %td= user.links.count

@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
   before_filter :get_user, :only => [:index,:new,:edit]
   before_filter :accessible_roles, :only => [:new, :edit, :show, :update, :create]
-  before_filter :set_title
+  before_filter :set_title, :tabify
+  # IMPORTANT
+  skip_before_filter :check_username, :only => [:edit, :sign_out, :update]
+  
+  def tabify
+    @active_tab = "mygolf"
+  end
   
   load_and_authorize_resource
   # GET /users

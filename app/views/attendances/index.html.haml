@@ -2,9 +2,11 @@
   Kutsuttuja käyttäjiä
   = @event.requested_attendees.size
 - for attendance in @attendances
-  = attendance.attendee.name
+  = attendance.attendee.end_user_name
   %br/
   = user_thumb(attendance.attendee)
+  %br/
+  = link_to 'Poista', [@event, attendance], :confirm => 'Are you sure?', :method => :delete
   %br/
   %br/
     

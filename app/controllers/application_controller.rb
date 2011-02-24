@@ -1,5 +1,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :check_username
+  
+  def check_username
+    if user_signed_in?
+      if current_user.rpx_connected? && current_user.name == nil
+        flash[:error] = "Lisää käyttäjänimi!"
+        redirect_to edit_user_path(current_user)
+      end
+    end
+  end
   
   rescue_from CanCan::AccessDenied do |exception|
     flash[:alert] = exception.message

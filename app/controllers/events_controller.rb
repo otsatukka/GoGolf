@@ -1,10 +1,19 @@
 class EventsController < ApplicationController
   before_filter :get_user
+  before_filter :get_title
+  before_filter :tabify
+  autocomplete :course, :name, :full => true
   
   # load_and_authorize_resource
   
   def get_user
     @current_user = current_user
+  end
+  def get_title
+    @title = "Omat pelit"
+  end
+  def tabify
+    @active_tab = "mygolf"
   end
   
   # GET /events
@@ -16,6 +25,11 @@ class EventsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @events }
     end
+  end
+  
+  def search
+    @title = "Hae peliseuraa"
+    @open_events = Event.where(:private => false)
   end
   
   # Includes past events
@@ -33,6 +47,13 @@ class EventsController < ApplicationController
   # GET /events/1.xml
   def show
     @event = Event.find(params[:id])
+    if @event.private
+      if @event.requested_attendees.include?(current_user)
+        @attendance_id = @event.attendances.find_by_attendee_id(current_user.id).id
+      end
+    end
+      
+    @title = "Omat pelit >> " + @event.name
 
     respond_to do |format|
       format.html # show.html.erb
@@ -44,6 +65,15 @@ class EventsController < ApplicationController
   # GET /events/new.xml
   def new
     @event = Event.new
+    if params[:private] == 'true'
+      @event.private = true
+      @private = true
+    else
+      @event.private = false
+      @private = false
+    end
+    
+    @event.attendances.build
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @event }
@@ -59,10 +89,14 @@ class EventsController < ApplicationController
   # POST /events.xml
   def create
     @event = Event.new(params[:event])
+    @tests = User.find_all_by_id(params[:attendee_ids])
+    for attendee in @tests do
+      Attendance.request(attendee, @event)
+    end
     @event.user = current_user
     respond_to do |format|
       if @event.save
-        format.html { redirect_to new_event_attendance_path(@event), :notice => 'Event was successfully created.' }
+        format.html { redirect_to event_path(@event), :notice => 'Event was successfully created.' }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
         format.html { render :action => "new" }

@@ -1,11 +1,22 @@
 class SiteController < ApplicationController
+  before_filter :tabify
+  
+  def tabify
+    @active_tab = "gogolf"
+  end
   
   helper :content
-  
   def index
-    @title = 'Etusivu'
+    @title = 'Tervetuloa!'
     @recent_posts = Post.all(:order => 'id DESC', :limit => 3)
     @recent_links = Link.all(:order => 'id DESC', :limit => 3)
+  end
+  
+  def topic
+    @title = "Viikon aiheet"
+    @nikke = User.find_by_id("1")
+    @viikon_aiheet = Post.where(:weektopic => true)
+    @uusin_niken_juttu = @viikon_aiheet.find_by_user_id(@nikke.id)
   end
   
   def share

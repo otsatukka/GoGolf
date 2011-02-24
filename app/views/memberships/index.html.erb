@@ -9,7 +9,7 @@
   <% @memberships.each do |membership| %>
   
     <tr>
-      <td><%= membership.user.name %></td>
+      <td><%= membership.user.end_user_name %></td>
       <td><%= link_to 'Show', membership.user %></td>
       <td>
       <% unless membership.user == current_user%>

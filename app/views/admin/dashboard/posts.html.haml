@@ -5,12 +5,10 @@
   = link_to "KENTÄT", "/admin/dashboard/courses"
   = link_to "LINKIT", "/admin/dashboard/links"
 
-= form_tag posts_path, :method => 'get' do
-  = submit_tag "Etsi", :name => nil
 
-  = render :partial => 'posts'
+= render 'posts'
 
   
--if can? :create, Post
+- if can? :create, Post
   = link_to 'New Post', new_post_path
 %br/

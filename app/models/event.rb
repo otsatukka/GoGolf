@@ -2,19 +2,19 @@ class Event < ActiveRecord::Base
   
   has_many :attendances, :dependent => :destroy
   has_many :attendees, :through => :attendances, :conditions => "status = 'accepted'"
+  accepts_nested_attributes_for :attendances
   
   has_many :requested_attendees, :through => :attendances, :source => :attendee, :conditions => "status = 'requested'"
   
-  has_one :course
+  belongs_to :course
   
   belongs_to  :user  # the creator
-  
-  validates_presence_of :start_time, :name
+  # attr_accessible :course_id, :start_time, :name, :desc, :game_type, :user_id, :morning, :private
+  validates_presence_of :start_time, :name, :desc, :game_type, :course_id
   
   # after_create :log_activity
   
   after_destroy :cleanup
-  
   
   @@cached_events = nil
   

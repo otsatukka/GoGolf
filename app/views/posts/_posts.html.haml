@@ -17,7 +17,7 @@
       %td= post.title
       %td
         - if post.user != nil
-          = post.user.name
+          = post.user.end_user_name
       %td= post.created_at.to_s(:long)
       %td
         - if can? :read, Post
