@@ -11,6 +11,7 @@ gem 'formtastic'
 gem 'paperclip'
 gem 'haml'
 gem 'jquery-rails'
+gem 'culerity', '0.2.15'
 gem 'auto_html'
 gem 'ckeditor', '3.4.2.pre'
 gem 'hpricot'
@@ -21,6 +22,8 @@ gem 'devise_rpx_connectable'
 gem 'rails3-jquery-autocomplete'
 # Deploy with Capistrano
 gem 'capistrano'
+gem 'bundler', '1.0.10'
+gem 'ffi', '0.6.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -49,5 +52,5 @@ group :development, :test do
   gem 'ruby-debug'
   gem 'capybara'
   gem 'factory_girl'
-  gem 'admin_data'
+  gem 'admin_data', '1.1.10'
 end
