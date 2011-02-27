@@ -10,10 +10,14 @@ class SiteController < ApplicationController
     @title = 'Tervetuloa!'
     @recent_posts = Post.all(:order => 'id DESC', :limit => 3)
     @recent_links = Link.all(:order => 'id DESC', :limit => 3)
+    
+    @nikke = User.find_by_id("1")
+    @viikon_aiheet = Post.where(:weektopic => true)
+    @uusin_niken_juttu = @viikon_aiheet.find_by_user_id(@nikke.id)
   end
   
   def topic
-    @title = "Viikon aiheet"
+    @title = "Avaukset"
     @nikke = User.find_by_id("1")
     @viikon_aiheet = Post.where(:weektopic => true)
     @uusin_niken_juttu = @viikon_aiheet.find_by_user_id(@nikke.id)

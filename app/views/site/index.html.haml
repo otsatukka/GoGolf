@@ -34,15 +34,38 @@
     %ul#description1
       %li
         %span
-          = truncate_body(@recent_posts.first)
+          = truncate(@recent_posts.first.body, :length => 70, :separator => ' ').html_safe
       %li
         %span
-          = truncate_body(@recent_posts.second)
+          = truncate(@recent_posts.second.body, :length => 70, :separator => ' ').html_safe
       %li
         %span
-          = truncate_body(@recent_posts.third)
+          = truncate(@recent_posts.third.body, :length => 70, :separator => ' ').html_safe
 %br/
-
+.widgetcontainer{:class => "ui-corner-all"}
+  .widgettitle{:class => "ui-corner-all"}
+    Viikon avaukset
+  .widgetcontent
+    %table
+      %tr
+        %td
+          %h3= @uusin_niken_juttu.title
+      %tr
+        %td
+          %table
+            %tr
+              %th
+                = link_to @nikke.realname, @nikke
+              %th
+                Vieraskirjoittaja
+            %tr
+              %td
+                = image_tag @nikke.avatar.url(:thumb)
+                = truncate(@uusin_niken_juttu.body, :length => 70, :separator => ' ').html_safe
+              %td
+                = image_tag @nikke.avatar.url(:thumb)
+                = truncate(@uusin_niken_juttu.body, :length => 70, :separator => ' ').html_safe
+%br/
 .widgetcontainer{:class => "ui-corner-all"}
   .widgettitle{:class => "ui-corner-all"}
     Ajankohtaista
@@ -60,7 +83,7 @@
             %tr
               %td
                 .post_excerpt_body
-                  = truncate_body(post)
+                  = truncate(post.body, :length => 70, :separator => ' ').html_safe
             %tr
               %td
             %tr

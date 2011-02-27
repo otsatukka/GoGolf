@@ -11,7 +11,7 @@ class Post < ActiveRecord::Base
   validates_length_of           :title, :in => 2..200
   validates_length_of           :body, :in => 2..2000
   
-  attr_accessible :photo, :title, :body, :category, :user, :published, :weektopic, :editors_pick
+  attr_accessible :photo, :title, :body, :category_id, :user, :published, :weektopic, :editors_pick
   
    # PAPERCLIP
    ##################################################################

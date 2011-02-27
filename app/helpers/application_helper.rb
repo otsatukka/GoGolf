@@ -5,7 +5,7 @@ module ApplicationHelper
   end
   
   def truncate_body(post)
-    text = truncate(strip_tags(post.body), :length => 70)
+    text = truncate(strip_tags(simple_format(post.body)), :length => 70)
     return text.to_s.gsub(/&nbsp;/, '')
   end
   
