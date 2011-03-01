@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:cowboycoded/impressionist.git
+  remote: git://github.com/cowboycoded/impressionist.git
   revision: 9f73954ce70725ec6456b5d568db259dbc628d88
   specs:
     impressionist (0.2.5)
