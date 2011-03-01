@@ -1,0 +1,18 @@
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+  - @memberships.each do |membership|
+    %tr
+      %td= membership.user.end_user_name
+      %td= link_to 'Show', membership.user
+      %td
+        - if membership.user == current_user
+          = form_for(membership) do |f|
+            - Grouprole.all.each do |p|
+              = f.radio_button :grouprole_id, p.id
+              = f.label :grouprole_id, p.rolename
+            = f.submit
+      %td= link_to 'Destroy', membership, :confirm => 'Are you sure?', :method => :delete

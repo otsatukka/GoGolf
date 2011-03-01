@@ -1,7 +1,10 @@
 class AttendancesController < ApplicationController
+  before_filter :tabify
+  load_and_authorize_resource
   
-  # load_and_authorize_resource
-  
+  def tabify
+    @active_tab = "mygolf"
+  end
   def index
     @event = Event.find(params[:event_id])
     @attendees = @event.attendees

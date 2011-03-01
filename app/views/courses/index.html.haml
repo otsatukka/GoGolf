@@ -1,0 +1,20 @@
+%table
+  %tr
+    %th Name
+    %th Address
+    %th
+    %th
+    %th
+  - @courses.each do |course|
+    %tr
+      %td= course.name
+      %td= course.address
+      %td= link_to 'Show', course
+      %td
+        - if can? :manage, course
+          = link_to 'Edit', edit_course_path(course)
+      %td
+        - if can? :manage, course
+          = link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete
+%br/
+= link_to 'New Course', new_course_path

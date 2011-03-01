@@ -1,10 +1,16 @@
 class MembershipsController < ApplicationController
+  before_filter :tabify
   
-  # load_and_authorize_resource
-
+  load_and_authorize_resource
+  skip_load_resource :only => :index
+  
+  def tabify
+    @active_tab = "mygolf"
+  end
+  
   def index
     if params[:group_id]
-      @memberships = Membership.where(params[:group_id])
+      @memberships = Membership.where(:group_id => params[:group_id])
     end
   end
   

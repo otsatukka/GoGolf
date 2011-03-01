@@ -5,7 +5,7 @@ class RoundsController < ApplicationController
     @active_tab = "mygolf"
   end
   
-  # load_and_authorize_resource
+  load_and_authorize_resource
   
   # GET /rounds
   # GET /rounds.xml

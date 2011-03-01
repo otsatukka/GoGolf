@@ -17,7 +17,8 @@
     .ui-widget-content
       %table
         %tr
-          %td{:rowspan => "5"}= user_thumb(current_user)
+          %td{:rowspan => "5"}
+            = image_tag current_user.avatar_url(:thumb).to_s
         %tr
           %td Pelatut Kierrokset
           %td= current_user.rounds.count
@@ -30,3 +31,5 @@
         %tr
           %td
       .button= link_to "Kirjaudu ulos", destroy_user_session_path
+- if logged_in? && current_user.role?(:super_admin)
+  = link_to 'Lisää kuvia', imagebanks_path

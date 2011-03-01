@@ -1,8 +1,12 @@
 class LinksController < ApplicationController
   before_filter :get_link, :only => [ :edit, :update, :destroy ]
-  before_filter :set_title
+  before_filter :set_title, :tabify
   
   load_and_authorize_resource
+  
+  def tabify
+    @active_tab = "gogolf"
+  end
   
   # GET /links
   # GET /links.xml

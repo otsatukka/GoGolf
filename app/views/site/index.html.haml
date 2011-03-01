@@ -22,10 +22,10 @@
           
       %ul#output
         %li
-          %img{:src => @recent_posts.first.photo.url, :minheight => "240", :width => "435"}
+          %img{:src => find_img_medium(@recent_posts.first), :class => "align-right", :minheight => "240", :width => "435"}
             %a{:href => "#"}Lue lisää
         %li
-          %img{:src => @recent_posts.second.photo.url, :minheight => "240", :width => "435"}
+          %img{:src => find_img_medium(@recent_posts.second), :class => "align-right", :minheight => "240", :width => "435"}
             %a{:href => "#"}Lue lisää
         %li
           %img{:src => @recent_posts.third.photo.url, :minheight => "240", :width => "435"}
@@ -60,10 +60,10 @@
                 Vieraskirjoittaja
             %tr
               %td
-                = image_tag @nikke.avatar.url(:thumb)
+                = image_tag @nikke.avatar_url(:thumb).to_s
                 = truncate(@uusin_niken_juttu.body, :length => 70, :separator => ' ').html_safe
               %td
-                = image_tag @nikke.avatar.url(:thumb)
+                = image_tag @nikke.avatar_url(:thumb).to_s
                 = truncate(@uusin_niken_juttu.body, :length => 70, :separator => ' ').html_safe
 %br/
 .widgetcontainer{:class => "ui-corner-all"}
@@ -76,7 +76,7 @@
           %table
             %tr
               %td{:rowspan => "5", :width => "80px"}
-                .post_excerpt_img= image_tag(post.photo.url(:thumb))
+                .post_excerpt_img= image_tag find_img_thumb(post)
             %tr
               %th
                 %h3= link_to post.title, post

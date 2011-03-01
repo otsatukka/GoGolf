@@ -1,19 +1,23 @@
-%h1= @post.title
-= image_tag @post.photo.url(:medium)
-:erb
-  <%= @post.body %>
-%br/
-%br/
-%table
-  %tr
-    %td
-      = link_to @post.user.end_user_name, @post.user
-    %td
-      = @post.created_at.to_s(:long)
-    %td
-      Katsottu:
-      = @post.viewcounter.viewcount
-%br/
-%br/
-= link_to_if(can?(:edit, Post), 'Muokkaa', edit_post_path(@post)) {}
-= link_to 'Takaisin', posts_path
+.widgetcontainer
+  .widgetcontent
+    %h1= @post.title
+    %hr/
+    = image_tag find_img_medium(@post)
+  
+    :erb
+      <%= @post.body %>
+    %br/
+    %br/
+    %table
+      %tr
+        %td
+          = link_to @post.user.end_user_name, @post.user
+        %td
+          = @post.created_at.to_s(:long)
+        %td
+          Katsottu:
+          = @post.unique_impression_count_ip
+    %br/
+    %br/
+    = link_to_if(can?(:edit, Post), 'Muokkaa', edit_post_path(@post)) {}
+    = link_to 'Takaisin', posts_path

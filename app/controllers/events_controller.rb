@@ -1,10 +1,8 @@
 class EventsController < ApplicationController
-  before_filter :get_user
-  before_filter :get_title
-  before_filter :tabify
+  before_filter :get_user, :tabify, :get_title
   autocomplete :course, :name, :full => true
   
-  # load_and_authorize_resource
+  load_and_authorize_resource
   
   def get_user
     @current_user = current_user

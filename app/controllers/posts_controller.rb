@@ -1,8 +1,13 @@
 class PostsController < ApplicationController
-  before_filter :get_post, :only => [ :edit, :update, :destroy ]
-  before_filter :set_title
+  before_filter :set_title, :tabify
   
+  impressionist :actions => [:show]
   load_and_authorize_resource
+  skip_load_resource :only => [:index, :create]
+  
+  def tabify
+    @active_tab = "gogolf"
+  end
   
   # GET /posts
   # GET /posts.xml
@@ -12,8 +17,7 @@ class PostsController < ApplicationController
     @posts = Post.search(params[:search]).category(params[:category]).paginate(:per_page => 5, :page => params[:page])
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @posts }
+      format.html
       format.js
     end
   end
@@ -21,46 +25,36 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
-    @post = Post.find(params[:id])
-    @post.viewcounter.update_attribute 'viewcount', @post.viewcounter.viewcount + 1
-    @viewcount = @post.viewcounter.viewcount
-    
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @post }
-    end
   end
 
   # GET /posts/new
   # GET /posts/new.xml
   def new
     @post = Post.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @post }
-    end
+    @imagebanks = Imagebank.all
   end
 
   # GET /posts/1/edit
   def edit
+    @imagebanks = Imagebank.all
   end
 
   # POST /posts
   # POST /posts.xml
   def create
     @post = Post.new(params[:post])
-    @post.build_viewcounter
+    if params[:photo]
+      params[:photostring].delete
+    end
     @post.user = current_user
-
+    if params[:use_uploaded_image]
+      @post.use_uploaded_image = params[:use_uploaded_image]
+    end
     respond_to do |format|
       if @post.save
         format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
-        format.xml  { render :xml => @post, :status => :created, :location => @post }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -68,14 +62,21 @@ class PostsController < ApplicationController
   # PUT /posts/1
   # PUT /posts/1.xml
   def update
-
+    @imagebanks = Imagebank.all
+    if params[:use_uploaded_image] == 0 && params[:imagebank_id]
+      @post.remove_photo!
+      @post.photo = ' '
+    end
+    if params[:remove_photo]
+      params[:use_uploaded_image] = 0
+      @post.use_uploaded_image = 0
+    end
+    
     respond_to do |format|
       if @post.update_attributes(params[:post])
         format.html { redirect_to(@post, :notice => 'Post was successfully updated.') }
-        format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -89,10 +90,6 @@ class PostsController < ApplicationController
       format.html { redirect_to(posts_url) }
       format.xml  { head :ok }
     end
-  end
-  
-  def get_post
-    @post = Post.find(params[:id])
   end
   
   def set_title

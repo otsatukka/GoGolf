@@ -1,0 +1,9 @@
+= form_for @imagebank, :html => {:multipart => true }  do |f|
+  .field
+    = f.label :image
+    %br/
+    = f.file_field :image
+  %br/
+  .actions
+    = f.submit "Lataa kuva pankkiin"
+  %br/

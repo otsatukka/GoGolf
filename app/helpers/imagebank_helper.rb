@@ -1,0 +1,2 @@
+module ImagebankHelper
+end

@@ -3,11 +3,15 @@ class GroupsController < ApplicationController
   # GET /groups.xml
   # must be a group admin to edit or update a group
   before_filter :check_group_auth, :only => [:edit, :update]
+  before_filter :tabify
   
   # must be an admin to create new groups
   # before_filter :check_admin_auth, :only => [:new, :create]
   
-  # load_and_authorize_resource
+  load_and_authorize_resource
+  def tabify
+    @active_tab = "mygolf"
+  end
   
   def check_admin_auth
     if !current_user.role.super_admin?

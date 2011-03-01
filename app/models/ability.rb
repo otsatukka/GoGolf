@@ -16,9 +16,10 @@ class Ability
         can :read, Post
         can :read, Link
         can :read, Achievement
-        can :read, Group
-        can :read, Event
-        can :read, Viewcounter
+        can :read, Achievement
+        can :read, Autolink
+        can :read, Course
+        can :read, Attendance
         
         can :create, User
         # can :create, Commen
@@ -30,16 +31,28 @@ class Ability
       
       if user.role? :basic
         
+        # ATTENDANCE
+        can :read, Attendance
+        can :create, Attendance
+        can :destroy, Attendance, :attendee_id => user.id
+        
+        # EVENT
+        can :read, Event
+        can :create, Event
+        can :manage, Event, :user_id => user.id
+        
         # POSTS
         can :manage, Post, :user_id => user.id
         can :read, Post
         can :create, Post
         
         # GROUPS
-        can :manage, Group do |group|
-          group.try(:user_id) == group.creator.id
-        end
+        can :read, Group
+        can :manage, Group, :creator_id => user.id
         can :create, Group
+        can :create, Membership
+        can :destroy, Membership, :user_id => user.id
+        can :read, Membership
         
         # USERS
         can [:show, :index], User
@@ -47,10 +60,8 @@ class Ability
         
         # LINKS
         can :create, Link
-        can :manage, Link
-        can :update, Link do |link|
-          link.try(:user) == user
-        end
+        can :manage, Link, :user_id => user.id
+        can :create, Autolink
       end
       
       #ADMIN

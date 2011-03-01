@@ -23,6 +23,11 @@ gem 'rails3-jquery-autocomplete', '0.6.2'
 # Deploy with Capistrano
 gem 'capistrano', '2.5.19'
 gem 'rpx_now', '0.6.23'
+gem 'carrierwave'
+gem 'rmagick'
+gem 'fog'
+
+gem 'impressionist', :git => 'git@github.com:cowboycoded/impressionist.git'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

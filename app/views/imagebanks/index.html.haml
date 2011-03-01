@@ -1,0 +1,6 @@
+%table
+  - @imagebanks.each do |image|
+    %tr
+      %td= image_tag image.image_url(:thumb).to_s
+%br/
+= link_to 'New Image', new_imagebank_path

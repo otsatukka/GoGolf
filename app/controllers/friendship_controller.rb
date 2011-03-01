@@ -1,7 +1,7 @@
 class FriendshipController < ApplicationController
   before_filter :setup_friends
   
-  # load_and_authorize_resource
+  load_and_authorize_resource
   
   # Send a friend request. # We'd rather call this "request", but that's not allowed by Rails.
   def create

@@ -47,15 +47,60 @@ $(document).ready(function() {
     }
   });
   
+  
+  $("#button_1").attr('checked', false);
   jQuery(".button").button();
   jQuery(".button_s").button();
   jQuery("#sign_in").hide();
+  jQuery("#post_use_uploaded_image_0").hide();
+  jQuery("#post_use_uploaded_image_1").hide();
+  jQuery("#imagebank").hide();
+  jQuery("#upload_photo").hide();
   jQuery("#sign_in2").hide();
   jQuery("#spede").click(function() {
     jQuery("#spede").hide();
   });
   
-
+  $("#imagebank input:radio").change(function() {
+    $("#remove_photo input:checkbox").attr('checked', true);
+    
+    return false;
+  });
+  $("#remove_photo input:checkbox").change(function() {
+    $("#post_use_uploaded_image_1").attr('checked', false);
+    $("#post_use_uploaded_image_0").attr('checked', true);
+    
+    return false;
+  });
+  
+  $(".image_bank_button").click(function () {
+    $("#post_use_uploaded_image_1").attr('checked', false);
+    $("#post_use_uploaded_image_0").attr('checked', true);
+    $("#imagebank input:radio").attr('checked', false);
+    
+    $("#imagebank").slideToggle('slow');
+    $("#upload_photo").hide('slow');
+    return false
+  });
+  $(".upload_photo_button").click(function () {
+    $("#post_use_uploaded_image_1").attr('checked', true);
+    $("#post_use_uploaded_image_0").attr('checked', false);
+    $("#upload_photo input:file").attr({ value: '' });;
+    
+    $("#upload_photo").slideToggle('slow');
+    $("#imagebank").hide('slow');
+    return false
+  });
+  jQuery("#post_use_uploaded_image_1").change(function() {
+    jQuery("#upload_photo input:file").attr('disabled',false);
+    jQuery("#imagebank input:radio").attr('disabled',true);
+    return false;
+  });
+  jQuery("#post_use_uploaded_image_0").change(function() {
+    jQuery("#imagebank input:radio").attr('disabled',false);
+    jQuery("#upload_photo input:file").attr('disabled',true);
+    return false;
+  });
   
   jQuery(".sign_in_button").click(function() {
     jQuery("#sign_in2").dialog({

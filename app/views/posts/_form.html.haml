@@ -1,22 +1,47 @@
 = semantic_form_for @post, :html => { :multipart => true } do |f|
   = f.inputs do
-    = f.input :title, :label => "Otsikko"
-    - if can? :new, Post
-      %p
-        = f.label :category_id, "Kategoria"
-        %br/
-        - for category in Admin::Category.find(:all)
-          %div
-            = radio_button_tag "post[category_id]", category.id, @post.category_id = category.id
-            = category.category_name
+    .field
+      = f.label :title, "Otsikko"
+      = f.text_field :title
+      %br/
+      %br/
+    .field
+      - if can? :new, Post
+        %p
+          = f.label :category_id, "Kategoria"
+          %br/
+          - for category in Admin::Category.find(:all)
+            %div
+              = radio_button_tag "post[category_id]", category.id, @post.category_id = category.id
+              = category.category_name
       %br/
     - if current_user != nil && logged_in?
-      = f.input :photo, :label => "Kuva", :hint => "Lataa ensisijainen kuva"
-      - if @post != nil
-        = image_tag @post.photo.url(:medium)
-        %br/
-        Nykyinen kuva
-        %br/
+      %table
+        %tr
+          %td
+            = f.radio_button :use_uploaded_image, '1'
+            .upload_photo_button
+              .button_s
+                = link_to 'Lataa kuva koneeltasi', '#'
+
+          %td
+            = f.radio_button :use_uploaded_image, "0"
+            .image_bank_button
+              .button_s
+                = link_to 'Käytä kuvaa pankista', '#'
+    #imagebank
+      = render :partial => 'imagebank', :locals => {:f => f}
+    #upload_photo
+      = f.label :photo, "Lataa koneeltasi kuva"
+      %br/
+      = f.file_field :photo, :id => "field1"
+    - if @post.use_uploaded_image == 1
+      = f.label :remove_photo, "Poista kuva"
+      #remove_photo
+        = f.check_box :remove_photo
+      %br/
+      Nykyinen kuva
+      = image_tag find_img_medium(@post)
   - if current_user.role?(:author) || current_user.role?(:super_admin)
     .field
       = f.cktext_area :body, :toolbar => 'Author', :width=>'600px', :height=>'500px', :language=>'fi'
@@ -27,5 +52,5 @@
         = f.cktext_area :body, :toolbar => 'Basic', :width=>'600px', :height=>'500px', :language=>'fi'
         %br/
   .actions
-    = f.buttons
-    
+    = f.submit 'Luo juttu'
+%br/

@@ -9,14 +9,32 @@ module ApplicationHelper
     return text.to_s.gsub(/&nbsp;/, '')
   end
   
-  # TODO: FIX!!1
+  def find_img_medium(post)
+    if post.use_uploaded_image == 1
+      post.photo_url(:medium).to_s
+    elsif post.use_uploaded_image == 0
+      post.imagebank.image_url(:medium).to_s
+    else
+      "ei kuvaa"
+    end
+  end
+  
+  def find_img_thumb(post)
+    if post.use_uploaded_image == 1
+      post.photo_url(:thumb).to_s
+    elsif post.use_uploaded_image == 0
+      post.imagebank.image_url(:thumb).to_s
+    else
+      "ei kuvaa"
+    end
+  end
   def find_img(post)
-    if post.photo.url != nil
-      html = "<%= image_tag(#{post.photo.url(:thumb)})"
-      html_end = "%>"
-      pic = post.photo.url(:thumb)
-      final = (html + post.photo.url(:thumb) + html_end).html_safe
-      return html.html_safe
+    if post.use_uploaded_image == 1
+      post.photo_url.to_s
+    elsif post.use_uploaded_image == 0
+      post.imagebank.image_url.to_s
+    else
+      "ei kuvaa"
     end
   end
   

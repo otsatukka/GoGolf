@@ -2,6 +2,16 @@
 Copyright (c) 2003-2010, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.html or http://ckeditor.com/license
 */
+CKEDITOR.on( 'dialogDefinition', function( ev ) {
+    // Take the dialog name and its definition from the event data
+    var dialogName = ev.data.name;
+    var dialogDefinition = ev.data.definition;
+
+    if ( dialogName == 'image' ) {
+        // Remove upload tab
+        dialogDefinition.removeContents('Advanced');
+    }
+});
 
 CKEDITOR.editorConfig = function( config )
 {

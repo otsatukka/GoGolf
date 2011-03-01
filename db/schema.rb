@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110222222131) do
+ActiveRecord::Schema.define(:version => 20110228173352) do
 
   create_table "achievements", :force => true do |t|
     t.string   "type"
@@ -104,6 +104,30 @@ ActiveRecord::Schema.define(:version => 20110222222131) do
     t.text     "announcements"
   end
 
+  create_table "imagebanks", :force => true do |t|
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "impressions", :force => true do |t|
+    t.string   "impressionable_type"
+    t.integer  "impressionable_id"
+    t.integer  "user_id"
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.string   "view_name"
+    t.string   "request_hash"
+    t.string   "ip_address"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "impressions", ["controller_name", "action_name", "request_hash", "ip_address"], :name => "controlleraction_index"
+  add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash", "ip_address"], :name => "poly_index"
+  add_index "impressions", ["user_id"], :name => "index_impressions_on_user_id"
+
   create_table "links", :force => true do |t|
     t.string   "title"
     t.text     "body"
@@ -137,11 +161,10 @@ ActiveRecord::Schema.define(:version => 20110222222131) do
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
     t.boolean  "weektopic",          :default => false
+    t.string   "photo"
+    t.integer  "use_uploaded_image"
+    t.integer  "imagebank_id"
   end
 
   create_table "roles", :force => true do |t|
@@ -181,26 +204,14 @@ ActiveRecord::Schema.define(:version => 20110222222131) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.string   "rpx_identifier"
     t.boolean  "privacy_name",                        :default => false
     t.boolean  "privacy_search",                      :default => false
     t.string   "realname"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "viewcounters", :force => true do |t|
-    t.string   "ip_address"
-    t.integer  "viewcount",  :default => 0
-    t.integer  "post_id"
-    t.integer  "link_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end

@@ -3,6 +3,7 @@ Gogolfrails::Application.routes.draw do
   resources :groups
   
   resources :courses
+  resources :imagebanks
 
   namespace :admin do
     resources :categories 

@@ -4,9 +4,6 @@ class Link < ActiveRecord::Base
   has_one                         :autolink, :dependent => :destroy
   accepts_nested_attributes_for   :autolink
   
-  has_one                         :viewcounter, :dependent => :destroy
-  accepts_nested_attributes_for   :viewcounter
-  
   validates_presence_of           :title
   validates_presence_of           :body
   
