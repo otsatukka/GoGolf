@@ -14,6 +14,9 @@ class Post < ActiveRecord::Base
                   :use_uploaded_image, :remove_photo
   
   mount_uploader :photo, PhotoUploader
+  
+  has_many :comments, :as => :commentable, :dependent => :destroy  
+  accepts_nested_attributes_for :comments
       
   def self.search(search)
     if search

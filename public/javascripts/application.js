@@ -9,10 +9,15 @@ respond_to do |format|
 end
 */
 
+$(document).ajaxSend(function(e, xhr, options) {
+  var token = $("meta[name='csrf-token']").attr("content");
+  xhr.setRequestHeader("X-CSRF-Token", token);
+});
+
 /* POST-INDEX AJAX LINKIT*/
-$(function() {
-    $("#posts a").live("click", function() {
-      $.getScript(this.href);
+$(document).ready(function() {
+    $("#posts td a").live("click", function() {
+      $.getScript(a.href);
       return false;
     });
     $("#posts_search").submit(function() {
@@ -52,8 +57,8 @@ $(document).ready(function() {
   jQuery(".button").button();
   jQuery(".button_s").button();
   jQuery("#sign_in").hide();
-  jQuery("#post_use_uploaded_image_0").hide();
-  jQuery("#post_use_uploaded_image_1").hide();
+  jQuery("#post_use_uploaded_image_0, #opening_use_uploaded_image_0").hide();
+  jQuery("#post_use_uploaded_image_1, #opening_use_uploaded_image_1").hide();
   jQuery("#imagebank").hide();
   jQuery("#upload_photo").hide();
   jQuery("#sign_in2").hide();
@@ -67,15 +72,15 @@ $(document).ready(function() {
     return false;
   });
   $("#remove_photo input:checkbox").change(function() {
-    $("#post_use_uploaded_image_1").attr('checked', false);
-    $("#post_use_uploaded_image_0").attr('checked', true);
+    $("#post_use_uploaded_image_1, #opening_use_uploaded_image_1").attr('checked', false);
+    $("#post_use_uploaded_image_0, #opening_use_uploaded_image_0").attr('checked', true);
     
     return false;
   });
   
   $(".image_bank_button").click(function () {
-    $("#post_use_uploaded_image_1").attr('checked', false);
-    $("#post_use_uploaded_image_0").attr('checked', true);
+    $("#post_use_uploaded_image_1, #opening_use_uploaded_image_1").attr('checked', false);
+    $("#post_use_uploaded_image_0, #opening_use_uploaded_image_0").attr('checked', true);
     $("#imagebank input:radio").attr('checked', false);
     
     $("#imagebank").slideToggle('slow');
@@ -83,20 +88,20 @@ $(document).ready(function() {
     return false
   });
   $(".upload_photo_button").click(function () {
-    $("#post_use_uploaded_image_1").attr('checked', true);
-    $("#post_use_uploaded_image_0").attr('checked', false);
+    $("#post_use_uploaded_image_1, #opening_use_uploaded_image_1").attr('checked', true);
+    $("#post_use_uploaded_image_0, #opening_use_uploaded_image_0").attr('checked', false);
     $("#upload_photo input:file").attr({ value: '' });;
     
     $("#upload_photo").slideToggle('slow');
     $("#imagebank").hide('slow');
     return false
   });
-  jQuery("#post_use_uploaded_image_1").change(function() {
+  jQuery("#post_use_uploaded_image_1, #opening_use_uploaded_image_1").change(function() {
     jQuery("#upload_photo input:file").attr('disabled',false);
     jQuery("#imagebank input:radio").attr('disabled',true);
     return false;
   });
-  jQuery("#post_use_uploaded_image_0").change(function() {
+  jQuery("#post_use_uploaded_image_0, #opening_use_uploaded_image_0").change(function() {
     jQuery("#imagebank input:radio").attr('disabled',false);
     jQuery("#upload_photo input:file").attr('disabled',true);
     return false;

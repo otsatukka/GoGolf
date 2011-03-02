@@ -2,16 +2,6 @@
 Copyright (c) 2003-2010, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.html or http://ckeditor.com/license
 */
-CKEDITOR.on( 'dialogDefinition', function( ev ) {
-    // Take the dialog name and its definition from the event data
-    var dialogName = ev.data.name;
-    var dialogDefinition = ev.data.definition;
-
-    if ( dialogName == 'image' ) {
-        // Remove upload tab
-        dialogDefinition.removeContents('Advanced');
-    }
-});
 
 CKEDITOR.editorConfig = function( config )
 {
@@ -20,13 +10,14 @@ CKEDITOR.editorConfig = function( config )
   config.language = 'fi';
   config.defaultLanguage = 'fi';
   config.uiColor = '#AADC6E';
+  // config.uiColor = '#AADC6E';
 
   //config.ContextMenu = ['Generic','Anchor','Flash','Select','Textarea','Checkbox','Radio','TextField','HiddenField','ImageButton','Button','BulletedList','NumberedList','Table','Form'] ; 
   
-  config.height = '1000px';
-  config.width = '750px';
+  config.height = '400px';
+  config.width = '600px';
   
-  config.resize_enabled = false;
+  //config.resize_enabled = false;
   //config.resize_maxHeight = 2000;
   //config.resize_maxWidth = 750;
   
@@ -35,7 +26,7 @@ CKEDITOR.editorConfig = function( config )
   // works only with en, ru, uk languages
   config.extraPlugins = "embed,attachment";
   
-  config.toolbar = 'Post';
+  config.toolbar = 'Easy';
   
   config.toolbar_Easy =
     [
@@ -50,7 +41,6 @@ CKEDITOR.editorConfig = function( config )
         ['Link','Unlink','Anchor'],
         ['Image','Embed','Flash','Attachment','Table','HorizontalRule','Smiley','SpecialChar','PageBreak']
     ];
-    
     config.toolbar_Author =
       [
           ['Cut','Copy','Paste'],
@@ -59,15 +49,6 @@ CKEDITOR.editorConfig = function( config )
           ['NumberedList','BulletedList'],
           ['Link','Unlink','Anchor'],
           ['Image','Embed']
-      ];
-    config.toolbar_Basic =
-      [
-          ['Cut','Copy','Paste'],
-          ['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
-          ['Bold','Italic'],
-          ['NumberedList','BulletedList'],
-          ['Link','Unlink','Anchor'],
-          ['Embed']
       ];
 };
 

@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_filter :tabify, :get_title
+  load_and_authorize_resource
   
   def get_title
     @title = "Kentät"
@@ -8,7 +9,7 @@ class CoursesController < ApplicationController
   def tabify
     @active_tab = "goguide"
   end
-  load_and_authorize_resource
+  
   
   # GET /courses
   # GET /courses.xml

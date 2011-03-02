@@ -4,10 +4,9 @@
     %title
       GoGolf -
       = @title
-  = stylesheet_link_tag "screen", "own", "jquery-ui", "featurelist"
-  = javascript_include_tag :defaults, 'autocomplete-rails.js', 'featurelist'
-  = formtastic_stylesheet_link_tag
   = csrf_meta_tag
+  = stylesheet_link_tag "screen", "own", "jquery-ui", "featurelist", "formtastic"
+  = javascript_include_tag :defaults, :ckeditor, 'autocomplete-rails.js', 'featurelist'
   %body
     .container
       .span-24.last
@@ -54,4 +53,3 @@
               Video
               %br/
               %p
-        

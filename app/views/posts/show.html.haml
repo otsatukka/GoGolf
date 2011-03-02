@@ -21,3 +21,21 @@
     %br/
     = link_to_if(can?(:edit, Post), 'Muokkaa', edit_post_path(@post)) {}
     = link_to 'Takaisin', posts_path
+    #comments_count
+      = pluralize(@comments.count, "Kommenttia")
+    #comments
+      - if @comments.count > 0
+        = render :partial => "comments/comment", :collection => @comments
+    #new_comment
+      - form_for [@post, Comment.new()], :remote => true, :id => "new_comment" do |f|
+        .field
+          = f.label :title, "Otsikko"
+          %br/
+          = f.text_field :title
+        .field
+          = f.label :body, "Kommentti"
+          %br/
+          = f.text_area :body
+        .actions
+          =f.submit "Lähetä"
+        

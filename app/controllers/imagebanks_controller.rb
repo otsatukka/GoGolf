@@ -1,6 +1,10 @@
 class ImagebanksController < ApplicationController
   before_filter :get_imagebank, :only => [ :edit, :update, :destroy ]
-  before_filter :set_title
+  before_filter :set_title, :auth
+  
+  def auth
+    authorize! :manage, :all
+  end
   
   # load_and_authorize_resource
   def index

@@ -96,6 +96,26 @@ a:hover { color: #ccc; }
 .padding {
   padding:10px;
 }
+.comment
+{
+  display: block;
+  background: #E5EEED;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+.reply
+{
+  display: block;
+  background: #E5EEED;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 25px;
+}
 
 /* BUTTONS */
 .button_s {

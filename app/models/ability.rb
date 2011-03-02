@@ -9,6 +9,7 @@ class Ability
       
       if user.role? :super_admin
         can :manage, :all
+        can :access, :rails_admin
       else
         
         #GUEST

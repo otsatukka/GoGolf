@@ -1,63 +1,68 @@
 Gogolfrails::Application.routes.draw do
-  
-  resources :groups
-  
-  resources :courses
-  resources :imagebanks
-
-  namespace :admin do
-    resources :categories 
-    match 'dashboard/index'
-    match 'dashboard/posts'
-    match 'dashboard/users'
-    match 'dashboard/courses'
-    match 'dashboard/links'
-  end
-  
-  resources :links
-  
-  devise_for :users
-  
-  resources :users do
-    resources :rounds
+    
     resources :groups
-  end
-  
-  resources :groups do
-    resources :memberships
-  end
-  
-  resources :events do
-    get :autocomplete_course_name, :on => :collection
-    resources :users
-    resources :attendances do
-      get "accept"
+    resources :courses
+    resources :categories
+    resources :imagebanks
+    
+    scope "/admin" do
+      
+      match 'dashboard/index'
+      match 'dashboard/posts'
+      match 'dashboard/users'
+      match 'dashboard/courses'
+      match 'dashboard/links'
     end
-  end
-  
-  match 'event/kaikki', :controller => 'events', :action => 'full_index'
-  
-  match 'groups/user_data', :controller=>'groups', :action=>'user_data'
-  match 'users/promote_to_group_admin', :controller=>'users', :action=>'promote_to_group_admin'
-  
-  resources :posts
-  
-  match "event/peliseura", :controller => 'events', :action => 'search'
-  match 'users/edit', :to => 'devise/registrations#edit'
-  get "friendship/create"
-  get "friendship/accept"
-  get "friendship/decline"
-  match "attendance/agree", :controller => 'attendances', :action => 'accept'
-  match "attendance/leave", :controller => 'attendances', :action => 'destroy'
-  get "site/about"
-  get "site/index"
-  get "site/help"
-  get "site/notuser"
-  get "site/topic"
-  resources :memberships, :collection => {:find=>:get}
-  
-  root :to => 'site#index'
 
+    resources :links
+
+    devise_for :users
+
+    resources :users do
+      resources :rounds
+      resources :groups
+    end
+
+    resources :groups do
+      resources :memberships
+    end
+
+    resources :events do
+      resources :users
+      resources :attendances do 
+        get :autocomplete_user_email, :on => :collection
+      end
+    end
+
+    match 'event/kaikki', :controller => 'events', :action => 'full_index'
+
+    match 'groups/user_data', :controller=>'groups', :action=>'user_data'
+    match 'users/promote_to_group_admin', :controller=>'users', :action=>'promote_to_group_admin'
+
+    resources :posts do
+      resources :comments, :only => [:create, :destroy] do
+        resources :replies, :only => [:create, :destroy]
+      end
+    end
+    resources :openings
+
+    match 'profiili', :to => 'profile#index'
+    match 'users/edit', :to => 'devise/registrations#edit'
+
+    get "friendship/create"
+    get "friendship/accept"
+    get "friendship/decline"
+    get "site/about"
+    get "site/index"
+    get "site/help"
+    get "site/topic"
+    get "attendances/create"
+    get "attendances/index"
+    get "attendances/destroy"
+    resources :memberships, :collection => {:find=>:get}
+
+    root :to => 'site#index'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

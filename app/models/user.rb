@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
   has_many :posts
+  has_many :openings
   has_many :links
   has_many :rounds
   has_many :courses, :through => :rounds
+  has_many :comments
   
   def before_rpx_auto_create(rpx_user)
     self.realname = rpx_user[:name][:formatted]
@@ -22,6 +24,8 @@ class User < ActiveRecord::Base
   
   has_many :memberships, :dependent => :destroy
   has_many :groups, :through => :memberships
+  
+  has_many :replies, :through => :comments
   
   before_create :add_basic_role
   

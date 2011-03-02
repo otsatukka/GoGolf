@@ -10,12 +10,12 @@ class Admin::DashboardController < ApplicationController
   end
   
   def index
-    @categories = Admin::Category.all
+    @categories = Category.all
   end
   
   def posts
     @posts = Post.search(params[:search]).category(params[:category]).paginate(:per_page => 5, :page => params[:page])
-    @categories = Admin::Category.all
+    @categories = Category.all
   end
   
   def users

@@ -3,7 +3,7 @@
 %p
   = link_to "Kaikki"
   - @categories.each do |c|
-    = link_to c.category_name, params.merge(:category => c.id, :page => nil)
+    = link_to c.name, params.merge(:category => c.id, :page => nil)
 
 %table
   %tr

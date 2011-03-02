@@ -22,7 +22,7 @@ class ImagebankUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  # process :resize_to_fit => [200, 300]
+  process :resize_to_fit => [1024, 768]
   #
   # def scale(width, height)
   #   # do something
@@ -34,7 +34,7 @@ class ImagebankUploader < CarrierWave::Uploader::Base
    end
    
    version :medium do
-     process :resize_to_fit => [435, 240]
+     process :resize_to_fit => [512, 384]
    end
 
   # Add a white list of extensions which are allowed to be uploaded.

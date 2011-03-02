@@ -10,18 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110228173352) do
+ActiveRecord::Schema.define(:version => 20110302131529) do
 
   create_table "achievements", :force => true do |t|
     t.string   "type"
     t.integer  "user_id"
     t.string   "desc"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "admin_categories", :force => true do |t|
-    t.string   "category_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,6 +35,10 @@ ActiveRecord::Schema.define(:version => 20110228173352) do
     t.datetime "updated_at"
   end
 
+  create_table "categories", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                                 :null => false
     t.string   "data_content_type"
@@ -58,6 +56,19 @@ ActiveRecord::Schema.define(:version => 20110228173352) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "fk_assetable"
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_assetable_type"
   add_index "ckeditor_assets", ["user_id"], :name => "fk_user"
+
+  create_table "comments", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.boolean  "positive"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -144,6 +155,21 @@ ActiveRecord::Schema.define(:version => 20110228173352) do
     t.datetime "updated_at"
   end
 
+  create_table "openings", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.boolean  "published",          :default => false
+    t.boolean  "editors_pick",       :default => false
+    t.boolean  "weektopic",          :default => false
+    t.integer  "use_uploaded_image"
+    t.string   "photo"
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.integer  "imagebank_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "permissions", :force => true do |t|
     t.integer  "user_id"
     t.integer  "grouprole_id"
@@ -162,9 +188,16 @@ ActiveRecord::Schema.define(:version => 20110228173352) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "weektopic",          :default => false
+    t.integer  "imagebank_id"
     t.string   "photo"
     t.integer  "use_uploaded_image"
-    t.integer  "imagebank_id"
+  end
+
+  create_table "replies", :force => true do |t|
+    t.string   "body"
+    t.integer  "comment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "roles", :force => true do |t|

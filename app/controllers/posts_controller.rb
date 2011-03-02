@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.xml
   def index
-    @categories = Admin::Category.all
+    @categories = Category.all
     
     @posts = Post.search(params[:search]).category(params[:category]).paginate(:per_page => 5, :page => params[:page])
 
@@ -25,6 +25,12 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
+    @comments = @post.comments
+    @post.comments.build
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /posts/new

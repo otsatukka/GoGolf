@@ -1,19 +1,17 @@
 class UsersController < ApplicationController
   before_filter :get_user, :only => [:index,:new,:edit]
   before_filter :accessible_roles, :only => [:new, :edit, :show, :update, :create]
-  before_filter :set_title, :tabify
+  before_filter :set_title
+  before_filter :tabify
+  
   # IMPORTANT
   skip_before_filter :check_username, :only => [:edit, :sign_out, :update]
+  load_and_authorize_resource
   
   def tabify
     @active_tab = "mygolf"
   end
   
-  load_and_authorize_resource
-  # GET /users
-  # GET /users.xml                                                
-  # GET /users.json                                       HTML and AJAX
-  #-----------------------------------------------------------------------
   def index
     if params[:group_id] != nil
       display_group_members_page
@@ -35,22 +33,16 @@ class UsersController < ApplicationController
       format.json  { render :json => @users.to_json(:dasherize => false) }
     end
   end
- 
-  # GET /users/new
-  # GET /users/new.xml                                            
-  # GET /users/new.json                                    HTML AND AJAX
-  #-------------------------------------------------------------------
+  
   def new
+    @active_tab = "mygolf"
+    @title = "Rekisteröidy"
     respond_to do |format|  
       format.xml  { render :xml => @user }
       format.html
     end
   end
- 
-  # GET /users/1
-  # GET /users/1.xml                                                       
-  # GET /users/1.json                                     HTML AND AJAX
-  #-------------------------------------------------------------------
+  
   def show
     @title = "Oma Golf"
     @posts = Post.where(params[:user_id])
@@ -63,11 +55,7 @@ class UsersController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     respond_to_not_found(:json, :xml, :html)
   end
- 
-  # GET /users/1/edit                                                      
-  # GET /users/1/edit.xml                                                      
-  # GET /users/1/edit.json                                HTML AND AJAX
-  #-------------------------------------------------------------------
+  
   def edit
     respond_to do |format| 
       format.xml  { render :xml => @user }
@@ -77,11 +65,7 @@ class UsersController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     respond_to_not_found(:json, :xml, :html)
   end
- 
-  # DELETE /users/1     
-  # DELETE /users/1.xml
-  # DELETE /users/1.json                                  HTML AND AJAX
-  #-------------------------------------------------------------------
+  
   def destroy
     @user.destroy
  
@@ -93,11 +77,7 @@ class UsersController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     respond_to_not_found(:json, :xml, :html)
   end
- 
-  # POST /users
-  # POST /users.xml         
-  # POST /users.json                                      HTML AND AJAX
-  #-----------------------------------------------------------------
+  
   def create
     @user = User.new(params[:user])
     if @user.save
@@ -116,10 +96,6 @@ class UsersController < ApplicationController
     end
   end
   
-  # PUT /users/1
-  # PUT /users/1.xml
-  # PUT /users/1.json                                            HTML AND AJAX
-  #----------------------------------------------------------------------------
   def update
     if params[:user][:password].blank?
       [:password,:password_confirmation,:current_password].collect{|p| params[:user].delete(p) }

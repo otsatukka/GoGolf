@@ -26,6 +26,7 @@ gem 'rpx_now', '0.6.23'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'fog'
+gem 'admin_data'
 
 gem 'impressionist', :git => 'git://github.com/cowboycoded/impressionist.git'
 
@@ -56,5 +57,4 @@ group :development, :test do
   #gem 'ruby-debug'
   #gem 'capybara'
   #gem 'factory_girl'
-  gem 'admin_data', '1.1.10'
 end
