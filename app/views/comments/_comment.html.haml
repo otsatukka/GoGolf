@@ -1,0 +1,25 @@
+= div_for comment do
+  - if comment.body != nil
+    %span{:class => "dateandoptions"}
+      Posted
+      = time_ago_in_words(comment.created_at)
+      ago
+      %br/
+      = link_to 'Delete', [@post, comment], :method => :delete, :class => "delete", :remote => true
+    %p
+    %b= comment.title
+    wrote:
+    %br/
+    = content_tag(:p, comment.body, :class => "comment-body")
+    #replies
+      - if comment.replies.count > 0
+        = render :partial => "replies/reply", :collection => comment.replies
+    
+    #new_reply
+      - form_for [@post, comment, Reply.new()], :method => :put, :remote => true, :id => "new_reply" do |f|
+        .field
+          = f.label :body, "Kommentoi vastausta"
+          %br/
+          = f.text_field :body
+        .actions
+          =f.submit "Lähetä"

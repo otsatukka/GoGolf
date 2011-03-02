@@ -1,0 +1,23 @@
+.widgetcontainer
+  .widgetcontent
+    %h1= @opening.title
+    %hr/
+    = image_tag find_img_medium(@opening)
+  
+    :erb
+      <%= @opening.body %>
+    %br/
+    %br/
+    %table
+      %tr
+        %td
+          = link_to @opening.user.end_user_name, @opening.user
+        %td
+          = @opening.created_at.to_s(:long)
+        %td
+          Katsottu:
+          = @opening.unique_impression_count_ip
+    %br/
+    %br/
+    = link_to_if(can?(:edit, Opening), 'Muokkaa', edit_opening_path(@opening)) {}
+    = link_to 'Takaisin', openings_path

@@ -1,0 +1,7 @@
+%table
+  -if @imagebanks != nil
+    - @imagebanks.each do |image|
+      %tr
+        = f.radio_button :imagebank_id, image.id, :id => "field2"
+        = image_tag image.image_url(:thumb).to_s
+%br/

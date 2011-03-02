@@ -1,0 +1,33 @@
+class Opening < ActiveRecord::Base
+  is_impressionable
+  
+  belongs_to :user
+  has_one :category
+  belongs_to :imagebank
+  
+  validates_presence_of         :title
+  validates_presence_of         :body
+  validates_length_of           :title, :in => 2..200
+  validates_length_of           :body, :in => 2..2000
+  
+  attr_accessible :title, :body, :category_id, :user, :published, :weektopic, :editors_pick, :photo, :imagebank_id,
+                  :use_uploaded_image, :remove_photo
+  
+  mount_uploader :photo, PhotoUploader
+      
+  def self.search(search)
+    if search
+      where('title LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
+  end
+  
+  def self.category(category)
+    if category
+      where('category_id LIKE ?', "%#{category}%")
+    else
+      scoped
+    end
+  end
+end

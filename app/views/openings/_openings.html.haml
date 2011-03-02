@@ -1,0 +1,34 @@
+= hidden_field_tag :category, params[:category]
+= text_field_tag :search, params[:search]
+%p
+  = link_to "Kaikki"
+  - @categories.each do |c|
+    = link_to c.name, params.merge(:category => c.id, :page => nil)
+
+%table
+  %tr
+    %th Otsikko
+    %th Kirjoittaja
+    %th Luotu
+    %th
+    %th
+  - @openings.each do |opening|
+    %tr
+      %td= opening.title
+      %td
+        - if opening.user != nil
+          = opening.user.end_user_name
+      %td= opening.created_at.to_s(:long)
+      %td
+        - if can? :read, Opening
+          = link_to 'Näytä', opening, :remote => false
+      %td
+        - if can? :update, Opening
+          = link_to 'Muokkaa', edit_opening_path(opening)
+      %td
+        - if can? :destroy, Opening
+          = link_to 'Poista', opening, :confirm => 'Are you sure?', :method => :delete
+%br/
+
+%p
+  =will_paginate @openings

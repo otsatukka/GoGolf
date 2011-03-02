@@ -1,0 +1,9 @@
+= form_tag openings_path, :method => 'get', :id => "posts_search" do
+  = submit_tag "Etsi", :name => nil
+  #posts
+    = render :partial => 'openings'
+
+  
+- if can? :create, Opening
+  = link_to 'New Post', new_opening_path
+%br/
