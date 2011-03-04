@@ -11,7 +11,7 @@
 - if @active_tab == "godeal" # Home tab
   = link_to image_tag("/images/layout/buttons/golfdeal_button_active.jpg", :size => "116x87", :alt => "GoGolf", :border => 0), "/site/index"
 - else
-  = link_to image_tag("/images/layout/buttons/golfdeal_button.jpg", :size => "116x87", :alt => "GoGolf", :mouseover => "/images/layout/buttons/golfdeal_button_on.jpg"), "/site/index"
+  = link_to image_tag("/images/layout/buttons/golfdeal_button.jpg", :size => "116x87", :alt => "GoGolf", :mouseover => "/images/layout/buttons/golfdeal_button_on.jpg"), deals_path
 
 - if user_signed_in?
   - if @active_tab == "mygolf" # Home tab

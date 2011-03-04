@@ -27,8 +27,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'fog'
 gem 'admin_data'
-
-gem 'impressionist', :git => 'git://github.com/cowboycoded/impressionist.git'
+gem 'thumbs_up'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

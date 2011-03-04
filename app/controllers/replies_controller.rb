@@ -1,9 +1,11 @@
 class RepliesController < ApplicationController
+  load_and_authorize_resource
   before_filter :get_comment
   
   def get_comment
     @comment = Comment.find(params[:comment_id])
-    @post = Post.find(params[:post_id])
+    @post = find_commentable
+    @opening  = find_commentable
   end
   
   def new
@@ -30,5 +32,16 @@ class RepliesController < ApplicationController
        format.html { redirect_to @post }
        format.js 
      end
+   end
+   
+   private
+   
+   def find_commentable  
+     params.each do |name, value|  
+       if name =~ /(.+)_id$/  
+         return $1.classify.constantize.find(value)  
+       end  
+     end  
+     nil  
    end
 end

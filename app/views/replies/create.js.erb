@@ -5,7 +5,7 @@ $("#comment-notice").html('<div class="flash notice"><%= escape_javascript(flash
 $("#comments_count").html("<%= pluralize(Comment.count, 'Comment') %>");
 
 /* Add the new comment to the bottom of the comments list */
-$("#replies").append("<%= escape_javascript(render(@reply)) %>");
+$("#comment_<%= @comment.id %> #replies").append("<%= escape_javascript(render(@reply)) %>");
 
 /* Highlight the new comment */
 $("#reply_<%= @reply.id %>").effect("highlight", {}, 3000);

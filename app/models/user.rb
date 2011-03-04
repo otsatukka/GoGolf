@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  acts_as_voter
+  
+  has_many :deals
   has_many :posts
   has_many :openings
   has_many :links

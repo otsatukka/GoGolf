@@ -16,7 +16,7 @@
           = @post.created_at.to_s(:long)
         %td
           Katsottu:
-          = @post.unique_impression_count_ip
+          = @post.unique_impression_count
     %br/
     %br/
     = link_to_if(can?(:edit, Post), 'Muokkaa', edit_post_path(@post)) {}
@@ -25,7 +25,7 @@
       = pluralize(@comments.count, "Kommenttia")
     #comments
       - if @comments.count > 0
-        = render :partial => "comments/comment", :collection => @comments
+        = render :partial => "comments/comment", :collection => @comments, :parent => @post
     #new_comment
       - form_for [@post, Comment.new()], :remote => true, :id => "new_comment" do |f|
         .field

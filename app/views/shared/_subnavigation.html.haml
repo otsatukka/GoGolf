@@ -10,7 +10,8 @@
       %li= link_to "Dream Team", links_path
     - elsif @active_tab == "goguide"
       %li= nav_link "Kentät", courses_path
-    - elsif @active_tab == "godeal"
+    - elsif @active_tab == "godeal"  
+      %li= nav_link "Diilit", deals_path
       %li= nav_link "Etusivu", "/site"
     - elsif @active_tab == "mygolf"
       - if user_signed_in?

@@ -1,16 +1,29 @@
 = div_for comment do
   - if comment.body != nil
-    %span{:class => "dateandoptions"}
-      Posted
-      = time_ago_in_words(comment.created_at)
-      ago
-      %br/
-      = link_to 'Delete', [@post, comment], :method => :delete, :class => "delete", :remote => true
-    %p
-    %b= comment.title
-    wrote:
-    %br/
-    = content_tag(:p, comment.body, :class => "comment-body")
+    %table
+      - if @voting_and_replies == 1
+        %tr
+          %td{:rowspan => 3}
+            %h2
+              #votes_count
+                =comment.votes_for
+                %p
+                  - if !current_user.voted_on?(comment)
+                    = link_to('Peukku', vote_up_post_comment_path(@post, comment), :method => :post, :remote => true)
+      %tr
+        %td
+          %b= comment.title
+          wrote:
+          %br/
+          = content_tag(:p, comment.body, :class => "comment-body")
+        %td
+          %span{:class => "dateandoptions"}
+            Posted
+            = time_ago_in_words(comment.created_at)
+            ago
+        %td
+          = link_to 'Delete', [@post, comment], :method => :delete, :class => "delete", :remote => true
+
     #replies
       - if comment.replies.count > 0
         = render :partial => "replies/reply", :collection => comment.replies

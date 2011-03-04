@@ -1,5 +1,10 @@
 Gogolfrails::Application.routes.draw do
     
+  resources :payment_notifications
+
+  resources :deals
+  resources :orders, :only => [:create, :destroy, :index, :show]
+
     resources :groups
     resources :courses
     resources :categories
@@ -13,7 +18,8 @@ Gogolfrails::Application.routes.draw do
       match 'dashboard/courses'
       match 'dashboard/links'
     end
-
+    
+    
     resources :links
 
     devise_for :users
@@ -21,6 +27,7 @@ Gogolfrails::Application.routes.draw do
     resources :users do
       resources :rounds
       resources :groups
+      resources :orders, :only => [:index, :show]
     end
 
     resources :groups do
@@ -41,10 +48,20 @@ Gogolfrails::Application.routes.draw do
 
     resources :posts do
       resources :comments, :only => [:create, :destroy] do
+        member do
+          post :vote_up
+        end
         resources :replies, :only => [:create, :destroy]
       end
     end
-    resources :openings
+    resources :openings do
+      resources :comments, :only => [:create, :destroy] do
+        member do
+          post :vote_up
+        end
+        resources :replies, :only => [:create, :destroy]
+      end
+    end
 
     match 'profiili', :to => 'profile#index'
     match 'users/edit', :to => 'devise/registrations#edit'
@@ -56,6 +73,7 @@ Gogolfrails::Application.routes.draw do
     get "site/index"
     get "site/help"
     get "site/topic"
+    get "site/notuser"
     get "attendances/create"
     get "attendances/index"
     get "attendances/destroy"

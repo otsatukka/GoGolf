@@ -1,5 +1,6 @@
 class OpeningsController < ApplicationController
   before_filter :set_title, :tabify
+  before_filter :log_impressions, :only=> [:show]
   
   impressionist :actions => [:show]
   load_and_authorize_resource
@@ -7,6 +8,20 @@ class OpeningsController < ApplicationController
   
   def tabify
     @active_tab = "gogolf"
+  end
+  
+  def log_impressions
+    @opening = Opening.find(params[:id])
+    # this assumes you have a current_user method in your authentication system
+    if current_user
+      if @opening.impressions.where(:ip_address => request.remote_ip, :user_id => current_user.id).count == 0
+        @opening.impressions.create!(:ip_address => request.remote_ip, :user_id => current_user.id)
+      end
+    else
+      if @opening.impressions.where(:ip_address => request.remote_ip).count == 0
+        @opening.impressions.create!(:ip_address => request.remote_ip)
+      end
+    end
   end
   
   # GET /posts
@@ -25,6 +40,10 @@ class OpeningsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
+    @comments = @opening.comments
+    @opening.comments.build
+    @post = @opening
+    @voting_and_replies = 0
   end
 
   # GET /posts/new

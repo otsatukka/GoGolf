@@ -1,14 +1,27 @@
 class PostsController < ApplicationController
   before_filter :set_title, :tabify
+  before_filter :log_impressions, :only=> [:show]
   
-  impressionist :actions => [:show]
   load_and_authorize_resource
   skip_load_resource :only => [:index, :create]
   
   def tabify
     @active_tab = "gogolf"
   end
-  
+
+  def log_impressions
+    @post = Post.find(params[:id])
+    # this assumes you have a current_user method in your authentication system
+    if current_user
+      if @post.impressions.where(:ip_address => request.remote_ip, :user_id => current_user.id).count == 0
+        @post.impressions.create!(:ip_address => request.remote_ip, :user_id => current_user.id)
+      end
+    else
+      if @post.impressions.where(:ip_address => request.remote_ip).count == 0
+        @post.impressions.create!(:ip_address => request.remote_ip)
+      end
+    end
+  end
   # GET /posts
   # GET /posts.xml
   def index
@@ -27,6 +40,7 @@ class PostsController < ApplicationController
   def show
     @comments = @post.comments
     @post.comments.build
+    @voting_and_replies = 1
     respond_to do |format|
       format.html
       format.js
