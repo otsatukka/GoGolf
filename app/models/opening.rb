@@ -1,5 +1,5 @@
 class Opening < ActiveRecord::Base
-  load_and_authorize_resource
+  
   belongs_to :user
   has_one :category
   belongs_to :imagebank
