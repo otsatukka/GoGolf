@@ -2,7 +2,6 @@ class OpeningsController < ApplicationController
   before_filter :set_title, :tabify
   before_filter :log_impressions, :only=> [:show]
   
-  impressionist :actions => [:show]
   load_and_authorize_resource
   skip_load_resource :only => [:index, :create]
   
