@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  quantity: 1
+  status: MyString
+
+two:
+  quantity: 1
+  status: MyString

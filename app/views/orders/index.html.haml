@@ -1,0 +1,17 @@
+%table
+  %tr
+    %th Id
+    %th Tuote
+    %th Luotu
+    %th Ostaja
+    %th Tila
+    %td
+  - @orders.each do |order|
+    %tr
+      %td= order.id
+      %td= order.deal.name
+      %td= order.created_at
+      %td= order.user.name
+      %td= order.status
+      %td= link_to 'Poista', order, :confirm => 'Are you sure?', :method => :delete
+%br/

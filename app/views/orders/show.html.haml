@@ -1,0 +1,12 @@
+%table
+  %tr
+    %td Tuote
+    %td Määrä
+    %td Hinta
+    %td 
+  %tr
+    %td= @order.deal.name
+    %td= @order.quantity
+    %td= @order.total_price
+    %td= link_to "Siirry maksamaan", @order.paypal_url(orders_url, payment_notifications_url)
+    

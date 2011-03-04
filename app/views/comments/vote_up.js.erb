@@ -1,0 +1,4 @@
+$("#comment_<%= @comment.id %>").effect("highlight", {}, 3000);
+
+/* Replace the count of comments */
+$("#comment_<%= @comment.id %> #votes_count").html("<%=@comment.votes_for %>");

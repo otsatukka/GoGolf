@@ -1,0 +1,25 @@
+
+%p
+  %b Name:
+  = @deal.name 
+%p
+  %b Price:
+  = @deal.price 
+%p
+  %b Desc:
+  = @deal.desc 
+%p
+  %b Quantity:
+  = @deal.quantity
+%p
+  - form_for @order do |f|
+    .field
+      = f.label :quantity, "Määrä"
+      = f.text_field :quantity
+    .field
+      = f.hidden_field :deal_id
+    .actions
+      = f.submit "Osta"
+
+= link_to 'Edit', edit_deal_path(@deal)  |
+= link_to 'Back', deals_path 
