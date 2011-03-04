@@ -24,7 +24,7 @@ class Opening < ActiveRecord::Base
   end
   
   def unique_impression_count(start_date=nil,end_date=nil)
-    start_date.blank? ? impressions.group(:ip_address, :impressionable_id).all.size : impressions.where("created_at>=? and created_at<=?",start_date,end_date).group(:ip_address, :impressionable_id).all.size
+    start_date.blank? ? impressions.group(:ip_address, :impressionable_id, :impressions_id).all.size : impressions.where("created_at>=? and created_at<=?",start_date,end_date).group(:ip_address, :impressionable_id, :impressions_id).all.size
   end
   
   def self.search(search)
