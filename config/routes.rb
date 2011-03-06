@@ -35,13 +35,13 @@ Gogolfrails::Application.routes.draw do
     end
 
     resources :events do
+        get :autocomplete_course_name, :on => :collection
       resources :users
-      resources :attendances do 
-        get :autocomplete_user_email, :on => :collection
-      end
+      resources :attendances
     end
 
     match 'event/kaikki', :controller => 'events', :action => 'full_index'
+    match 'event/peliseura', :controller => 'events', :action => 'search'
 
     match 'groups/user_data', :controller=>'groups', :action=>'user_data'
     match 'users/promote_to_group_admin', :controller=>'users', :action=>'promote_to_group_admin'

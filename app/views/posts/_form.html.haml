@@ -4,15 +4,14 @@
     = f.text_field :title
     %br/
     %br/
-  .field
-    - if can? :new, Post
-      %p
-        = f.label :category_id, "Kategoria"
-        %br/
-        - for category in Category.find(:all)
-          %div
-            = radio_button_tag "post[category_id]", category.id, @post.category_id = category.id
-            = category.name
+  - if can? :new, Post
+    %p
+      = f.label :category_id, "Kategoria"
+      %br/
+      - for category in Category.find(:all)
+        %div
+          = radio_button_tag "post[category_id]", category.id, @post.category_id = category.id
+          = category.name
     %br/
   - if current_user != nil && logged_in?
     %table

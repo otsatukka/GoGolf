@@ -41,15 +41,4 @@
             .notice
               = content_tag :div, msg, :id => "flash_\#{name}"
           =render :partial => 'shared/sidebar'
-          .ui-widget
-            .ui-widget-header{:class => "ui-corner-all"}
-              Päivän kysymys
-            .ui-widget-content
-              Montako kierrosta pelasit kaudella 2010?
-          .ui-widget
-            .ui-widget-header{:class => "ui-corner-all"}
-              Päivän video
-            .ui-widget-content
-              Video
-              %br/
-              %p
+          =render :partial => 'shared/sidebar2'

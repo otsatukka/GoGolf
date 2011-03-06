@@ -16,7 +16,7 @@
           = @opening.created_at.to_s(:long)
         %td
           Katsottu:
-          = @opening.unique_impression_count_ip
+          = @opening.unique_impression_count
     %br/
     %br/
     = link_to_if(can?(:edit, Opening), 'Muokkaa', edit_opening_path(@opening)) {}

@@ -6,12 +6,12 @@
       = f.label :name, "Pelin nimi*"
       %br/
       = f.text_field :name
-    .field
+    .field_small
       = f.label :course, "Kenttä*"
       %br/
       = f.autocomplete_field :course_name, autocomplete_course_name_events_path, :id_element => "#course_id"
       = f.text_field :course_id, :id => "course_id"
-    .field
+    .field_small
       = f.label :game_type, "Pelimuoto*"
       %br/
       = f.text_field :game_type
@@ -24,14 +24,13 @@
       %br/
       = f.text_area :desc
     - if @private == true
-      .field
-        = f.label :attendee_ids, "Kutsu pelaajia"
-        - for attendee in User.all
-          %div
-            = check_box_tag "attendee_ids[]", attendee.id
-            = attendee.end_user_name
-          =# f.label "Valitse pelikaverit"
-          =# f.autocomplete_field :attendee_email, autocomplete_attendee_email_event_attendances_path
-          =# f.text_field_tag 'email', '', :autocomplete => autocomplete_user_email_event_attendances_path
+      = f.label :attendee_ids, "Kutsu pelaajia"
+      - for attendee in User.all
+        %div
+          = check_box_tag "attendee_ids[]", attendee.id
+          = attendee.end_user_name
+        =# f.label "Valitse pelikaverit"
+        =# f.autocomplete_field :attendee_email, autocomplete_attendee_email_event_attendances_path
+        =# f.text_field_tag 'email', '', :autocomplete => autocomplete_user_email_event_attendances_path
     .actions
-      = f.submit
+      = f.submit 'Luo tapahtuma'

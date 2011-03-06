@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.4'
 gem 'sqlite3-ruby', :require => 'sqlite3'
+#gem 'pg'
 gem 'devise', '1.1.6'
 #gem 'i18n', '0.4.1'
 gem 'cancan', '1.5.1'

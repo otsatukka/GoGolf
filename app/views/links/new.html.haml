@@ -1,5 +1,8 @@
-%h2 New link
-= render "shared/error_messages", :target => @link
-= render 'form'
+.widgetcontainer
+  .widgettitle{:class => "ui-corner-all"}
+    Uusi linkki tai video
+  .widgetcontent
+    = render "shared/error_messages", :target => @link
+    = render 'form'
 
-= link_to 'Back', links_path
+    = link_to 'Takaisin', links_path

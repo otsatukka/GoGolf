@@ -1,5 +1,8 @@
-%h1 New event
-= render "shared/error_messages", :target => @event
-= render 'form'
+.widgetcontainer
+  .widgettitle{:class => "ui-corner-all"}
+    Uusi peli
+  .widgetcontent
+    = render "shared/error_messages", :target => @event
+    = render 'form'
 
-= link_to 'Back', events_path
+    = link_to 'Takaisin', events_path

@@ -168,9 +168,27 @@ a:hover { color: #ccc; }
   margin : 0;
   line-height:1.0;
 }
+
+#luetuimmat h4,#luetuimmat hr{
+  margin : 0;
+  padding: 0;
+  line-height:1.5;
+}
+#luetuimmat i {
+  font-size: 0.9em;
+}
+/* FORMS */
 #new_event textarea {
   height: 100px;
   width: 400px;
+}
+.field input {
+  width: 350px;
+  line-height:1.5em;;
+}
+.field_small input {
+  width: 150px;
+  line-height:1.5em;;
 }
 
 /* SIDEBAR */
