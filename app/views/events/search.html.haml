@@ -1,6 +1,6 @@
 .widgetcontainer
   .widgettitle
-    Luo avoin peli
+    Hae peliseuraa
   .widgetcontent
     #events_links
       - if logged_in?
@@ -9,11 +9,18 @@
             %tr
               %td
                 %h4
+                  Täältä voit etsiä pelaajia ja lähettää kutsuja mukaan kierrokselle
+                Tulossa ennen kautta!
+                %br/
+                .button_s= 'Siirry hakuun'
+              %td
+                %h4
                   Luo avoin pelitapahtuma mihin muut pelaajat voivat liittyä seuraksi!
                 .button_s= link_to 'Luo pelitapahtuma', new_event_path(:private => false)
+%br/
 .widgetcontainer
   .widgettitle
-    Hae avoimia pelejä
+    Avoimet pelit
   .widgetcontent
     %table
       %tr

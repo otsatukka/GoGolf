@@ -14,6 +14,9 @@ class RepliesController < ApplicationController
 
   def create
     @reply = @comment.replies.build(params[:reply])
+    if current_user != nil
+      @reply.user_id = current_user.id
+    end
 
     if @reply.save
       respond_to do |format|

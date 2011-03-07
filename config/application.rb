@@ -52,7 +52,6 @@ module Gogolfrails
     config.filter_parameters += [:password]
   end
   class CustomFormBuilder < Formtastic::SemanticFormBuilder
-
     private
 
     def ckeditor_input(method, options)

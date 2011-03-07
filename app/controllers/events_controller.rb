@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     @current_user = current_user
   end
   def get_title
-    @title = "Omat pelit"
+    @title = "Pelit"
   end
   def tabify
     @active_tab = "mygolf"
@@ -40,6 +40,14 @@ class EventsController < ApplicationController
       format.json { render :json => @events.to_json }
     end
   end
+  
+  def game_company
+    @event = Event.new
+    respond_to do |format|
+      format.html { render :template => 'events/game_company' }
+      format.js { render :json => @events.to_json }
+    end
+  end
 
   # GET /events/1
   # GET /events/1.xml
@@ -51,7 +59,7 @@ class EventsController < ApplicationController
       end
     end
       
-    @title = "Omat pelit >> " + @event.name
+    @title = "Pelit >> " + @event.name
 
     respond_to do |format|
       format.html # show.html.erb
@@ -95,10 +103,8 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
         format.html { redirect_to event_path(@event), :notice => 'Event was successfully created.' }
-        format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
       end
     end
   end

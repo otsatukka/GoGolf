@@ -1,30 +1,9 @@
-.field
-  = f.label :email, "Sähköposti"
-  %br/
-  = f.text_field :email
-  %br/
-  %br/
-.field
-  = f.label :name, "Käyttäjänimi"
-  %i Näkyy kaikille
-  %br/
-  = f.text_field :name
-  %br/
-  %br/
-.field
-  = f.label :realname, "Nimi"
-  %i Näkyy vain kavereille (ellei "Näytä Nimi kaikille" ole valittuna)
-  %br/
-  = f.text_field :realname
-  %br/
-  %br/
-.field
-  = f.label :privacy_name, "Näytä Nimi kaikille"
-  %br/
-  = f.check_box :privacy_name
-  %br/
-  %br/
-.field
+- f.inputs do
+  = f.input :email, :label => "Sähköposti"
+  = f.input :name, :label => "Käyttäjätunnus", :hint => "Näkyy kaikille"
+  = f.input :realname, :label => "Nimi", :hint => "Näkyy vain kavereille (ellei \"Näytä Nimi kaikille\" ole valittuna)"
+  = f.input :privacy_name, :label => "Näytä Nimi kaikille"
+  = f.input :avatar, :as => :file, :label => "Profiilikuva"
   - if can? :edit, Role
     %p
       = f.label :role, "Rooli"
@@ -32,7 +11,7 @@
         %div
           = check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role)
           = role.name
-.field
-  = f.label :avatar, "Profiilikuva"
-  %br/
-  = f.file_field :avatar
+  = f.input :favorites, :as => :check_boxes, :label => "Lempikentät"
+  = f.semantic_fields_for :spec, @user.spec || Spec.new do |spec|
+    = spec.input :start_year_of_golf, :as => :date, :discard_day => true, :discard_month => true, :start_year => Time.now.year, :end_year => 1920 , :default => { :year => 2011 }
+    = spec.input :gender, :as => :radio, :collection => ["Mies", "Nainen"], :label => "Sukupuoli"

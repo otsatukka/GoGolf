@@ -14,7 +14,12 @@ class Admin::DashboardController < ApplicationController
   end
   
   def posts
-    @posts = Post.search(params[:search]).category(params[:category]).paginate(:per_page => 5, :page => params[:page])
+    @posts = Post.search(params[:search]).category(params[:category]).paginate(:per_page => 10, :page => params[:page])
+    @categories = Category.all
+  end
+  
+  def openings
+    @openings = Opening.search(params[:search]).category(params[:category]).paginate(:per_page => 10, :page => params[:page])
     @categories = Category.all
   end
   

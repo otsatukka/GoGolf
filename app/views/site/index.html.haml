@@ -4,94 +4,138 @@
   .widgetcontent_editors_pick{:class => "ui-corner-all"}
     #feature_list
       %ul#tabs
-        %li
-          %a{:href => "javascript:;"}
-            %h3= @recent_posts.first.title
-            %span
-              = @recent_posts.first.user.end_user_name
-        %li
-          %a{:href => "javascript:;"}
-            %h3= @recent_posts.second.title
-            %span
-              = @recent_posts.second.user.end_user_name
-        %li
-          %a{:href => "javascript:;"}
-            %h3= @recent_posts.third.title
-            %span
-              = @recent_posts.third.user.end_user_name
+        - @recent_posts.each do |post|
+          %li
+            %a{:href => "javascript:;"}
+              %h3= post.title
+              %span
+                = post.user.end_user_name
           
       %ul#output
-        %li
-          %img{:src => find_img_medium(@recent_posts.first), :class => "align-right", :minheight => "240", :width => "435"}
-            %a{:href => "#"}Lue lisää
-        %li
-          %img{:src => find_img_medium(@recent_posts.second), :class => "align-right", :minheight => "240", :width => "435"}
-            %a{:href => "#"}Lue lisää
-        %li
-          %img{:src => find_img_medium(@recent_posts.third), :class => "align-right", :minheight => "240", :width => "435"}
-            %a{:href => "#"}Lue lisää
+        - @recent_posts.each do |post|
+          %li
+            %img{:src => find_img_medium(post), :class => "align-right", :minheight => "240", :width => "435"}
+              %a{:href => post_url(post)}Lue lisää
 
     %ul#description1
-      %li
-        %span
-          = truncate(@recent_posts.first.body, :length => 70, :separator => ' ').html_safe
-      %li
-        %span
-          = truncate(@recent_posts.second.body, :length => 70, :separator => ' ').html_safe
-      %li
-        %span
-          = truncate(@recent_posts.third.body, :length => 70, :separator => ' ').html_safe
+      - @recent_posts.each do |post|
+        %li
+          %span
+            = truncate(post.body, :length => 70, :separator => ' ').html_safe
+%br/
+%img{:src => "/images/peltomaki2.gif", :alt => "Peltomäki Golf", :class => "padding_left"}
 %br/
 .widgetcontainer{:class => "ui-corner-all"}
   .widgettitle{:class => "ui-corner-all"}
     Viikon avaukset
-  .widgetcontent
-    %table
-      %tr
-        %td
-          %h3= @uusin_niken_juttu.title
-      %tr
-        %td
-          %table
-            %tr
-              %th
-                = link_to @nikke.realname, @nikke
-              %th
-                Vieraskirjoittaja
-            %tr
-              %td
-                = image_tag @nikke.avatar_url(:thumb).to_s
-                = truncate(@uusin_niken_juttu.body, :length => 70, :separator => ' ').html_safe
-              %td
-                = image_tag @nikke.avatar_url(:thumb).to_s
-                = truncate(@uusin_niken_juttu.body, :length => 70, :separator => ' ').html_safe
+  .widgetcontent_editors_pick
+    #recentposts
+      %table
+        %table
+          %tr
+            %th{:width => 280}
+              %b Niken avaus
+            %th
+              %b Vieraskirjoittaja
+      %table
+        %tr
+          %td{:width => 280}
+            - if @uusin_nikke_avaus != nil
+              %table
+                %tr
+                  %td{:rowspan => "4"}
+                    = image_tag @uusin_nikke_avaus.first.user.avatar_url(:thumb).to_s
+                %tr
+                  %th
+                    %h3= link_to @uusin_nikke_avaus.first.title, @uusin_nikke_avaus.first
+                %tr
+                  %td
+                    .post_excerpt_body
+                      = truncate(@uusin_nikke_avaus.first.body, :length => 70, :separator => ' ').html_safe
+                %tr
+                  %td
+                    - if @uusin_nikke_avaus.first.user != nil
+                      = link_to @uusin_nikke_avaus.first.user.end_user_name, @uusin_nikke_avaus.first.user
+                      = time_ago_in_words(@uusin_nikke_avaus.first.created_at)
+                      ago
+                      %hr/
+          %td
+            - if @uusin_vieras_avaus != nil
+              %table
+                %tr
+                  %td{:rowspan => "4"}
+                    = image_tag @uusin_vieras_avaus.first.user.avatar_url(:thumb).to_s
+                %tr
+                  %th
+                    %h3= link_to @uusin_vieras_avaus.first.title, @uusin_vieras_avaus.first
+                %tr
+                  %td
+                    .post_excerpt_body
+                      = truncate(@uusin_vieras_avaus.first.body, :length => 70, :separator => ' ').html_safe
+                %tr
+                  %td
+                    - if @uusin_vieras_avaus.first.user != nil
+                      = link_to @uusin_vieras_avaus.first.user.end_user_name, @uusin_vieras_avaus.first.user
+                      = time_ago_in_words(@uusin_vieras_avaus.first.created_at)
+                      ago
+                      %hr/
 %br/
 .widgetcontainer{:class => "ui-corner-all"}
   .widgettitle{:class => "ui-corner-all"}
-    Ajankohtaista
-  .widgetcontent{:class => "ui-corner-all"}
+    Uutiset
+  .widgetcontent_editors_pick
     #recentposts
-      - if @recent_posts != nil
-        - @recent_posts.each do |post|
-          %table
-            %tr
-              %td{:rowspan => "5", :width => "80px"}
-                .post_excerpt_img= image_tag find_img_thumb(post)
-            %tr
-              %th
-                %h3= link_to post.title, post
-            %tr
-              %td
-                .post_excerpt_body
-                  = truncate(post.body, :length => 70, :separator => ' ').html_safe
-            %tr
-              %td
-            %tr
-              %td
-                Kirjoittanut
-                - if post.user != nil
-                  = link_to post.user.end_user_name, post.user
-                  = post.created_at.to_s(:long)
+      %table
+        %table
+          %tr
+            %th{:width => 280}
+              %b Uusimmat
+            %th
+              %b Suosituimmat
+      %table
+        %tr
+          %td{:width => 280}
+            - if @recent_posts != nil
+              %table
+                - @recent_posts.each do |post|
+                  %tr
+                    %td{:rowspan => "4", :width => "80px"}
+                      .post_excerpt_img= image_tag find_img_thumb(post)
+                  %tr
+                    %th
+                      %h3= link_to post.title, @recent_posts.first
+                  %tr
+                    %td
+                      .post_excerpt_body
+                        = truncate(post.body, :length => 70, :separator => ' ').html_safe
+                  %tr
+                    %td
+                      - if post.user != nil
+                        = link_to post.user.end_user_name, post.user
+                        = time_ago_in_words(post.created_at)
+                        ago
+                        %hr/
+          %td
+            - if @top5_posts_of_week != nil
+              %table
+                - @top5_posts_of_week.first(3).each do |post|
+                  %tr
+                    %td{:rowspan => "4", :width => "80px"}
+                      .post_excerpt_img= image_tag find_img_thumb(post)
+                  %tr
+                    %th
+                      %h3= link_to post.title, post
+                  %tr
+                    %td
+                      .post_excerpt_body
+                        = truncate(post.body, :length => 70, :separator => ' ').html_safe
+                  %tr
+                    %td
+                      - if post.user != nil
+                        = link_to post.user.end_user_name, post.user
+                        = time_ago_in_words(post.created_at)
+                        ago
+                        %hr/
 %br/
 .widgetcontainer{:class => "ui-corner-all"}
   .widgettitle{:class => "ui-corner-all"}

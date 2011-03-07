@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
   validates_length_of           :body, :in => 2..2000
   
   attr_accessible :title, :body, :category_id, :user, :published, :weektopic, :editors_pick, :photo, :imagebank_id,
-                  :use_uploaded_image, :remove_photo
+                  :use_uploaded_image, :remove_photo, :visitor_post
   
   mount_uploader :photo, PhotoUploader
   

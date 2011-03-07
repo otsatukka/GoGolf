@@ -42,7 +42,7 @@ class OpeningsController < ApplicationController
     @comments = @opening.comments
     @opening.comments.build
     @post = @opening
-    @voting_and_replies = 0
+    @voting_and_replies = 1
   end
 
   # GET /posts/new

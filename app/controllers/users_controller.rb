@@ -37,6 +37,7 @@ class UsersController < ApplicationController
   def new
     @active_tab = "mygolf"
     @title = "Rekisteröidy"
+    @user.build_spec
     respond_to do |format|  
       format.xml  { render :xml => @user }
       format.html

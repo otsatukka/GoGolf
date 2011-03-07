@@ -1,13 +1,14 @@
 = div_for reply do
-  - if reply.body != nil
-    %span{:class => "dateandoptions"}
-      Posted
-      = time_ago_in_words(reply.created_at)
-      ago
-      %br/
-      - @comment = Comment.find_by_id(reply.comment_id)
-      = link_to 'Delete', [@post, @comment, reply], :method => :delete, :remote => true
-    %p
-    wrote:
-    %br/
-    = content_tag(:p, reply.body, :class => "comment-body")
+  #reply_box
+    - if reply.body != nil
+      = content_tag(:p, reply.body, :class => "comment-body")
+      %p
+        - if reply.user
+          = link_to reply.user.end_user_name, reply.user
+          |
+        = time_ago_in_words(reply.created_at)
+        %br/
+        - @comment = Comment.find_by_id(reply.comment_id)
+        = link_to_if(can?(:delete, Reply), 'Delete', [@post, @comment, reply], :method => :delete, :remote => true) {}
+        %br/
+    

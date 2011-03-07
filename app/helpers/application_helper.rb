@@ -20,10 +20,14 @@ module ApplicationHelper
   end
   
   def find_img_thumb(post)
-    if post.use_uploaded_image == 1
-      post.photo_url(:thumb).to_s
-    elsif post.use_uploaded_image == 0
-      post.imagebank.image_url(:thumb).to_s
+    if post.use_uploaded_image != nil
+      if post.use_uploaded_image == 1
+        post.photo_url(:thumb).to_s
+      elsif post.use_uploaded_image == 0
+        post.imagebank.image_url(:thumb).to_s
+      else
+        "ei kuvaa"
+      end
     else
       "ei kuvaa"
     end
@@ -47,7 +51,7 @@ module ApplicationHelper
   end
   
   def user_thumb(user)
-    image_tag user.avatar.url(:thumb)
+    image_tag user.avatar_url(:thumb).to_s
   end
   
   def logged_in?

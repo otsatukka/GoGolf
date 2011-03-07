@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110304153835) do
+ActiveRecord::Schema.define(:version => 20110307190256) do
 
   create_table "achievements", :force => true do |t|
     t.string   "type"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20110304153835) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "mulligan"
   end
 
   add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
@@ -99,6 +100,11 @@ ActiveRecord::Schema.define(:version => 20110304153835) do
     t.boolean  "private",     :default => true
     t.string   "game_type"
     t.string   "course_name"
+  end
+
+  create_table "fcourses", :force => true do |t|
+    t.integer "course_id"
+    t.integer "user_id"
   end
 
   create_table "friendships", :force => true do |t|
@@ -168,6 +174,7 @@ ActiveRecord::Schema.define(:version => 20110304153835) do
     t.integer  "imagebank_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "visitor_post",       :default => false
   end
 
   create_table "orders", :force => true do |t|
@@ -210,6 +217,7 @@ ActiveRecord::Schema.define(:version => 20110304153835) do
     t.integer  "imagebank_id"
     t.string   "photo"
     t.integer  "use_uploaded_image"
+    t.boolean  "visitor_post",       :default => false
   end
 
   create_table "replies", :force => true do |t|
@@ -217,6 +225,7 @@ ActiveRecord::Schema.define(:version => 20110304153835) do
     t.integer  "comment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "roles", :force => true do |t|
@@ -239,6 +248,21 @@ ActiveRecord::Schema.define(:version => 20110304153835) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "start_time"
+  end
+
+  create_table "specs", :force => true do |t|
+    t.string   "gender"
+    t.datetime "start_year_of_golf"
+    t.integer  "best_overall_score"
+    t.string   "favorite_course_ever"
+    t.string   "favorite_golfer_in_finland"
+    t.string   "favorite_golfer_abroad"
+    t.string   "desc"
+    t.string   "play_time_of_day"
+    t.boolean  "visitors_to_home_course"
+    t.boolean  "has_car_to_share"
+    t.datetime "birthday"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|

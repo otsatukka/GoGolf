@@ -1,33 +1,38 @@
 .ui-widget
   .ui-widget-header{:class => "ui-corner-all"}
+    Yhteistyökumppanit
+  .ui-widget-content
+    =image_tag '/images/Vallila.jpg', :height => 140
+.ui-widget
+  .ui-widget-header{:class => "ui-corner-all"}
     Luetuimmat
   .ui-widget-content
     #luetuimmat
       %h4
         Uutiset
         %hr/
-      - @top5_posts_of_week.each do |post|
-        %h6= link_to post.title, post
-        %i
-          = link_to post.user.end_user_name, post.user
-          |
-          = post.unique_impression_count
-        %br/
+        %ul
+          - @top5_posts_of_week.each do |post|
+            %li
+              = link_to post.title, post
+              %br/
+              %i
+                = link_to post.user.end_user_name, post.user
+                |
+                = post.unique_impression_count
       %h4
         Avaukset
         %hr/
-      - @top5_openings_of_week.each do |post|
-        %h6= link_to post.title, post
-        %i
-          = link_to post.user.end_user_name, post.user
-          |
-          = post.unique_impression_count
-        %br/
-      
-.ui-widget
-  .ui-widget-header{:class => "ui-corner-all"}
-    Yhteistyökumppanit
-  .ui-widget-content
+        %ul
+          - @top5_openings_of_week.each do |post|
+            %li
+              = link_to post.title, post
+              %br/
+              %i
+                = link_to post.user.end_user_name, post.user
+                |
+                = post.unique_impression_count
+              %br/
 
 .ui-widget
   .ui-widget-header{:class => "ui-corner-all"}

@@ -1,36 +1,19 @@
 #new_event
-  = form_for @event do |f|
-    .field
-      = f.hidden_field :private
-    .field
-      = f.label :name, "Pelin nimi*"
-      %br/
-      = f.text_field :name
-    .field_small
-      = f.label :course, "Kenttä*"
-      %br/
-      = f.autocomplete_field :course_name, autocomplete_course_name_events_path, :id_element => "#course_id"
-      = f.text_field :course_id, :id => "course_id"
-    .field_small
-      = f.label :game_type, "Pelimuoto*"
-      %br/
-      = f.text_field :game_type
-    .field
-      = f.label :start_time, "Kierroksen arvioitu aika*"
-      %br/
-      = f.datetime_select :start_time
-    .field
-      = f.label :desc, "Kuvaus"
-      %br/
-      = f.text_area :desc
+  = semantic_form_for @event do |f|
+    = f.inputs do
+      .field
+        = f.hidden_field :private
+      = f.input :name, :label => "Nimi"
+      = f.autocompleted_input :course_name, :label => "Kenttä", :url => autocomplete_course_name_events_path, :id_element => "#course_id", :hint => "Aloita kirjoittamaan ja valitse"
+      = f.hidden_field :course_id, :id => "course_id"
+      = f.input :game_type, :label => "Pelimuoto"
+      = f.input :start_time, :as => :date, :label => "Esimerkki päivämäärä", :include_blank => false, :start_year => Time.now.year, :end_year => Time.now.year
+      = f.input :desc, :label => "Kuvaus"
     - if @private == true
-      = f.label :attendee_ids, "Kutsu pelaajia"
-      - for attendee in User.all
+      = f.label :attendee_ids, "Kutsu kavereita"
+      - for attendee in current_user.friends
         %div
           = check_box_tag "attendee_ids[]", attendee.id
           = attendee.end_user_name
-        =# f.label "Valitse pelikaverit"
-        =# f.autocomplete_field :attendee_email, autocomplete_attendee_email_event_attendances_path
-        =# f.text_field_tag 'email', '', :autocomplete => autocomplete_user_email_event_attendances_path
     .actions
       = f.submit 'Luo tapahtuma'

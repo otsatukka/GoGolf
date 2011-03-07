@@ -17,12 +17,13 @@ Gogolfrails::Application.routes.draw do
       match 'dashboard/users'
       match 'dashboard/courses'
       match 'dashboard/links'
+      match 'dashboard/openings'
     end
     
     
     resources :links
 
-    devise_for :users
+    devise_for :users, :controllers => { :registrations => "users" }
 
     resources :users do
       resources :rounds
@@ -42,6 +43,7 @@ Gogolfrails::Application.routes.draw do
 
     match 'event/kaikki', :controller => 'events', :action => 'full_index'
     match 'event/peliseura', :controller => 'events', :action => 'search'
+    match 'event/search_game_company', :controller => 'events', :action => 'game_company'
 
     match 'groups/user_data', :controller=>'groups', :action=>'user_data'
     match 'users/promote_to_group_admin', :controller=>'users', :action=>'promote_to_group_admin'
@@ -63,7 +65,6 @@ Gogolfrails::Application.routes.draw do
       end
     end
 
-    match 'profiili', :to => 'profile#index'
     match 'users/edit', :to => 'devise/registrations#edit'
 
     get "friendship/create"

@@ -14,6 +14,9 @@ a:hover { color: #ccc; }
 .ui-widget-header h2 {
   text-shadow: 1px 1px 1px #fff;
 }
+#small_text a {
+  font-size: 0.8em;
+}
 
 /* HEADER STUFF */
 .header1 {
@@ -96,6 +99,9 @@ a:hover { color: #ccc; }
 .padding {
   padding:10px;
 }
+.padding_left {
+  padding:0 0 0 50px;
+}
 .comment
 {
   display: block;
@@ -105,6 +111,10 @@ a:hover { color: #ccc; }
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
+  
+  border-color:#ddd;
+  border-style:solid;
+  border-width:1px;
 }
 .reply
 {
@@ -113,8 +123,25 @@ a:hover { color: #ccc; }
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
+  border-color:#ddd;
+  border-style:solid;
+  border-width:1px;
   padding: 10px;
-  margin: 25px;
+  margin: 0 0 0 100px;
+}
+#new_comment{
+  display: block;
+  background: none;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  border-color:#ddd;
+  border-style:none;
+  border-width:0px;
+}
+#new_comment textarea {
+  width: 400px;
+  height:200px;
 }
 
 /* BUTTONS */
@@ -152,14 +179,15 @@ a:hover { color: #ccc; }
   padding: 0.5em;
 }
 
-#recentposts table {
+#recentposts table, #recentposts th,#recentposts td,#recentposts caption  {
   /*border-top-color:#ddd;
   border-top-style:solid;
-  border-top-width:2px;
-  padding-bottom:5px;*/
-  padding-left:0;
-  padding-right:0;
-  padding-top:7px;
+  border-top-width:2px;*/
+  padding-top: 0px;
+  padding-bottom:4px;
+  padding-left:5px;
+  padding-right:2px;
+  margin: 0px;
 }
 #recentposts h3 {
   margin : 0;
@@ -174,8 +202,21 @@ a:hover { color: #ccc; }
   padding: 0;
   line-height:1.5;
 }
-#luetuimmat i {
+#luetuimmat i , #luetuimmat a{
   font-size: 0.9em;
+  line-height: 1.0em;
+}
+#luetuimmat ul {
+  list-style-type: none;
+  margin-left:0;
+  padding-left:0;
+}
+#luetuimmat li
+{
+  border: solid 1px white;
+  padding: 5px;
+  margin: 1px;
+  background-color: #DDDDB7;
 }
 /* FORMS */
 #new_event textarea {
@@ -200,7 +241,5 @@ a:hover { color: #ccc; }
 .widgetcontent_editors_pick { padding: 0px; }
 
 .active_s{background:#ddd;padding:27px;display:block;float:left;outline:none;width:200px;}
- 
-
 
 p.description_content{padding:10px;margin:0px;}

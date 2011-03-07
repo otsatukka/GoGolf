@@ -40,7 +40,7 @@ class PostsController < ApplicationController
   def show
     @comments = @post.comments
     @post.comments.build
-    @voting_and_replies = 1
+    @voting_and_replies = 0
     respond_to do |format|
       format.html
       format.js

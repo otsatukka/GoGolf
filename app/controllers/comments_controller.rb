@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_filter :get_commentable, :only => [:new, :create, :destroy]
   
-  load_and_authorize_resource
+  authorize_resource
   
   def vote_up
     begin

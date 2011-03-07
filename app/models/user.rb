@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   acts_as_voter
-  
+  has_one :spec, :dependent => :destroy
+  accepts_nested_attributes_for :spec
   has_many :deals
   has_many :posts
   has_many :openings
@@ -8,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :rounds
   has_many :courses, :through => :rounds
   has_many :comments
+  has_many :replies
   
   def before_rpx_auto_create(rpx_user)
     self.realname = rpx_user[:name][:formatted]
@@ -21,6 +23,9 @@ class User < ActiveRecord::Base
   has_many :pending_friends, :through => :friendships, :source => :friend, :conditions => "status = 'pending'", :order => :created_at
   
   has_and_belongs_to_many :roles
+  
+  has_many :favorites, :through => :fcourses, :foreign_key => "course_id", :class_name => "Course", :source => :course
+  has_many :fcourses
   
   has_many :permissions, :dependent => :destroy
   has_many :grouproles, :through => :permissions
@@ -52,12 +57,12 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable and :confirmable, :activatable , 
-  devise :database_authenticatable,
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :rpx_connectable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :role_ids, :avatar, :name, :realname,
-                  :privacy_name
+                  :privacy_name, :spec_attributes, :favorite_ids
   validates_presence_of :name, :realname
   
   # ROLE
@@ -140,5 +145,8 @@ class User < ActiveRecord::Base
  # validates_format_of       :email, 
   #                          :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i, 
    #                         :message => "must be a valid email address"
-                            
+   
+   
+   
+   
 end

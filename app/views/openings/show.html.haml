@@ -2,40 +2,38 @@
   .widgetcontent
     %h1= @opening.title
     %hr/
+    %table
+      %tr
+        %td
+          = link_to @opening.user.end_user_name, @opening.user
+        %td
+          = time_ago_in_words(@opening.created_at)
+        %td
+          Katsottu
+          = @opening.unique_impression_count
     = image_tag find_img_medium(@opening)
   
     :erb
       <%= @opening.body %>
     %br/
     %br/
-    %table
-      %tr
-        %td
-          = link_to @opening.user.end_user_name, @opening.user
-        %td
-          = @opening.created_at.to_s(:long)
-        %td
-          Katsottu:
-          = @opening.unique_impression_count
+
     %br/
     %br/
     = link_to_if(can?(:edit, Opening), 'Muokkaa', edit_opening_path(@opening)) {}
     = link_to 'Takaisin', openings_path
     #comments_count
-      = pluralize(@comments.count, "Kommenttia")
+      = @comments.count
+      kommenttia
     #comments
       - if @comments.count > 0
         = render :partial => "comments/comment", :collection => @comments
     #new_comment
-      - form_for [@opening, Comment.new()], :remote => true, :id => "new_comment" do |f|
-        .field
-          = f.label :title, "Otsikko"
-          %br/
-          = f.text_field :title
-        .field
-          = f.label :body, "Kommentti"
-          %br/
-          = f.text_area :body
-        .actions
-          =f.submit "Lähetä"
+      - semantic_form_for [@opening, Comment.new()], :remote => true, :id => "new_comment" do |f|
+        = f.inputs do
+          = f.input :title, :label => "Otsikko"
+          = f.input :mulligan, :as => :radio, :collection => ['Mulligan','Jatkolyönti'], :label => " "
+          = f.input :body, :label => "Kommentti"
+        = f.buttons do
+          = f.commit_button "Lähetä"
     

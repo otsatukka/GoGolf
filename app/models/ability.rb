@@ -47,6 +47,11 @@ class Ability
         can :read, Post
         can :create, Post
         
+        # OPENINGS
+        can :manage, Opening, :user_id => user.id
+        can :read, Opening
+        can :create, Opening
+        
         # GROUPS
         can :read, Group
         can :manage, Group, :creator_id => user.id
@@ -63,6 +68,12 @@ class Ability
         can :create, Link
         can :manage, Link, :user_id => user.id
         can :create, Autolink
+        
+        # FRIENDS
+        can :create, Friendship
+        can :manage, Friendship
+        
+        
       end
       
       #ADMIN

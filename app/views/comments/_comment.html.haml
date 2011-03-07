@@ -3,26 +3,25 @@
     %table
       - if @voting_and_replies == 1
         %tr
-          %td{:rowspan => 3}
-            %h2
-              #votes_count
-                =comment.votes_for
-                %p
-                  - if !current_user.voted_on?(comment)
-                    = link_to('Peukku', vote_up_post_comment_path(@post, comment), :method => :post, :remote => true)
+          %td{:rowspan => 3, :width => 40}
+            #votes_count
+              %h3= comment.votes_for
+              - if !current_user.voted_on?(comment)
+                #small_text= link_to('Peukku', vote_up_post_comment_path(@post, comment), :method => :post, :remote => true)
       %tr
-        %td
-          %b= comment.title
-          wrote:
-          %br/
+        %td{:width => 450}
+          %h3= comment.title
+          %hr/
           = content_tag(:p, comment.body, :class => "comment-body")
-        %td
-          %span{:class => "dateandoptions"}
-            Posted
+          %br/
+          %p
+            =link_to comment.user.end_user_name, comment.user
+            |
             = time_ago_in_words(comment.created_at)
-            ago
         %td
-          = link_to 'Delete', [@post, comment], :method => :delete, :class => "delete", :remote => true
+        %td
+          -if can? :manage, Comment
+            = link_to 'Delete', [@post, comment], :method => :delete, :class => "delete", :remote => true
 
     #replies
       - if comment.replies.count > 0
@@ -32,7 +31,6 @@
       - form_for [@post, comment, Reply.new()], :method => :put, :remote => true, :id => "new_reply" do |f|
         .field
           = f.label :body, "Kommentoi vastausta"
-          %br/
           = f.text_field :body
         .actions
           =f.submit "Lähetä"
