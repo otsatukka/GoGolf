@@ -1,0 +1,17 @@
+#new_event
+  = semantic_form_for @event do |f|
+    = f.inputs do
+      
+      = f.label :course, "Kenttä*"
+      = f.autocompleted_input :course_name, :url => autocomplete_course_name_events_path, :id_element => "#course_id"
+      = f.text_field :course_id, :id => "course_id"
+      
+      = f.input :morning, :as => :radio, :collection => ["Aamu", "Ilta"]
+      
+      
+      = f.input :name, :label => "Pelin nimi"
+      = f.input :desc, :label => "Kuvaus"
+      = f.input :start_time, :as => :date, :label => "Esimerkki päivämäärä", :include_blank => false, :start_year => Time.now.year, :end_year => Time.now.year
+    
+    .actions
+      = f.submit 'Lähetä kutsut!'
