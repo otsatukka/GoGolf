@@ -3,7 +3,8 @@
   = f.input :name, :label => "Käyttäjätunnus", :hint => "Näkyy kaikille"
   = f.input :realname, :label => "Nimi", :hint => "Näkyy vain kavereille (ellei \"Näytä Nimi kaikille\" ole valittuna)"
   = f.input :privacy_name, :label => "Näytä Nimi kaikille"
-  = f.input :avatar, :as => :file, :label => "Profiilikuva"
+  = f.label :avatar, "Profiilikuva"
+  = f.file_field :avatar
   - if can? :edit, Role
     %p
       = f.label :role, "Rooli"
