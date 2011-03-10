@@ -12,7 +12,7 @@
       %tr
         %td
           - if can? :create, Opening
-            .button_s= link_to 'Kirjoita avaus', new_post_path
+            .button_s= link_to 'Kirjoita avaus', new_opening_path
         %td
           = text_field_tag :search, params[:search]
           = submit_tag "Etsi", :name => nil, :class => "button_s"

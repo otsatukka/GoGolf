@@ -50,5 +50,12 @@ CKEDITOR.editorConfig = function( config )
           ['Link','Unlink','Anchor'],
           ['Image','Embed']
       ];
+    config.toolbar_Post =
+      [
+          ['Cut','Copy','Paste'],
+          ['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
+          ['Bold','Italic'],
+          ['NumberedList','BulletedList'],
+      ];
 };
 

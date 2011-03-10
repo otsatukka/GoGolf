@@ -3,7 +3,7 @@
   = semantic_form_for @opening, :html => { :multipart => true } do |f|
     = f.inputs do
       = f.input :title, :label => "Otsikko"
-      = f.input :category_id, :as => :radio, :collection => Category.all
+      = f.input :category_id, :as => :radio, :label => 'Kategoria', :collection => Category.all
       - if current_user != nil && logged_in?
         %table
           %tr
@@ -31,15 +31,9 @@
         %br/
         Nykyinen kuva
         = image_tag find_img_medium(@opening)
-    - if current_user.role?(:author) || current_user.role?(:super_admin)
       .field
-        = f.cktext_area :body, :toolbar => 'Author', :width=>'600px', :height=>'500px', :language=>'fi'
-        %br/
-    - else
-      - if current_user.role?(:basic)
-        .field
-          = f.cktext_area :body, :toolbar => 'Basic', :width=>'600px', :height=>'500px', :language=>'fi'
-          %br/
+        = f.cktext_area :body, :toolbar => 'Post', :width=>'600px', :height=>'500px', :language=>'fi', :uiColor => '#AADC6E', :resize_enabled => 'false'
+      %br/
     .actions
       = f.submit 'Luo juttu'
   %br/
