@@ -29,7 +29,7 @@ class Opening < ActiveRecord::Base
   
   def self.search(search)
     if search
-      where('title LIKE ?', "%#{search}%")
+      where('title LIKE ? AS INTEGER', "%#{search}%")
     else
       scoped
     end
@@ -37,7 +37,7 @@ class Opening < ActiveRecord::Base
   
   def self.category(category)
     if category
-      where('category_id LIKE ?', "%#{category}%")
+      where('CAST(category_id AS char) LIKE ?', "%#{category}%")
     else
       scoped
     end
