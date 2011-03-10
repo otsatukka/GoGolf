@@ -45,8 +45,8 @@ class UsersController < ApplicationController
   
   def show
     @title = "Oma Golf"
-    @posts = Post.where(params[:id]).order('created_at DESC').paginate(:per_page => 3, :page => params[:posts_page])
-    @links = Link.where(params[:id]).order('created_at DESC').paginate(:per_page => 5, :page => params[:links_page])
+    @posts = Post.where(:user_id => params[:id]).order('created_at DESC').paginate(:per_page => 3, :page => params[:posts_page])
+    @links = Link.where(:user_id => params[:id]).order('created_at DESC').paginate(:per_page => 5, :page => params[:links_page])
     respond_to do |format| 
       format.js
       format.html
@@ -81,7 +81,6 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       respond_to do |format|
-        flash[:notice] = "Käyttäjätili luotu!"
         format.json { render :json => @user.to_json, :status => 200 }
         format.html { redirect_to :controller => 'site', :action => :index}
       end

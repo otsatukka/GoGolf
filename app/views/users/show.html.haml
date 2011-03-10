@@ -11,18 +11,6 @@
             .button_s= link_to "Edit", edit_user_path(@user)
             .button_s= link_to "Delete", user_path(@user), :confirm => "Are you sure?", :method => :delete
         %td
-        %td
-          - if current_user != @user
-            - unless Friendship.exists? (current_user, @user)
-              .button_s= link_to "Golfkaveripyyntö", { :controller => "friendship", :action => "create", :id => @user.id }, :confirm => "Lähetä golfkaveripyyntö käyttäjälle #{@user.end_user_name}"
-      %tr
-        %td
-          =render :partial => 'friendship/friends'
-        %td
-        %td
-        %td
-          - if current_user != @user
-            = friendship_status(current_user, @user)
     %table.one-column-emphasis
       %tbody
         %tr
