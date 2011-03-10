@@ -37,7 +37,7 @@ class Post < ActiveRecord::Base
   
   def self.category(category)
     if category
-      where('category_id LIKE ?', "%#{category}%")
+      where('CAST(category_id AS char) LIKE ?', "%#{category}%")
     else
       scoped
     end
