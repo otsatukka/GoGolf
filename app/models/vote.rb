@@ -12,5 +12,18 @@ class Vote < ActiveRecord::Base
 
   # Comment out the line below to allow multiple votes per user.
   validates_uniqueness_of :voteable_id, :scope => [:voteable_type, :voter_type, :voter_id]
-
+  def self.top5(type, start_date=nil, end_date=nil)
+    res = start_date.blank? ? where(:voteable_type => type).find(:all, :select => "voteable_id, count(voteable_id) as frequency",
+                      :limit => 5,
+                      :conditions => "voteable_id is not null",
+                      :group => "voteable_id",
+                      :order => "frequency desc") :
+                      where("created_at>=? and created_at<=? and voteable_type=?", start_date, end_date, type).find(:all, :select => "voteable_id, count(voteable_id) as frequency",
+                                        :limit => 5,
+                                        :conditions => "voteable_id is not null",
+                                        :group => "voteable_id",
+                                        :order => "frequency desc")
+                      res.collect!{|r| r.voteable_id}
+                      
+                  end
 end

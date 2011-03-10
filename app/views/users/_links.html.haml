@@ -1,0 +1,19 @@
+- if @links
+  %h4
+    Linkit
+    |
+    = page_entries_info @links
+  %table
+    %tr
+      %th Otsikko
+      %th Luotu
+      %th
+      %th
+    - @links.each do |link|
+      %tr
+        %td= link.title
+        %td= link.created_at.to_s(:long)
+        %td= link_to 'Show', link
+        %td= link_to 'Edit', edit_link_path(link)
+        %td= link_to 'Destroy', link, :confirm => 'Are you sure?', :method => :delete
+  .pagination= will_paginate @links, :param_name => 'links_page', :next_label => 'Seuraava', :previous_label => 'Edellinen', :page_links => false

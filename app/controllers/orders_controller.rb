@@ -2,11 +2,6 @@ class OrdersController < ApplicationController
   load_and_authorize_resource
   def index
     @orders = Order.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @deals }
-    end
   end
   
   def show

@@ -239,6 +239,8 @@ a:hover { color: #ccc; }
 .widgettitle a			{ color: #FFF; }
 .widgetcontent { padding: 10px; }
 .widgetcontent_editors_pick { padding: 0px; }
+.widgetcontent_links_links { padding-bottom: 0px; text-align: center;}
+.widgetcontent_links_links table, .widgetcontent_links_links td { padding-top: 7px; text-align: center;}
 
 .active_s{background:#ddd;padding:27px;display:block;float:left;outline:none;width:200px;}
 

@@ -5,7 +5,7 @@ class Opening < ActiveRecord::Base
   belongs_to :imagebank
   
   validates_presence_of         :title
-  validates_presence_of         :body
+  validates_presence_of         :body, :category_id
   validates_length_of           :title, :in => 2..200
   validates_length_of           :body, :in => 2..2000
   

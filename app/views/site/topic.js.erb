@@ -1,0 +1,6 @@
+<%- if params[:paginate] == 'posts' -%>
+    $('#posts').html("<%= escape_javascript(render('posts')) %>"); 
+<%- end -%>
+<%- if params[:paginate] == 'links' -%>
+    $('#openings').html("<%= escape_javascript(render('openings')) %>");
+<%- end -%>

@@ -1,34 +1,51 @@
 = hidden_field_tag :category, params[:category]
-= text_field_tag :search, params[:search]
-%p
-  = link_to "Kaikki"
-  - @categories.each do |c|
-    = link_to c.name, params.merge(:category => c.id, :page => nil)
-
-%table
-  %tr
-    %th Otsikko
-    %th Kirjoittaja
-    %th Luotu
-    %th
-    %th
-  - @openings.each do |opening|
-    %tr
-      %td= opening.title
-      %td
-        - if opening.user != nil
-          = opening.user.end_user_name
-      %td= opening.created_at.to_s(:long)
-      %td
-        - if can? :read, Opening
-          = link_to 'Näytä', opening, :remote => false
-      %td
-        - if can? :update, Opening
-          = link_to 'Muokkaa', edit_opening_path(opening)
-      %td
-        - if can? :destroy, Opening
-          = link_to 'Poista', opening, :confirm => 'Are you sure?', :method => :delete
-%br/
+.widgetcontainer
+  .widgetcontent_links_links
+    %table
+      %tr
+        %td
+          = link_to "Kaikki"
+        - @categories.each do |c|
+          %td
+            = link_to c.name, params.merge(:category => c.id, :page => nil)
+    %table
+      %tr
+        %td
+          - if can? :create, Opening
+            .button_s= link_to 'Kirjoita avaus', new_post_path
+        %td
+          = text_field_tag :search, params[:search]
+          = submit_tag "Etsi", :name => nil, :class => "button_s"
+- if @openings.count > 0
+  .widgetcontainer
+    .widgetcontent
+      %table
+        %tr
+          %td{:width => 280}
+            - if @openings != nil
+              %table
+                - @openings.each do |post|
+                  %tr
+                    %td{:rowspan => "4", :width => "80px"}
+                      .post_excerpt_img= image_tag find_img_thumb(post)
+                  %tr
+                    %th
+                      %h3= link_to post.title, post
+                  %tr
+                    %td
+                      .post_excerpt_body
+                        = truncate(post.body, :length => 70, :separator => ' ').html_safe
+                  %tr
+                    %td
+                      - if post.user != nil
+                        = link_to post.user.end_user_name, post.user
+                        = time_ago_in_words(post.created_at)
+                        sitten
+                        %hr/
+- else
+  .widgetcontainer
+    .widgetcontent
+      Haku ei tuottanut tuloksia
 
 %p
   =will_paginate @openings

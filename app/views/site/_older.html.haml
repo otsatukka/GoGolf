@@ -1,0 +1,59 @@
+.widgetcontainer{:class => "ui-corner-all"}
+  .widgettitle{:class => "ui-corner-all"}
+    Vanhemmat
+  .widgetcontent_editors_pick
+    #recentposts
+      %table
+        %table
+          %tr
+            %th{:width => 280}
+              %b Uutiset
+            %th
+              %b Avaukset
+        %table
+          %tr
+            %td{:width => 280}
+              - if @vanhemmat_uutis_valinnat != nil
+                #posts
+                  %table
+                    - @vanhemmat_uutis_valinnat.each do |post|
+                      %tr
+                        %td{:rowspan => "4", :width => "80px"}
+                          .post_excerpt_img= image_tag find_img_thumb(post)
+                      %tr
+                        %th
+                          %h3= link_to post.title, post
+                      %tr
+                        %td
+                          .post_excerpt_body
+                            = truncate(post.body, :length => 70, :separator => ' ').html_safe
+                      %tr
+                        %td
+                          - if post.user != nil
+                            = link_to post.user.end_user_name, post.user
+                            = time_ago_in_words(post.created_at)
+                            sitten
+                            %hr/
+                            .pagination= will_paginate @vanhemmat_uutis_valinnat, :param_name => 'posts_page', :next_label => 'Seuraava', :previous_label => 'Edellinen', :page_links => false
+            %td
+              - if @vanhemmat_avaus_valinnat != nil
+                #openings
+                  %table
+                    - @vanhemmat_avaus_valinnat.each do |post|
+                      %tr
+                        %td{:rowspan => "4", :width => "80px"}
+                          .post_excerpt_img= image_tag find_img_thumb(post)
+                      %tr
+                        %th
+                          %h3= link_to post.title, post
+                      %tr
+                        %td
+                          .post_excerpt_body
+                            = truncate(post.body, :length => 70, :separator => ' ').html_safe
+                      %tr
+                        %td
+                          - if post.user != nil
+                            = link_to post.user.end_user_name, post.user
+                            = time_ago_in_words(post.created_at)
+                            sitten
+                            %hr/

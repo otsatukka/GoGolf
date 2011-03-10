@@ -11,6 +11,7 @@ class Order < ActiveRecord::Base
     def paypal_url(return_url, notify_url)
       values = {
         :business => 'gogolf_1299182069_biz@gogolf.fi',
+        #:business => 'gogolf@gogolf.fi',
         :cmd => '_xclick',
         :rm => 0,
         :return => return_url,
@@ -22,5 +23,6 @@ class Order < ActiveRecord::Base
         :quantity => quantity
       }
       "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
+      #"https://www.paypal.com/cgi-bin/webscr?" + values.to_query
     end
 end

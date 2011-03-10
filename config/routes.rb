@@ -21,7 +21,13 @@ Gogolfrails::Application.routes.draw do
     end
     
     
-    resources :links
+    resources :links do
+      collection do
+        get "links"
+        get "images"
+        get "videos"
+      end
+    end
 
     devise_for :users, :controllers => { :registrations => "users" }
 
@@ -56,6 +62,7 @@ Gogolfrails::Application.routes.draw do
         resources :replies, :only => [:create, :destroy]
       end
     end
+    
     resources :openings do
       resources :comments, :only => [:create, :destroy] do
         member do

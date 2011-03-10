@@ -26,10 +26,10 @@ module ApplicationHelper
       elsif post.use_uploaded_image == 0
         post.imagebank.image_url(:thumb).to_s
       else
-        "ei kuvaa"
+        '/images/missing.jpg'
       end
     else
-      "ei kuvaa"
+      '/images/missing.jpg'
     end
   end
   def find_img(post)
@@ -38,15 +38,7 @@ module ApplicationHelper
     elsif post.use_uploaded_image == 0
       post.imagebank.image_url.to_s
     else
-      "ei kuvaa"
-    end
-  end
-  
-  def find_img_hpricot(post)
-    doc = Hpricot(post.body)
-    final = doc.search("img[@style]").remove_attr("style").first
-    if final != nil
-      return final.to_html.html_safe
+      '/images/missing.jpg'
     end
   end
   

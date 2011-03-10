@@ -26,8 +26,9 @@ class PostsController < ApplicationController
   # GET /posts.xml
   def index
     @categories = Category.all
+    @categories.sort! { |a,b| a.name <=> b.name }
     
-    @posts = Post.search(params[:search]).category(params[:category]).paginate(:per_page => 5, :page => params[:page])
+    @posts = Post.search(params[:search]).category(params[:category]).order("created_at DESC").paginate(:per_page => 5, :page => params[:page])
 
     respond_to do |format|
       format.html

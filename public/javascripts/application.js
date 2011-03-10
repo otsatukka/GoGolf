@@ -9,6 +9,27 @@ respond_to do |format|
 end
 */
 
+
+/* 
+ AJAX PAGINATION
+*/
+$(function() {
+  $('#posts .pagination a').live('click', function() {
+    $.get(this.href, { paginate: 'posts' }, null, 'script');
+    return false;
+  });
+  $('#links .pagination a').live('click', function() {
+    $.get(this.href, { paginate: 'links' }, null, 'script');
+    return false;
+  });
+  $('#openings .pagination a').live('click', function() {
+    $.get(this.href, { paginate: 'links' }, null, 'script');
+    return false;
+  });
+});
+
+
+/* IMPORTANT */
 $(document).ajaxSend(function(e, xhr, options) {
   var token = $("meta[name='csrf-token']").attr("content");
   xhr.setRequestHeader("X-CSRF-Token", token);

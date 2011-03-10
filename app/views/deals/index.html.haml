@@ -1,3 +1,4 @@
-- if current_user.role?(:super_admin)
-  =link_to "Uusi diili", new_deal_path
+- if logged_in?
+  - if current_user.role?(:super_admin)
+    =link_to "Uusi diili", new_deal_path
 = render :partial => "deal", :collection => @deals

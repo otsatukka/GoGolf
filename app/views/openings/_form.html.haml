@@ -1,56 +1,45 @@
-= semantic_form_for @opening, :html => { :multipart => true } do |f|
-  = f.inputs do
-    .field
-      = f.label :title, "Otsikko"
-      = f.text_field :title
-      %br/
-      %br/
-    .field
-      - if can? :new, Opening
-        %p
-          = f.label :category_id, "Kategoria"
-          %br/
-          - for category in Category.find(:all)
-            %div
-              = radio_button_tag "opening[category_id]", category.id, @opening.category_id = category.id
-              = category.name
-      %br/
-    - if current_user != nil && logged_in?
-      %table
-        %tr
-          %td
-            = f.radio_button :use_uploaded_image, '1'
-            .upload_photo_button
-              .button_s
-                = link_to 'Lataa kuva koneeltasi', '#'
-
-          %td
-            = f.radio_button :use_uploaded_image, "0"
-            .image_bank_button
-              .button_s
-                = link_to 'Käytä kuvaa pankista', '#'
-    #imagebank
-      = render :partial => 'shared/imagebank', :locals => {:f => f}
-    #upload_photo
-      = f.label :photo, "Lataa koneeltasi kuva"
-      %br/
-      = f.file_field :photo, :id => "field1"
-    - if @opening.use_uploaded_image == 1
-      = f.label :remove_photo, "Poista kuva"
-      #remove_photo
-        = f.check_box :remove_photo
-      %br/
-      Nykyinen kuva
-      = image_tag find_img_medium(@opening)
-  - if current_user.role?(:author) || current_user.role?(:super_admin)
-    .field
-      = f.cktext_area :body, :toolbar => 'Author', :width=>'600px', :height=>'500px', :language=>'fi'
-      %br/
-  - else
-    - if current_user.role?(:basic)
-      .field
-        = f.cktext_area :body, :toolbar => 'Basic', :width=>'600px', :height=>'500px', :language=>'fi'
-        %br/
-  .actions
-    = f.submit 'Luo juttu'
 %br/
+- if can? :new, Opening
+  = semantic_form_for @opening, :html => { :multipart => true } do |f|
+    = f.inputs do
+      = f.input :title, :label => "Otsikko"
+      = f.input :category_id, :as => :radio, :collection => Category.all
+      - if current_user != nil && logged_in?
+        %table
+          %tr
+            %td
+              = f.radio_button :use_uploaded_image, '1'
+              .upload_photo_button
+                .button_s
+                  = link_to 'Lataa kuva koneeltasi', '#'
+
+            %td
+              = f.radio_button :use_uploaded_image, "0"
+              .image_bank_button
+                .button_s
+                  = link_to 'Käytä kuvaa pankista', '#'
+      #imagebank
+        = render :partial => 'shared/imagebank', :locals => {:f => f}
+      #upload_photo
+        = f.label :photo, "Lataa koneeltasi kuva"
+        %br/
+        = f.file_field :photo, :id => "field1"
+      - if @opening.use_uploaded_image == 1
+        = f.label :remove_photo, "Poista kuva"
+        #remove_photo
+          = f.check_box :remove_photo
+        %br/
+        Nykyinen kuva
+        = image_tag find_img_medium(@opening)
+    - if current_user.role?(:author) || current_user.role?(:super_admin)
+      .field
+        = f.cktext_area :body, :toolbar => 'Author', :width=>'600px', :height=>'500px', :language=>'fi'
+        %br/
+    - else
+      - if current_user.role?(:basic)
+        .field
+          = f.cktext_area :body, :toolbar => 'Basic', :width=>'600px', :height=>'500px', :language=>'fi'
+          %br/
+    .actions
+      = f.submit 'Luo juttu'
+  %br/

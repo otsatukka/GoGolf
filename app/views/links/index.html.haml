@@ -1,3 +1,13 @@
+=render :partial => 'shared/link_links'
+
+.widgetcontainer
+  .widgettitle{:class => "ui-corner-all"}
+    Parhaat
+  .widgetcontent
+    #popular_links
+      
+      
+
 .widgetcontainer
   .widgettitle{:class => "ui-corner-all"}
     Uusimmat
@@ -5,21 +15,34 @@
     - if can? :create, Link
       .new_link
         .button_s= link_to 'Jaa linkki tai video', new_link_path
-    - @links.each do |link|
-      %table
-        %tr
-          %td= link.title
-          %td= link.autolink.linkurl_html
-          %td= link.body
-        %tr
-          %td
-            - if can? :read, @link
-              = link_to 'Näytä', link
-          %td
-            - if can? :edit, @link
-              = link_to 'Edit', edit_link_path(link)
-          %td
-            - if can? :destroy, @link
-              = link_to 'Destroy', link, :confirm => 'Are you sure?', :method => :delete
+    %h2 Videot
+    %table
+      - if @videos
+        - @videos.each do |link|
+          %tr
+            %td= link.title
+            %td
+              = link.autolink.linkurl_html
+              %i=link.autolink.linkurl
+            %td= link.body
+    %h2 Linkit
+    %table
+      - if @links
+        - @links.each do |link|
+          %tr
+            %td= link.title
+            %td= link.autolink.linkurl_html
+            %td= link.body
+
+    %h2 Kuvat
+    %table
+      - if @pictures
+        - @pictures.each do |link|
+          %tr
+            %td= link.title
+            %td
+              = link.autolink.linkurl_html
+              %i=link.autolink.linkurl
+            %td= link.body
     %br/
 

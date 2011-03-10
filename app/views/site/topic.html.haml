@@ -1,18 +1,113 @@
 .widgetcontainer{:class => "ui-corner-all"}
   .widgettitle{:class => "ui-corner-all"}
-    Viikon avaus
-  .widgetcontent
-    %table
-      %tr
-        %td
-          %h3= @uusin_niken_juttu.title
-      %tr
-        %td
-          %table
-            %tr
-              %td
-                = image_tag find_img_thumb(@uusin_niken_juttu)
-                = @uusin_niken_juttu.body.html_safe
-              %td
-                = image_tag find_img_thumb(@uusin_niken_juttu)
-                = @uusin_niken_juttu.body.html_safe
+    Tämä viikko
+  .widgetcontent_editors_pick
+    #recentposts
+      %table
+        %table
+          %tr
+            %th{:width => 280}
+              %b Uutiset
+            %th
+              %b Avaukset
+        %table
+          %tr
+            %td{:width => 280}
+              - if @viikon_uutis_valinnat != nil
+                %table
+                  - @viikon_uutis_valinnat.each do |post|
+                    %tr
+                      %td{:rowspan => "4", :width => "80px"}
+                        .post_excerpt_img= image_tag find_img_thumb(post)
+                    %tr
+                      %th
+                        %h3= link_to post.title, post
+                    %tr
+                      %td
+                        .post_excerpt_body
+                          = truncate(post.body, :length => 70, :separator => ' ').html_safe
+                    %tr
+                      %td
+                        - if post.user != nil
+                          = link_to post.user.end_user_name, post.user
+                          = time_ago_in_words(post.created_at)
+                          sitten
+                          %hr/
+            %td
+              - if @viikon_avaus_valinnat != nil
+                %table
+                  - @viikon_avaus_valinnat.each do |post|
+                    %tr
+                      %td{:rowspan => "4", :width => "80px"}
+                        .post_excerpt_img= image_tag find_img_thumb(post)
+                    %tr
+                      %th
+                        %h3= link_to post.title, post
+                    %tr
+                      %td
+                        .post_excerpt_body
+                          = truncate(post.body, :length => 70, :separator => ' ').html_safe
+                    %tr
+                      %td
+                        - if post.user != nil
+                          = link_to post.user.end_user_name, post.user
+                          = time_ago_in_words(post.created_at)
+                          sitten
+                          %hr/
+.widgetcontainer{:class => "ui-corner-all"}
+  .widgettitle{:class => "ui-corner-all"}
+    Edellinen viikko
+  .widgetcontent_editors_pick
+    #recentposts
+      %table
+        %table
+          %tr
+            %th{:width => 280}
+              %b Uutiset
+            %th
+              %b Avaukset
+        %table
+          %tr
+            %td{:width => 280}
+              - if @edellis_viikon_uutis_valinnat != nil
+                %table
+                  - @edellis_viikon_uutis_valinnat.each do |post|
+                    %tr
+                      %td{:rowspan => "4", :width => "80px"}
+                        .post_excerpt_img= image_tag find_img_thumb(post)
+                    %tr
+                      %th
+                        %h3= link_to post.title, post
+                    %tr
+                      %td
+                        .post_excerpt_body
+                          = truncate(post.body, :length => 70, :separator => ' ').html_safe
+                    %tr
+                      %td
+                        - if post.user != nil
+                          = link_to post.user.end_user_name, post.user
+                          = time_ago_in_words(post.created_at)
+                          sitten
+                          %hr/
+            %td
+              - if @edellis_viikon_avaus_valinnat != nil
+                %table
+                  - @edellis_viikon_avaus_valinnat.each do |post|
+                    %tr
+                      %td{:rowspan => "4", :width => "80px"}
+                        .post_excerpt_img= image_tag find_img_thumb(post)
+                    %tr
+                      %th
+                        %h3= link_to post.title, post
+                    %tr
+                      %td
+                        .post_excerpt_body
+                          = truncate(post.body, :length => 70, :separator => ' ').html_safe
+                    %tr
+                      %td
+                        - if post.user != nil
+                          = link_to post.user.end_user_name, post.user
+                          = time_ago_in_words(post.created_at)
+                          sitten
+                          %hr/
+= render :partial => 'older'

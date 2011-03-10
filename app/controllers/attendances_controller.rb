@@ -61,7 +61,6 @@ class AttendancesController < ApplicationController
     @attendance.destroy
     respond_to do |format|
       format.html { redirect_to :back }
-      format.xml  { head :ok }
       format.json { head :ok }
     end
   end

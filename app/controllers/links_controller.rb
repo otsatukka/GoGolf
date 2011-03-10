@@ -2,36 +2,48 @@ class LinksController < ApplicationController
   before_filter :get_link, :only => [ :edit, :update, :destroy ]
   before_filter :set_title, :tabify
   
-  load_and_authorize_resource
+  authorize_resource
+  
+  def vote_up
+    begin
+      current_user.vote_for(@link = Link.find(params[:id]))
+      respond_to do |format|
+        format.js 
+      end
+    rescue ActiveRecord::RecordInvalid
+      render :nothing => true, :status => 404
+    end
+  end
   
   def tabify
     @active_tab = "gogolf"
   end
   
-  # GET /links
-  # GET /links.xml
   def index
-    @links = Link.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @links }
-    end
+    @top5_links = Link.find_all_by_id(Vote.top5("Vote", Time.now - 7.day, Time.now))
+    
+    @links = Link.order("created_at DESC")
   end
-
-  # GET /links/1
-  # GET /links/1.xml
+  
+  def links
+    @links = Link.where(:linktype => "Linkki")
+    @top5_links = Link.where(:linktype => "Linkki").find_all_by_id(Vote.top5("Vote", Time.now - 7.day, Time.now))
+  end
+  
+  def videos
+    @videos = Link.where(:linktype => "Video")
+    @top5_videos = Link.where(:linktype => "Video").find_all_by_id(Vote.top5("Vote", Time.now - 7.day, Time.now))
+  end
+  
+  def images
+    @pictures = Link.where(:linktype => "Kuva")
+    @top5_pictures = Link.where(:linktype => "Kuva").find_all_by_id(Vote.top5("Vote", Time.now - 7.day, Time.now))
+  end
+  
   def show
     @link = Link.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @link }
-    end
   end
-
-  # GET /links/new
-  # GET /links/new.xml
+  
   def new
     @link = Link.new
     @link.autolink = Autolink.new
@@ -42,13 +54,10 @@ class LinksController < ApplicationController
       format.json
     end
   end
-
-  # GET /links/1/edit
+  
   def edit
   end
-
-  # POST /links
-  # POST /links.xml
+  
   def create
     @link = Link.new(params[:link])
     @link.user = current_user
@@ -56,36 +65,27 @@ class LinksController < ApplicationController
     respond_to do |format|
       if @link.save
         format.html { redirect_to(@link, :notice => 'Link was successfully created.') }
-        format.xml  { render :xml => @link, :status => :created, :location => @link }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @link.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # PUT /links/1
-  # PUT /links/1.xml
   def update
     respond_to do |format|
       if @link.update_attributes(params[:link])
         format.html { redirect_to(@link, :notice => 'Link was successfully updated.') }
-        format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @link.errors, :status => :unprocessable_entity }
       end
     end
   end
-
-  # DELETE /links/1
-  # DELETE /links/1.xml
+  
   def destroy
     @link.destroy
 
     respond_to do |format|
       format.html { redirect_to(links_url) }
-      format.xml  { head :ok }
     end
   end
   
@@ -94,7 +94,7 @@ class LinksController < ApplicationController
   end
   
   def set_title
-    @title = 'Linkit'
+    @title = 'Viihde'
   end
   
   def preview

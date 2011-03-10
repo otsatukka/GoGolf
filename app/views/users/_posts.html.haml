@@ -1,0 +1,25 @@
+- if @posts != nil
+  %h3
+    Uutiset
+    %br/
+    = page_entries_info @posts
+  %table
+    - @posts.each do |post|
+      %tr
+        %td{:rowspan => "4", :width => "80px"}
+          .post_excerpt_img= image_tag find_img_thumb(post)
+      %tr
+        %th
+          %h3= link_to post.title, post
+      %tr
+        %td
+          .post_excerpt_body
+            = truncate(post.body, :length => 70, :separator => ' ').html_safe
+      %tr
+        %td
+          - if post.user != nil
+            = time_ago_in_words(post.created_at)
+            sitten
+            %hr/
+.pagination= will_paginate @posts, :param_name => 'posts_page', :next_label => 'Seuraava', :previous_label => 'Edellinen', :page_links => false
+%br/

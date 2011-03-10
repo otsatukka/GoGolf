@@ -26,10 +26,7 @@
     %table.one-column-emphasis
       %tbody
         %tr
-          %td{:rowspan => "8"}= image_tag @user.avatar_url.to_s
-        %tr
-          %td.oce-first Email:
-          %td= @user.email
+          %td{:rowspan => "7"}= image_tag @user.avatar_url.to_s
         %tr
           %td.oce-first Name:
           %td= @user.name
@@ -46,32 +43,8 @@
           %tr
             %td.oce-first Sign In Count:
             %td= @user.sign_in_count
-    %h2 Kirjoitukset
-    %table
-      %tr
-        %th Otsikko
-        %th Luotu
-        %th
-        %th
-      - @posts.each do |post|
-        %tr
-          %td= post.title
-          %td= post.created_at.to_s(:long)
-          - if can? :manage, @post
-            %td= link_to 'Show', post
-            %td= link_to 'Muokkaa', edit_post_path(post)
-            %td= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete
-    %h2 Linkit
-    %table
-      %tr
-        %th Otsikko
-        %th Luotu
-        %th
-        %th
-      - @links.each do |link|
-        %tr
-          %td= link.title
-          %td= link.created_at.to_s(:long)
-          %td= link_to 'Show', link
-          %td= link_to 'Edit', edit_link_path(link)
-          %td= link_to 'Destroy', link, :confirm => 'Are you sure?', :method => :delete
+    %h2 Käyttäjän jakamat
+    #posts
+      = render :partial => 'posts'
+    #links
+      = render :partial => 'links'

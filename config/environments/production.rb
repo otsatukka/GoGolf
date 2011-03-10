@@ -34,6 +34,17 @@ Gogolfrails::Application.configure do
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 
+  config.action_mailer.default_url_options = { :host => 'gogolf.heroku.com' }
+  config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      :enable_starttls_auto => true,
+      :address => 'mail.sjr.fi',
+      :port => '465',
+      :authentication => :plain,
+      :domain => 'gogolf.heroku.com',
+      :user_name => 'gogolf@gogolf.fi',
+      :password => 'GoGolfOnParas'
+    }
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 

@@ -15,18 +15,7 @@ class MembershipsController < ApplicationController
   end
   
   def show
-    @membership = Membership.find(params[:id]) 
-    if @membership
-      respond_to do |format|
-        format.xml { render :xml => @membership } 
-        format.json { render :json => @membership } 
-      end
-    else
-      respond_to do |format|
-        format.xml { render :status => :unprocessable_entity } 
-        format.json { render :status => :unprocessable_entity } 
-      end
-    end
+    @membership = Membership.find(params[:id])
   end
   
   
@@ -63,14 +52,10 @@ class MembershipsController < ApplicationController
     if @membership.save
       respond_to do |format|
         format.html { redirect_to group_path(group_id) }
-        format.xml { render :xml => @membership, :status => :created } 
-        format.json { render :json => @membership, :status => :created } 
       end
     else
       respond_to do |format|
         format.html { redirect_to group_path(group_id) }
-        format.xml  { render :xml => @membership.errors, :status => :unprocessable_entity }
-        format.json { render :json => @membership.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -85,12 +70,8 @@ class MembershipsController < ApplicationController
           flash[:notice] = 'Membership was successfully updated.'
           redirect_to :back
           }
-        format.xml  { head :ok }
-        format.json { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @membership.errors, :status => :unprocessable_entity }
-        format.json  { render :json => @membership.errors.to_json, :status => :unprocessable_entity }
       end
     end
   end
@@ -103,8 +84,6 @@ class MembershipsController < ApplicationController
     @membership.destroy
     respond_to do |format|
       format.html { redirect_to(groups_url) }
-      format.xml  { head :ok }
-      format.json { head :ok } 
     end
   end
   

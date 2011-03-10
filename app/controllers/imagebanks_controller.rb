@@ -9,10 +9,6 @@ class ImagebanksController < ApplicationController
   # load_and_authorize_resource
   def index
     @imagebanks = Imagebank.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-    end
   end
   
   def show
@@ -20,10 +16,6 @@ class ImagebanksController < ApplicationController
 
   def new
     @imagebank = Imagebank.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-    end
   end
   
   def edit

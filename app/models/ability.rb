@@ -9,7 +9,6 @@ class Ability
       
       if user.role? :super_admin
         can :manage, :all
-        can :access, :rails_admin
       else
         
         #GUEST
@@ -21,6 +20,7 @@ class Ability
         can :read, Autolink
         can :read, Course
         can :read, Attendance
+        can :read, Deal
         
         can :create, User
         # can :create, Commen

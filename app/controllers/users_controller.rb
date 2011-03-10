@@ -18,7 +18,6 @@ class UsersController < ApplicationController
     else
       @users = User.accessible_by(current_ability, :index).limit(20)
       respond_to do |format|
-        format.xml  { render :xml => @users }
         format.html
       end
     end
@@ -46,13 +45,12 @@ class UsersController < ApplicationController
   
   def show
     @title = "Oma Golf"
-    @posts = Post.where(params[:user_id])
-    @links = Link.where(params[:user_id])
-    respond_to do |format|
-      format.xml  { render :xml => @user }
-      format.html   
+    @posts = Post.where(params[:id]).order('created_at DESC').paginate(:per_page => 3, :page => params[:posts_page])
+    @links = Link.where(params[:id]).order('created_at DESC').paginate(:per_page => 5, :page => params[:links_page])
+    respond_to do |format| 
+      format.js
+      format.html
     end
- 
   rescue ActiveRecord::RecordNotFound
     respond_to_not_found(:json, :xml, :html)
   end
@@ -85,13 +83,11 @@ class UsersController < ApplicationController
       respond_to do |format|
         flash[:notice] = "Käyttäjätili luotu!"
         format.json { render :json => @user.to_json, :status => 200 }
-        format.xml  { head :ok }
         format.html { redirect_to :controller => 'site', :action => :index}
       end
     else
       respond_to do |format|
         format.json { render :text => "Could not create user", :status => :unprocessable_entity } # placeholder
-        format.xml  { head :ok }
         format.html { render :action => :new, :status => :unprocessable_entity }
       end
     end
@@ -108,11 +104,9 @@ class UsersController < ApplicationController
       if @user.errors[:base].empty? and @user.update_attributes(params[:user])
         flash[:notice] = "Profiili päivitetty!"
         format.json { render :json => @user.to_json, :status => 200 }
-        format.xml  { head :ok }
         format.html { render :action => :edit }
       else
         format.json { render :text => "Could not update user", :status => :unprocessable_entity } #placeholder
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
         format.html { render :action => :edit, :status => :unprocessable_entity }
       end
     end

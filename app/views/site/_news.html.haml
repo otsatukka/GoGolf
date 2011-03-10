@@ -1,0 +1,57 @@
+.widgetcontainer{:class => "ui-corner-all"}
+  .widgettitle{:class => "ui-corner-all"}
+    Uutiset
+  .widgetcontent_editors_pick
+    #recentposts
+      %table
+        %table
+          %tr
+            %th{:width => 280}
+              %b Uusimmat
+            %th
+              %b Suosituimmat
+      %table
+        %tr
+          %td{:width => 280}
+            - if @recent_posts != nil
+              %table
+                - @recent_posts.each do |post|
+                  %tr
+                    %td{:rowspan => "4", :width => "80px"}
+                      .post_excerpt_img= image_tag find_img_thumb(post)
+                  %tr
+                    %th
+                      %h3= link_to post.title, post
+                  %tr
+                    %td
+                      .post_excerpt_body
+                        = truncate(post.body, :length => 70, :separator => ' ').html_safe
+                  %tr
+                    %td
+                      - if post.user != nil
+                        = link_to post.user.end_user_name, post.user
+                        = time_ago_in_words(post.created_at)
+                        sitten
+                        %hr/
+          %td
+            - if @top5_posts_of_week != nil
+              %table
+                - @top5_posts_of_week.first(3).each do |post|
+                  %tr
+                    %td{:rowspan => "4", :width => "80px"}
+                      .post_excerpt_img= image_tag find_img_thumb(post)
+                  %tr
+                    %th
+                      %h3= link_to post.title, post
+                  %tr
+                    %td
+                      .post_excerpt_body
+                        = truncate(post.body, :length => 70, :separator => ' ').html_safe
+                  %tr
+                    %td
+                      - if post.user != nil
+                        = link_to post.user.end_user_name, post.user
+                        = time_ago_in_words(post.created_at)
+                        sitten
+                        %hr/
+%br/
