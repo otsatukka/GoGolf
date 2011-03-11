@@ -31,13 +31,15 @@ module ApplicationHelper
     if user.avatar_url != nil
       user.avatar_url(:thumb).to_s
     else
-      if user.spec.gender != nil
-        if user.spec.gender == "Mies"
-          '/images/layout/male.gif'
-        elsif user.spec.gender == "Nainen"
-          '/images/layout/female.gif'
-        else
-          '/images/missing.jpg'
+      if user.spec != nil
+        if user.spec.gender != nil
+          if user.spec.gender == "Mies"
+            '/images/layout/male.gif'
+          elsif user.spec.gender == "Nainen"
+            '/images/layout/female.gif'
+          else
+            '/images/missing.jpg'
+          end
         end
       end
     end
