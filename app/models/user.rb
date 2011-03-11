@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :replies
   has_many :orders
   
+  validates_uniqueness_of :name
+  
   def before_rpx_auto_create(rpx_user)
     self.realname = rpx_user[:name][:formatted]
   end
