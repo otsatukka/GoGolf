@@ -13,9 +13,9 @@
           Katsottu:
           = @post.unique_impression_count
     = image_tag find_img_medium(@post)
-  
-    :erb
-      <%= @post.body %>
+    #post_text
+      :erb
+        <%= @post.body %>
     %br/
     %br/
     = link_to_if(can?(:edit, Post), 'Muokkaa', edit_post_path(@post)) {}

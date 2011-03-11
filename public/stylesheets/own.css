@@ -152,6 +152,11 @@ a:hover { color: #ccc; }
   padding: 5px;
   vertical-align:top;
 }
+#post_text p {
+  font-size: 14px;
+  line-height:1.5;
+  
+}
 #new_comment{
   display: block;
   background: none;
