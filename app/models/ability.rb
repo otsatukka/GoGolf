@@ -9,7 +9,6 @@ class Ability
       
       if user.role? :super_admin
         can :manage, :all
-        can :admin_pages
       else
         
         #GUEST
@@ -92,7 +91,6 @@ class Ability
       #ADMIN
       
       if user.role? :admin
-        can :admin_pages
         can :manage, Course
         
         # COMMENTS

@@ -1,13 +1,11 @@
 class Admin::DashboardController < ApplicationController
-  before_filter :auth, :tabify
+  before_filter :tabify
   
   def tabify
     @active_tab = "admin"
   end
-  
-  def auth
-    authorize! :admin_pages, :all
-  end
+  before_filter :verify_admin
+
   
   def index
     @categories = Category.all
@@ -31,4 +29,8 @@ class Admin::DashboardController < ApplicationController
     @links = Link.all
   end
   
+  private
+  def verify_admin
+    redirect_to root_url unless current_user.role?(:admin) || current_user.role?(:super_admin)
+  end
 end
