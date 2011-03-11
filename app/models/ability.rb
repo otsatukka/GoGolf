@@ -96,7 +96,8 @@ class Ability
         can :manage, Course
         
         # COMMENTS
-        
+        can :manage, Opening
+        can :manage, Post
         can :manage, Comment
         can :manage, Imagebank
         can :manage, Reply
