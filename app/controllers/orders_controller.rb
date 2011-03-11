@@ -1,7 +1,21 @@
 class OrdersController < ApplicationController
-  load_and_authorize_resource
+  authorize_resource
+  before_filter :tabify
+  
+  def tabify
+    @active_tab = "godeal"
+  end
+  
   def index
-    @orders = Order.all
+    if params[:user_id]
+      @orders = Order.where(:user_id => params[:user_id])
+    else
+      if current_user.role?(:super_admin)
+        @orders = Order.all
+      else
+        access_denied
+      end
+    end
   end
   
   def show
@@ -13,12 +27,15 @@ class OrdersController < ApplicationController
     @order.user = current_user
     @order.status = 'created'
     @order.deal = Deal.find(params[:deal_id])
+    if @order.quantity > @order.deal.quantity
+      @order.errors[:base] << "Määrä on suurempi kuin mitä on jäljellä."
+    end
 
     respond_to do |format|
-      if @order.save
-        format.html { redirect_to(@order, :notice => 'Deal was successfully created.') }
+      if @order.errors[:base].empty? and @order.save
+        format.html { redirect_to(user_order_path(current_user, @order), :notice => 'Tilaus luotu.') }
       else
-        format.html { render :action => "new" }
+        format.html { redirect_to(deals_path, :notice => 'Tilasitko enemmän tuotteita mitä on jäljellä?') }
       end
     end
   end
@@ -28,7 +45,7 @@ class OrdersController < ApplicationController
     @order.destroy
 
     respond_to do |format|
-      format.html { redirect_to(orders_path) }
+      format.html { redirect_to(user_orders_path(current_user)) }
     end
   end
 end

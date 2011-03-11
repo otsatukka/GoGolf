@@ -1,25 +1,48 @@
 - div_for deal do
-  %p
-    %b Name:
-    = deal.name 
-  %p
-    %b Price:
-    = deal.price 
-  %p
-    %b Desc:
-    = deal.desc 
-  %p
-    %b Quantity:
-    = deal.quantity
-  %p
-    - form_for @order do |f|
-      .field
-        = f.label :quantity, "Määrä"
-        = f.text_field :quantity, :value => "1"
-      .field
-        = f.hidden_field_tag :deal_id, deal.id
-      .actions
-        = f.submit "Osta"
+  .widgetcontainer
+    .widgettitle
+      = deal.name 
+    .widgetcontent
+      %table
+        %tr
+          %td{:width => 300}
+            - if deal.photo
+              = image_tag find_img_medium_deal(deal)
+          %td{:class => "link2"}
+            = deal.desc
+      %table
+        %tr
+          %td
+            Hinta
+            %b= deal.price
+            €
+          %td
+            Tuotteita jäljellä
+            %b= deal.quantity
 
-  = link_to 'Edit', edit_deal_path(deal)  |
-  = link_to 'Back', deals_path 
+      %table
+        %tr
+          %td{:class => "link"}
+            Toimitus:
+            - if deal.dealtype
+              - if deal.dealtype == "Väline"
+                %b 
+                  NOUTO PELTOMÄKI GOLFISTA MAKSUN JÄLKEEN SAATAVALLA KOODILLA JA NIMELLÄ
+                  = link_to "www.peltomakigolf.fi", "http://www.peltomakigolf.fi/"
+              - if deal.dealtype == "Treenit"
+                %b SAAVU TREENEIHIN MUKANASI MAKSUN JÄLKEEN SAATAVA KOODI
+              - if deal.dealtype == "Hieromatuli"
+                %b TUOLI TOIMITETAAN PÄÄKAUPUNKISEUDULLE ILMAISEKSI
+      - if deal.quantity > 0
+        - form_for [current_user, @order] do |f|
+          .field
+            = f.label :quantity, "Määrä"
+            = f.text_field :quantity, :value => "1"
+          .field
+            = f.hidden_field_tag :deal_id, deal.id
+          .actions
+            = f.submit "Osta"
+    - if can? :edit, Deal
+      = link_to 'Edit', edit_deal_path(deal)
+      = link_to_if(can?(:delete, deal), "Delete", deal, :confirm => "Are you sure?", :method => :delete) {}
+  %br/

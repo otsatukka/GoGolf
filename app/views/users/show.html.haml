@@ -5,32 +5,34 @@
     %table
       %tr
         %td
-          .button= link_to "Kierrokset", user_rounds_path(@user)
-        %td
           - if can? :manage, @user
-            .button_s= link_to "Edit", edit_user_path(@user)
-            .button_s= link_to "Delete", user_path(@user), :confirm => "Are you sure?", :method => :delete
+            .button_s= link_to "Muokkaa", edit_user_path(@user)
         %td
     %table.one-column-emphasis
       %tbody
         %tr
-          %td{:rowspan => "7"}= image_tag @user.avatar_url.to_s
+          %td{:rowspan => "7"}= image_tag find_img_medium_user(@user)
         %tr
-          %td.oce-first Name:
-          %td= @user.name
-        %tr
-          %td.oce-first Role:
-          %td= @user.roles.first.name
-        - if can?(:see_timestamps,User)
+          %td.oce-first Nimi:
+          %td= @user.end_user_name
+        - if @user.spec
+          - if @user.spec.hcp
+            %tr
+              %td.oce-first Tasoitus:
+              %td= @user.spec.hcp
+          - if @user.spec.course
+            %tr
+              %td.oce-first Kotikenttä:
+              %td= @user.spec.course.name
+          - if @user.spec.desc
+            %tr
+              %td.oce-first Pelaajan kuvaus:
+              %td= @user.spec.desc
           %tr
-            %td.oce-first Created at:
-            %td= @user.created_at
-          %tr
-            %td.oce-first Last Sign In:
-            %td= @user.last_sign_in_at
-          %tr
-            %td.oce-first Sign In Count:
-            %td= @user.sign_in_count
+            %td.oce-first Kirjautunut viimeksi:
+            %td
+              = time_ago_in_words(@user.last_sign_in_at)
+              sitten
     %h2 Käyttäjän jakamat
     #posts
       = render :partial => 'posts'

@@ -12,8 +12,8 @@
     - @links.each do |link|
       %tr
         %td= link.title
-        %td= link.created_at.to_s(:long)
-        %td= link_to 'Show', link
-        %td= link_to 'Edit', edit_link_path(link)
-        %td= link_to 'Destroy', link, :confirm => 'Are you sure?', :method => :delete
+        %td= time_ago_in_words(link.created_at)
+        %td= link_to 'Näytä', link
+        %td=# link_to 'Edit', edit_link_path(link)
+        %td=# link_to 'Destroy', link, :confirm => 'Are you sure?', :method => :delete
   .pagination= will_paginate @links, :param_name => 'links_page', :next_label => 'Seuraava', :previous_label => 'Edellinen', :page_links => false

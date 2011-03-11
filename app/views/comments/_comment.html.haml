@@ -10,7 +10,12 @@
                 #small_text= link_to('Peukku', vote_up_post_comment_path(@post, comment), :method => :post, :remote => true)
       %tr
         %td{:width => 450}
-          %h3= comment.title
+          %h3
+            - if comment.mulligan == true
+              Mulligan:
+            - if comment.mulligan == false
+              Jatkolyönti:
+            = comment.title
           %hr/
           = content_tag(:p, comment.body, :class => "comment-body")
           %br/
@@ -26,11 +31,11 @@
     #replies
       - if comment.replies.count > 0
         = render :partial => "replies/reply", :collection => comment.replies
-    
-    #new_reply
-      - form_for [@post, comment, Reply.new()], :method => :put, :remote => true, :id => "new_reply" do |f|
-        .field
-          = f.label :body, "Kommentoi vastausta"
-          = f.text_field :body
-        .actions
-          =f.submit "Lähetä"
+    - if @voting_and_replies == 1
+      #new_reply
+        - form_for [@post, comment, Reply.new()], :method => :put, :remote => true, :id => "new_reply" do |f|
+          .field
+            = f.label :body, "Kommentoi vastausta"
+            = f.text_field :body
+          .actions
+            =f.submit "Lähetä"

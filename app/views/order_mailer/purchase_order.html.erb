@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Kiitos tilauksestasi, <%= @user.realname %></h1>
+    <p>Tuote:
+    <p>
+      <%= @order.deal.name %>
+      <br/>
+    <p>Kuvaus:
+    <p>
+      <%= @order.deal.desc %>
+      <br/>
+    <p>Hinta:
+    <p>
+      <%= @order.deal.price %>
+      <br/>
+    <p>Kpl:
+    <p>
+      <%= @order.quantity %>
+      <br/>
+    <p>Ostaja:
+    <p>
+      <%= @order.user.realname %>
+      <br/>
+    <p>
+    <hr/>
+      <p>Kokonais hinta:
+    <p>
+      <%= @order.total_price %>
+      <br/>
+    <h2>Koodi</h2>
+      <p>
+        <b><%= @order.code %></b>
+    <p>Kysymykset voi lähettää osoitteeseen gogolf@gogolf.fi. Pyrimme vastaamaan viesteihin mahdollisimman nopeasti! 
+    <p>Hyviä pelejä toivoo GoGolf!
+    
+  </body>
+</html>

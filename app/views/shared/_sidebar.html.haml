@@ -18,18 +18,16 @@
       %table
         %tr
           %td{:rowspan => "5"}
-            = image_tag current_user.avatar_url(:thumb).to_s
+            = image_tag find_img_thumb_user(current_user)
         %tr
-          %td Pelatut Kierrokset
-          %td= current_user.rounds.count
+          %td Kirjoitukset
+          %td= current_user.posts.count
         %tr
-          %td Jaetut linkit
-          %td= current_user.links.count
+          %td Avaukset
+          %td= current_user.openings.count
         %tr
-          %td Julkaistut jutut
-          %td= current_user.rounds.count
+          %td Julkaistut kommentit
+          %td= current_user.comments.count
         %tr
           %td
       .button= link_to "Kirjaudu ulos", destroy_user_session_path
-- if logged_in? && current_user.role?(:super_admin)
-  = link_to 'Lisää kuvia', imagebanks_path

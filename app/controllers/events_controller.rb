@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
   before_filter :get_user, :tabify, :get_title
-  autocomplete :course, :name, :full => true
   
   load_and_authorize_resource
   

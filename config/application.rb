@@ -39,7 +39,7 @@ module Gogolfrails
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :fi
-    
+    RPXNow.api_key = "107aca11d200d1e2c7be9facef727e77b4cefe3c"
     config.autoload_paths += %W( #{config.root}/app/models/ckeditor )
 
     # JavaScript files you want as :defaults (application.js is always included).

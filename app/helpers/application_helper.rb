@@ -15,7 +15,47 @@ module ApplicationHelper
     elsif post.use_uploaded_image == 0
       post.imagebank.image_url(:medium).to_s
     else
-      "ei kuvaa"
+      '/images/missing.jpg'
+    end
+  end
+  
+  def find_img_medium_deal(deal)
+    if deal.photo_url != nil
+      deal.photo_url(:medium).to_s
+    else
+      '/images/missing.jpg'
+    end
+  end
+  
+  def find_img_thumb_user(user)
+    if user.avatar_url != nil
+      user.avatar_url(:thumb).to_s
+    else
+      if user.spec.gender != nil
+        if user.spec.gender == "Mies"
+          '/images/layout/male.gif'
+        elsif user.spec.gender == "Nainen"
+          '/images/layout/female.gif'
+        else
+          '/images/missing.jpg'
+        end
+      end
+    end
+  end
+  
+  def find_img_medium_user(user)
+    if user.avatar_url != nil
+      user.avatar_url.to_s
+    else
+      if user.spec.gender != nil
+        if user.spec.gender == "Mies"
+          '/images/layout/male.gif'
+        elsif user.spec.gender == "Nainen"
+          '/images/layout/female.gif'
+        else
+          '/images/missing.jpg'
+        end
+      end
     end
   end
   
@@ -24,7 +64,11 @@ module ApplicationHelper
       if post.use_uploaded_image == 1
         post.photo_url(:thumb).to_s
       elsif post.use_uploaded_image == 0
-        post.imagebank.image_url(:thumb).to_s
+        if post.imagebank_id != nil
+          post.imagebank.image_url(:thumb).to_s
+        else
+          '/images/missing.jpg'
+        end
       else
         '/images/missing.jpg'
       end
@@ -32,6 +76,7 @@ module ApplicationHelper
       '/images/missing.jpg'
     end
   end
+  
   def find_img(post)
     if post.use_uploaded_image == 1
       post.photo_url.to_s

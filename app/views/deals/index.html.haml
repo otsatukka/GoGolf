@@ -1,4 +1,10 @@
 - if logged_in?
   - if current_user.role?(:super_admin)
     =link_to "Uusi diili", new_deal_path
+.widgetcontainer
+  .widgetcontent
+    %h3
+      Huomio että toimituksen tapa vaihtelee tuotteiden välillä
+%br/
 = render :partial => "deal", :collection => @deals
+= link_to 'Takaisin', deals_path

@@ -20,8 +20,11 @@ Gogolfrails::Application.routes.draw do
       match 'dashboard/openings'
     end
     
-    
     resources :links do
+      member do
+        post :vote_up
+      end
+      resources :comments, :only => [:create, :destroy]
       collection do
         get "links"
         get "images"
@@ -32,9 +35,10 @@ Gogolfrails::Application.routes.draw do
     devise_for :users, :controllers => { :registrations => "users" }
 
     resources :users do
+        get :autocomplete_course_name, :on => :collection
       resources :rounds
       resources :groups
-      resources :orders, :only => [:index, :show]
+      resources :orders, :only => [:index, :show, :create, :destroy]
     end
 
     resources :groups do
@@ -81,6 +85,9 @@ Gogolfrails::Application.routes.draw do
     get "site/index"
     get "site/help"
     get "site/topic"
+    get "site/guide"
+    get "site/yleiset_ehdot"
+    get "site/verkkokaupan_ehdot"
     get "site/notuser"
     get "attendances/create"
     get "attendances/index"

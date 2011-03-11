@@ -20,6 +20,10 @@ class SiteController < ApplicationController
     @uusin_vieras_avaus = Opening.where(:weektopic => true, :visitor_post => true).order('created_at DESC')
   end
   
+  def guide
+    @active_tab = "goguide"
+  end
+  
   def topic
     @title = "Toimituksen valinnat"
     @viikon_uutis_valinnat = Post.where(:editors_pick => true, :created_at => (Time.now - 7.days)..Time.now).order('created_at DESC')
@@ -52,8 +56,15 @@ class SiteController < ApplicationController
   end
 
   def help
-    @title = 'Apua'
+    @title = 'Yhteystiedot'
   end
+  def yleiset_ehdot
+    @title = 'Yhteystiedot'
+  end
+  def verkkokaupan_ehdot
+    @title = 'Yhteystiedot'
+  end
+  
   
   def show
     

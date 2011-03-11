@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  autocomplete :course, :name, :full => true
   before_filter :get_user, :only => [:index,:new,:edit]
   before_filter :accessible_roles, :only => [:new, :edit, :show, :update, :create]
   before_filter :set_title

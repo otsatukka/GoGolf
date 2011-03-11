@@ -5,7 +5,8 @@ class Opening < ActiveRecord::Base
   belongs_to :imagebank
   
   validates_presence_of         :title
-  validates_presence_of         :body, :category_id
+  validates_presence_of         :body
+  validates_presence_of         :category_id
   validates_length_of           :title, :in => 2..200
   validates_length_of           :body, :in => 2..2000
   
@@ -17,7 +18,7 @@ class Opening < ActiveRecord::Base
   has_many :comments, :as => :commentable, :dependent => :destroy  
   accepts_nested_attributes_for :comments
   
-  has_many :impressions, :as => :impressionable
+  has_many :impressions, :as => :impressionable, :dependent => :destroy  
 
   def impression_count(start_date=nil,end_date=Time.now)
     start_date.blank? ? impressions.all.size : impressions.where("created_at>=? and created_at<=?",start_date,end_date).all.size

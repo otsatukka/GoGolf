@@ -17,7 +17,7 @@ class Post < ActiveRecord::Base
   has_many :comments, :as => :commentable, :dependent => :destroy  
   accepts_nested_attributes_for :comments
   
-  has_many :impressions, :as => :impressionable
+  has_many :impressions, :as => :impressionable, :dependent => :destroy  
 
   def impression_count(start_date=nil,end_date=Time.now)
     start_date.blank? ? impressions.all.size : impressions.where("created_at>=? and created_at<=?",start_date,end_date).all.size

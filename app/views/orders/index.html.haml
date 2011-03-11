@@ -1,17 +1,29 @@
-%table
-  %tr
-    %th Id
-    %th Tuote
-    %th Luotu
-    %th Ostaja
-    %th Tila
-    %td
-  - @orders.each do |order|
-    %tr
-      %td= order.id
-      %td= order.deal.name
-      %td= order.created_at
-      %td= order.user.name
-      %td= order.status
-      %td= link_to 'Poista', order, :confirm => 'Are you sure?', :method => :delete
+.widgetcontainer
+  .widgetcontent
+    %table
+      %tr
+        %td Tarkasta tilaus
+        %td Määrä
+        %td Hinta
+        %td Tila
+      - @orders.each do |order|
+        %tr
+          %td= link_to order.deal.name, order
+          %td= order.quantity
+          %td
+            = order.total_price
+            €
+          %td
+            - if order.status == "created"
+              Odottaa maksua
+            - else
+              = order.status
+          - if order.status == "created" && @order.deal.visible == true
+            %td
+              - form_tag "https://www.paypal.com/cgi-bin/webscr" do 
+                = hidden_field_tag :cmd, '_s-xclick'
+                = hidden_field_tag :encrypted, @order.paypal_encrypted(user_order_url(@order.user, @order), payment_notifications_url(:secret => "fdsakjsdf77fd"))
+                = submit_tag "Siirry maksamaan", :class => "button"
+        - if order.status == "created"
+          %td= link_to 'Poista', order, :confirm => 'Are you sure?', :method => :delete
 %br/

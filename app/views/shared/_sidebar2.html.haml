@@ -2,7 +2,7 @@
   .ui-widget-header{:class => "ui-corner-all"}
     Yhteistyökumppanit
   .ui-widget-content
-    =image_tag '/images/Vallila.jpg', :height => 140
+    %center=link_to image_tag('/images/Vallila.jpg', :height => 140), 'http://www.vallilainterior.fi'
 .ui-widget
   .ui-widget-header{:class => "ui-corner-all"}
     Luetuimmat
@@ -33,8 +33,29 @@
                 |
                 = post.unique_impression_count
               %br/
-
+.ui-widget
+  .ui-widget-header{:class => "ui-corner-all"}
+    Mainos
+  .ui-widget-content
+    =link_to image_tag('/images/ringsidegolf-mainos.jpg',:width => 250, :alt => "Ringside Golf"), 'http://www.ringsidegolf.fi'
 .ui-widget
   .ui-widget-header{:class => "ui-corner-all"}
     Viihde
   .ui-widget-content
+    #luetuimmat
+      %h4
+        Parhaat linkit
+        %hr/
+        %ul
+          - @top5_links.each do |link|
+            %li
+              = link_to link.title, link
+              %br/
+              %i
+                = link_to link.user.end_user_name, link.user
+                |
+                = link.votes_for
+              %br/
+.ui-widget
+  .ui-widget-content{:class => "ui-corner-all"}
+    = link_to "YHTEYSTIEDOT JA EHDOT", "/site/help"

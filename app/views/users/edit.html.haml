@@ -1,19 +1,23 @@
-%h3= @user == @current_user ? "Käyttäjätilisi asetukset" : "Muokkaa käyttäjää"
-%br/
 =render "shared/error_messages", :target => @user
-  
-= semantic_form_for(@user, :html => { :method => :put, :multipart => true }) do |f|
-  = render :partial => 'user_fields', :locals => { :f => f }
-  - if @user.rpx_identifier == nil
-    %p
-      = f.label :password
-      %i (leave blank if you don't want to change it)
+.widgetcontainer
+  .widgettitle
+    = @user == @current_user ? "Käyttäjätilisi asetukset" : "Muokkaa käyttäjää"
+  .widgetcontent
+    = semantic_form_for(@user, :html => { :method => :put, :multipart => true }) do |f|
+      = render :partial => 'user_fields', :locals => { :f => f }
+      - if @user.rpx_identifier == nil
+        %p
+          = f.label :password, "Salanana"
+          %i Jätä tyhjäksi jos et halua vaihtaa
+          %br/
+          = f.password_field :password
+        %p
+          = f.label :password_confirmation, ""
+          %br/
+          = f.password_field :password_confirmation
+      = f.submit "Päivitä"
+      .button_s= link_to "Takaisin", :back
       %br/
-      = f.password_field :password
-    %p
-      = f.label :password_confirmation
       %br/
-      = f.password_field :password_confirmation
- 
-  = f.submit "Päivitä", {:class => "button_s"}
-  .button_s= link_to "Takaisin", :back
+      - if can? :manage, @user
+        .button_s= link_to "Poista tili", user_path(@user), :confirm => "Are you sure?", :method => :delete

@@ -8,6 +8,7 @@
           = link_to @opening.user.end_user_name, @opening.user
         %td
           = time_ago_in_words(@opening.created_at)
+          sitten
         %td
           Katsottu
           = @opening.unique_impression_count
@@ -32,7 +33,7 @@
       - semantic_form_for [@opening, Comment.new()], :remote => true, :id => "new_comment" do |f|
         = f.inputs do
           = f.input :title, :label => "Otsikko"
-          = f.input :mulligan, :as => :radio, :collection => ['Mulligan','Jatkolyönti'], :label => " "
+          = f.input :mulligan, :as => :radio, :collection => [['Mulligan', true],['Jatkolyönti', false]], :label => " "
           = f.input :body, :label => "Kommentti"
         = f.buttons do
           = f.commit_button "Lähetä"

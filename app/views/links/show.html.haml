@@ -2,12 +2,45 @@
   .widgettitle{:class => "ui-corner-all"}
     = @link.title
   .widgetcontent
-    %p
-      %b Url:
-      = @link.autolink.linkurl
-    %p
-      %b Body:
-      = @link.body
-= link_to 'Edit', edit_link_path(@link)
-|
-= link_to 'Back', links_path
+    = @link.autolink.linkurl_html
+    - if @link.linktype == "Kuva"
+      Lähde
+      %i= @link.autolink.linkurl
+    %hr/
+    = @link.body
+    %br/
+    %table{:class => "link"}
+      %tr
+        %td
+          = link_to @link.user.end_user_name, @link.user
+        %td
+          = time_ago_in_words(@link.created_at)
+        %td
+          #votes_count
+            -if logged_in?
+              %h3= @link.votes_for
+              - if !current_user.voted_on?(@link)
+                #small_text= link_to('Äänestä!', vote_up_link_path(@link), :method => :post, :remote => true)
+    #comments_count
+      = @post.comments.count
+      kommenttia
+    #comments
+      - if @comments.count > 0
+        = render :partial => "comments/comment", :collection => @comments, :parent => @post
+    #new_comment
+      - form_for [@link, Comment.new()], :remote => true, :id => "new_comment" do |f|
+        .field
+          = f.label :title, "Otsikko"
+          %br/
+          = f.text_field :title
+        .field
+          = f.label :body, "Kommentti"
+          %br/
+          = f.text_area :body
+        .actions
+          =f.submit "Lähetä"
+    
+    - if can? :edit, @link
+      = link_to 'Muokkaa', edit_link_path(@link)
+      |
+      = link_to 'Takaisin', links_path

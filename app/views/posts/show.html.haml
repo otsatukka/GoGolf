@@ -2,27 +2,27 @@
   .widgetcontent
     %h1= @post.title
     %hr/
+    %table
+      %tr
+        %td
+          = link_to @post.user.end_user_name, @post.user
+        %td
+          = time_ago_in_words(@post.created_at)
+          sitten
+        %td
+          Katsottu:
+          = @post.unique_impression_count
     = image_tag find_img_medium(@post)
   
     :erb
       <%= @post.body %>
     %br/
     %br/
-    %table
-      %tr
-        %td
-          = link_to @post.user.end_user_name, @post.user
-        %td
-          = @post.created_at.to_s(:long)
-        %td
-          Katsottu:
-          = @post.unique_impression_count
-    %br/
-    %br/
     = link_to_if(can?(:edit, Post), 'Muokkaa', edit_post_path(@post)) {}
     = link_to 'Takaisin', posts_path
     #comments_count
-      = pluralize(@comments.count, "Kommenttia")
+      = @post.comments.count
+      kommenttia
     #comments
       - if @comments.count > 0
         = render :partial => "comments/comment", :collection => @comments, :parent => @post

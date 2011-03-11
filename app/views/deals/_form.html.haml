@@ -1,19 +1,15 @@
-= form_for(@deal) do |f|
-  .field
-    = f.label :name
+= semantic_form_for @deal, :html => {:multipart => true} do |f|
+  = f.inputs do
+    = f.input :name, :label => "Tuotteen nimi"
+    = f.input :price, :label => "Hinta/kpl"
+    = f.input :visible, :as => :radio, :label => "Näkyvissä"
+    = f.input :desc, :label => "Kuvaus"
+    = f.input :dealtype, :as => :radio, :collection => ["Treenit", "Väline", "Hieromatuoli"]
+    = f.input :quantity, :label => "Myynnissä oleva määrä"
+    = f.label :photo, "Kuva!"
+    = f.file_field :photo
+    
     %br/
-    = f.text_field :name
-  .field
-    = f.label :price
     %br/
-    = f.text_field :price
-  .field
-    = f.label :desc 
-    %br/
-    = f.text_area :desc 
-  .field
-    = f.label :quantity 
-    %br/
-    = f.text_field :quantity 
   .actions
     = f.submit 

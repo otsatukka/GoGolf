@@ -1,1 +1,20 @@
 =render :partial => 'shared/link_links'
+.widgetcontainer
+  .widgettitle{:class => "ui-corner-all"}
+    Kuvat
+  .widgetcontent
+    %table{:class => "link"}
+      - if @pictures
+        - @pictures.each do |link|
+          %tr
+            %td= link.votes_for
+            %td{:width => 150}= link_to link.title, link
+            %td{:width => 250}= truncate_body(link)
+            %td
+              = link_to link.user.end_user_name, link.user
+              |
+              = time_ago_in_words(link.created_at)
+              | 
+              = link.comments.count
+              kommenttia
+    = will_paginate(@pictures)

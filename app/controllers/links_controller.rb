@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_filter :get_link, :only => [ :edit, :update, :destroy ]
+  before_filter :get_link, :only => [ :edit, :update, :destroy, :show ]
   before_filter :set_title, :tabify
   
   authorize_resource
@@ -20,28 +20,36 @@ class LinksController < ApplicationController
   end
   
   def index
-    @top5_links = Link.find_all_by_id(Vote.top5("Vote", Time.now - 7.day, Time.now))
+    @top5_links = Link.where(:linktype => "Linkki").find_all_by_id(Vote.top5("Link", Time.now - 7.day, Time.now))
+    @top5_videos = Link.where(:linktype => "Video").find_all_by_id(Vote.top5("Link", Time.now - 7.day, Time.now))
+    @top5_pictures = Link.where(:linktype => "Kuva").find_all_by_id(Vote.top5("Link", Time.now - 7.day, Time.now))
     
-    @links = Link.order("created_at DESC")
+    @links = Link.where(:linktype => "Linkki").order("created_at DESC").limit(3)
+    @videos = Link.where(:linktype => "Video").order("created_at DESC").limit(3)
+    @pictures = Link.where(:linktype => "Kuva").order("created_at DESC").limit(3)
   end
   
   def links
-    @links = Link.where(:linktype => "Linkki")
-    @top5_links = Link.where(:linktype => "Linkki").find_all_by_id(Vote.top5("Vote", Time.now - 7.day, Time.now))
-  end
+    @links = Link.where(:linktype => "Linkki").order("created_at DESC").paginate(:per_page => 15, :page => params[:page])
+    end
   
   def videos
-    @videos = Link.where(:linktype => "Video")
-    @top5_videos = Link.where(:linktype => "Video").find_all_by_id(Vote.top5("Vote", Time.now - 7.day, Time.now))
+    @videos = Link.where(:linktype => "Video").order("created_at DESC").paginate(:per_page => 15, :page => params[:page])
   end
   
   def images
-    @pictures = Link.where(:linktype => "Kuva")
-    @top5_pictures = Link.where(:linktype => "Kuva").find_all_by_id(Vote.top5("Vote", Time.now - 7.day, Time.now))
+    @pictures = Link.where(:linktype => "Kuva").order("created_at DESC").paginate(:per_page => 15, :page => params[:page])
   end
   
   def show
-    @link = Link.find(params[:id])
+    @comments = @link.comments
+    @link.comments.build
+    @post = @link
+    @voting_and_replies = 0
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
   
   def new

@@ -1,25 +1,34 @@
+.widgetcontainer
+  .widgettitle
+    = @deal.name 
+  .widgetcontent
+    %table
+      %tr
+        %td{:width => 300}
+          - if @deal.photo
+            = image_tag find_img_medium_deal(@deal)
+        %td{:class => "link2"}
+          = @deal.desc
+    %table
+      %tr
+        %td
+          Hinta
+          %b= @deal.price
+          €
+        %td
+          Tuotteita jäljellä
+          %b= @deal.quantity
 
-%p
-  %b Name:
-  = @deal.name 
-%p
-  %b Price:
-  = @deal.price 
-%p
-  %b Desc:
-  = @deal.desc 
-%p
-  %b Quantity:
-  = @deal.quantity
-%p
-  - form_for @order do |f|
-    .field
-      = f.label :quantity, "Määrä"
-      = f.text_field :quantity
-    .field
-      = f.hidden_field :deal_id
-    .actions
-      = f.submit "Osta"
-
-= link_to 'Edit', edit_deal_path(@deal)  |
-= link_to 'Back', deals_path 
+    %table
+      %tr
+        %td{:class => "link"}
+          Toimitus:
+          - if @deal.dealtype
+            - if @deal.dealtype == "Väline"
+              %b 
+                NOUTO PELTOMÄKI GOLFISTA MAKSUN JÄLKEEN SAATAVALLA KOODILLA JA NIMELLÄ
+                = link_to "www.peltomakigolf.fi", "http://www.peltomakigolf.fi/"
+            - if @deal.dealtype == "Treenit"
+              %b SAAVU TREENEIHIN MUKANASI MAKSUN JÄLKEEN SAATAVA KOODI
+            - if @deal.dealtype == "Hieromatuli"
+              %b TUOLI TOIMITETAAN PÄÄKAUPUNKISEUDULLE ILMAISEKSI

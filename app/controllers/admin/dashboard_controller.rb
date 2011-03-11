@@ -6,7 +6,7 @@ class Admin::DashboardController < ApplicationController
   end
   
   def auth
-    authorize! :manage, :all
+    authorize! :admin_pages, :all
   end
   
   def index

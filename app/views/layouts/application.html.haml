@@ -28,10 +28,7 @@
       .span-24.last{:class => "content_all"}
         .span-17{:class => "content_all"}
           .ui-widget
-            - if @title != nil
-              .ui-widget-header{:class => "ui-corner-all"}
-                %h2
-                  = @title
+
             #main
               = yield 
               - if ENV["RAILS_ENV"] == "development"

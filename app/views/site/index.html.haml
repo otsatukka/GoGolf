@@ -23,7 +23,9 @@
           %span
             = truncate(post.body, :length => 70, :separator => ' ').html_safe
 %br/
-%img{:src => "/images/peltomaki2.gif", :alt => "Peltomäki Golf", :class => "padding_left"}
+:erb
+  <iframe title="YouTube video player" width="640" height="390" src="http://www.youtube.com/embed/mbPKxYIODXY?hd=1" frameborder="0" allowfullscreen></iframe>
+=link_to image_tag('/images/peltomaki2.gif', :alt => "Peltomäki Golf", :class => "padding_left"), 'http://www.peltomakigolf.fi'
 %br/
 .widgetcontainer{:class => "ui-corner-all"}
   .widgettitle{:class => "ui-corner-all"}
@@ -40,11 +42,11 @@
       %table
         %tr
           %td{:width => 280}
-            - if @uusin_nikke_avaus != nil
+            - if @uusin_nikke_avaus.first != nil
               %table
                 %tr
                   %td{:rowspan => "4"}
-                    = image_tag @uusin_nikke_avaus.first.user.avatar_url(:thumb).to_s
+                    = image_tag find_img_thumb_user(@uusin_nikke_avaus.first.user)
                 %tr
                   %th
                     %h3= link_to @uusin_nikke_avaus.first.title, @uusin_nikke_avaus.first
@@ -60,11 +62,11 @@
                       sitten
                       %hr/
           %td
-            - if @uusin_vieras_avaus != nil
+            - if @uusin_vieras_avaus.first != nil
               %table
                 %tr
                   %td{:rowspan => "4"}
-                    = image_tag @uusin_vieras_avaus.first.user.avatar_url(:thumb).to_s
+                    = image_tag find_img_thumb_user(@uusin_vieras_avaus.first.user)
                 %tr
                   %th
                     %h3= link_to @uusin_vieras_avaus.first.title, @uusin_vieras_avaus.first
@@ -83,24 +85,4 @@
 
 = render :partial => 'news'
 = render :partial => 'openings'
-
-.widgetcontainer{:class => "ui-corner-all"}
-  .widgettitle{:class => "ui-corner-all"}
-    Uusimmat linkit
-  .widgetcontent{:class => "ui-corner-all"}
-    - if @recent_links != nil
-      - @recent_links.each do |link|
-        %table
-          %tr
-            %th
-              %h3= link_to link.title, link.autolink.linkurl
-          %tr
-            %td
-              = link.body
-          %tr
-            %td
-              %p 
-                Kirjoittanut
-                - if link.user != nil
-                  = link_to link.user.end_user_name, link.user
-                  = link.created_at.to_s(:long)
+= render :partial => 'links'

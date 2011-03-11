@@ -6,6 +6,9 @@ class Link < ActiveRecord::Base
   has_one                         :autolink, :dependent => :destroy
   accepts_nested_attributes_for   :autolink
   
+  has_many :comments, :as => :commentable, :dependent => :destroy  
+  accepts_nested_attributes_for :comments
+  
   validates_presence_of           :title
   validates_presence_of           :body
   validates_presence_of           :linktype

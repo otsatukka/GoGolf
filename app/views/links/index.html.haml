@@ -5,7 +5,52 @@
     Parhaat
   .widgetcontent
     #popular_links
-      
+      %h2 Videot
+      %table{:class => "link"}
+        - if @top5_videos
+          - @top5_videos.each do |link|
+            %tr
+              %td= link.votes_for
+              %td{:width => 150}= link_to link.title, link
+              %td{:width => 250}= truncate_body(link)
+              %td
+                = link_to link.user.end_user_name, link.user
+                |
+                = time_ago_in_words(link.created_at)
+                | 
+                = link.comments.count
+                kommenttia
+      %h2 Linkit
+      %table{:class => "link"}
+        - if @top5_links
+          - @top5_links.each do |link|
+            %tr
+              %td= link.votes_for
+              %td{:width => 150}= link_to link.title, link
+              %td{:width => 250}= truncate_body(link)
+              %td
+                = link_to link.user.end_user_name, link.user
+                |
+                = time_ago_in_words(link.created_at)
+                | 
+                = link.comments.count
+                kommenttia
+      %h2 Kuvat
+      %table{:class => "link"}
+        - if @top5_pictures
+          - @top5_pictures.each do |link|
+            %tr
+              %td= link.votes_for
+              %td{:width => 150}= link_to link.title, link
+              %td{:width => 250}= truncate_body(link)
+              %td
+                = link_to link.user.end_user_name, link.user
+                |
+                = time_ago_in_words(link.created_at)
+                | 
+                = link.comments.count
+                kommenttia
+      %br/
       
 
 .widgetcontainer
@@ -16,33 +61,47 @@
       .new_link
         .button_s= link_to 'Jaa linkki tai video', new_link_path
     %h2 Videot
-    %table
+    %table{:class => "link"}
       - if @videos
         - @videos.each do |link|
           %tr
-            %td= link.title
+            %td{:width => 150}= link_to link.title, link
+            %td{:width => 250}= truncate_body(link)
             %td
-              = link.autolink.linkurl_html
-              %i=link.autolink.linkurl
-            %td= link.body
+              = link_to link.user.end_user_name, link.user
+              |
+              = time_ago_in_words(link.created_at)
+              | 
+              = link.comments.count
+              kommenttia
     %h2 Linkit
-    %table
+    %table{:class => "link"}
       - if @links
         - @links.each do |link|
           %tr
-            %td= link.title
-            %td= link.autolink.linkurl_html
-            %td= link.body
+            %td{:width => 150}= link_to link.title, link
+            %td{:width => 250}= truncate_body(link)
+            %td
+              = link_to link.user.end_user_name, link.user
+              |
+              = time_ago_in_words(link.created_at)
+              | 
+              = link.comments.count
+              kommenttia
 
     %h2 Kuvat
-    %table
+    %table{:class => "link"}
       - if @pictures
         - @pictures.each do |link|
           %tr
-            %td= link.title
+            %td{:width => 150}= link_to link.title, link
+            %td{:width => 250}= truncate_body(link)
             %td
-              = link.autolink.linkurl_html
-              %i=link.autolink.linkurl
-            %td= link.body
+              = link_to link.user.end_user_name, link.user
+              |
+              = time_ago_in_words(link.created_at)
+              | 
+              = link.comments.count
+              kommenttia
     %br/
 

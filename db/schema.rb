@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110310002154) do
+ActiveRecord::Schema.define(:version => 20110311042625) do
 
   create_table "achievements", :force => true do |t|
     t.string   "type"
@@ -86,6 +86,9 @@ ActiveRecord::Schema.define(:version => 20110310002154) do
     t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo"
+    t.string   "dealtype"
+    t.boolean  "visible",    :default => true
   end
 
   create_table "events", :force => true do |t|
@@ -264,6 +267,9 @@ ActiveRecord::Schema.define(:version => 20110310002154) do
     t.boolean  "has_car_to_share"
     t.datetime "birthday"
     t.integer  "user_id"
+    t.integer  "course_id"
+    t.string   "course_name"
+    t.integer  "hcp"
   end
 
   create_table "users", :force => true do |t|

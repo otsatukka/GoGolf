@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :courses, :through => :rounds
   has_many :comments
   has_many :replies
+  has_many :orders
   
   def before_rpx_auto_create(rpx_user)
     self.realname = rpx_user[:name][:formatted]
@@ -25,7 +26,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   
   has_many :favorites, :through => :fcourses, :foreign_key => "course_id", :class_name => "Course", :source => :course
-  has_many :fcourses
+  has_many :fcourses, :dependent => :destroy
   
   has_many :permissions, :dependent => :destroy
   has_many :grouproles, :through => :permissions
@@ -57,12 +58,12 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable and :confirmable, :activatable , 
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable, :rpx_connectable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :role_ids, :avatar, :name, :realname,
-                  :privacy_name, :spec_attributes, :favorite_ids
+                  :privacy_name, :spec_attributes, :favorite_ids, :rpx_identifier
   validates_presence_of :name, :realname
   
   # ROLE

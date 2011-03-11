@@ -61,7 +61,11 @@
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: segoe ui, Arial, sans-serif; }
 .ui-widget-content { padding: 5px;border: 1px solid #dfd9c3; background: #f5f3e5 url(images/ui-bg_highlight-hard_100_f5f3e5_1x100.png) 50% top repeat-x; color: #312e25; }
 .ui-widget-content a { color: #312e25; }
-.ui-widget-header { padding:5px; border: 1px solid #d4ccb0; background: #ece8da url(images/ui-bg_gloss-wave_100_ece8da_500x100.png) 50% 50% repeat-x; color: #433f38; font-weight: bold; }
+.ui-widget-header { padding:5px; border: 1px solid #d4ccb0; color: #235111;font-size: 16px;
+  
+  /*background: #ece8da url(images/ui-bg_gloss-wave_100_ece8da_500x100.png) 50% 50% repeat-x; color: #433f38;*/
+    background-color: #b7cd4e;
+   font-weight: bold; }
 .ui-widget-header a { color: #433f38; }
 
 /* OWN ADDONS */ .ui-widget-header h2 {
@@ -98,7 +102,7 @@
 /* states and images */
 .ui-icon { width: 16px; height: 16px; background-image: url(images/ui-icons_808080_256x240.png); }
 .ui-widget-content .ui-icon {background-image: url(images/ui-icons_808080_256x240.png); }
-.ui-widget-header .ui-icon {background-image: url(images/ui-icons_847e71_256x240.png); }
+.ui-widget-header .ui-icon {background-image: url(images/ui-icons_847e71_256x240.png);}
 .ui-state-default .ui-icon { background-image: url(images/ui-icons_eeeeee_256x240.png); }
 .ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url(images/ui-icons_ffffff_256x240.png); }
 .ui-state-active .ui-icon {background-image: url(images/ui-icons_8dc262_256x240.png); }

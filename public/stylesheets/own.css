@@ -63,20 +63,24 @@ a:hover { color: #ccc; }
 .nav li {
   display: block;
   overflow: hidden;
-  padding: 7px 10px;
+  padding: 0px 10px;
   list-style: none;
   float: left;
   color: #fff;
 }
 .nav li p, .nav li a {
   margin: 0;
+  font-size: 17px;
   display: block;
   color: #FFF;
   text-align: center;
   text-decoration: none;
+  font-weight:bold
+  
 }
 .nav li:hover {
-  background: #5FA92A;
+  /*background: #5FA92A;*/
+  background-color: #91c757;
   /*background: #000;*/
 }
 
@@ -129,6 +133,25 @@ a:hover { color: #ccc; }
   padding: 10px;
   margin: 0 0 0 100px;
 }
+.link {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border-color:#ddd;
+  border-style:solid;
+  border-width:1px;
+  padding: 5px;
+}
+.link2 {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border-color:#ddd;
+  border-style:solid;
+  border-width:1px;
+  padding: 5px;
+  vertical-align:top;
+}
 #new_comment{
   display: block;
   background: none;
@@ -147,6 +170,7 @@ a:hover { color: #ccc; }
 /* BUTTONS */
 .button_s {
   font-size: 0.8em;
+  background-color: #75993c; 
 }
 .button {
   font-size: 1em;
@@ -155,8 +179,10 @@ a:hover { color: #ccc; }
   font-size: 0.8em;
 }
 .selected {
-  background-color: #5FA92A;
+  font-size: 17px;
+  /*background-color: #5FA92A;*/
   /*background-color: #000;*/
+  background-color: #91c757;
 }
 
 .content_all {
@@ -235,7 +261,12 @@ a:hover { color: #ccc; }
 /* SIDEBAR */
 .widgetcontainer		{ border: solid #999; border-width: 1px; background: repeat-x #FFF; -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px; }
 .widgetcontainer a		{ }
-.widgettitle			{ background-color: #204000; color: #FFF;  padding: 5px 5px; -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
+.widgettitle			{ 
+  font-size: 16px;
+  font-weight: bold;
+  /*background-color: #204000; */
+  background-color: #75993c;
+  color: #FFF;  padding: 5px 5px; -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
 .widgettitle a			{ color: #FFF; }
 .widgetcontent { padding: 10px; }
 .widgetcontent_editors_pick { padding: 0px; }

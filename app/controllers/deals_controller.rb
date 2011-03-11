@@ -6,7 +6,7 @@ class DealsController < ApplicationController
   end
   
   def index
-    @deals = Deal.all
+    @deals = Deal.where(:visible => true)
     @order = Order.new
   end
   
@@ -48,6 +48,11 @@ class DealsController < ApplicationController
   
   def destroy
     @deal = Deal.find(params[:id])
+    @orders_which_are_not_been_bought = Order.where(:deal_id => :id, :status => "created")
+    # DELETING UNUSED RECORDS!
+    for order in @orders_which_are_not_been_bought do
+      order.destroy!
+    end
     @deal.destroy
 
     respond_to do |format|
