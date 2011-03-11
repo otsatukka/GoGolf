@@ -37,6 +37,9 @@ Gogolfrails::Application.routes.draw do
     resources :users do
         get :autocomplete_course_name, :on => :collection
       resources :rounds
+      member do
+        get "remove_account"
+      end
       #resources :groups
       resources :orders, :only => [:index, :show, :create, :destroy]
     end

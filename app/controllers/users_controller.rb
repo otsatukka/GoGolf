@@ -111,6 +111,11 @@ class UsersController < ApplicationController
         format.html { render :action => :edit, :status => :unprocessable_entity }
       end
     end
+    
+  def remove_account
+    @user = current_user
+    authorize! :destroy, @user
+  end
  
   rescue ActiveRecord::RecordNotFound
     respond_to_not_found(:js, :xml, :html)

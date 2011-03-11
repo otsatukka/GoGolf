@@ -4,7 +4,7 @@ class Autolink < ActiveRecord::Base
   auto_html_for :linkurl do
     html_escape
     sized_image
-    youtube
+    youtube(:width => 480, :height => 390)
     link :target => "_blank", :rel => "nofollow"
     simple_format
   end

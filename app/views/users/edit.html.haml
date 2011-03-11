@@ -20,5 +20,5 @@
       %br/
       %br/
       %br/
-      - if can? :manage, @user
-        .button_s= link_to "Poista tili", user_path(@user), :confirm => "Are you sure?", :method => :delete
+      - if @user == @current_user
+        = link_to "Poista tili", remove_account_user_path(@user)
