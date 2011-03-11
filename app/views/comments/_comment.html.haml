@@ -6,8 +6,9 @@
           %td{:rowspan => 3, :width => 40}
             #votes_count
               %h3= comment.votes_for
-              - if !current_user.voted_on?(comment)
-                #small_text= link_to('Peukku', vote_up_post_comment_path(@post, comment), :method => :post, :remote => true)
+              - if logged_in?
+                - if !current_user.voted_on?(comment)
+                  #small_text= link_to('Peukku', vote_up_post_comment_path(@post, comment), :method => :post, :remote => true)
       %tr
         %td{:width => 450}
           %h3

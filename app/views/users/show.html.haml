@@ -28,7 +28,7 @@
             %tr
               %td.oce-first Pelaajan kuvaus:
               %td= @user.spec.desc
-          -if @user.last_sign_in_at
+          - if @user.last_sign_in_at
             %tr
               %td.oce-first Kirjautunut viimeksi:
               %td

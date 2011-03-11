@@ -8,13 +8,14 @@ class SiteController < ApplicationController
   helper :content
   def index
     @title = 'Tervetuloa!'
-    @editors_picks = Post.where(:editors_pick => true).order('created_at DESC').limit(3)
+    @editors_picks = Opening.where(:editors_pick => true).order('created_at DESC').limit(3)
     @recent_posts = Post.all(:order => 'created_at DESC', :limit => 3)
     
     @recent_openings = Opening.all(:order => 'created_at DESC', :limit => 3)
     @recent_links = Link.all(:order => 'created_at DESC', :limit => 3)
     
-    @nikke = User.find_by_realname("Nikke Tyry")
+    #@nikke = User.find_by_realname("Nikke Tyry")
+    @nikke = User.find_by_realname("Pekka Rihtniemi")
     
     @uusin_nikke_avaus = Opening.where(:weektopic => true, :user_id => @nikke.id).order('created_at DESC')
     @uusin_vieras_avaus = Opening.where(:weektopic => true, :visitor_post => true).order('created_at DESC')

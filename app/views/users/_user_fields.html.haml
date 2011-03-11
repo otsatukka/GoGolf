@@ -29,7 +29,7 @@
     = spec.input :birthday, :as => :date, :discard_day => true, :discard_month => true, :start_year => 1997, :end_year => 1920 , :default => { :year => 1997 }, :label => "Syntymävuosi", :hint => "K-15"
     = spec.input :gender, :as => :radio, :collection => ["Mies", "Nainen"], :label => "Sukupuoli"
     
-    = spec.input :hcp, :as => :numeric, :input_html => {  :cols => 5, :maxlength => 5, :width => 50 }, :hint => "Käytä pistettä desimaaleissa"
+    = spec.input :hcp, :as => :numeric, :input_html => { :style => "width:3em" } , :hint => "Käytä pistettä desimaaleissa"
     
     = spec.input :course, :as => :select, :collection => Course.order("name ASC"), :label => "Kotikenttä"
     
@@ -38,3 +38,6 @@
     
   = f.label :avatar, "Profiilikuva"
   = f.file_field :avatar
+
+  %br/
+  %br/
