@@ -14,6 +14,7 @@ class Order < ActiveRecord::Base
       values = {
         #:business => 'gogolf_1299182069_biz@gogolf.fi',
         :business => 'gogolf@gogolf.fi',
+        :currency_code => "EUR",
         :cmd => '_xclick',
         :rm => 0,
         :return => return_url,
