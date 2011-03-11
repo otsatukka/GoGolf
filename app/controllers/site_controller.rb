@@ -17,6 +17,7 @@ class SiteController < ApplicationController
     @nikke = User.find_by_email("nikke.tyry@gogolf.fi")
     - if @nikke == nil
       @nikke = User.find_by_email("prihtnie@cc.hut.fi")
+    end
     
     @uusin_nikke_avaus = Opening.where(:weektopic => true, :user_id => @nikke.id).order('created_at DESC')
     @uusin_vieras_avaus = Opening.where(:weektopic => true, :visitor_post => true).order('created_at DESC')
