@@ -18,7 +18,7 @@
               Odottaa maksua
             - else
               = order.status
-          - if order.status == "created" && @order.deal.visible == true
+          - if order.status == "created" && order.deal.visible == true
             %td
               - form_tag "https://www.paypal.com/cgi-bin/webscr" do 
                 = hidden_field_tag :cmd, '_s-xclick'
