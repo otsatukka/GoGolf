@@ -1,5 +1,5 @@
 - f.inputs do
-  - if @user.email == nil
+  - if @user.email == nil || @user.email == ""
     = f.input :email, :label => "Sähköposti"
   - else
     Sähköposti: 
