@@ -90,6 +90,7 @@ class Ability
       
       if user.role? :admin
         can :admin_pages
+        can :manage, Course
         
         # COMMENTS
         
