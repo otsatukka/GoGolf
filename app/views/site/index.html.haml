@@ -15,7 +15,7 @@
         - @editors_picks.each do |post|
           %li
             %img{:src => find_img_medium(post), :class => "align-right", :minheight => "240", :width => "435"}
-              %a{:href => post_url(post)}Lue lisää
+              %a{:href => opening_url(post)}Lue lisää
 
     %ul#description1
       - @editors_picks.each do |post|
