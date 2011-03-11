@@ -1,6 +1,21 @@
 - f.inputs do
-  - if @user.name == nil
+  - if @user.email == nil
+    = f.input :email, :label => "Sähköposti"
+  - else
+    Sähköposti: 
+    = @user.email
+    %br/
+  -if @user.realname == nil
+    = f.input :realname, :label => "Nimi", :hint => "Näkyy vain kavereille (ellei \"Näytä Nimi kaikille\" ole valittuna)"
+  - else
+    Oikea nimi:
+    =@user.realname
+    %br/
+  - if @user.name == nil || @user.name == ""
     = f.input :name, :label => "Käyttäjätunnus", :hint => "Näkyy kaikille"
+  - else
+    = @user.name
+    %br/
   = f.input :privacy_name, :label => "Näytä Nimi kaikille"
   - if can? :edit, Role
     %p
