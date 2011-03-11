@@ -1,4 +1,6 @@
 - f.inputs do
+  - if @user.name == nil
+    = f.input :name, :label => "Käyttäjätunnus", :hint => "Näkyy kaikille"
   = f.input :privacy_name, :label => "Näytä Nimi kaikille"
   - if can? :edit, Role
     %p

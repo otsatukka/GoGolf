@@ -40,8 +40,11 @@ module ApplicationHelper
           else
             '/images/missing.jpg'
           end
+          '/images/missing.jpg'
         end
+        '/images/missing.jpg'
       end
+      '/images/missing.jpg'
     end
   end
   
