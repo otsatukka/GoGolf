@@ -11,7 +11,7 @@ class CoursesController < ApplicationController
   end
   
   def index
-    @courses = Course.all
+    @courses = Course.all(:order => 'name ASC')
   end
   
   def show
