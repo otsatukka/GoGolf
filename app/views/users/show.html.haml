@@ -28,11 +28,12 @@
             %tr
               %td.oce-first Pelaajan kuvaus:
               %td= @user.spec.desc
-          %tr
-            %td.oce-first Kirjautunut viimeksi:
-            %td
-              = time_ago_in_words(@user.last_sign_in_at)
-              sitten
+          -if @user.last_sign_in_at
+            %tr
+              %td.oce-first Kirjautunut viimeksi:
+              %td
+                = time_ago_in_words(@user.last_sign_in_at)
+                sitten
     %h2 Käyttäjän jakamat
     #posts
       = render :partial => 'posts'
