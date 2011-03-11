@@ -2,7 +2,10 @@
 - if can? :new, Opening
   = semantic_form_for @opening, :html => { :multipart => true } do |f|
     = f.inputs do
-      = f.input :title, :label => "Otsikko", :input_html => {:value => params[:title]}
+      - if params[:title]
+        = f.input :title, :label => "Otsikko", :input_html => {:value => params[:title]}
+      - else
+        = f.input :title, :label => "Otsikko"
       = f.input :category_id, :as => :radio, :input_html => { :value => 6 }, :label => 'Kategoria', :collection => Category.all
       - if current_user != nil && logged_in?
         %table
