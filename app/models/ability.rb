@@ -15,8 +15,11 @@ class Ability
         #GUEST
         
         can :read, Post
+        can :read, Opening
         can :read, Link
-        can :read, Achievement
+        can :read, Comment
+        can :read, Reply
+        #can :read, Achievement
         can :read, Autolink
         can :read, Course
         can :read, Deal
