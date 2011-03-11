@@ -4,7 +4,7 @@
   .widgetcontent_editors_pick{:class => "ui-corner-all"}
     #feature_list
       %ul#tabs
-        - @recent_posts.each do |post|
+        - @editors_picks.each do |post|
           %li
             %a{:href => "javascript:;"}
               %h3= post.title
@@ -12,13 +12,13 @@
                 = post.user.end_user_name
           
       %ul#output
-        - @recent_posts.each do |post|
+        - @editors_picks.each do |post|
           %li
             %img{:src => find_img_medium(post), :class => "align-right", :minheight => "240", :width => "435"}
               %a{:href => post_url(post)}Lue lisää
 
     %ul#description1
-      - @recent_posts.each do |post|
+      - @editors_picks.each do |post|
         %li
           %span
             = truncate(post.body, :length => 70, :separator => ' ').html_safe

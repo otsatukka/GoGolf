@@ -8,7 +8,7 @@ class SiteController < ApplicationController
   helper :content
   def index
     @title = 'Tervetuloa!'
-    @editors_picks = Post.where(:editors_pick => true).order('created_at DESC')
+    @editors_picks = Post.where(:editors_pick => true).order('created_at DESC').limit(3)
     @recent_posts = Post.all(:order => 'created_at DESC', :limit => 3)
     
     @recent_openings = Opening.all(:order => 'created_at DESC', :limit => 3)
