@@ -5,7 +5,7 @@ Gogolfrails::Application.routes.draw do
   resources :deals
   resources :orders, :only => [:create, :destroy, :index, :show]
 
-    resources :groups
+    #resources :groups
     resources :courses
     resources :categories
     resources :imagebanks
@@ -37,26 +37,26 @@ Gogolfrails::Application.routes.draw do
     resources :users do
         get :autocomplete_course_name, :on => :collection
       resources :rounds
-      resources :groups
+      #resources :groups
       resources :orders, :only => [:index, :show, :create, :destroy]
     end
 
-    resources :groups do
-      resources :memberships
-    end
+    #resources :groups do
+    #  resources :memberships
+    #end
 
-    resources :events do
-        get :autocomplete_course_name, :on => :collection
-      resources :users
-      resources :attendances
-    end
+    #resources :events do
+    #    get :autocomplete_course_name, :on => :collection
+    #  resources :users
+    #  resources :attendances
+    #end
 
-    match 'event/kaikki', :controller => 'events', :action => 'full_index'
-    match 'event/peliseura', :controller => 'events', :action => 'search'
-    match 'event/search_game_company', :controller => 'events', :action => 'game_company'
+    #match 'event/kaikki', :controller => 'events', :action => 'full_index'
+    #match 'event/peliseura', :controller => 'events', :action => 'search'
+    #match 'event/search_game_company', :controller => 'events', :action => 'game_company'
 
-    match 'groups/user_data', :controller=>'groups', :action=>'user_data'
-    match 'users/promote_to_group_admin', :controller=>'users', :action=>'promote_to_group_admin'
+    #match 'groups/user_data', :controller=>'groups', :action=>'user_data'
+    #match 'users/promote_to_group_admin', :controller=>'users', :action=>'promote_to_group_admin'
 
     resources :posts do
       resources :comments, :only => [:create, :destroy] do
@@ -78,9 +78,7 @@ Gogolfrails::Application.routes.draw do
 
     match 'users/edit', :to => 'devise/registrations#edit'
 
-    get "friendship/create"
-    get "friendship/accept"
-    get "friendship/decline"
+
     get "site/about"
     get "site/index"
     get "site/help"
@@ -89,10 +87,13 @@ Gogolfrails::Application.routes.draw do
     get "site/yleiset_ehdot"
     get "site/verkkokaupan_ehdot"
     get "site/notuser"
-    get "attendances/create"
-    get "attendances/index"
-    get "attendances/destroy"
-    resources :memberships, :collection => {:find=>:get}
+    #get "attendances/create"
+    #get "attendances/index"
+    #get "attendances/destroy"
+    #get "friendship/create"
+    #get "friendship/accept"
+    #get "friendship/decline"
+    #resources :memberships, :collection => {:find=>:get}
 
     root :to => 'site#index'
   

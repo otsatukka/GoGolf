@@ -19,5 +19,4 @@
     - elsif @active_tab == "mygolf"
       - if user_signed_in?
         %li= link_to_unless_current "Oma Golf", "/users/#{current_user.id}"
-        %li= nav_link "Käyttäjät", users_path
         
