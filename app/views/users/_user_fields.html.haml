@@ -17,6 +17,7 @@
     = @user.name
     %br/
   = f.input :privacy_name, :label => "Näytä Nimi kaikille"
+  
   - if can? :edit, Role
     %p
       = f.label :role, "Rooli"
@@ -25,14 +26,15 @@
           = check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role)
           = role.name
   = f.semantic_fields_for :spec, @user.spec || Spec.new do |spec|
+    = spec.input :birthday, :as => :date, :discard_day => true, :discard_month => true, :start_year => 1997, :end_year => 1920 , :default => { :year => 1997 }, :label => "Syntymävuosi", :hint => "K-15"
+    = spec.input :gender, :as => :radio, :collection => ["Mies", "Nainen"], :label => "Sukupuoli"
+    
     = spec.input :hcp, :as => :numeric, :input_html => {  :cols => 5, :maxlength => 5, :width => 50 }, :hint => "Käytä pistettä desimaaleissa"
     
     = spec.input :course, :as => :select, :collection => Course.order("name ASC"), :label => "Kotikenttä"
     
-    = spec.input :birthday, :as => :date, :discard_day => true, :discard_month => true, :start_year => 1997, :end_year => 1920 , :default => { :year => 1997 }, :label => "Syntymävuosi", :hint => "K-15"
-    
     = spec.input :start_year_of_golf, :as => :date, :discard_day => true, :discard_month => true, :start_year => Time.now.year, :end_year => 1920 , :default => { :year => 2011 }, :label => "Golfin aloitusvuosi"
     = spec.input :desc, :label => "Lyhyt kuvaus itsestäsi pelaajana"
-    = spec.input :gender, :as => :radio, :collection => ["Mies", "Nainen"], :label => "Sukupuoli"
+    
   = f.label :avatar, "Profiilikuva"
   = f.file_field :avatar
