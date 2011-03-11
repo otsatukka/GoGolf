@@ -7,7 +7,7 @@ Devise.setup do |config|
   config.rpx_application_name = "gogolf"
   
   config.rpx_auto_create_account = true # false if you don't want to create users automaticaly. True by default.
-  # config.rpx_additional_user_data = [:name, :preferredUsername] # default [], get some extra profile info from RPXnow
+  config.rpx_additional_user_data = [:name, :preferredUsername] # default [], get some extra profile info from RPXnow
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating an user. By default is
   # just :email. You can configure it to use [:username, :subdomain], so for
