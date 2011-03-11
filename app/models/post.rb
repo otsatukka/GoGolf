@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
   validates_presence_of         :title
   validates_presence_of         :body
   validates_length_of           :title, :in => 2..200
-  validates_length_of           :body, :in => 2..2000
+  validates_length_of           :body, :in => 2..5000
   
   attr_accessible :title, :body, :category_id, :user, :published, :weektopic, :editors_pick, :photo, :imagebank_id,
                   :use_uploaded_image, :remove_photo, :visitor_post
