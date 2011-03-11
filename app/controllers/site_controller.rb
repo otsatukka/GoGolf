@@ -14,9 +14,9 @@ class SiteController < ApplicationController
     @recent_openings = Opening.all(:order => 'created_at DESC', :limit => 3)
     @recent_links = Link.all(:order => 'created_at DESC', :limit => 3)
     
-    @nikke = User.find_by_email("nikke.tyry@gogolf.fi")
+    @nikke = User.find_by_realname("Nikke Tyry")
     - if @nikke == nil
-      @nikke = User.find_by_email("prihtnie@cc.hut.fi")
+      @nikke = User.find_by_realname("Pekka Rihtniemi")
     end
     
     @uusin_nikke_avaus = Opening.where(:weektopic => true, :user_id => @nikke.id).order('created_at DESC')
