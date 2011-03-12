@@ -25,7 +25,7 @@
           %td
             - form_tag "https://www.paypal.com/cgi-bin/webscr" do 
               = hidden_field_tag :cmd, '_s-xclick'
-              = hidden_field_tag :encrypted, @order.paypal_encrypted(user_order_url(@order.user, @order), payment_notifications_url)
+              = hidden_field_tag :encrypted, @order.paypal_encrypted(user_order_url(@order.user, @order), payment_notifications_url(:secret => "fdsakjsdf77fd"))
               = submit_tag "Siirry maksamaan", :class => "button"
               
     - if @order.status == "Maksettu"

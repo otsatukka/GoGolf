@@ -24,11 +24,6 @@
         = f.label :photo, "Lataa koneeltasi kuva"
         %br/
         = f.file_field :photo, :id => "field1"
-      - if @post.use_uploaded_image == 1
-        = f.label :remove_photo, "Poista kuva"
-        #remove_photo
-          = f.check_box :remove_photo
-        %br/
         Nykyinen kuva
         = image_tag find_img_medium(@post)
       .field
