@@ -83,8 +83,6 @@ class Ability
         # DEALS
         can :create, Order
         can :manage, Order, :user_id => user.id
-        can :read, Order, :user_id => user.id
-        
         
       end
       
