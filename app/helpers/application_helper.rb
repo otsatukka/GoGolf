@@ -11,9 +11,17 @@ module ApplicationHelper
   
   def find_img_medium(post)
     if post.use_uploaded_image == 1
-      post.photo_url(:medium).to_s
+      if post.photo != nil
+        post.photo_url(:medium).to_s
+      else
+        '/images/missing.jpg'
+      end
     elsif post.use_uploaded_image == 0
-      post.imagebank.image_url(:medium).to_s
+      if post.imagebank != nil
+        post.imagebank.image_url(:medium).to_s
+      else
+        '/images/missing.jpg'
+      end
     else
       '/images/missing.jpg'
     end

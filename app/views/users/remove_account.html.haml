@@ -1,0 +1,4 @@
+.widgetcontainer
+  .widgetcontent
+    - if can? :manage, @user
+      .button_s= link_to "Poista tili", user_path(@user), :confirm => "Are you sure?", :method => :delete
