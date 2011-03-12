@@ -34,14 +34,13 @@
               - if deal.dealtype == "Hieromatuli"
                 %b TUOLI TOIMITETAAN PÄÄKAUPUNKISEUDULLE ILMAISEKSI
       - if deal.quantity > 0
-        - form_for [current_user, @order] do |f|
-          .field
-            = f.label :quantity, "Määrä"
-            = f.text_field :quantity, :value => "1"
-          .field
-            = f.hidden_field_tag :deal_id, deal.id
-          .actions
-            = f.submit "Osta"
+        - semantic_form_for [current_user, @order] do |f|
+          - f.inputs do
+            = f.input :quantity, :label => "Määrä", :input_html => { :style => "width:3em", :value => "1" }
+            .field
+              = f.hidden_field_tag :deal_id, deal.id
+            .actions
+              = f.submit "Osta"
     - if can? :edit, Deal
       = link_to 'Edit', edit_deal_path(deal)
       = link_to_if(can?(:delete, deal), "Delete", deal, :confirm => "Are you sure?", :method => :delete) {}
