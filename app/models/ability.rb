@@ -15,7 +15,7 @@ class Ability
         
         can :read, Post
         can :read, Opening
-        can :read, Link
+        can [:read, :links, :videos, :images], Link
         can :read, Comment
         can :read, Reply
         #can :read, Achievement
@@ -72,7 +72,7 @@ class Ability
         can :manage, User, :id => user.id
         
         # LINKS
-        can :create, Link
+        can [:create, :vote_up], Link
         #can :manage, Link, :user_id => user.id
         can :create, Autolink
         
