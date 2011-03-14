@@ -7,12 +7,17 @@
       = render :partial => 'user_fields', :locals => { :f => f }
       - if @user.rpx_identifier == nil
         %p
-          = f.label :password, "Salanana"
-          %i Jätä tyhjäksi jos et halua vaihtaa
+          = f.label :current_password, "Nykyinen salasana"
+          %br/
+          %i Jätä tyhjäksi jos et halua vaihtaa salasanaa
+          %br/
+          = f.password_field :current_password
+        %p
+          = f.label :password, "Uusi salanana"
           %br/
           = f.password_field :password
         %p
-          = f.label :password_confirmation, ""
+          = f.label :password_confirmation, "Uusi salasana uudestaan"
           %br/
           = f.password_field :password_confirmation
       %br/
