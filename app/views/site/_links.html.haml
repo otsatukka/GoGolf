@@ -2,32 +2,33 @@
   .widgettitle{:class => "ui-corner-all"}
     Linkit
   .widgetcontent
-    %table
+    #recentposts
+      %table
+        %table
+          %tr
+            %th{:width => 280}
+              %b Uusimmat
+            %th
+              %b Suosituimmat
       %table
         %tr
-          %th{:width => 280}
-            %b Uusimmat
-          %th
-            %b Suosituimmat
-    %table
-      %tr
-        %td{:width => 300}
-          %table{:class => "link"}
-            - if @recent_links
-              - @recent_links.each do |link|
-                %tr
-                  %td{:width => 150}= link_to link.title, link
-                  %td
-                    = link_to link.user.end_user_name, link.user
-                    |
-                    = time_ago_in_words(link.created_at)
-        %td
-          %table{:class => "link"}
-            - if @top5_links
-              - @top5_links.first(3).each do |link|
-                %tr
-                  %td{:width => 150}= link_to link.title, link
-                  %td
-                    = link_to link.user.end_user_name, link.user
-                    |
-                    = time_ago_in_words(link.created_at)
+          %td{:width => 300}
+            %table{:class => "link"}
+              - if @recent_links
+                - @recent_links.each do |link|
+                  %tr
+                    %td{:width => 150}= link_to link.title, link
+                    %td
+                      = link_to link.user.end_user_name, link.user
+                      |
+                      = time_ago_in_words(link.created_at)
+          %td
+            %table{:class => "link"}
+              - if @top5_links
+                - @top5_links.first(3).each do |link|
+                  %tr
+                    %td{:width => 150}= link_to link.title, link
+                    %td
+                      = link_to link.user.end_user_name, link.user
+                      |
+                      = time_ago_in_words(link.created_at)
