@@ -1,6 +1,6 @@
 class ImagebanksController < ApplicationController
   before_filter :get_imagebank, :only => [ :edit, :update, :destroy ]
-  before_filter :set_title
+  before_filter :set_title, :verify_admin
   
   load_and_authorize_resource
   def index
@@ -53,5 +53,11 @@ class ImagebanksController < ApplicationController
   
   def set_title
     @title = 'Kuvat'
+  end
+  
+  private
+  
+  def verify_admin
+    redirect_to root_url unless current_user.role?(:admin) || current_user.role?(:super_admin)
   end
 end
