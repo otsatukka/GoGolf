@@ -9,7 +9,7 @@
           %tr
             %td= link.votes_for
             %td{:width => 150}= link_to link.title, link
-            %td{:width => 250}= truncate_body(link)
+            %td{:width => 250}= truncate_html(link.body)
             %td
               = link_to link.user.end_user_name, link.user
               |

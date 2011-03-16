@@ -26,7 +26,7 @@
                       %tr
                         %td
                           .post_excerpt_body
-                            = truncate(post.body, :length => 70, :separator => ' ').html_safe
+                            = truncate_html(post.body)
                       %tr
                         %td
                           - if post.user != nil
@@ -49,7 +49,7 @@
                       %tr
                         %td
                           .post_excerpt_body
-                            = truncate(post.body, :length => 70, :separator => ' ').html_safe
+                            = truncate_html(post.body)
                       %tr
                         %td
                           - if post.user != nil

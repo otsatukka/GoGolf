@@ -131,6 +131,7 @@ GEM
     thumbs_up (0.3.2)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
+    truncate_html (0.4.0)
     tzinfo (0.3.24)
     warden (1.0.3)
       rack (>= 1.0.0)
@@ -162,4 +163,5 @@ DEPENDENCIES
   rpx_now (= 0.6.23)
   sqlite3-ruby
   thumbs_up
+  truncate_html
   will_paginate (= 3.0.pre2)

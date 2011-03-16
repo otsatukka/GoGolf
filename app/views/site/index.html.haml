@@ -21,7 +21,7 @@
       - @editors_picks.each do |post|
         %li
           %span
-            = truncate(post.body, :length => 70, :separator => ' ').html_safe
+            = truncate_html(post.body).html_safe
 %br/
 =link_to image_tag('/images/competiton-banner.gif', :alt => "Kirjoituskilpailu", :class => "padding_left_10"), new_opening_path(:category_id => 6, :title => "3 asiaa jotka rajoittavat pelaamistani")
 
@@ -53,7 +53,7 @@
                 %tr
                   %td
                     .post_excerpt_body
-                      = truncate(@uusin_nikke_avaus.first.body, :length => 70, :separator => ' ').html_safe
+                      = truncate_html(@uusin_nikke_avaus.first.body).html_safe
                 %tr
                   %td
                     - if @uusin_nikke_avaus.first.user != nil
@@ -73,7 +73,7 @@
                 %tr
                   %td
                     .post_excerpt_body
-                      = truncate(@uusin_vieras_avaus.first.body, :length => 70, :separator => ' ').html_safe
+                      = truncate_html(@uusin_vieras_avaus.first.body).html_safe
                 %tr
                   %td
                     - if @uusin_vieras_avaus.first.user != nil
