@@ -56,7 +56,7 @@ class Ability
         
         # COMMENT
         
-        can :create, Comment
+        can [:create, :vote_up], Comment
         can :create, Reply
         
         # GROUPS
