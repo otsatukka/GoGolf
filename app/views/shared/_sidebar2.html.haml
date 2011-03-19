@@ -19,7 +19,7 @@
               %i
                 = link_to post.user.end_user_name, post.user
                 |
-                = post.unique_impression_count
+                = post.unique_impression_count((Time.now - 7.days), Time.now)
       %h4
         Avaukset
         %hr/
@@ -31,7 +31,7 @@
               %i
                 = link_to post.user.end_user_name, post.user
                 |
-                = post.unique_impression_count
+                = post.unique_impression_count((Time.now - 7.days), Time.now)
               %br/
 .ui-widget
   .ui-widget-content
