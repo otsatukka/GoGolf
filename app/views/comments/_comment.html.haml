@@ -18,7 +18,7 @@
               Jatkolyönti:
             = comment.title
           %hr/
-          = content_tag(:p, comment.body, :class => "comment-body")
+          = simple_format(comment.body)
           %br/
           %p
             =link_to comment.user.end_user_name, comment.user

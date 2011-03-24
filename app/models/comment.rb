@@ -7,4 +7,6 @@ class Comment < ActiveRecord::Base
   
   validates_presence_of :title, :body
   validates_length_of           :body, :in => 2..2000
+  
+  
 end
