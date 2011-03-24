@@ -22,7 +22,6 @@
         %li
           %span
             = truncate_html(post.body).html_safe
-%br/
 = link_to image_tag('/images/peltomaki2.gif', :alt => "Peltomäki Golf", :class => "padding_left"), 'http://www.peltomakigolf.fi'
 %br/
 .widgetcontainer{:class => "ui-corner-all"}
@@ -83,6 +82,5 @@
 
 = render :partial => 'news'
 = render :partial => 'openings'
-%br/
 = image_tag('/images/banner-chair.gif', :alt => "Casada-hierontatuoli", :class => "padding_left")
 = render :partial => 'links'
