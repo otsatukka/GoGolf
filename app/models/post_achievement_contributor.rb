@@ -3,7 +3,7 @@ class PostAchievementContributor < Achievement
     # Check if achievement is already awarded before doing possibly expensive
     # operations to see if the achievement conditions are met.
     if !user.awarded?(self) and user.posts.size > 20
-      user.award(self, desc)
+      user.award(self)
     end
   end
 end
