@@ -44,9 +44,7 @@ class AttendancesController < ApplicationController
   # Changes an attendance, typically used to change the status of a user's attendance
   # i.e. to change a maybe to a yes.
   def update
-
   end
-  
   
   # Remove a user from a event
   def destroy
