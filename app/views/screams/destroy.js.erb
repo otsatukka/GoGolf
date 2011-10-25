@@ -1,0 +1,4 @@
+/* Eliminate the comment by fading it out */
+$('#scream_<%= @scream.id %>').fadeOut();
+/* Replace the count of comments */
+$("#screams_count").html("<%= pluralize(Sream.count, 'Huudot') %>");
