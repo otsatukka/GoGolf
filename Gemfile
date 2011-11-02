@@ -31,7 +31,7 @@ gem 'fog'
 gem 'admin_data'
 gem 'thumbs_up'
 gem 'truncate_html'
-gem 'event_calendar'
+#gem 'event_calendar'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
