@@ -1,0 +1,49 @@
+<%= form_for(@bogey_counter) do |f| %>
+  <% if @bogey_counter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bogey_counter.errors.count, "error") %> prohibited this bogey_counter from being saved:</h2>
+
+      <ul>
+      <% @bogey_counter.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :handicapgroup %><br />
+    <%= f.text_field :handicapgroup %>
+  </div>
+  <div class="field">
+    <%= f.label :exacthandicap %><br />
+    <%= f.text_field :exacthandicap %>
+  </div>
+  <div class="field">
+    <%= f.label :bufferzonemin18 %><br />
+    <%= f.text_field :bufferzonemin18 %>
+  </div>
+  <div class="field">
+    <%= f.label :bufferzonemax18 %><br />
+    <%= f.text_field :bufferzonemax18 %>
+  </div>
+  <div class="field">
+    <%= f.label :bufferzonemin9 %><br />
+    <%= f.text_field :bufferzonemin9 %>
+  </div>
+  <div class="field">
+    <%= f.label :bufferzonemax9 %><br />
+    <%= f.text_field :bufferzonemax9 %>
+  </div>
+  <div class="field">
+    <%= f.label :hcpincrement %><br />
+    <%= f.text_field :hcpincrement %>
+  </div>
+  <div class="field">
+    <%= f.label :hcpdecrement %><br />
+    <%= f.text_field :hcpdecrement %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

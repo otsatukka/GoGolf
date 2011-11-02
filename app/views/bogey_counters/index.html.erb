@@ -1,0 +1,37 @@
+<h1>Listing bogey_counters</h1>
+
+<table>
+  <tr>
+    <th>Handicapgroup</th>
+    <th>Exacthandicap</th>
+    <th>Bufferzonemin18</th>
+    <th>Bufferzonemax18</th>
+    <th>Bufferzonemin9</th>
+    <th>Bufferzonemax9</th>
+    <th>Hcpincrement</th>
+    <th>Hcpdecrement</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bogey_counters.each do |bogey_counter| %>
+  <tr>
+    <td><%= bogey_counter.handicapgroup %></td>
+    <td><%= bogey_counter.exacthandicap %></td>
+    <td><%= bogey_counter.bufferzonemin18 %></td>
+    <td><%= bogey_counter.bufferzonemax18 %></td>
+    <td><%= bogey_counter.bufferzonemin9 %></td>
+    <td><%= bogey_counter.bufferzonemax9 %></td>
+    <td><%= bogey_counter.hcpincrement %></td>
+    <td><%= bogey_counter.hcpdecrement %></td>
+    <td><%= link_to 'Show', bogey_counter %></td>
+    <td><%= link_to 'Edit', edit_bogey_counter_path(bogey_counter) %></td>
+    <td><%= link_to 'Destroy', bogey_counter, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Bogey counter', new_bogey_counter_path %>

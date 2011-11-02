@@ -1,0 +1,114 @@
+
+#emptyspace
+.widgetcontainer
+	.widgetsidebartitle
+		%a{:href=>"/screams"}
+			LIVE TERASSIKESKUSTELU
+	.widgetcontent
+		= form_for Scream.new, :remote => true do |f| 
+			= f.text_area :body ,:cols => "33", :rows=> "5"
+			%br
+			= f.submit "Julkaise"
+		.chatborders
+			#screams
+				-if @screams == nil
+					Ei huutoja
+				-else
+					= render :partial => "screams/scream", :collection => @screams  
+-#
+	#emptyspace
+	.widgetcontainer
+	.widgetsidebartitle
+	Golf TV
+	.widgetcontent
+	<div class="youtube_video">
+	<object width="251" height="20" >
+	<param name="movie" value="http://www.youtube.com/v/4vsawCURlw0&NR=1&hl=en"></param>
+	<param name="wmode" value="transparent"></param>
+	<embed src="http://www.youtube.com/v/4vsawCURlw0&NR=1&hl=en" type="application/x-shockwave-flash" wmode="transparent" width="250" height="220"></embed>
+	</object>
+	</div>
+    
+#emptyspace
+-#.widgetcontainer
+-#  .widgetsidebartitle
+-#   Hae peliseuraa!
+-#   %a{:href => new_opening_path} 
+-#    <input type="button" value="tästä" />
+-##emptyspace
+
+-#
+	.widgetcontainer
+	.widgetsidebartitle
+	Viikon parhaat	
+	.widgetcontent
+	#luetuimmat
+	%h4
+	Uutiset
+	%hr/
+	%ul
+	- @top5_posts_of_week.each do |post|
+	%li
+	= link_to post.title, post
+	%br/
+	%i
+	-#= link_to post.user.end_user_name, post.user
+	|
+	= post.unique_impression_count
+	%h4
+	Avaukset
+	%hr/
+	%ul
+	- @top5_openings_of_week.each do |post|
+	%li
+	= link_to post.title, post
+	%br/
+	%i
+	= link_to post.user.end_user_name, post.user
+	|
+	= post.unique_impression_count
+	%br/
+
+
+-#
+	#emptyspace    
+	.widgetcontainer
+	- if !user_signed_in?
+	.widgettitle
+	Kirjautuminen
+	.widgetcontent
+	%a{:href => "devise/sessions/signin"} 
+	<input type="button" value="Kirjaudu sisään" />
+	%br
+	%a{:href => "/users/new"} 
+	<input type="button" value="Rekisteröidy" />
+	-else
+	.widgettitle
+	Hei
+	- if current_user.realname == nil
+	= current_user.email
+	- else
+	= current_user.realname.split(' ').first
+	 
+	.widgetcontent
+	  
+	%table
+	%tr
+	%td{:rowspan => "5"}
+	= image_tag find_img_thumb_user(current_user),:width => '100'
+	%tr
+	%td Kirjoitukset
+	%td= current_user.posts.count
+	%tr
+	%td Avaukset
+	%td= current_user.openings.count
+	%tr
+	%td Julkaistut kommentit
+	%td= current_user.comments.count
+	%tr
+	%td
+	%a{:href => destroy_user_session_path} 
+	<input type="button" value="Kirjaudu ulos" />
+	  
+
+

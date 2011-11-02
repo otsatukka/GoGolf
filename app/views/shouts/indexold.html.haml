@@ -1,0 +1,22 @@
+.widgetcontainer
+	.widgettitle
+		shoutbox
+	.widgetcontent
+		#span.comments_count
+			= pluralize(@shoutts.count, "Shout") 
+		- @shouts.each do |v|
+			=v.name
+		=form_for Shout.new, :remote => true do |f|  
+			.h1
+				Shout!  
+			=f.label :name, "name"  
+			%br
+			=f.text_field :name, :size => 20  
+			%br
+			=f.label :email,"Email"  
+			%br
+			=f.text_field :email, :size => 20 
+			%br
+			= f.text_area :message, :rows => 5, :cols => 40
+			%br
+			= f.submit 'Submit'   

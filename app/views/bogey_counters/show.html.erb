@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Handicapgroup:</b>
+  <%= @bogey_counter.handicapgroup %>
+</p>
+
+<p>
+  <b>Exacthandicap:</b>
+  <%= @bogey_counter.exacthandicap %>
+</p>
+
+<p>
+  <b>Bufferzonemin18:</b>
+  <%= @bogey_counter.bufferzonemin18 %>
+</p>
+
+<p>
+  <b>Bufferzonemax18:</b>
+  <%= @bogey_counter.bufferzonemax18 %>
+</p>
+
+<p>
+  <b>Bufferzonemin9:</b>
+  <%= @bogey_counter.bufferzonemin9 %>
+</p>
+
+<p>
+  <b>Bufferzonemax9:</b>
+  <%= @bogey_counter.bufferzonemax9 %>
+</p>
+
+<p>
+  <b>Hcpincrement:</b>
+  <%= @bogey_counter.hcpincrement %>
+</p>
+
+<p>
+  <b>Hcpdecrement:</b>
+  <%= @bogey_counter.hcpdecrement %>
+</p>
+
+
+<%= link_to 'Edit', edit_bogey_counter_path(@bogey_counter) %> |
+<%= link_to 'Back', bogey_counters_path %>
