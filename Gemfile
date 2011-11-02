@@ -12,7 +12,7 @@ gem 'cancan', '1.5.1'
 gem 'formtastic', '1.2.3'
 gem 'paperclip', '2.3.8'
 gem 'haml', '3.0.25'
-gem 'jquery-rails', '0.2.7'
+gem 'jquery-rails', '>=1.0.1.2'
 #gem 'culerity', '0.2.15'
 gem 'auto_html', '1.3.4'
 gem 'ckeditor', '3.5.0'
@@ -31,7 +31,7 @@ gem 'fog'
 gem 'admin_data'
 gem 'thumbs_up'
 gem 'truncate_html'
-
+gem 'event_calendar'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

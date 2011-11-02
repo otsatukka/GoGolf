@@ -1,14 +1,30 @@
+@font-face {
+	
+	font-family: bread_font;
+	src: url('CelesteSansWeb.woff') format("woff");
+
+}
+
+@font-face {
+	
+	font-family: title_font;
+	src: url('CelesteSansScWeb-Bold.woff') format("woff");
+
+}
 h3 {
 	margin: 0;	
 	padding: 7px 0 0 0;
 	font-size: 16px;
 }
 
+
+
 div#feature_list {
-	width: 654px;
-	height: 240px;
+	width: 697px;
+	height: 292px;
 	overflow: hidden;
 	position: relative;
+	background:  url('/images/slider/fadet.png') top left no-repeat;
 	background-color: #fff;
 }
 
@@ -23,16 +39,37 @@ div#feature_list ul {
 ul#tabs {
 	left: 0;
 	z-index: 2;
-	width: 250px;
+	width: 354px;
 }
 
 ul#tabs li {
 	font-size: 12px;
-	font-family: Arial;
+	font-family: bread_font,Arial;
 }
 ul#tabs li h3 {
   color: #222;
   text-shadow: 1px 1px 1px #fff;
+}
+
+ul#tabs li #title {
+  color: #0F5564;
+  font: 14px/14px bread_font,Arial;
+}
+ul#tabs li #title .text {
+  color: #0F5564;
+  font: 14px/14px title_font,Arial;
+}
+ul#tabs li #title .border {
+  border-right-color: #0F5564;
+  border-right-style: solid;
+  border-right-width: 1px;
+  padding-right: 1px; 
+  color: #0F5564;
+  font: 10px/2px title_font,Arial;
+}
+ul#tabs li #title .day {
+  color: #0F5564;
+  font: 12px/14px bread_font,Arial;
 }
 
 ul#tabs li img {
@@ -46,8 +83,8 @@ ul#tabs li a {
 	color: #222;
 	text-decoration: none;	
 	display: block;
-	padding: 10px;
-	height: 60px;
+	padding: 6px 56px 6px 6px;
+	height: 85px;
 	outline: none;
 }
 
@@ -56,8 +93,8 @@ ul#tabs li a:hover {
 }
 
 ul#tabs li a.current{
-	background:  url('/images/slider/feature-tab-current.png');
-	color: #FFF;
+	background:  url('/images/slider/nuolipalkki.png') top no-repeat;
+	//color: #FFF;
 }
 
 ul#tabs li a.current:hover {
@@ -67,15 +104,15 @@ ul#tabs li a.current:hover {
 
 ul#output {
 	right: 0;
-	width: 435px;
-	height: 240px;
+	width: 360px;
+	height: 292px;
 	position: relative;
 }
 
 ul#output li {
 	position: absolute;
-	width: 420px;
-	height: 240px;
+	width: 360px;
+	height: 300px;
 }
 ul#description1 {
 	right: 0;
@@ -111,4 +148,452 @@ ul#output li a {
 
 ul#output li a:hover {
 	background: #D33431;
+}
+
+h3 {
+	margin: 0;	
+	padding: 7px 0 0 0;
+	font-size: 16px;
+}
+
+
+
+
+
+
+
+
+div#gamers_list {
+	width: 697px;
+	background-color: #fff;
+}
+
+div#gamers_list ul {
+	top: 0;
+	list-style: none;	
+	padding: 0;
+	margin: 0;
+}
+
+ul#tabit {
+	left: 0;
+	z-index: 2;
+	width: 697px;
+}
+
+ul#tabit li {
+	font-size: 12px;
+	height:110px;
+	padding-top: 2px;
+	background:  url('/images/slider/bigfade.png') bottom left no-repeat;
+	
+	font-family: bread_font,Arial;
+}
+
+ul#tabit li #title {
+  color: #0F5564;
+  font: 14px/14px bread_font,Arial;
+}
+ul#tabit li #title .text {
+  color: #0F5564;
+  text-transform:uppercase;
+  font: 14px/16px title_font,Arial;
+}
+ul#tabit li #title .border {
+  border-right-color: #0F5564;
+  border-right-style: solid;
+  border-right-width: 1px;
+  padding-right: 1px; 
+  color: #0F5564;
+  font: 7px/2px title_font,Arial;
+}
+ul#tabit li #title .day {
+  color: #0F5564;
+  font: 12px/14px bread_font,Arial;
+}
+
+ul#tabit li.rest {
+	
+}
+ul#tabit li h3 {
+  color: #222;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+ul#tabit li.first img {
+	//padding: 5px;
+	border: none;
+	float: top;
+	//margin: 10px 10px 0 0;
+}
+ul#tabit li.rest img {
+	//padding: 5px;
+	border: none;
+	float: right;
+	//margin: 10px 10px 0 0;
+}
+
+ul#tabit li a {
+
+	
+	color: #0F5564;
+	text-decoration: none;	
+	display: block;
+	padding: 6px 56px 6px 6px;
+	font: 14px/2px title_font,Arial;
+
+	height: 86px;
+	outline: none;
+}
+
+ul#tabit li a:hover {
+	text-decoration: underline;
+}
+
+
+ul#tabit li a.current:hover {
+	text-decoration: none;
+	cursor: default;
+}
+
+ul#outputs {
+	right: 0;
+	width: 100px;
+	height: 100px;
+	position: relative;
+}
+
+ul#outputs li {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+}
+
+
+
+ul#outputs li a {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	padding: 8px 12px;
+	text-decoration: none;
+	font-size: 11px;
+	color: #FFF;
+	background: #000;
+	-moz-border-radius: 5px;
+}
+
+ul#outputs li a:hover {
+	background: #D33431;
+}
+
+
+/*kilpagilf*/
+div#kilpagolf_list {
+	width: 335px;
+	background-color: #fff;
+}
+
+div#kilpagolf_list ul {
+	top: 0;
+	list-style: none;	
+	padding: 0;
+	margin: 0;
+}
+
+ul#kg_tab {
+	left: 0;
+	z-index: 2;
+	width: 335px;
+}
+
+ul#kg_tab li {
+	font-size: 12px;
+	height:110px;
+	padding-top: 2px;
+	background:  url('/images/slider/bigfade.png') bottom left no-repeat;
+	
+	font-family: bread_font,Arial;
+}
+
+ul#kg_tab li #title {
+  color: #0F5564;
+  font: 12px/12px bread_font,Arial;
+}
+ul#kg_tab li #title .text {
+  color: #0F5564;
+  text-transform:uppercase;
+  font: 13px/14px title_font,Arial;
+}
+ul#kg_tab li #title .border {
+  border-right-color: #0F5564;
+  border-right-style: solid;
+  border-right-width: 1px;
+  padding-right: 1px; 
+  color: #0F5564;
+  font: 7px/2px title_font,Arial;
+}
+ul#kg_tab li #title .day {
+  color: #0F5564;
+  font: 12px/14px bread_font,Arial;
+}
+
+ul#kg_tab li.rest {
+	
+}
+ul#kg_tab li h3 {
+  color: #222;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+ul#kg_tab li.first img {
+	//padding: 5px;
+	border: none;
+	float: top;
+	//margin: 10px 10px 0 0;
+}
+ul#kg_tab li.rest img {
+	//padding: 5px;
+	border: none;
+	float: right;
+	//margin: 10px 10px 0 0;
+}
+ul#kg_tab li.plain {
+	//padding: 5px;
+	background: white;
+	height: 40px;
+	border: none;
+	//margin: 10px 10px 0 0;
+}
+ul#kg_tab li.plain a{
+	color: #0F5564;
+	text-decoration: none;	
+	display: block;
+	padding: 6px 6px 6px 6px;
+	font: 14px/2px title_font,Arial;
+	height: 86px;
+	outline: none;
+}
+ul#kg_tab li a {
+	color: #0F5564;
+	text-decoration: none;	
+	display: block;
+	padding: 6px 56px 6px 6px;
+	font: 14px/2px title_font,Arial;
+	height: 86px;
+	outline: none;
+}
+
+ul#kg_tab li a:hover {
+    color:#1E96A0;
+    font: 14px/2px title_font,Arial;
+	text-decoration: none;
+}
+
+
+ul#kg_tab li a.current:hover {
+	text-decoration: none;
+	cursor: default;
+}
+
+ul#kg_output {
+	right: 0;
+	width: 100px;
+	height: 100px;
+	position: relative;
+}
+
+ul#kg_output li {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+}
+
+
+
+ul#kg_output li a {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	padding: 8px 12px;
+	text-decoration: none;
+	font-size: 11px;
+	color: #FFF;
+	background: #000;
+	-moz-border-radius: 5px;
+}
+
+ul#kg_output li a:hover {
+	background: #D33431;
+}
+
+.barbg{  
+ color: #0F5564;
+  font: 20px/20px title_font,Arial;
+  height:25px;  
+  border:1px solid #eEeEeE;  
+  background-color:#eEeEeE;
+  width:686px;  
+  /*float:right;*/  
+  padding: 10px 0px 0px 9px;
+  }
+
+div#youtube_video_list{
+  background: url('/images/layout/pikkuvideotausta.png') no-repeat top left ;
+  position: relative;
+  overflow: hidden;
+  width:163px;
+  height:175px;
+  padding: 9px 0px 0px 9px;
+}
+
+div#youtube_video_list ul {
+	top: 0;
+	list-style: none;	
+	padding: 0;
+	margin: 0;
+}
+/*ssdfsdf*/
+
+div#side_list {
+	width: 253px;
+	background-color: #fff;
+}
+
+div#side_list ul {
+	top: 0;
+	list-style: none;	
+	padding: 0;
+	margin: 0;
+}
+
+#side_list ul#tabs {
+	left: 0;
+	z-index: 2;
+	width: 253px;
+}
+
+#side_list ul#tabs li {
+	font-size: 12px;
+	height:50px;
+	padding-top: 2px;
+	background:  url('/images/slider/bigfade.png') bottom left no-repeat;
+	
+	font-family: bread_font,Arial;
+}
+
+#side_list ul#tabs li #title {
+  color: #0F5564;
+  font: 14px/14px bread_font,Arial;
+}
+#side_list ul#tabs li #title .text {
+  color: #0F5564;
+  text-transform:uppercase;
+  font: 14px/16px title_font,Arial;
+}
+#side_list ul#tabs li #title .border {
+  border-right-color: #0F5564;
+  border-right-style: solid;
+  border-right-width: 1px;
+  padding-right: 1px; 
+  color: #0F5564;
+  font: 7px/2px title_font,Arial;
+}
+#side_list ul#tabs li #title .day {
+  color: #0F5564;
+  font: 12px/14px bread_font,Arial;
+}
+#side_list ul#tabs a:hover {
+  /*background: #5FA92A;*/
+  background-color: #000;
+}
+ul#tabit li.rest {
+	
+}
+ul#tabit li h3 {
+  color: #222;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+ul#tabit li.first img {
+	//padding: 5px;
+	border: none;
+	float: top;
+	//margin: 10px 10px 0 0;
+}
+ul#tabit li.rest img {
+	//padding: 5px;
+	border: none;
+	float: right;
+	//margin: 10px 10px 0 0;
+}
+
+ul#tabit li a {
+
+	
+	color: #0F5564;
+	text-decoration: none;	
+	display: block;
+	padding: 6px 56px 6px 6px;
+	font: 14px/2px title_font,Arial;
+
+	height: 86px;
+	outline: none;
+}
+
+ul#tabit li a:hover {
+	text-decoration: underline;
+}
+
+
+ul#tabit li a.current:hover {
+	text-decoration: none;
+	cursor: default;
+}
+
+.gradientV{
+/* thanks to http://blog.fakedarren.com/2010/01/cross-browser-css-gradients/ */
+/* and http://www.puremango.co.uk/2010/04/css-gradient/ */
+    /* fallback (Opera) */
+    background: #fff
+    /* Mozilla: */
+    background: -moz-linear-gradient(top, #ffffff, #eEeEeE);
+    /* Chrome, Safari:*/
+    background: -webkit-gradient(linear,
+                left top, left bottom, from(#ffffff), to(#eEeEeE));
+    /* MSIE */
+    filter: progid:DXImageTransform.Microsoft.Gradient(
+                StartColorStr='#ffffff', EndColorStr='#aaaaaa', GradientType=0);
+  }
+  .gradientH{
+/* thanks to http://blog.fakedarren.com/2010/01/cross-browser-css-gradients/ */
+ 
+    /* fallback (Opera) */
+    background: #008800;
+    /* Mozilla: */
+    background: -moz-linear-gradient(left, #00FF00, #000000);
+    /* Chrome, Safari:*/
+    background: -webkit-gradient(linear,
+                left top, right top, from(#00FF00), to(#000000));
+    /* MSIE */
+    filter: progid:DXImageTransform.Microsoft.Gradient(
+                StartColorStr='#00FF00', EndColorStr='#000000', GradientType=1);
+  }
+.arbitrary-stops {
+  /* fallback DIY*/
+  
+  /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(linear, top, from(#fff), color-stop(0.95, #1a82f7), to(#2F2727));
+  
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-linear-gradient(top, #efefef 60%,  #ddd 90%, #bbb);
+  
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top, #fff 70%,  #aaa 85%, #666);
+  
+  /* IE 10 */
+  background: -ms-linear-gradient(top, #fff 70%,  #aaa 85%, #666);
+  
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #fff 70%,  #aaa 85%, #666);
 }

@@ -1,23 +1,26 @@
 <table>
-  <tr>
+  <tr width='400' >
     <td>
       <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-        <p><%= f.label :email, "Sähköposti" %><br />
-        <%= f.text_field :email %></p>
+        <p align="right" ><%= f.label :email, "Email" %>
+        <%= f.text_field :email %>
+        <br>
 
-        <p><%= f.label :password, "Salasana" %><br />
-        <%= f.password_field :password %></p>
-
+        <%= f.label :password, "Salasana" %>
+         <%= f.password_field :password %>
+        <br>
         <% if devise_mapping.rememberable? -%>
-          <p><%= f.check_box :remember_me %> <%= f.label :remember_me, "Muista minut" %></p>
+         <%= f.check_box :remember_me %> <%= f.label :remember_me, "Muista minut" %>
         <% end -%>
-
-        <%= f.submit "Kirjaudu", :class => 'button_s' %></p>
+        <%if !user_signed_in?%>
+          <%= f.submit "Kirjaudu" %>
+        <%else%>
+          <a href=<%=destroy_user_session_path%>>
+              <input type="button" value="Kirjaudu ulos" /></a>
+        <% end -%>
+        
       <% end %>
-
-      <%= render :partial => "devise/shared/links" %>
-    </td>
-    <td>
-    <%= embed_rpx user_session_url %>
+      <br></p>
+      <%-#= render :partial => "devise/shared/links" %>
     </td>
     </table>

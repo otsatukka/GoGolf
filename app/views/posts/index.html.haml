@@ -1,6 +1,85 @@
-= form_tag posts_path, :method => 'get', :id => "posts_search" do
+.widgetcontainer
+	.widgetcontent
+		#generaltitle
+			Blogi 
+			%span.border
+			=@mainpost.user.end_user_name
+			,
+			%span.day=@mainpost.created_at.strftime("%d.%m %Y")
+			%br
+			%span.text
+				=@mainpost.title
+		#post_text
+			%img{:src => find_img_medium(@mainpost),:class => "right", :height => "260", :width => "350"}
+		 
+		#post_text
+			= truncate_html(@mainpost.body.last(@mainpost.body.size),:length => @mainpost.body.size).html_safe 
+		%table
+			%tr
+				%td
+					= link_to @mainpost.user.end_user_name, @mainpost.user
+				%td
+					= time_ago_in_words(@mainpost.created_at)
+					sitten
+				%td
+					Katsottu:
+					= @mainpost.unique_impression_count
+					
+		%br/
+					  
+		= link_to_if(can?(:edit, Post), 'Muokkaa', edit_post_path(@mainpost)) {}
+		= link_to 'Takaisin', posts_path
+		#comments_count
+			= @mainpost.comments.count
+			kommenttia
+		#comments
+			- if @comments.count > 0
+				= render :partial => "comments/comment", :collection => @comments, :parent => @mainpost
+		#new_comment
+			- form_for [@mainpost, Comment.new()], :remote => true, :id => "new_comment" do |f|
+				.field
+					= f.label :title, "Otsikko"
+					%br/
+					= f.text_field :title
+				.field
+					= f.label :body, "Kommentti"
+					%br/
+					= f.text_area :body, :size => "30x10"
+				.actions
+					=f.submit "Lähetä"
+          
+- content_for :sidebar do 
+	.widgetcontainer
+				
+		.widgetcontent
+			#side_list
+				%ul#tabs
+					- @posts.each do |post|
+						%a{:href => posts_path(:id=>post.id,:user_id=>@user.id)}
+							
+							%img{:src => find_img_medium(post),:class => "right", :height => "50", :width => "50"}
+						
+							%li
+								
+								#generaltitle
+									%span.sidebartext
+										=truncate_html(post.title,:length => 30).html_safe 
+								#generaltitle
+									=post.user.end_user_name
+									%span.border
+									%span.day=post.created_at.strftime("%d.%m %Y")	
+			.myspecialtransparenttext
+				hei
+				=will_paginate(@posts, :inner_window => 1, :outer_window => -1,:previous_label=>"", :next_label=>">>")
 
-  #posts
-    = render :partial => 'posts'
-
-%br/
+	#emptyspace
+	.widgetcontainer
+		.widgetsidebartitle
+			Etsi viesteistä
+		.widgetcontent
+			
+			= form_tag posts_path,  :method => :get do
+				= text_field_tag :search, params[:search]
+				= submit_tag "Etsi", :type => "submit"
+	#emptyspace
+									

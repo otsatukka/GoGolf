@@ -3,8 +3,11 @@
 /* BASIC */
 body {
   /*background-color: #776235;*/
-  background: #5c8b25 url(/images/layout/bg.jpg);
-  background-repeat: repeat-x;
+  background: #5c8b25 url(/images/layout/Nurmi.jpg);
+  //background-color: #006600;
+  //background-repeat: repeat-x;
+  //background-attachment: fixed;
+ 
 }
 
 /* TYPOGRAPHY */
@@ -19,6 +22,62 @@ a:hover { color: #ccc; }
 }
 
 /* HEADER STUFF */
+
+@font-face {
+	
+	font-family: cool_font;
+	src: url('CelesteSansitalic.woff') format("woff");
+
+}
+@font-face {
+	
+	font-family: specialtitle_font;
+	src: url('CelesteSansitalic-Bold.woff') format("woff");
+
+}
+@font-face {
+	
+	font-family: bread_font;
+	src: url('CelesteSansWeb.woff') format("woff");
+
+}
+@font-face {
+	
+	font-family: submenu_font;
+	src: url('CelesteSansWeb-Bold.woff') format("woff");
+
+}
+
+@font-face {
+	
+	font-family: sidebartitle_font;
+	src: url('CelesteSansScWeb-Boldita.woff') format("woff");
+
+}
+p.mygolfinvite { 
+  //position: absolute;
+  font: 28px/45px bread_font, Sans-Serif;
+  color: #0F5564;
+  line-height:30px;
+  top: 20px;
+  
+}
+p.mygolfbenefits { 
+  //position: absolute;
+  font: 13px/45px bread_font, Helvetica, Sans-Serif;
+  color: #000000;
+  line-height:18px;
+  top: 20px;
+  
+}
+
+#screams
+{
+ font: 13px/45px bread_font,'Andada', Helvetica, Sans-Serif;
+  color: #000000;
+  line-height:18px;
+  top: 20px;
+  }
 .header1 {
   text-shadow: #000 2px -2px 2px;
   color: #3D9200;
@@ -26,31 +85,151 @@ a:hover { color: #ccc; }
 #header {
   padding:5px 0 0 0;
 }
-#banner_top, #banner_top img{
+
+#banner_top {
+  position: relative;
   padding:0px;
   line-height:0;
   margin: 0px;
-  font-size:0;
-}
-#banner_top1 {
-  background: #5c8b25 url(/images/layout/top_left.jpg);
-  height:65px;
+  //font-size:0;
 }
 
+#banner_top .buttons {
+   position: absolute;
+   left:10px;
+   top: 225px;
+   width: 75%; /* for IE 6 */
+}
+
+#banner_top .createprofile {
+   position: absolute;
+   top: -50px;
+   width: 100%; /* for IE 6 */
+}
+#banner_top .sidebar_a a{
+   position: absolute;
+   color:white;
+   font: 18px/18px sidebartitle_font, Helvetica, Sans-Serif;
+   top: -18px;
+   left:2px;
+   width: 100%; /* for IE 6 */
+}
+#banner_top .register {
+   position: absolute;
+   //width: 40%;
+   top: 170px;
+   left: 728px;
+   font: 18px/18px bread_font, Helvetica, Sans-Serif;
+   
+   //float:right;
+   width: 25%; /* for IE 6 */
+}
+#banner_top .buttonkoti {
+   position: absolute;
+   
+   top: 110px;
+   left:0px;
+   width: 100%; /* for IE 6 */
+}
+#banner_top .buttontv {
+   position: absolute;
+   
+   top: 110px;
+   left:146px;
+   width: 100%; /* for IE 6 */
+}
+#banner_top .buttondeal {
+   position: absolute;
+   
+   top: 110px;
+   left:292px;
+   width: 100%; /* for IE 6 */
+}
+#banner_top .buttonguide {
+   position: absolute;
+   
+   top: 110px;
+   left:437px;
+   width: 100%; /* for IE 6 */
+}
+#banner_top .buttonmygolf {
+   position: absolute;
+   
+   top: 110px;
+   left:584px;
+   width: 100%; /* for IE 6 */
+}
+#banner_top .image {
+   position: absolute;
+   width: 100%; /* for IE 6 */
+}
+#banner_top h2.header{ 
+  position: absolute;
+  text-shadow: #000 2px 4px 8px;
+  top: 35px;
+  left: 35px;
+  width: 100%; 
+}
+#banner_top h2.first{ 
+  position: absolute;
+  top: 33px;
+  left: 320px;
+  width: 100%; 
+}
+
+#banner_top h2 span {
+   color: white;
+   font: 28px/45px cool_font, Helvetica, Sans-Serif;
+   letter-spacing: 1px;
+   
+   //background: rgb(0, 0, 0); /* fallback color */
+   //background: rgba(0, 0, 0, 0.7);
+   padding: 10px;position: absolute;
+}
+
+	
+
+
+
+#banner_top h2 span.header {
+   color: black;
+   font: 32px/55px cool_font,Helvetica, Sans-Serif;
+   letter-spacing: 1px;
+   //background: rgb(0, 0, 0); /* fallback color */
+   //background: rgba(0, 0, 0, 0.7);
+    padding:5px 10px 10px 36px;position: absolute;
+}
+
+#banner_top h2 span.header2 {
+   color: black;
+   font-size: 78px;
+   font-family:  cool_font,Helvetica, Sans-Serif;
+   letter-spacing: 1px;
+   //background: rgb(0, 0, 0); /* fallback color */
+   //background: rgba(0, 0, 0, 0.7);
+   padding: 5px;position: absolute;
+}
+
+
+
+
+#emptyspace {
+  height:7px;  
+}
 /* NAVIGATION */
 #navigation {
-  background: #5c8b25 url(/images/layout/bottom_left.jpg);
-  height:51px;  
+  //background: #5c8b25 url(/images/layout/bottom_left.jpg);
+  height:21px;  
 }
 #navigation ul {
-  padding:10px 0px 0px 20px;
+  padding:1px 0px 0px 1px;
 }
 
 .nav {
   /*border-bottom: 2px #000 solid;*/
-  height: 32px;
+  height: 21px;
   /*background-color: #3D9200;*/
-  background-color: #75993c;
+  background-color: #FFFFFF;
   margin: 0px 0px 0px 0px;
   
 }
@@ -66,13 +245,18 @@ a:hover { color: #ccc; }
   padding: 0px 10px;
   list-style: none;
   float: left;
-  color: #fff;
+  color: #000000;
 }
 .nav li p, .nav li a {
   margin: 0;
-  font-size: 17px;
+  padding-right:20px;
+  border-color:blue;
+  border-width:2px;
+  border-right-style:solid;
+  
+  font: 13px/18px Sans-Serif;
   display: block;
-  color: #FFF;
+  color: #0000d0;
   text-align: center;
   text-decoration: none;
   font-weight:bold
@@ -80,7 +264,8 @@ a:hover { color: #ccc; }
 }
 .nav li:hover {
   /*background: #5FA92A;*/
-  background-color: #91c757;
+   
+  background-color: #fff;
   /*background: #000;*/
 }
 
@@ -159,10 +344,21 @@ label {
   padding: 5px;
   vertical-align:top;
 }
-#post_text p {
-  font-size: 14px;
-  line-height:1.5;
+#post_text {
+  padding:3px;
+  //text-align: justify;
+  color:rgb(64,46,46);
+  font: 16px bread_font,Sans-Serif;
+  line-height: 1.5em;
   
+}
+#post_text p{
+  margin-top:0px;
+  
+  
+}
+#post_text img{
+  margin-left:4px;
 }
 #new_comment{
   display: block;
@@ -182,29 +378,34 @@ label {
 /* BUTTONS */
 .button_s {
   font-size: 0.8em;
-  background-color: #75993c; 
+  background-color: #0F5564; 
 }
 .button {
+  //font: 13px/18px cool_font, Sans-Serif;
   font-size: 1em;
+  background-color: #0F5564; 
 }
 .sign_in_button {
   font-size: 0.8em;
 }
 .selected {
-  font-size: 17px;
+  //font-size: 17px;
+  padding-right:20px;
+  border-color:blue;
+   border-width:2px;
+   border-right-style:solid;
+  color: black;
+  font: 13px/18px cool_font,Sans-Serif,;
   /*background-color: #5FA92A;*/
   /*background-color: #000;*/
-  background-color: #91c757;
+  //background-color: #000057;
 }
 
 .content_all {
-  background: #5c8b25 url(/images/layout/content_bg.jpg);
+  //background: #5c8b25 url(/images/layout/content_bg.jpg);
   margin:0;
 }
 
-#main {
-   padding: 2px;
-}
 
 #notice {
 	border: 1px #000 solid;
@@ -226,6 +427,8 @@ label {
   padding-left:5px;
   padding-right:2px;
   margin: 0px;
+  background:  url('/images/slider/fadet.png');// top left no-repeat;
+	
 }
 #recentposts h3 {
   margin : 0;
@@ -269,21 +472,40 @@ label {
   width: 150px;
   line-height:1.5em;;
 }
-
+.myspecialtransparenttext{
+color: rgba(255, 255, 255, 0.0);
+}
 /* SIDEBAR */
-.widgetcontainer		{ border: solid #999; border-width: 1px; background: repeat-x #FFF; -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px; }
+.widgetcontainer		{margin-right:7px;background: white ; border-style:solid; border-width:4px; border-color: #eeeeee;  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
 .widgetcontainer a		{ }
 .widgettitle			{ 
   font-size: 16px;
-  font-weight: bold;
+  font: 16px/18px sidebartitle_font,Sans-Serif;
+  
   /*background-color: #204000; */
-  background-color: #75993c;
-  color: #FFF;  padding: 5px 5px; -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
-.widgettitle a			{ color: #FFF; }
-.widgetcontent { padding: 10px; }
-.widgetcontent_editors_pick { padding: 0px; }
+  background-color: white;
+  background: white url(/images/header.png) top no-repeat;
+  color: #FFF;  
+  padding:4px 4px 4px 8px;
+  }
+.widgetsidebartitle			{ 
+  font-size: 16px;
+  font-weight: bold;
+  font: 16px/18px sidebartitle_font,Sans-Serif;
+  
+  /*background-color: #204000; */
+  background-color: white;
+  background: white url(/images/layout/sidebarheader.png) top no-repeat;
+  color: #FFF;  
+  padding: 4px 4px 4px 8px;
+  }
+.widgettitle a			{   color: #FFF; }
+.widgetsidebartitle a			{ color: #FFF; }
+.widgetcontent { padding: 1px;font-family: bread_font,Sans-Serif; }
+.widgetcontent_adresses { padding: 10px; background-color: white;color:#0F5564;font-family: bread_font,Sans-Serif; }
+.widgetcontent_editors_pick { padding: 0px,20px,0px,0px; }
 .widgetcontent_links_links { padding-bottom: 0px; text-align: center;}
-.widgetcontent_links_links table, .widgetcontent_links_links td { padding-top: 7px; text-align: center;}
+//.widgetcontent_links_links table, .widgetcontent_links_links td { padding-top: 7px; text-align: center;}
 
 .active_s{background:#ddd;padding:27px;display:block;float:left;outline:none;width:200px;}
 
@@ -291,3 +513,270 @@ p.description_content{padding:10px;margin:0px;}
 
 /* FORMTASTIC */
 
+/*subnavnew*/
+
+#cfnavbar{
+margin: 0;
+padding: 0px 0px 0px 3px;
+}
+
+#cfnavbar ul{
+//background: url(media/bg.gif) repeat-x;
+padding: 0;
+margin: 0;
+//float: left;
+font: 12px/18px submenu_font,Verdana;
+}
+
+#cfnavbar ul li{
+display: inline;
+margin: 0; 
+padding: 3px 13px 5px 6px;
+color: red;
+}
+
+
+#cfnavbar ul li a {
+color: black;
+//padding: 3px 13px 5px 6px;
+text-decoration: none;
+//background: url(/images/layout/left_first.jpg) top right no-repeat;
+}
+
+
+.writenewpostplease{
+  color: rgb(15,85,100);
+  font: 23px/23px bread_font,Arial;
+}
+.writenewpostplease .smalltext{
+  color: rgb(0,0,0);
+  font: 13px/13px bread_font,Arial;
+}
+.writenewpostplease a{
+  color: rgb(15,85,100);
+  font: 16px/16px title_font,Arial;
+}
+
+#cfnavbar ul li a#rightcorner{
+padding-right: 10px;
+background: url(media/rightcorner.gif) top right no-repeat;
+}
+
+#cfnavbar ul li a:hover{
+text-decoration: underline;
+}
+
+#cfnavbar:after{ /*Add margin between menu and rest of content in Firefox*/
+content: "."; 
+display: block; 
+height: 0; 
+clear: both; 
+visibility: hidden;
+}
+
+
+
+/*Credits: Dynamic Drive CSS Library */
+/*URL: http://www.dynamicdrive.com/style/ */
+
+a.ovalbutton{
+background: transparent url(images/layout/buttons/oval-gray-left.gif) no-repeat top left;
+display: block;
+float: left;
+font: normal 13px Tahoma; /* Change 13px as desired */
+line-height: 16px; /* This value + 4px + 4px (top and bottom padding of SPAN) must equal height of button background (default is 24px) */
+height: 24px; /* Height of button background height */
+padding-left: 11px; /* Width of left menu image */
+text-decoration: none;
+}
+
+a:link.ovalbutton, a:visited.ovalbutton, a:active.ovalbutton{
+color: #494949; /*button text color*/
+}
+
+a.ovalbutton span{
+background: transparent url(images/layout/buttons/oval-gray-right.gif) no-repeat top right;
+display: block;
+padding: 4px 11px 4px 0; /*Set 11px below to match value of 'padding-left' value above*/
+}
+
+a.ovalbutton:hover{ /* Hover state CSS */
+background-position: bottom left;
+}
+
+a.ovalbutton:hover span{ /* Hover state CSS */
+background-position: bottom right;
+color: black;
+}
+
+.buttonwrapper{ /* Container you can use to surround a CSS button to clear float */
+overflow: hidden; /*See: http://www.quirksmode.org/css/clearing.html */
+width: 100%;
+}
+
+.clear { /* generic container (i.e. div) for floating buttons */
+    overflow: hidden;
+    width: 100%;
+}
+
+a.buttoni {
+    background: transparent url(/images/layout/buttons/bg_button_a.gif) no-repeat scroll top right;
+    color: #444;
+    display: block;
+    float: left;
+    font: normal 12px arial, sans-serif;
+    height: 24px;
+    margin-right: 6px;
+    padding-right: 18px; /* sliding doors padding */
+    text-decoration: none;
+}
+
+a.buttoni span {
+    background: transparent url(/images/layout/buttons/bg_button_span.gif) no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 18px;
+}
+
+a.buttoni:active {
+    background-position: bottom right;
+    color: #000;
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+a.buttoni:active span {
+    background-position: bottom left;
+    padding: 6px 0 4px 18px; /* push text down 1px */
+}
+
+table.sd td{
+    border-right:1px solid white;
+}
+table.sd td.last{
+    border-right:0px solid white;
+}
+table.sd #title {
+  color: #0F5564;
+  font: 12px/12px bread_font,Arial;
+}
+table.sd #title .text {
+  color: #0F5564;
+  text-transform:uppercase;
+  font: 13px/14px title_font,Arial;
+}
+table.sd #title a {
+	text-align: right;
+  color: #0F5564;
+  text-transform:uppercase;
+  font: 13px/14px title_font,Arial;
+}
+table.sd #title .border {
+  border-right-color: #0F5564;
+  border-right-style: solid;
+  border-right-width: 1px;
+  padding-right: 1px; 
+  color: #0F5564;
+  font: 7px/2px title_font,Arial;
+}
+table.sd #title .day {
+  color: #0F5564;
+  font: 12px/14px bread_font,Arial;
+}
+
+table.sd td.kentatleft {
+  width:350px;
+}
+table.sd td.kentatright {
+  width:350px;
+  text-align:top;
+}
+
+
+
+#generaltitle {
+  padding:3px;
+  color: #0F5564;
+  font: 14px/14px bread_font,Arial;
+}
+#generaltitle .text {
+  color: #0F5564;
+  font: 30px/30px title_font,Arial;
+  margin-bottom:10px;
+}
+
+#generaltitle .smalltext {
+  color: #0F5564;
+  font: 20px/20px title_font,Arial;
+  margin-bottom:10px;
+}
+
+
+#generaltitle .sidebartext {
+  color: #0F5564;
+  font: 20px/10px title_font,Arial;
+  margin-bottom:3px;
+}
+#generaltitle .border {
+  border-right-color: #0F5564;
+  border-right-style: solid;
+  border-right-width: 1px;
+  padding-right: 1px; 
+  color: #0F5564;
+  font: 10px/2px title_font,Arial;
+}
+#generaltitle .day {
+  color: #0F5564;
+  font: 12px/14px bread_font,Arial;
+}
+
+#youtube_video{
+  /*background: url(/images/layout/videontausta.png) no-repeat top left ;*/
+  width:637px;
+  height:400px;
+  padding: 20px 30px 10px 30px;
+}
+
+.chatborders 
+{
+border-style:inset;
+border-width:2px;
+}
+.pagination 
+{
+  color: #000;
+  font: 18px/14px title_font,Arial;
+ float:right;
+}
+.pagination a
+{
+color: #0F5564;
+  font: 18px/14px title_font,Arial;
+
+}
+#mikon ul
+{
+
+font: 14px/14px title_font,Arial;
+
+list-style-type:none;
+padding:0px;
+margin:0px;
+}
+#mikon li a
+{
+display: inline;
+color: #0F5564;
+    list-style-type: none;
+    padding-right: 20px;
+}
+#mikon li 
+{
+display: inline;
+color: #000;
+    list-style-type: none;
+    padding-right: 20px;
+}
+	
+.kalle{
+  padding:0px 0px 0px 2px;
+}

@@ -1,5 +1,8 @@
+
 = hidden_field_tag :category, params[:category]
 .widgetcontainer
+  .widgettitle
+    Hae avauksista
   .widgetcontent_links_links
     %table
       %tr
@@ -12,10 +15,13 @@
       %tr
         %td
           - if can? :create, Opening
-            .button_s= link_to 'Kirjoita avaus', new_opening_path
+            %a{:href => new_opening_path} 
+              <input type="button" value="Kirjoita uutinen" />
+           
         %td
           = text_field_tag :search, params[:search]
-          = submit_tag "Etsi", :name => nil, :class => "button_s"
+          = submit_tag "Etsi", :name => nil
+#emptyspace
 - if @openings.count > 0
   .widgetcontainer
     .widgettitle

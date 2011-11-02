@@ -2,17 +2,20 @@
   - if current_user.role?(:super_admin) || current_user.role?(:admin)
     =link_to "Uusi diili", new_deal_path
 .widgetcontainer
+  .widgettitle
+    Huom!
   .widgetcontent
-    %h3
-      Huomio että toimituksen tapa vaihtelee tuotteiden välillä
+    Huomioi että toimituksen tapa vaihtelee tuotteiden välillä
       
-      
+#emptyspace
 .widgetcontainer
+  .widgettitle
+    MESSUDIILI
   .widgetcontent
-    %h3 MESSUDIILI:
+   
     %h4 Osta lippu Thomas Huttonin golftreeneihin! Vain 10 € / h!
 
     %p Treenaa täysin uudella tavalla - ryhmässä! Tarjoamme edullisen mahdollisuuden hioa lyöntiäsi Golf Pron johdolla. Thomas Hutton pitää treenejä juuri sopivasti kauden alkuvaiheessa - Jokaisena toukokuun torstaina klo 18-19 sekä 19-20! Osta oma treenilippusi heti GoGolfin nettikaupasta ja pelaa paremmin jo alkukesällä!
-%br/
+#emptyspace
 = render :partial => "deal", :collection => @deals
-= link_to 'Takaisin', deals_path
+-#= link_to 'Takaisin', deals_path

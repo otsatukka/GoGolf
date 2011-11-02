@@ -22,12 +22,12 @@
           %br/
           %p
             =link_to comment.user.end_user_name, comment.user
-            |
+            
             = time_ago_in_words(comment.created_at)
         %td
         %td
-          -if can? :manage, Comment
-            = link_to 'Delete', [@post, comment], :method => :delete, :class => "delete", :remote => true
+        -#  -if can? :manage, Comment
+        -#    = link_to 'Delete', [@post, comment], :method => :delete, :class => "delete", :remote => true
 
     #replies
       - if comment.replies.count > 0

@@ -25,6 +25,7 @@
         %div
           = check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role)
           = role.name
+          
   = f.semantic_fields_for :spec, @user.spec || Spec.new do |spec|
     = spec.input :birthday, :as => :date, :discard_day => true, :discard_month => true, :start_year => 1997, :end_year => 1920 , :default => { :year => 1997 }, :label => "Syntymävuosi", :hint => "K-15"
     = spec.input :gender, :as => :radio, :collection => ["Mies", "Nainen"], :label => "Sukupuoli"

@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   before_filter :tabify
   
   # must be an admin to create new groups
-  # before_filter :check_admin_auth, :only => [:new, :create]
+  before_filter :check_admin_auth, :only => [:new, :create]
   
   load_and_authorize_resource
   def tabify

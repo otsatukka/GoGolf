@@ -1,18 +1,27 @@
-=render 'links'
-- if logged_in? && current_user.role?(:super_admin) || current_user.role?(:super_admin)
-  = link_to 'Lisää kuvia', imagebanks_path
-%table
-  %tr
-    %th Category name
-    %th
-    %th
-    %th
+.widgetcontainer
+  .widgettitle
+    links
+  .widgetcontent
+    =render 'links'
+#emptyspace
+.widgetcontainer
+  .widgettitle
+    säädä kohdilleen
+  .widgetcontent
+    - if logged_in? && current_user.role?(:super_admin) || current_user.role?(:super_admin)
+      = link_to 'Lisää kuvia', imagebanks_path
+    %table
+      %tr
+        %th Category name
+        %th
+        %th
+        %th
 
-  - @categories.each do |category|
-    %tr
-      %td= category.name
-      %td= link_to 'Show', category
-      %td= link_to 'Edit', edit_category_path(category)
-      %td= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete
+      - @categories.each do |category|
+        %tr
+          %td= category.name
+          %td= link_to 'Show', category
+          %td= link_to 'Edit', edit_category_path(category)
+          %td= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete
 
-%p= link_to 'New Category', new_category_path
+    %p= link_to 'New Category', new_category_path

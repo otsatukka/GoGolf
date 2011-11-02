@@ -6,7 +6,7 @@
       %tr
         %td{:width => 300}
           - if @deal.photo
-            = image_tag find_img_medium_deal(@deal)
+            = image_tag find_img_medium_deal(@deal),:width=>"200"
         %td{:class => "link2"}
           = @deal.desc
     %table

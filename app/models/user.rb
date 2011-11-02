@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :replies
   has_many :orders
+  has_many :screams
   
   validates_uniqueness_of :name
   
@@ -108,9 +109,9 @@ class User < ActiveRecord::Base
     achievements << achievement.new
   end
 
-  def awarded?(achievement)
-    achievements.count(:conditions => { :type => achievement }) > 0
-  end
+  #def awarded?(achievement)
+   # achievements.count(:conditions => { :type => achievement }) > 0
+ # end
   
   # EVENT
   ##################################################################

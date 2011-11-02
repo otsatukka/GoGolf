@@ -1,86 +1,295 @@
-.widgetcontainer{:class => "ui-corner-all"}
-  .widgettitle{:class => "ui-corner-all"}
-    Toimituksen valinta
-  .widgetcontent_editors_pick{:class => "ui-corner-all"}
-    #feature_list
-      %ul#tabs
-        - @editors_picks.each do |post|
-          %li
-            %a{:href => "javascript:;"}
-              %h3= post.title
-              %span
-                = post.user.end_user_name
+-#= render 'mygolf'
+-#emptyspace
+.widgetcontainer
+	#gamers_list
+		%ul#tabit
+			%li.first
+  
+				#title
+					%span.text
+						Mihin pyrimme
+  
+				
+				%img{:src => "/images/missing.jpg", :height => "94", :width => "200",:align=>"right"} 
+				
+				%span
+					Helpottamaan golfaamista
+					%br
+					Madaltamaan kynnystä aloittamiselle
+					%br
+					Murtamaan käsityksiä
+			%li.first
+  
+				#title
+					%span.text
+						Mitä olemme 
+  
+				
+				%img{:src => "/images/missing.jpg", :height => "94", :width => "200",:align=>"right"} 
+				
+				%span
+					Helpottamaan golfaamista
+					%br
+					Madaltamaan kynnystä aloittamiselle
+					%br
+					Murtamaan käsityksiä
+			%li.first
+  
+				#title
+					%span.text
+						Mitä teemme
+  
+				%img{:src => "/images/missing.jpg", :height => "94", :width => "200",:align=>"right"} 
+				%span
+					Helpottamaan golfaamista
+					%br
+					Madaltamaan kynnystä aloittamiselle
+					%br
+					Murtamaan käsityksiä
+				
+			
+
+
+#emptyspace
+.widgetcontainer
+	.widgettitle
+		UUSIN VIDEO
+	.widgetcontent
+		-@videos.each_with_index do |v,index|
+			-if @vimeo[index] == true
+				%iframe{:src=>"http://player.vimeo.com/video/#{@videonumber[index]}", :width=>"697", :height=>"400", :autoplay=>"1"}
+				-#<iframe src="http://player.vimeo.com/video/30484462?title=0&amp;byline=0&amp;portrait=0" width="697" height="455" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>
+			-else
+				%object{:width =>"697", :height =>"400"}
+					%embed{:src => "http://www.youtube.com/v/#{@videonumber[index]}", :type => "application/x-shockwave-flash", :wmode => "transparent", :width => "697", :height => "400"}  
+ 
+			#gamers_list
+				%ul#tabit
+					%li.first
           
-      %ul#output
-        - @editors_picks.each do |post|
-          %li
-            %img{:src => find_img_medium(post), :class => "align-right", :minheight => "240", :width => "435"}
-              %a{:href => opening_url(post)}Lue lisää
+						#title
+							%span.text
+								=v.name
+          
+						#title
+							=v.user.end_user_name
+							%span.border
+							%span.day=v.created_at.strftime("%d.%m %Y")
+						%span
+							=v.content
+							
+-@recent_posts.each_with_index do |v,index|
+	<input type="hidden" id="numero#{index+1}" value="#{v.title}" />
+#emptyspace
+.widgetcontainer
+	.widgettitle
+		UUSIMMAT BLOGIT 
+		
+	.widgetcontent
+		#mikon
+		%ul#slider
+			-@recent_posts.each_with_index do |v,index|
+				%li
+					%a{:href => posts_path(:user_id => v.user.id,:id=>v.id) }
+						#generaltitle
+							Blogi 
+							%span.border
+							%span.day=v.created_at.strftime("%d.%m %Y")
+							%br
+							%span.text
+								-if v.user.end_user_name == "GoGolf johtaja"
+									GOGOLF -
+								-if v.user.end_user_name == "Hanni"
+									GOGOLF -
+								-if v.user.end_user_name == "MIkko P"
+									NIKKE -
+								=v.title
+							
+					#post_text
+						%img{:src => find_img_medium(v),:class => "right", :height => "260", :width => "350"}
+						
+					
+					#post_text
+						= truncate_html(v.body.last(v.body.size),:length => v.body.size).html_safe 
+					%table
+						%tr
+							%td
+								= link_to v.user.end_user_name, v.user
+							%td
+								= time_ago_in_words(v.created_at)
+								sitten
+							%td
+								Katsottu:	
+								= v.unique_impression_count
+								
+-content_for :sidebar do
+	.widgetcontainer
+		.widgetsidebartitle
+			GOGOLF SUOSITTAA
+		.widgetcontent
+			#side_list
+				%ul#tabs
+					%li
+						%a{:href=> post_url(@dealssit.first)}
+				
+							= @dealssit.first.title
+			
+-#@videos.each_with_index do |v,index|
+-#	<input type="hidden" id="numero#{index+1}" name="age" value="#{v.name}" />
 
-    %ul#description1
-      - @editors_picks.each do |post|
-        %li
-          %span
-            = truncate_html(post.body).html_safe
-= link_to image_tag('/images/peltomaki2.gif', :alt => "Peltomäki Golf", :class => "padding_left"), 'http://www.peltomakigolf.fi'
-%br/
-.widgetcontainer{:class => "ui-corner-all"}
-  .widgettitle{:class => "ui-corner-all"}
-    Viikon avaukset
-  .widgetcontent_editors_pick
-    #recentposts
-      %table
-        %table
-          %tr
-            %th{:width => 280}
-              %b Niken avaus
-            %th
-              %b Vieraskirjoittaja
-      %table
-        %tr
-          %td{:width => 280}
-            - if @uusin_nikke_avaus.first != nil
-              %table
-                %tr
-                  %td{:rowspan => "4"}
-                    = image_tag find_img_thumb_user(@uusin_nikke_avaus.first.user)
-                %tr
-                  %th
-                    %h3= link_to @uusin_nikke_avaus.first.title, @uusin_nikke_avaus.first
-                %tr
-                  %td
-                    .post_excerpt_body
-                      = truncate_html(@uusin_nikke_avaus.first.body).html_safe
-                %tr
-                  %td
-                    - if @uusin_nikke_avaus.first.user != nil
-                      = link_to @uusin_nikke_avaus.first.user.end_user_name, @uusin_nikke_avaus.first.user
-                      = time_ago_in_words(@uusin_nikke_avaus.first.created_at)
-                      sitten
-                      %hr/
-          %td
-            - if @uusin_vieras_avaus.first != nil
-              %table
-                %tr
-                  %td{:rowspan => "4"}
-                    = image_tag find_img_thumb_user(@uusin_vieras_avaus.first.user)
-                %tr
-                  %th
-                    %h3= link_to @uusin_vieras_avaus.first.title, @uusin_vieras_avaus.first
-                %tr
-                  %td
-                    .post_excerpt_body
-                      = truncate_html(@uusin_vieras_avaus.first.body).html_safe
-                %tr
-                  %td
-                    - if @uusin_vieras_avaus.first.user != nil
-                      = link_to @uusin_vieras_avaus.first.user.end_user_name, @uusin_vieras_avaus.first.user
-                      = time_ago_in_words(@uusin_vieras_avaus.first.created_at)
-                      sitten
-                      %hr/
-%br/
 
-= render :partial => 'news'
-= render :partial => 'openings'
-= image_tag('/images/banner-chair.gif', :alt => "Casada-hierontatuoli", :class => "padding_left")
-= render :partial => 'links'
+-#           
+	#emptyspace
+	.widgetcontainer
+	.widgettitle
+	Toimituksen valinta
+	.widgetcontent
+	#feature_list
+	%ul#tabs
+	- @editors_picks_opening.each do |post|
+	%li
+	%a{:href => "javascript:;"}
+	#title
+	%span.text AVAUS
+	%span.border    
+	
+	= post.user.end_user_name
+	%span.day= post.created_at.strftime("%d.%m %Y")
+	%span
+	    
+	   
+	= truncate_html(post.body,:length => 200).html_safe 
+	- @editors_picks_post.each do |post|
+	%li
+	%a{:href => "javascript:;"}
+	#title
+	%span.text KIRJOITUS
+	%span.border    
+	
+	= post.user.end_user_name
+	%span.day= post.created_at.strftime("%d.%m %Y")
+	%span
+	    
+	   
+	= truncate_html(post.body,:length => 200).html_safe 
+	                
+	          
+	%ul#output
+	- @editors_picks_post.each do |post|
+	%li
+	%img{:src => find_img_medium(post), :class => "align-right",:height => "390", :width => "420"}
+	%a{:href => posts_url(post)} Lue lisää
+
+
+
+
+-#
+	#emptyspace
+	.widgetcontainer
+	.widgettitle
+	Pelaajilta
+	.widgetcontent 
+	%img{:src => find_img_medium(@editors_picks_post.first),:height => "260", :width => "697"}         
+	#gamers_list
+	%ul#tabit
+	%li.first
+	  
+	#title
+	%span.text
+	=@editors_picks_post.first.title
+	  
+	#title
+	=@editors_picks_post.first.user.end_user_name
+	%span.border
+	%span.day=@editors_picks_post.first.created_at.strftime("%d.%m %Y")
+	%span
+	= truncate_html(@editors_picks_post.first.body,:length => 250).html_safe 
+	- @editors_picks_post.each do |post|
+	%li.rest
+	%img{:src => find_img_medium(post),:height => "110", :width => "180"}
+	#title
+	%span.text
+	=post.title
+	  
+	#title
+	=post.user.end_user_name
+	%span.border
+	%span.day=post.created_at.strftime("%d.%m %Y")
+	%span
+	= truncate_html(post.body,:length => 250).html_safe
+	  
+	        
+        
+	<div id="wrapper">
+		
+	<img src="images/missing.jpg" alt="moving boxes" />
+	
+	<div id="slider">    
+	
+	<img class="scrollButtons left" src="images/leftarrow.png">
+	
+	<div style="overflow: hidden;" class="scroll">
+	
+	<div class="scrollContainer">
+	
+	<div class="panel" id="panel_1">
+	<div class="inside">
+	<img src="images/missing.jpg" alt="picture" />
+	<h2>News Heading</h2>
+	<p>A very shot exerpt goes here... <a href="http://flickr.com/photos/justbcuz/112479862/">more link</a></p>
+	</div>
+	</div>
+	
+	<div class="panel" id="panel_2">
+	<div class="inside">
+	<img src="images/missing.jpg" alt="picture" />
+	<h2>News Heading</h2>
+	<p>A very shot exerpt goes here... <a href="http://flickr.com/photos/joshuacraig/2698975899/">more link</a></p>
+	</div>
+	</div>
+	
+	<div class="panel" id="panel_3">
+	<div class="inside">
+	<img src="images/missing.jpg" alt="picture" />
+	<h2>News Heading</h2>
+	<p>A very shot exerpt goes here... <a href="http://flickr.com/photos/ruudvanleeuwen/468309897/">more link</a></p>
+	</div>
+	</div>
+	
+	<div class="panel" id="panel_4">
+	<div class="inside">
+	<img src="images/missing.jpg" alt="picture" />
+	<h2>News Heading</h2>
+	<p>A very shot exerpt goes here... <a href="http://flickr.com/photos/emikohime/294092478/">more link</a></p>
+	</div>
+	</div>
+	
+	<div class="panel" id="panel_5">
+	<div class="inside">
+	<img src="images/missing.jpg" alt="picture" />
+	<h2>News Heading</h2>
+	<p>A very shot exerpt goes here... <a href="http://flickr.com/photos/fensterbme/499006584/">more link</a></p>
+	</div>
+	</div>
+	
+	</div>
+	
+	<div id="left-shadow"></div>
+	<div id="right-shadow"></div>
+	
+	</div>
+	
+	<img class="scrollButtons right" src="images/rightarrow.png">
+	
+	</div>
+	    
+	</div>
+	   
+	  
+	
+	
+	
+	-##emptyspace
+	-#= render :partial => 'golfguide'
+	
+	-#emptyspace

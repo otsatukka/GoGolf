@@ -3,6 +3,7 @@ class DealsController < ApplicationController
   load_and_authorize_resource
   def tabify
     @active_tab = "godeal"
+    @title = "Diilit"
   end
   
   def index

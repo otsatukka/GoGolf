@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   
   def tabify
     @active_tab = "godeal"
+    @title = "Ostokset"
   end
   
   def index

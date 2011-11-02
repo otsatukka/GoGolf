@@ -57,6 +57,10 @@ GEM
       rpx_now (>= 0.6.23)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    event_calendar (0.0.2)
+      activesupport
+      haml
+      markaby
     excon (0.5.6)
     fog (0.5.3)
       builder
@@ -76,9 +80,9 @@ GEM
     highline (1.6.1)
     hpricot (0.8.3)
     i18n (0.5.0)
-    jquery-rails (0.2.7)
-      rails (~> 3.0)
-      thor (~> 0.14.4)
+    jquery-rails (1.0.16)
+      railties (~> 3.0)
+      thor (~> 0.14)
     json (1.5.1)
     json_pure (1.5.1)
     mail (2.2.15)
@@ -86,6 +90,8 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    markaby (0.7.1)
+      builder (>= 2.0.0)
     mime-types (1.16)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -151,11 +157,12 @@ DEPENDENCIES
   ckeditor (= 3.5.0)
   devise (= 1.1.6)
   devise_rpx_connectable (= 0.2.2)
+  event_calendar
   fog
   formtastic (= 1.2.3)
   haml (= 3.0.25)
   hpricot (= 0.8.3)
-  jquery-rails (= 0.2.7)
+  jquery-rails (>= 1.0.1.2)
   paperclip (= 2.3.8)
   rails (= 3.0.4)
   rails3-jquery-autocomplete (= 0.6.2)

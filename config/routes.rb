@@ -1,25 +1,35 @@
 Gogolfrails::Application.routes.draw do
     
+  resources :screams
+
+  resources :videos
+  resources :shouts
+  resources :bogey_counters
+
   resources :payment_notifications
 
   resources :deals
   resources :orders, :only => [:create, :destroy, :index, :show]
 
     #resources :groups
-    resources :courses
+    resources :courses do
+    	resources :course_datas
+    	resources :bogey_counters
+    end
     resources :categories
     resources :imagebanks
     
     scope "/admin" do
-      
       match 'dashboard/index'
       match 'dashboard/posts'
       match 'dashboard/users'
       match 'dashboard/courses'
       match 'dashboard/links'
       match 'dashboard/openings'
+      match 'dashboard/deals'
+      match 'dashboard/videos'
     end
-    
+    match "refreshable" => "site#refreshable"
     resources :links do
       member do
         post :vote_up
@@ -37,6 +47,7 @@ Gogolfrails::Application.routes.draw do
     resources :users do
         get :autocomplete_course_name, :on => :collection
       resources :rounds
+      resources :events
       member do
         get "remove_account"
       end
@@ -87,6 +98,7 @@ Gogolfrails::Application.routes.draw do
     get "site/help"
     get "site/topic"
     get "site/guide"
+    get "site/goproduct"
     get "site/yleiset_ehdot"
     get "site/verkkokaupan_ehdot"
     get "site/notuser"

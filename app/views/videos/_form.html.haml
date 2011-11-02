@@ -1,0 +1,34 @@
+
+<button onclick="gettheaddress()">Lataa kuvan osoite</button>
+		
+:javascript
+	function callme(data)
+	{
+		document.getElementById('video_thumbnail_address').value= data;//var txt=document.getElementById("myDiv")
+		//txt.innerHTML=data;
+	}
+	function gettheaddress()
+	{
+		try
+		{
+			processURL(document.getElementById('video_video_id').value,callme); 	
+		}
+		catch(er)
+		{
+			alert(er)
+		}
+		
+	}
+= semantic_form_for @video,  :html => { :multipart => true}do |f|
+	= f.inputs do
+		= f.input :name, :label => 'Nimi'
+		= f.input :video_id ,:label => 'Videon osoite / id'
+		= f.input :thumbnail_address,:onclick=>'gettheaddress()', :label => 'pikkukuvan osoite'
+		
+		Videon aihe tarkemmin (optional)
+		%br
+		= f.text_area :content, :label => 'sisältö'
+		.actions
+			= f.submit  
+	
+%br

@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   # IMPORTANT
   skip_before_filter :check_username, :only => [:edit, :sign_out, :update]
   load_and_authorize_resource
-  
+  load_resource
   def tabify
     @active_tab = "mygolf"
   end

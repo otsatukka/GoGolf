@@ -1,7 +1,19 @@
 .widgetcontainer
   .widgetcontent
-    %h1= @post.title
-    %hr/
+    #generaltitle
+      Blogi 
+      %span.border
+      =@post.user.end_user_name
+      ,
+      %span.day=@post.created_at.strftime("%d.%m %Y")
+      %br
+      %span.text
+        =@post.title
+    #post_text
+      %img{:src => find_img_medium(@post),:class => "right", :height => "260", :width => "350"}
+     
+    #post_text
+      = truncate_html(@post.body.last(@post.body.size),:length => @post.body.size).html_safe 
     %table
       %tr
         %td
@@ -12,11 +24,6 @@
         %td
           Katsottu:
           = @post.unique_impression_count
-    = image_tag find_img_medium(@post)
-    #post_text
-      :erb
-        <%= @post.body %>
-    %br/
     %br/
     = link_to_if(can?(:edit, Post), 'Muokkaa', edit_post_path(@post)) {}
     = link_to 'Takaisin', posts_path
@@ -38,4 +45,46 @@
           = f.text_area :body, :size => "30x10"
         .actions
           =f.submit "Lähetä"
-        
+- content_for :sidebar do 
+
+  .widgetcontainer
+    .widgettitle
+      UUSIMMAT BLOGIT
+    .widgetcontent
+      #side_list
+        %ul#tabs
+          - @postit.each do |post|
+            %img{:src => find_img_medium(post),:class => "right", :height => "50", :width => "50"}
+                
+            %a{:href => post_url(post)}
+              %li
+                #generaltitle
+                  %span.sidebartext
+                    =truncate_html(post.title,:length => 15).html_safe 
+                #generaltitle
+                  =post.user.end_user_name
+                  %span.border
+                  %span.day=post.created_at.strftime("%d.%m %Y")
+-#emptyspace 
+  .widgetcontainer
+  .widgettitle
+  .myspecialtransparenttext
+  mikko
+  .widgetcontent
+  .writenewpostplease
+  Oletko samaa mieltä kirjoittajan kanssa? Oletko eri mieltä? Kirjoita vastine tai jatka keskutelua tuomalla aiheeseen uusia näkökulmia.
+  Nyt on mahdollisuutesi vaikuttaa aidosti golfmediasi sisältöön - 
+  %br
+  Ole toimittaja!
+  .writenewpostplease
+  =link_to "Kirjoita>>", "/posts/new"
+  #emptyspace 
+
+-#
+  .widgetcontainer
+  .widgetsidebartitle
+  .myspecialtransparenttext
+  mikko
+  #banner_top
+  .sidebar_a
+  =link_to "Pelaajilta pääsivulle >>", posts_path

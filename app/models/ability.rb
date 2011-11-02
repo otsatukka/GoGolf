@@ -6,7 +6,7 @@ class Ability
     
     
       # SUPER ADMIN
-      
+      can :manage, :all
       if user.role? :super_admin
         can :manage, :all
       else
@@ -25,7 +25,6 @@ class Ability
         can :read, Imagebank
         
         can :create, User
-        # can :create, Commen
         # can :update, Comment do |comment|
         #  comment.try(:user) == user || user.role?(:moderator)
       end
@@ -83,6 +82,7 @@ class Ability
         # DEALS
         can :create, Order
         can :manage, Order, :user_id => user.id
+        can :create, Video
         
       end
       
