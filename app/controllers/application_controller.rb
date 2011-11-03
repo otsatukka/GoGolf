@@ -10,14 +10,6 @@ class ApplicationController < ActionController::Base
 		@screams = Scream.all_screams
 	end
 
-	def check_username
-		if user_signed_in?
-			if current_user.rpx_connected? && current_user.name == nil
-				flash[:error] = "Lisää pakolliset tiedot!"
-				redirect_to edit_user_path(current_user)
-			end
-		end
-	end
 
 	rescue_from CanCan::AccessDenied do |exception|
 		flash[:alert] = exception.message
