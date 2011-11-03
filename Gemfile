@@ -35,8 +35,7 @@ gem 'truncate_html'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql'
-# gem 'mysql2', '2.0.0', :require => 'mysql2'
+gem 'mysql2', '2.0.0', :require => 'mysql2'
 
 # Use unicorn as the web server
 # gem 'unicorn'
