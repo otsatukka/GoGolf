@@ -30,14 +30,14 @@ class OrdersController < ApplicationController
     @order.status = 'created'
     @order.deal = Deal.find(params[:deal_id])
     if @order.quantity > @order.deal.quantity
-      @order.errors[:base] << "Määrä on suurempi kuin mitä on jäljellä."
+      @order.errors[:base] << "Maara on suurempi kuin mitä on jaljella."
     end
 
     respond_to do |format|
       if @order.errors[:base].empty? and @order.save
         format.html { redirect_to(user_order_path(current_user, @order), :notice => 'Tilaus luotu.') }
       else
-        format.html { redirect_to(deals_path, :notice => 'Tilasitko enemmän tuotteita mitä on jäljellä?') }
+        format.html { redirect_to(deals_path, :notice => 'Tilasitko enemman tuotteita mita on jaljella?') }
       end
     end
   end

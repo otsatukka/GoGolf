@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   
   def new
     @active_tab = "mygolf"
-    @title = "Rekisteröidy"
+    @title = "Rekisteroidy"
     @user.build_spec
     respond_to do |format|  
       format.xml  { render :xml => @user }
@@ -103,7 +103,7 @@ class UsersController < ApplicationController
  
     respond_to do |format|
       if @user.errors[:base].empty? and @user.update_attributes(params[:user])
-        flash[:notice] = "Profiili päivitetty!"
+        flash[:notice] = "Profiili paivitetty!"
         format.json { render :json => @user.to_json, :status => 200 }
         format.html { render :action => :edit }
       else
@@ -137,7 +137,7 @@ class UsersController < ApplicationController
     @current_user = current_user
   end
   def set_title
-    @title = 'Käyttäjät'
+    @title = 'Kayttajat'
   end
   
 end
