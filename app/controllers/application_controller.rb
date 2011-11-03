@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 	protect_from_forgery
-	#before_filter :check_username
+	before_filter :check_username
 	before_filter :top_lists
 	def top_lists
 		@top5_posts_of_week = Post.order("created_at DESC").find_all_by_id(Impression.top5("Post", (Time.now - 9.day), Time.now))
