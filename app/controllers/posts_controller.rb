@@ -28,7 +28,7 @@ class PostsController < ApplicationController
 		@categories = Category.all
 		@categories.sort! { |a,b| a.name <=> b.name }
 		#@posts = Post.search(params[:search]).category(params[:category]).order("created_at DESC").paginate(:per_page => 2, :page => params[:page])
-		@user = User.find_by_id("3")
+		@user = User.find_by_id("1")
 		if params[:user_id]
 			@user = User.find_by_id(params[:user_id] )
 

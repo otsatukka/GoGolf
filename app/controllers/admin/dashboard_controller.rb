@@ -1,6 +1,6 @@
 class Admin::DashboardController < ApplicationController
   before_filter :tabify
-  
+  authorize_resource
   def tabify
     @active_tab = "admin"
   end

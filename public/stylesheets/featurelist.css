@@ -53,7 +53,7 @@ ul#tabs li h3 {
 
 ul#tabs li #title {
   color: #0F5564;
-  font: 14px/14px bread_font,Arial;
+  font: 14px/14px bread_font,'Cantarell',Arial;
 }
 ul#tabs li #title .text {
   color: #0F5564;
@@ -69,7 +69,7 @@ ul#tabs li #title .border {
 }
 ul#tabs li #title .day {
   color: #0F5564;
-  font: 12px/14px bread_font,Arial;
+  font: 12px/14px bread_font,'Cantarell',Arial;
 }
 
 ul#tabs li img {
@@ -187,12 +187,12 @@ ul#tabit li {
 	padding-top: 2px;
 	background:  url('/images/slider/bigfade.png') bottom left no-repeat;
 	
-	font-family: bread_font,Arial;
+	font-family: bread_font,'Cantarell',Arial;
 }
 
 ul#tabit li #title {
   color: #0F5564;
-  font: 14px/14px bread_font,Arial;
+  font: 14px/14px bread_font,'Cantarell',Arial;
 }
 ul#tabit li #title .text {
   color: #0F5564;
@@ -209,7 +209,7 @@ ul#tabit li #title .border {
 }
 ul#tabit li #title .day {
   color: #0F5564;
-  font: 12px/14px bread_font,Arial;
+  font: 12px/14px bread_font,'Cantarell',Arial;
 }
 
 ul#tabit li.rest {
@@ -313,12 +313,12 @@ ul#kg_tab li {
 	padding-top: 2px;
 	background:  url('/images/slider/bigfade.png') bottom left no-repeat;
 	
-	font-family: bread_font,Arial;
+	font-family: bread_font,'Cantarell',Arial;
 }
 
 ul#kg_tab li #title {
   color: #0F5564;
-  font: 12px/12px bread_font,Arial;
+  font: 12px/12px bread_font,'Cantarell',Arial;
 }
 ul#kg_tab li #title .text {
   color: #0F5564;
@@ -335,7 +335,7 @@ ul#kg_tab li #title .border {
 }
 ul#kg_tab li #title .day {
   color: #0F5564;
-  font: 12px/14px bread_font,Arial;
+  font: 12px/14px bread_font,'Cantarell',Arial;
 }
 
 ul#kg_tab li.rest {
@@ -479,12 +479,12 @@ div#side_list ul {
 	padding-top: 2px;
 	background:  url('/images/slider/bigfade.png') bottom left no-repeat;
 	
-	font-family: bread_font,Arial;
+	font-family: bread_font,'Cantarell',Arial;
 }
 
 #side_list ul#tabs li #title {
   color: #0F5564;
-  font: 14px/14px bread_font,Arial;
+  font: 14px/14px bread_font,'Cantarell',Arial;
 }
 #side_list ul#tabs li #title .text {
   color: #0F5564;
@@ -501,7 +501,7 @@ div#side_list ul {
 }
 #side_list ul#tabs li #title .day {
   color: #0F5564;
-  font: 12px/14px bread_font,Arial;
+  font: 12px/14px bread_font,'Cantarell',Arial;
 }
 #side_list ul#tabs a:hover {
   /*background: #5FA92A;*/

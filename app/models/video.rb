@@ -1,8 +1,10 @@
-
 class Video < ActiveRecord::Base
   validates_presence_of         :name
   validates_presence_of         :video_id
   belongs_to :user
+  
+  has_many :comments, :as => :commentable, :dependent => :destroy  
+  accepts_nested_attributes_for :comments
   
   def self.search(search)
     if search

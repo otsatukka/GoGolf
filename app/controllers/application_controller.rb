@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 		@top5_posts_of_week = Post.order("created_at DESC").find_all_by_id(Impression.top5("Post", (Time.now - 9.day), Time.now))
 		@top5_openings_of_week = Opening.order("created_at DESC").find_all_by_id(Impression.top5("Opening", (Time.now - 7.day), Time.now))
 		@top5_links = Link.find_all_by_id(Vote.top5("Link", Time.now - 7.day, Time.now))
-		@dealssit = Post.category(4)
+		@dealssit = Post.category(1)
 		@screams = Scream.all_screams
 	end
 

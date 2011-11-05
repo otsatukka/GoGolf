@@ -2,7 +2,14 @@ Gogolfrails::Application.routes.draw do
     
   resources :screams
 
-  resources :videos
+  resources :videos do
+      resources :comments, :only => [:create, :destroy] do
+        member do
+          post :vote_up
+        end
+        resources :replies, :only => [:create, :destroy]
+      end
+    end
   resources :shouts
   resources :bogey_counters
 

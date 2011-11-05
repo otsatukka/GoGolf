@@ -13,8 +13,11 @@ class VideosController < ApplicationController
 	# GET /videos.xml
 	def index
 		@title = "Golf TV"
-		@videos = Video.all(:order => 'created_at DESC')
+		@videos = Video.all(:order => 'created_at DESC').paginate(:per_page => 8, :page => params[:page])
 		@mainvideo = Video.search(params[:search]).order("created_at DESC")
+	    @comments = @mainvideo.first.comments
+		@mainvideo.first.comments.build
+	   
 		if @mainvideo.first.video_id.split(".").first == "vimeo"
 			@videonumber = @mainvideo.first.video_id.split("/").last
 			@vimeo = true
@@ -39,6 +42,10 @@ class VideosController < ApplicationController
 	def show
 
 		@video = Video.find(params[:id])
+		@video.comments.build
+		
+		@comments = @video.comments
+		
 		if @video.video_id.split(".").first == "vimeo"
 			@videonumber = @video.video_id.split("/").last
 			@vimeo = true

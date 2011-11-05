@@ -56,7 +56,7 @@ a:hover { color: #ccc; }
 }
 p.mygolfinvite { 
   //position: absolute;
-  font: 28px/45px bread_font, Sans-Serif;
+  font: 28px/45px bread_font,'Cantarell', Sans-Serif;
   color: #0F5564;
   line-height:30px;
   top: 20px;
@@ -64,7 +64,7 @@ p.mygolfinvite {
 }
 p.mygolfbenefits { 
   //position: absolute;
-  font: 13px/45px bread_font, Helvetica, Sans-Serif;
+  font: 13px/45px bread_font,'Cantarell', Helvetica, Sans-Serif;
   color: #000000;
   line-height:18px;
   top: 20px;
@@ -73,7 +73,7 @@ p.mygolfbenefits {
 
 #screams
 {
- font: 13px/45px bread_font,'Andada', Helvetica, Sans-Serif;
+ font: 13px/45px bread_font,'Cantarell', Helvetica, Sans-Serif;
   color: #000000;
   line-height:18px;
   top: 20px;
@@ -119,7 +119,7 @@ p.mygolfbenefits {
    //width: 40%;
    top: 170px;
    left: 728px;
-   font: 18px/18px bread_font, Helvetica, Sans-Serif;
+   font: 18px/18px bread_font, 'Cantarell',Helvetica, Sans-Serif;
    
    //float:right;
    width: 25%; /* for IE 6 */
@@ -348,7 +348,7 @@ label {
   padding:3px;
   //text-align: justify;
   color:rgb(64,46,46);
-  font: 16px bread_font,Sans-Serif;
+  font: 16px bread_font,'Cantarell',Sans-Serif;
   line-height: 1.5em;
   
 }
@@ -501,8 +501,8 @@ color: rgba(255, 255, 255, 0.0);
   }
 .widgettitle a			{   color: #FFF; }
 .widgetsidebartitle a			{ color: #FFF; }
-.widgetcontent { padding: 1px;font-family: bread_font,Sans-Serif; }
-.widgetcontent_adresses { padding: 10px; background-color: white;color:#0F5564;font-family: bread_font,Sans-Serif; }
+.widgetcontent { padding: 1px;font-family: bread_font,'Cantarell',Sans-Serif; }
+.widgetcontent_adresses { padding: 10px; background-color: white;color:#0F5564;font-family: bread_font,'Cantarell',Sans-Serif; }
 .widgetcontent_editors_pick { padding: 0px,20px,0px,0px; }
 .widgetcontent_links_links { padding-bottom: 0px; text-align: center;}
 //.widgetcontent_links_links table, .widgetcontent_links_links td { padding-top: 7px; text-align: center;}
@@ -546,11 +546,11 @@ text-decoration: none;
 
 .writenewpostplease{
   color: rgb(15,85,100);
-  font: 23px/23px bread_font,Arial;
+  font: 23px/23px bread_font,'Cantarell',Arial;
 }
 .writenewpostplease .smalltext{
   color: rgb(0,0,0);
-  font: 13px/13px bread_font,Arial;
+  font: 13px/13px bread_font,'Cantarell',Arial;
 }
 .writenewpostplease a{
   color: rgb(15,85,100);
@@ -657,7 +657,7 @@ table.sd td.last{
 }
 table.sd #title {
   color: #0F5564;
-  font: 12px/12px bread_font,Arial;
+  font: 12px/12px bread_font,'Cantarell',Arial;
 }
 table.sd #title .text {
   color: #0F5564;
@@ -680,7 +680,7 @@ table.sd #title .border {
 }
 table.sd #title .day {
   color: #0F5564;
-  font: 12px/14px bread_font,Arial;
+  font: 12px/14px bread_font,'Cantarell',Arial;
 }
 
 table.sd td.kentatleft {
@@ -696,7 +696,7 @@ table.sd td.kentatright {
 #generaltitle {
   padding:3px;
   color: #0F5564;
-  font: 14px/14px bread_font,Arial;
+  font: 14px/14px bread_font,'Cantarell',Arial;
 }
 #generaltitle .text {
   color: #0F5564;
@@ -726,7 +726,7 @@ table.sd td.kentatright {
 }
 #generaltitle .day {
   color: #0F5564;
-  font: 12px/14px bread_font,Arial;
+  font: 12px/14px bread_font,'Cantarell',Arial;
 }
 
 #youtube_video{
@@ -779,4 +779,9 @@ color: #000;
 	
 .kalle{
   padding:0px 0px 0px 2px;
+}
+
+#screamsform
+{
+width:22%;
 }
