@@ -46,6 +46,8 @@ class SiteController < ApplicationController
 		@active_tab = "goproduct"
 	end
 
+
+
 	def topic
 		@title = "Toimituksen valinnat"
 		@viikon_uutis_valinnat = Post.where(:editors_pick => true, :created_at => (Time.now - 7.days)..Time.now).order('created_at DESC')

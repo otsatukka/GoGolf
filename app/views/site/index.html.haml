@@ -123,17 +123,20 @@
 								= v.unique_impression_count
 								
 -content_for :sidebar do
-	.widgetcontainer
-		.widgetsidebartitle
-			GOGOLF SUOSITTAA
-		.widgetcontent
-			#side_list
-				%ul#tabs
-					%li
+	-if @dealssit.first != nil
+		.widgetcontainer
+			.widgetsidebartitle
+				GOGOLF SUOSITTAA
+			.widgetcontent
+				#side_list
+					%ul#tabs
 						%a{:href=> post_url(@dealssit.first)}
-				
-							= @dealssit.first.title
-			
+							%img{:src => find_img_medium(@dealssit.first),:class => "right", :height => "51", :width => "51"}
+							%li
+								= @dealssit.first.title
+								
+		#emptyspace
+		
 -#@videos.each_with_index do |v,index|
 -#	<input type="hidden" id="numero#{index+1}" name="age" value="#{v.name}" />
 

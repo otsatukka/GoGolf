@@ -2,18 +2,6 @@
   .widgettitle
     Golf TV
   .widgetcontent
-    <div id="example"></div>
-    <script type="text/javascript">
-
-    txt =  navigator.appName ;
-    if (txt == "Netscape")
-    {
-    txt+="#{@videonumber}";
-    }
-    document.getElementById("example").innerHTML=txt;
-
-    </script>
-      
     #youtube_video.gradientV
       -if @vimeo == true
         %iframe{:src=>"http://player.vimeo.com/video/#{@videonumber}", :width=>"635", :height=>"385", :autoplay=>"1"}

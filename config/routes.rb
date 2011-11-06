@@ -37,6 +37,7 @@ Gogolfrails::Application.routes.draw do
       match 'dashboard/videos'
     end
     match "refreshable" => "site#refreshable"
+    match "login" => "site#login"
     resources :links do
       member do
         post :vote_up

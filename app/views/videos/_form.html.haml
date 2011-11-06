@@ -1,5 +1,5 @@
 
-<button onclick="gettheaddress()">Lataa kuvan osoite</button>
+<button onclick="gettheaddress()">Lataa pikkukuvan osoite</button>
 		
 :javascript
 	function callme(data)
@@ -19,10 +19,11 @@
 		}
 		
 	}
+
 = semantic_form_for @video,  :html => { :multipart => true}do |f|
 	= f.inputs do
 		= f.input :name, :label => 'Nimi'
-		= f.input :video_id ,:label => 'Videon osoite / id'
+		= f.input :video_id ,:label => 'Videon osoite / id: huom kirjoita muodossa youtube.com... tai vimeo.com...'
 		= f.input :thumbnail_address,:onclick=>'gettheaddress()', :label => 'pikkukuvan osoite'
 		
 		Videon aihe tarkemmin (optional)
