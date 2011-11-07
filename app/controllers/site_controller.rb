@@ -27,9 +27,9 @@ class SiteController < ApplicationController
 		
 	
 
-		@recent_posts = Post.where(:user_id => "3").leaveoutcategory(4).order('created_at DESC').limit(1)
-		@recent_posts+=Post.where(:user_id => "4").order('created_at DESC').limit(1)
-		@recent_posts+=Post.where(:user_id => "4").order('created_at DESC').limit(1)
+		@recent_posts = Post.where(:user_id => "1").leaveoutcategory(1).order('created_at DESC').limit(1)
+		@recent_posts+=Post.where(:user_id => "2").leaveoutcategory(1).order('created_at DESC').limit(1)
+		@recent_posts+=Post.where(:user_id => "3").leaveoutcategory(1).order('created_at DESC').limit(1)
 
 	#@nikke = User.find_by_realname("Nikke Tyry")
 	#@nikke = User.find_by_realname("Mikko Pulli")
