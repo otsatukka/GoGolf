@@ -3,6 +3,7 @@ class DealsController < ApplicationController
   load_and_authorize_resource
   def tabify
     @active_tab = "godeal"
+    @title = "Diilit"
   end
   
   def index
@@ -39,7 +40,7 @@ class DealsController < ApplicationController
 
     respond_to do |format|
       if @deal.update_attributes(params[:deal])
-        format.html { redirect_to(deals_path, :notice => 'Diili päivitetty.') }
+        format.html { redirect_to(deals_path, :notice => 'Diili paivitetty.') }
       else
         format.html { render :action => "edit" }
       end

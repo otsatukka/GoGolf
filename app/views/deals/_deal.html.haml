@@ -7,7 +7,7 @@
         %tr
           %td{:width => 300}
             - if deal.photo
-              = image_tag find_img_medium_deal(deal)
+              = image_tag find_img_medium_deal(deal), :height => "140", :width => "280"
           %td{:class => "link2"}
             = deal.desc
       %table
@@ -44,4 +44,4 @@
     - if can? :edit, Deal
       = link_to 'Edit', edit_deal_path(deal)
       = link_to_if(can?(:delete, deal), "Delete", deal, :confirm => "Are you sure?", :method => :delete) {}
-  %br/
+  #emptyspace

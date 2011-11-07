@@ -1,0 +1,36 @@
+.widgetcontainer
+  .widgettitle
+    =@video.name
+  .widgetcontent
+    #youtube_video
+      -if @vimeo == true
+        %iframe{:src=>"http://player.vimeo.com/video/#{@videonumber}", :width=>"635", :height=>"385", :autoplay=>"1"}
+      -else
+        %object{:width =>"600", :height =>"320"}
+          %embed{:src => "http://www.youtube.com/v/#{@videonumber}", :type => "application/x-shockwave-flash", :wmode => "transparent", :width => "640", :height => "390"}  
+      
+    #emptyspace
+    =@video.content
+    %br
+    = link_to 'Edit', edit_video_path(@video)
+    |
+    =link_to 'Back to videos', videos_path
+#comments_count
+  = @video.comments.count
+  kommenttia
+  #comments
+  - if @comments.count > 0
+    = render :partial => "comments/comment", :collection => @comments, :parent => @video
+  #new_comment
+  - form_for [@video, Comment.new()], :remote => true, :id => "new_comment" do |f|
+    .field
+      = f.label :title, "Otsikko"
+      %br/
+      = f.text_field :title
+    .field
+      = f.label :body, "Kommentti"
+      %br/
+      = f.text_area :body, :size => "30x10"
+    .actions
+      =f.submit "Lähetä"
+= @crop

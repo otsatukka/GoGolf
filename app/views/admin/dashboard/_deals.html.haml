@@ -1,0 +1,33 @@
+
+%table
+  %tr
+    %th Nimi
+    %th Luotu
+    %th
+    %th
+    %th
+    %th Hinta
+    %th Määrä
+    %th etusivulle
+  - @deals.each do |post|
+    %tr
+      %td= post.name
+      %td= post.created_at.to_s(:long)
+      %td
+        = link_to 'Näytä', post
+      %td
+        = link_to 'Muokkaa', edit_post_path(post)
+      %td
+        = link_to 'Poista', post, :confirm => 'Are you sure?', :method => :delete
+      = semantic_form_for post do |f|
+        %td
+          = f.input :price, :label => ""
+        %td
+          = f.input :quantity, :label => ""
+        %td
+          = f.input :frontpage_pick, :label => ""
+        %td
+          = f.submit "Päivitä"
+          
+%br/
+

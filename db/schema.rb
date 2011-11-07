@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110405203312) do
+ActiveRecord::Schema.define(:version => 20111014161043) do
 
   create_table "achievements", :force => true do |t|
     t.string   "type"
@@ -31,6 +31,19 @@ ActiveRecord::Schema.define(:version => 20110405203312) do
   create_table "autolinks", :force => true do |t|
     t.string   "linkurl"
     t.integer  "link_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bogey_counters", :force => true do |t|
+    t.integer  "handicapgroup"
+    t.float    "exacthandicap"
+    t.integer  "bufferzonemin18"
+    t.integer  "bufferzonemax18"
+    t.integer  "bufferzonemin9"
+    t.integer  "bufferzonemax9"
+    t.float    "hcpincrement"
+    t.float    "hcpdecrement"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -71,6 +84,17 @@ ActiveRecord::Schema.define(:version => 20110405203312) do
 
   add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
 
+  create_table "course_datas", :force => true do |t|
+    t.integer  "slope"
+    t.integer  "Par"
+    t.float    "CR_white_m"
+    t.integer  "HCP_1"
+    t.integer  "HCP_2"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.string   "address"
@@ -84,11 +108,12 @@ ActiveRecord::Schema.define(:version => 20110405203312) do
     t.decimal  "price"
     t.text     "desc"
     t.integer  "quantity"
+    t.boolean  "frontpage_pick", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo"
     t.string   "dealtype"
-    t.boolean  "visible",    :default => true
+    t.boolean  "visible",        :default => true
   end
 
   create_table "events", :force => true do |t|
@@ -225,6 +250,8 @@ ActiveRecord::Schema.define(:version => 20110405203312) do
     t.boolean  "visitor_post",       :default => false
   end
 
+  add_index "posts", ["title"], :name => "mikko"
+
   create_table "replies", :force => true do |t|
     t.string   "body"
     t.integer  "comment_id"
@@ -253,6 +280,21 @@ ActiveRecord::Schema.define(:version => 20110405203312) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "start_time"
+  end
+
+  create_table "screams", :force => true do |t|
+    t.string   "name"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shouts", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "specs", :force => true do |t|
@@ -300,6 +342,16 @@ ActiveRecord::Schema.define(:version => 20110405203312) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "videos", :force => true do |t|
+    t.string   "name"
+    t.string   "video_id"
+    t.string   "thumbnail_address"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "votes", :force => true do |t|
     t.boolean  "vote",          :default => false

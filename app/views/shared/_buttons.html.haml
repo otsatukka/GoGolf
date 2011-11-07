@@ -1,25 +1,43 @@
 - if @active_tab == "gogolf" # Home tab
-  = link_to image_tag("/images/layout/buttons/gogolf_button_active.jpg", :size => "116x87", :alt => "GoGolf", :border => 0), "/site/index"
+  .buttonkoti
+    = link_to image_tag("/images/layout/buttons/kotiaktiivinen.png", :alt => "GoGolf", :border => 0), "/site/index"
 - else
-  = link_to image_tag("/images/layout/buttons/gogolf_button.jpg", :size => "116x87", :alt => "GoGolf", :mouseover => "/images/layout/buttons/gogolf_button_on.jpg"), "/site/index"
-  
-- if @active_tab == "goguide" # Home tab
-  = link_to image_tag("/images/layout/buttons/goguide_button_active.jpg", :size => "126x87", :alt => "GoGolf", :border => 0), "/site/guide"
-- else
-  = link_to image_tag("/images/layout/buttons/goguide_button.jpg", :size => "126x87", :alt => "GoGolf", :mouseover => "/images/layout/buttons/goguide_button_on.jpg"), "/site/guide"
-  
-- if @active_tab == "godeal" # Home tab
-  = link_to image_tag("/images/layout/buttons/golfdeal_button_active.jpg", :size => "116x87", :alt => "GoGolf", :border => 0), "/site/index"
-- else
-  = link_to image_tag("/images/layout/buttons/golfdeal_button.jpg", :size => "116x87", :alt => "GoGolf", :mouseover => "/images/layout/buttons/golfdeal_button_on.jpg"), deals_path
+  .buttonkoti
+    = link_to image_tag("/images/layout/buttons/koti.png",:alt => "GoGolf", :mouseover => "/images/layout/buttons/kotiaktiivinen.png"), "/site/index"
 
-- if user_signed_in?
-  - if @active_tab == "mygolf" # Home tab
-    = link_to image_tag("/images/layout/buttons/mygolf_button_active.jpg", :size => "124x87", :alt => "GoGolf", :border => 0), "/users/#{current_user.id}"
-  - else
-    = link_to image_tag("/images/layout/buttons/mygolf_button.jpg", :size => "124x87", :alt => "GoGolf", :mouseover => "/images/layout/buttons/mygolf_button_on.jpg"), "/users/#{current_user.id}"
+- if @active_tab == "golftv" # Golf tv tab
+  .buttontv
+    = link_to image_tag("/images/layout/buttons/golftvaktiivinen.png",  :alt => "GoGolf", :border => 0), videos_path
 - else
-  - if @active_tab == "mygolf" # Home tab
-    = link_to image_tag("/images/layout/buttons/mygolf_button_active.jpg", :size => "124x87", :alt => "GoGolf", :border => 0), "/site/notuser"
-  - else
-    = link_to image_tag("/images/layout/buttons/mygolf_button.jpg", :size => "124x87", :alt => "GoGolf", :mouseover => "/images/layout/buttons/mygolf_button_on.jpg"), "/site/notuser"
+  .buttontv
+    = link_to image_tag("/images/layout/buttons/golftv.png",  :alt => "GoGolf", :mouseover => "/images/layout/buttons/golftvaktiivinen.png"), videos_path
+
+- if @active_tab == "goblogi" # Home tab
+  .buttondeal
+    = link_to image_tag("/images/layout/buttons/golfdiilitaktiivinen.png",  :alt => "GoGolf", :border => 0), posts_path(:user_id =>"3")
+- else
+  .buttondeal
+    = link_to image_tag("/images/layout/buttons/golfdiilit.png",  :alt => "GoGolf", :mouseover => "/images/layout/buttons/golfdiilitaktiivinen.png"), posts_path
+  
+- if @active_tab == "goproduct" # Home tab
+  .buttonguide
+    = link_to image_tag("/images/layout/buttons/guideaktiivinen.png", :alt => "GoGolf", :border => 0), "/site/goproduct"
+- else
+  .buttonguide
+    = link_to image_tag("/images/layout/buttons/golfguide.png", :alt => "GoGolf", :mouseover => "/images/layout/buttons/guideaktiivinen.png"), "/site/goproduct"
+  
+
+-#- if user_signed_in?
+-#  - if @active_tab == "mygolf" # Home tab
+-#    .buttonmygolf
+-#      = link_to image_tag("/images/layout/buttons/mygolfaktiivinen.png",  :alt => "GoGolf", :border => 0), "/users/#{current_user.id}"
+-#  - else
+-#    .buttonmygolf
+-#      = link_to image_tag("/images/layout/buttons/mygolf.png", :alt => "GoGolf", :mouseover => "/images/layout/buttons/mygolfaktiivinen.png"), "/users/#{current_user.id}"
+-#- else
+-#  - if @active_tab == "mygolf" # Home tab
+-#    .buttonmygolf
+-#      = link_to image_tag("/images/layout/buttons/mygolfaktiivinen.png",  :alt => "GoGolf", :border => 0), "/site/notuser"
+-#  - else
+-#    .buttonmygolf
+-#      = link_to image_tag("/images/layout/buttons/mygolf.png", :alt => "GoGolf", :mouseover => "/images/layout/buttons/mygolfaktiivinen.png"), "/site/notuser"

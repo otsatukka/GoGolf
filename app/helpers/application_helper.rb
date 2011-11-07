@@ -108,6 +108,21 @@ module ApplicationHelper
     !!current_user
   end
   
+  def display_youtube_videos(_videos)
+    if !_videos.blank?
+      html = ""
+      #html += "<div id='videoplay'>"
+      #html += "<object width=\"385\" height=\"344\"><param name=\"movie\" value=\"http://www.youtube.com/v/"+_videos.first.video_id+"\"</param><param name=\"allowFullScreen\" value=\"true\"></param><embed src=\"http://www.youtube.com/v/"+_videos.first.video_id+"\" type=\"application/x-shockwave-flash\"  allowfullscreen=\"true\"  width=\"385\" height=\"344\"></embed></object>"
+      html +="<div><ul id=\"youtubelist\" class=\"mediaList\">"
+      _videos.each do |v|
+        html += "<li onclick=\"display_video_player('http://www.youtube.com/v/#{v.video_id}');\"> videooor"+"</li>" #image_tag(v.thumbnails.first.url)+
+      end
+      html += "</ul></div>"
+    else
+      html = "<div id='emptyYoutube'>No related videos were found</div>"
+    end
+      return html
+  end
   def access_denied
     redirect_to new_session_path
     respond_to do |format|

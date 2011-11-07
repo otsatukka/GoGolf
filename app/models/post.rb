@@ -42,4 +42,7 @@ class Post < ActiveRecord::Base
       scoped
     end
   end
+   def self.leaveoutcategory(category)
+   where('CAST(category_id AS char) NOT LIKE ?', "%#{category}%")
+  end
 end

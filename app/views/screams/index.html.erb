@@ -1,0 +1,19 @@
+<div class="widgetcontainer">
+	<span id="screams_count"><%= pluralize(@screams.count, "scream") %></span>
+	<div id="jscreams">
+		<%= render :partial => "screams/scream", :collection =>@screams%>
+	</div>
+	
+	<hr />
+	
+	<div id="scream-notice"></div>
+	
+	<h2>Say something!</h2>
+	<% form_for Scream.new, :remote => true do |f| %>
+		<%= f.label :name, "Your name" %><br />
+		<%= f.text_field :name %><br />
+		<%= f.label :body, "Comment" %><br />
+		<%= f.text_area :body, :rows => 8 %><br />
+		<%= f.submit "Add comment" %>
+	<% end %>
+</div>

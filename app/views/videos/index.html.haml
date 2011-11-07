@@ -1,0 +1,82 @@
+.widgetcontainer
+  .widgettitle
+    Golf TV
+  .widgetcontent
+    #youtube_video.gradientV
+      -if @vimeo == true
+        %iframe{:src=>"http://player.vimeo.com/video/#{@videonumber}", :width=>"635", :height=>"385", :autoplay=>"1"}
+      -else
+        %object{:width =>"600", :height =>"320"}
+          %embed{:src => "http://www.youtube.com/v/#{@videonumber}", :type => "application/x-shockwave-flash", :wmode => "transparent", :width => "640", :height => "390"}  
+    #generaltitle
+      %span.text
+        =@mainvideo.first.name
+      %br    
+      =@mainvideo.first.user.end_user_name    
+      %span.border
+      %span.day=@mainvideo.first.created_at.strftime("%d.%m %Y")
+    =@mainvideo.first.content
+    #emptyspace
+    .barbg
+      GoGolf TV
+    #emptyspace
+    %table.kalle
+      - @videos.each_with_index do |v, index|
+        
+        - if index.remainder(4) == 0
+          %tr
+        
+        %td
+          #youtube_video_list
+            = link_to params.merge(:search => v.video_id, :page => nil) do
+              %img{ :src => "#{v.thumbnail_address}",:height=> "100",:width=>"150"}
+              %ul
+                %li
+          
+                  #generaltitle
+                    %span.smalltext
+                      = truncate_html(v.name,:length => 10).html_safe 
+                    %br    
+                    =v.user.end_user_name    
+                    %span.border
+                    %span.day=v.created_at.strftime("%d.%m %Y")
+                    	
+    #emptyspace
+    .barbg
+      =will_paginate(@posts, :inner_window => 1, :outer_window => -1,:previous_label=>"", :next_label=>">>")
+    #comments_count
+      = @mainvideo.first.comments.count
+      kommenttia
+    #comments
+      - if @comments.count > 0
+        = render :partial => "comments/comment", :collection => @comments, :parent => @mainvideo.first
+    #new_comment
+      - form_for [@mainvideo.first, Comment.new()], :remote => true, :id => "new_comment" do |f|
+        .field
+          = f.label :title, "Otsikko"
+          %br/
+          = f.text_field :title
+        .field
+          = f.label :body, "Kommentti"
+          %br/
+          = f.text_area :body, :size => "30x10"
+        .actions
+          =f.submit "Lähetä"
+-#
+  - content_for :sidebar do 
+  .widgetcontainer
+  .widgettitle
+  .myspecialtransparenttext
+  mikko
+  .widgetcontent
+  .writenewpostplease
+  Olitko paikalla golftapahtumassa? Onko sinulla oma mielipiteesi esimerkiksi kentästä tai vaikkapa golfin tilasta Suomessa?  
+  Anna äänesi kuulua!
+  %br 
+  %br
+  .smalltext
+  Kaikki sivuston uutiset ovat tavallisten suomalaisten golfareiden kirjoittamia. Kirjoita oma uutinen, artikkeli tai kolumni. 
+
+  .writenewpostplease
+  =link_to "Kirjoita>>", "/posts/new"
+  

@@ -20,14 +20,21 @@
           %hr/
           = simple_format(comment.body)
           %br/
-          %p
-            =link_to comment.user.end_user_name, comment.user
-            |
-            = time_ago_in_words(comment.created_at)
+          -if comment.user !=nil
+            %p
+              =link_to comment.user.end_user_name, comment.user
+              = time_ago_in_words(comment.created_at)
+              sitten
+          -else 
+            %p
+              Matti tai Maija
+              = time_ago_in_words(comment.created_at)
+              sitten
+         
         %td
         %td
-          -if can? :manage, Comment
-            = link_to 'Delete', [@post, comment], :method => :delete, :class => "delete", :remote => true
+        -#  -if can? :manage, comment
+          = link_to 'Delete', [@post, comment], :method => :delete, :class => "delete", :remote => true
 
     #replies
       - if comment.replies.count > 0

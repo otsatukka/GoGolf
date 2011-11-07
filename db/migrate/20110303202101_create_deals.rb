@@ -5,6 +5,7 @@ class CreateDeals < ActiveRecord::Migration
       t.decimal :price
       t.text :desc
       t.integer :quantity
+      t.boolean :frontpage_pick, :default => false
 
       t.timestamps
     end

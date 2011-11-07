@@ -1,0 +1,35 @@
+.widgetcontainer
+  .widgettitle
+    GolfGuide
+  .widgetcontent
+    #feature_list
+      %ul#tabs
+        - @editors_picks_opening.each do |post|
+          %li
+            %a{:href => "javascript:;"}
+              #title
+                %span.text AVAUS
+                %span.border    
+                
+                = post.user.end_user_name
+                %span.day= post.created_at.strftime("%d.%m %Y")
+              %span
+                = truncate_html(post.body,:length => 180).html_safe 
+        - @editors_picks_post.each do |post|
+          %li
+            %a{:href => "javascript:;"}
+              #title
+                %span.text KIRJOITUS
+                %span.border    
+                
+                = post.user.end_user_name
+                %span.day= post.created_at.strftime("%d.%m %Y")
+              %span
+                = truncate_html(post.body,:length => 180).html_safe 
+                
+          
+      %ul#output
+        - @editors_picks_post.each do |post|
+          %li
+            %img{:src => find_img_medium(post), :class => "align-right",:minheight => "300", :width => "360"}
+              %a{:href => posts_url(post)} Lue lisää

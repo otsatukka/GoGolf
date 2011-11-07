@@ -1,0 +1,9 @@
+<%= div_for shout do %>
+  <span class="dateandoptions">
+    Posted <%=time_ago_in_words(shout.created_at)%> ago<br />
+    <%= link_to 'Delete', shout_path(shout), :method => :delete, :class => "delete", :remote => true  %>
+  </span>
+	<p><b><%= shout.name %></b> wrote:</p>
+	<br />
+  <%= content_tag(:p, shout.message, :class => "shout-message") %>
+<% end %>

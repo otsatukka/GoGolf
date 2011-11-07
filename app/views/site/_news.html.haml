@@ -1,57 +1,49 @@
-.widgetcontainer{:class => "ui-corner-all"}
-  .widgettitle{:class => "ui-corner-all"}
+.widgetcontainer
+  .widgettitle
     Uutiset
   .widgetcontent_editors_pick
     #recentposts
       %table
-        %table
-          %tr
-            %th{:width => 280}
-              %b Uusimmat
-            %th
-              %b Suosituimmat
+        %tr
+          %td{:width => "300"}
+            - if @recent_posts != nil
+            
+              - @recent_posts.first(1).each do |post|
+                %table
+                  %tr
+                    %td{:width => "280"}
+                      %img{:src => find_img_medium(post), :class => "align-right", :height => "120", :width => "260"}
+                  %tr
+                    %th
+                      %h3= link_to post.title, post
+                  %tr
+                   
+                    %td{:rowspan => "4", }
+                      .post_excerpt_body
+                        = truncate_html(post.body)
+                    
       %table
         %tr
-          %td{:width => 280}
-            - if @recent_posts != nil
-              %table
-                - @recent_posts.each do |post|
-                  %tr
-                    %td{:rowspan => "4", :width => "80px"}
-                      .post_excerpt_img= image_tag find_img_thumb(post)
-                  %tr
-                    %th
-                      %h3= link_to post.title, post
-                  %tr
-                    %td
-                      .post_excerpt_body
-                        = truncate_html(post.body)
-                  %tr
-                    %td
-                      - if post.user != nil
-                        = link_to post.user.end_user_name, post.user
-                        = time_ago_in_words(post.created_at)
-                        sitten
-                        %hr/
-          %td
+          %td{:width => "300"}
             - if @top5_posts_of_week != nil
-              %table
-                - @top5_posts_of_week.first(3).each do |post|
-                  %tr
-                    %td{:rowspan => "4", :width => "80px"}
-                      .post_excerpt_img= image_tag find_img_thumb(post)
-                  %tr
-                    %th
-                      %h3= link_to post.title, post
-                  %tr
-                    %td
-                      .post_excerpt_body
-                        = truncate_html(post.body)
-                  %tr
-                    %td
-                      - if post.user != nil
-                        = link_to post.user.end_user_name, post.user
-                        = time_ago_in_words(post.created_at)
-                        sitten
-                        %hr/
-%br/
+              - cnt = 0
+              - @top5_posts_of_week.each do |post|
+                - cnt += 1
+                - if cnt >1
+                  %table
+                    %tr
+                      %th{:width => "180"}
+                        %h3= link_to post.title, post
+                    %tr
+                   
+                      %td{:rowspan => "4", }
+                        .post_excerpt_body
+                          = truncate_html(post.body)
+                      %td{:rowspan => "4"}
+                        .post_excerpt_img= image_tag find_img_thumb(post)
+                 
+                  
+                   
+                 
+               
+   

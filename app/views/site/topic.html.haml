@@ -1,18 +1,16 @@
-.widgetcontainer{:class => "ui-corner-all"}
-  .widgettitle{:class => "ui-corner-all"}
+.widgetcontainer
+  .widgettitle
     Tämä viikko
-  .widgetcontent_editors_pick
+  .widgetcontent
     #recentposts
       %table
         %table
           %tr
-            %th{:width => 280}
+            %th{:width =>697}
               %b Uutiset
-            %th
-              %b Avaukset
         %table
           %tr
-            %td{:width => 280}
+            %td{:width => 697}
               - if @viikon_uutis_valinnat != nil
                 %table
                   - @viikon_uutis_valinnat.each do |post|
@@ -33,29 +31,10 @@
                           = time_ago_in_words(post.created_at)
                           sitten
                           %hr/
-            %td
-              - if @viikon_avaus_valinnat != nil
-                %table
-                  - @viikon_avaus_valinnat.each do |post|
-                    %tr
-                      %td{:rowspan => "4", :width => "80px"}
-                        .post_excerpt_img= image_tag find_img_thumb(post)
-                    %tr
-                      %th
-                        %h3= link_to post.title, post
-                    %tr
-                      %td
-                        .post_excerpt_body
-                          = truncate_html(post.body)
-                    %tr
-                      %td
-                        - if post.user != nil
-                          = link_to post.user.end_user_name, post.user
-                          = time_ago_in_words(post.created_at)
-                          sitten
-                          %hr/
-.widgetcontainer{:class => "ui-corner-all"}
-  .widgettitle{:class => "ui-corner-all"}
+         
+#emptyspace
+.widgetcontainer
+  .widgettitle
     Edellinen viikko
   .widgetcontent_editors_pick
     #recentposts
@@ -110,4 +89,5 @@
                           = time_ago_in_words(post.created_at)
                           sitten
                           %hr/
+#emptyspace
 = render :partial => 'older'

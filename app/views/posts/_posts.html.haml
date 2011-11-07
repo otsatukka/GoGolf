@@ -1,6 +1,8 @@
 = hidden_field_tag :category, params[:category]
 .widgetcontainer
-  .widgetcontent_links_links
+  .widgettitle
+    Etsi viesteistä
+  .widgetcontent
     %table
       %tr
         %td
@@ -12,43 +14,311 @@
       %tr
         %td
           - if can? :create, Post
-            .button_s= link_to 'Kirjoita uutinen', new_post_path
+            %a{:href => new_post_path} 
+              <input type="button" value="Kirjoita uutinen" />
         %td
-          = text_field_tag :search, params[:search]
-          = submit_tag "Etsi", :name => nil, :class => "button_s"
+          = form_tag "/search",  :method => :get do
+            = text_field_tag :search, params[:search]
+            = submit_tag "Etsi", :type => "submit"
 
-- if @posts.count > 0
+
+#emptyspace	
+.widgetcontainer
+  .widgettitle
+    Pääkirjoitus
+  .widgetcontent
+    %img{:src => find_img_medium(@posts.first),:height => "260", :width => "697"}         
+    #gamers_list
+      %ul#tabit
+        %li.first
+          
+          #title
+            %span.text
+              =@posts.first.title
+          
+          
+            =@posts.first.user.end_user_name
+            %span.border
+            %span.day=@posts.first.created_at.strftime("%d.%m %Y")
+          %span
+            = truncate_html(@posts.first.body,:length => 400).html_safe
+            %a{:href => post_url(@posts.first)} Lue lisää>> 
+#emptyspace
+.span-9
   .widgetcontainer
     .widgettitle
-      Uusimmat
-    .widgetcontent
-      %table
-        %tr
-          %td{:width => 280}
-            - if @posts != nil
-              %table
-                - @posts.each do |post|
-                  %tr
-                    %td{:rowspan => "4", :width => "80px"}
-                      .post_excerpt_img= image_tag find_img_thumb(post)
-                  %tr
-                    %th
-                      %h3= link_to post.title, post
-                  %tr
-                    %td
-                      .post_excerpt_body
-                        = truncate_html(post.body)
-                  %tr
-                    %td
-                      - if post.user != nil
-                        = link_to post.user.end_user_name, post.user
-                        = time_ago_in_words(post.created_at)
-                        sitten
-                        %hr/
-- else
+      Terassikeskustelu
+    .widgetcontent  
+      %img{:src => find_img_medium(@posts.first),:height => "160", :width => "338"}         
+      #kilpagolf_list
+        %ul#kg_tab
+          %li.first
+          
+            #title
+              %span.text
+                =@posts.first.title
+          
+            #title
+              =@posts.first.user.end_user_name
+              %span.border
+              %span.day=@posts.first.created_at.strftime("%d.%m %Y")
+            %span
+              = truncate_html(@posts.first.body,:length => 150).html_safe
+              %a{:href => post_url(@posts.first)} Lue lisää>>  
+          - @posts.each do |post,index|
+            %li.rest
+              %img{:src => find_img_medium(post),:height => "110", :width => "160"}
+              #title
+                %span.text
+                  =index
+                  =truncate_html(post.title,:length => 35).html_safe
+          
+              #title
+                =@posts.first.user.end_user_name
+                %span.border
+                %span.day=@posts.first.created_at.strftime("%d.%m %Y")
+              %span
+                =index
+                = truncate_html(post.body,:length => 90).html_safe
+                %a{:href => post_url(post)} Lue lisää>> 
+          - @posts.each do |post,index|
+            %li.plain
+              %a{:href => post_url(post)}
+                #title
+                  %span.text
+                    =index
+                    =truncate_html(post.title,:length => 40).html_safe
+          
+                #title
+                  =@posts.first.user.end_user_name
+                  %span.border
+                  %span.day=@posts.first.created_at.strftime("%d.%m %Y")
+           
+            
+  
+.span-9
   .widgetcontainer
-    .widgetcontent
-      Haku ei tuottanut tuloksia
+    .widgettitle
+      Kilpagolf
+    .widgetcontent  
+      %img{:src => find_img_medium(@posts.first),:height => "160", :width => "338"}         
+      #kilpagolf_list
+        %ul#kg_tab
+          %li.first
+          
+            #title
+              %span.text
+                =@posts.first.title
+          
+            #title
+              =@posts.first.user.end_user_name
+              %span.border
+              %span.day=@posts.first.created_at.strftime("%d.%m %Y")
+            %span
+              = truncate_html(@posts.first.body,:length => 150).html_safe
+              %a{:href => post_url(@posts.first)} Lue lisää>>  
+          - @posts.each do |post,index|
+            %li.rest
+              %img{:src => find_img_medium(post),:height => "110", :width => "160"}
+              #title
+                %span.text
+                  =index
+                  =truncate_html(post.title,:length => 35).html_safe
+          
+              #title
+                =@posts.first.user.end_user_name
+                %span.border
+                %span.day=@posts.first.created_at.strftime("%d.%m %Y")
+              %span
+                =index
+                = truncate_html(post.body,:length => 90).html_safe
+                %a{:href => post_url(post)} Lue lisää>> 
+          - @posts.each do |post,index|
+            %li.plain
+              %a{:href => post_url(post)}
+                #title
+                  %span.text
+                    =index
+                    =truncate_html(post.title,:length => 40).html_safe
+          
+                #title
+                  =@posts.first.user.end_user_name
+                  %span.border
+                  %span.day=@posts.first.created_at.strftime("%d.%m %Y")
+           
+      
+.span-16
+  #emptyspace
+  .widgetcontainer
+    .widgettitle
+      Kentät
+    .widgetcontent  
+      %table.sd
+        %tr
+          %td
+            %img{:src => "/images/graybox.png", :height => "150", :width => "350"}
+          %td{:rowspan => '300px', :class =>'kentatright'}
+            - @posts.each do |post,index|
+              #emptyspace
+              .plain
+                %a{:href => post_url(post)}
+                  #title
+                    %span.text
+                      =index
+                      =truncate_html(post.title,:length => 50).html_safe
+          
+                  #title
+                    =post.user.end_user_name
+                    %span.border
+                    %span.day=post.created_at.strftime("%d.%m %Y") 
+            #title
+              %span.text
+                =link_to "1 2 3 >>", '/site/guide'
+        %tr
+          %td.kentatleft
+            #title
+              %span.text
+                =truncate_html(@posts.first.title,:length => 40).html_safe
+          
+            #title
+              =@posts.first.user.end_user_name
+              %span.border
+              %span.day=@posts.first.created_at.strftime("%d.%m %Y")
+            %span
+              = truncate_html(@posts.first.body,:length => 350).html_safe
+              #title
+                %span.text 
+                  %a{:href => post_url(@posts.first)} Lue lisää>>
+       
+.span-16
+  #emptyspace
+  .widgetcontainer
+    .widgettitle
+      Välineet
+    .widgetcontent  
+      %table.sd
+        %tr
+          %td
+            %img{:src => find_img_medium(@posts.first), :height => "100", :width => "172"} 
+            #title
+              %span.text
+                =truncate_html(@posts.first.title,:length => 20).html_safe
+          
+            #title
+              =@posts.first.user.end_user_name
+              %span.border
+              %span.day=@posts.first.created_at.strftime("%d.%m %Y")
+            %span
+              = truncate_html(@posts.first.body,:length => 90).html_safe
+              #title
+                %span.text
+                  %a{:href => posts_url(@posts.first)} Lue lisää>> 
+          %td
+            %img{:src => "/images/graybox.png", :alt => "GoGolf.fi", :height => "100", :width => "172"} 
+            #title
+              %span.text
+                =truncate_html(@posts.first.title,:length => 20).html_safe
+          
+            #title
+              =@posts.first.user.end_user_name
+              %span.border
+              %span.day=@posts.first.created_at.strftime("%d.%m %Y")
+            %span
+              = truncate_html(@posts.first.body,:length => 90).html_safe
+              %a{:href => posts_url(@posts.first)} Lue lisää>>
+          %td
+            %img{:src => "/images/graybox.png", :alt => "GoGolf.fi", :height => "100", :width => "173"} 
+            #title
+              %span.text
+                =truncate_html(@posts.first.title,:length => 20).html_safe
+          
+            #title
+              =@posts.first.user.end_user_name
+              %span.border
+              %span.day=@posts.first.created_at.strftime("%d.%m %Y")
+            %span
+              = truncate_html(@posts.first.body,:length => 90).html_safe
+              %a{:href => posts_url(@posts.first)} Lue lisää>>
+          %td.last
+            %img{:src => "/images/graybox.png", :alt => "GoGolf.fi", :height => "100", :width => "173"} 
+            #title
+              %span.text
+                =truncate_html(@posts.first.title,:length => 20).html_safe
+          
+            #title
+              =@posts.first.user.end_user_name
+              %span.border
+              %span.day=@posts.first.created_at.strftime("%d.%m %Y")
+            %span
+              = truncate_html(@posts.first.body,:length => 90).html_safe
+              %a{:href => posts_url(@posts.first)} Lue lisää>>
+          
+
+.span-16
+  #emptyspace
+  .widgetcontainer
+    .widgettitle
+      Golfreissut
+    .widgetcontent  
+      %table.sd
+        %tr
+          %td
+            #title
+              %span.text
+                =truncate_html(@posts.first.title,:length => 20).html_safe
+          
+            #title
+              =@posts.first.user.end_user_name
+              %span.border
+              %span.day=@posts.first.created_at.strftime("%d.%m %Y")
+            %span
+              = truncate_html(@posts.first.body,:length => 650).html_safe
+              %a{:href => posts_url(@posts.first)} Lue lisää>>
+          %td
+            %img{:src => find_img_medium(@posts.first), :height => "150", :width => "395"}
+
 
 %p
   =will_paginate @posts
+  
+- content_for :sidebar do 
+  
+  
+
+  .widgetcontainer
+    .widgettitle
+      .myspecialtransparenttext
+        mikko
+    .widgetcontent
+      .writenewpostplease
+        Olitko paikalla golftapahtumassa? Onko sinulla oma mielipiteesi esimerkiksi kentästä tai vaikkapa golfin tilasta Suomessa? 
+        Anna äänesi kuulua!
+        %br
+        %br
+        .smalltext
+          Kaikki sivuston uutiset ovat tavallisten suomalaisten golfareiden kirjoittamia. Kirjoita oma uutinen, artikkeli tai kolumni. 
+        
+      .writenewpostplease
+        =link_to "Kirjoita>>", "/posts/new"
+  #emptyspace
+  .widgetcontainer
+    .widgettitle
+      Kategoriat
+    .widgetcontent
+      #side_list
+        %ul#tabs
+          - @posts.each do |post|
+            %img{:src => find_img_medium(post),:class => "right", :height => "50", :width => "50"}
+                
+            %a{:href => post_url(post)}
+              %li
+                #generaltitle
+                  %span.text
+                    Kirjoitus
+                  %br
+                  =truncate_html(post.title,:length => 30).html_safe 
+                #generaltitle
+                  =post.user.end_user_name
+                  %span.border
+                  %span.day=post.created_at.strftime("%d.%m %Y")
+  #emptyspace 

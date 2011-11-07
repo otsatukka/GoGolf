@@ -1,0 +1,19 @@
+<div class="widgetcontainer">
+	<span id="shouts_count"><%= pluralize(@shouts.count, "Shout") %></span>
+	<div id="shouts">
+	  <%= render :partial => @shouts, :locals => { :list => true } %>
+	</div>
+	
+	<hr />
+	
+	<div id="shout-notice"></div>
+	
+	<h2>Say something!</h2>
+	<% form_for Shout.new, :remote => true do |f| %>
+		<%= f.label :name, "Your name" %><br />
+		<%= f.text_field :name %><br />
+		<%= f.label :message, "Comment" %><br />
+		<%= f.text_area :message, :rows => 8 %><br />
+		<%= f.submit "Add comment" %>
+	<% end %>
+</div>

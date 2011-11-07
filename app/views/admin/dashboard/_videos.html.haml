@@ -1,0 +1,24 @@
+%table
+  %tr
+    %th Nimi
+    %th Kirjoittaja
+    %th Luotu
+    
+  - @videos.each do |video|
+    %tr
+      %td= video.name
+      %td
+        - if video.user != nil
+          = video.user.end_user_name
+      %td= video.created_at.to_s(:long)
+      %td
+        = link_to 'Näytä', video
+      %td
+        = link_to 'Muokkaa', edit_video_path(video)
+      %td
+        = link_to 'Poista', video, :confirm => 'Are you sure?', :method => :delete
+      = semantic_form_for video do |f|
+        %td
+          = f.submit "Päivitä"
+          
+%br/
