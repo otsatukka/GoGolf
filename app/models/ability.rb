@@ -14,6 +14,8 @@ class Ability
         #GUEST
         
         can :read, Post
+        can :read, Video
+        can :read, Scream
         can :read, Opening
         can [:read, :links, :videos, :images], Link
         can :read, Comment

@@ -77,8 +77,8 @@
 				  
 					-#.register
 					-#	= render :partial => 'devise/sessions/signin'
-	           
-	       
+				
+		       
 			.span-24.last
 				#emptyspace
 			.span-24.last
@@ -91,6 +91,15 @@
 						.widgetcontainer
 							.widgetcontent
 								= content_tag :div, msg, :id => "flash_\#{name}"
+						#emptyspace
+					- if user_signed_in?
+						.widgetcontainer
+							.widgetsidebartitle	
+								Hei
+								- if current_user.realname == nil
+									= current_user.email
+								- else
+									= current_user.realname.split(' ').first
 						#emptyspace
 					=yield(:sidebar)
 					-#= content_for?(:sidebar) ? yield(:sidebar) : render('shared/sidebar')
