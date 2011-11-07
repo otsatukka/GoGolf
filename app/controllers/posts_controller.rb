@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 
 	# GET /posts
 	# GET /posts.xml
-	def index
+def index
 		@categories = Category.all
 		@categories.sort! { |a,b| a.name <=> b.name }
 		#@posts = Post.search(params[:search]).category(params[:category]).order("created_at DESC").paginate(:per_page => 2, :page => params[:page])
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
 			@user = User.find_by_id(params[:user_id] )
 
 		end
-		@posts = Post.where(:user_id => @user.id).leaveoutcategory(4).order('created_at DESC').paginate(:per_page => 2, :page => params[:page])
+		@posts = Post.where(:user_id => @user.id).leaveoutcategory(1).order('created_at DESC').paginate(:per_page => 8, :page => params[:page])
 
 		if params[:id]
 			@mainpost =Post.find(params[:id])
@@ -49,7 +49,6 @@ class PostsController < ApplicationController
 			format.js
 		end
 	end
-
 	# GET /posts/1
 	# GET /posts/1.xml
 	def show

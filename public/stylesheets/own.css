@@ -109,7 +109,7 @@ p.mygolfbenefits {
 #banner_top .sidebar_a a{
    position: absolute;
    color:white;
-   font: 18px/18px sidebartitle_font, Helvetica, Sans-Serif;
+   font: 18px/18px sidebartitle_font,'Actor', 'Ubuntu Condensed', Helvetica, Sans-Serif;
    top: -18px;
    left:2px;
    width: 100%; /* for IE 6 */
@@ -480,7 +480,7 @@ color: rgba(255, 255, 255, 0.0);
 .widgetcontainer a		{ }
 .widgettitle			{ 
   font-size: 16px;
-  font: 16px/18px sidebartitle_font,Sans-Serif;
+  font: 16px/18px sidebartitle_font, 'Actor', 'Ubuntu Condensed',Sans-Serif;
   
   /*background-color: #204000; */
   background-color: white;
@@ -491,7 +491,7 @@ color: rgba(255, 255, 255, 0.0);
 .widgetsidebartitle			{ 
   font-size: 16px;
   font-weight: bold;
-  font: 16px/18px sidebartitle_font,Sans-Serif;
+  font: 16px/18px sidebartitle_font,'Actor', 'Ubuntu Condensed',Sans-Serif;
   
   /*background-color: #204000; */
   background-color: white;
@@ -554,7 +554,7 @@ text-decoration: none;
 }
 .writenewpostplease a{
   color: rgb(15,85,100);
-  font: 16px/16px title_font,Arial;
+  font: 16px/16px title_font,'Actor', 'Ubuntu Condensed',Arial;
 }
 
 #cfnavbar ul li a#rightcorner{
@@ -662,13 +662,13 @@ table.sd #title {
 table.sd #title .text {
   color: #0F5564;
   text-transform:uppercase;
-  font: 13px/14px title_font,Arial;
+  font: 13px/14px title_font,'Actor', 'Ubuntu Condensed',Arial;
 }
 table.sd #title a {
 	text-align: right;
   color: #0F5564;
   text-transform:uppercase;
-  font: 13px/14px title_font,Arial;
+  font: 13px/14px title_font,'Actor', 'Ubuntu Condensed',Arial;
 }
 table.sd #title .border {
   border-right-color: #0F5564;
@@ -676,7 +676,7 @@ table.sd #title .border {
   border-right-width: 1px;
   padding-right: 1px; 
   color: #0F5564;
-  font: 7px/2px title_font,Arial;
+  font: 7px/2px title_font,'Actor', 'Ubuntu Condensed',Arial;
 }
 table.sd #title .day {
   color: #0F5564;
@@ -700,20 +700,20 @@ table.sd td.kentatright {
 }
 #generaltitle .text {
   color: #0F5564;
-  font: 30px/30px title_font,Arial;
+  font: 30px/30px title_font,'Actor', 'Ubuntu Condensed',Arial;
   margin-bottom:10px;
 }
 
 #generaltitle .smalltext {
   color: #0F5564;
-  font: 20px/20px title_font,Arial;
+  font: 20px/20px title_font,'Actor', 'Ubuntu Condensed',Arial;
   margin-bottom:10px;
 }
 
 
 #generaltitle .sidebartext {
   color: #0F5564;
-  font: 20px/10px title_font,Arial;
+  font: 20px/10px title_font,'Actor', 'Ubuntu Condensed',Arial;
   margin-bottom:3px;
 }
 #generaltitle .border {
@@ -722,7 +722,7 @@ table.sd td.kentatright {
   border-right-width: 1px;
   padding-right: 1px; 
   color: #0F5564;
-  font: 10px/2px title_font,Arial;
+  font: 10px/2px title_font,'Actor', 'Ubuntu Condensed',Arial;
 }
 #generaltitle .day {
   color: #0F5564;
@@ -744,19 +744,19 @@ border-width:2px;
 .pagination 
 {
   color: #000;
-  font: 18px/14px title_font,Arial;
+  font: 18px/14px title_font,'Actor', 'Ubuntu Condensed',Arial;
  float:right;
 }
 .pagination a
 {
 color: #0F5564;
-  font: 18px/14px title_font,Arial;
+  font: 18px/14px title_font,'Actor', 'Ubuntu Condensed',Arial;
 
 }
 #mikon ul
 {
 
-font: 14px/14px title_font,Arial;
+font: 14px/14px title_font,'Actor', 'Ubuntu Condensed',Arial;
 
 list-style-type:none;
 padding:0px;

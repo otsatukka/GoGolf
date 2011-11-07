@@ -6,7 +6,7 @@ class Ability
     
     
       # SUPER ADMIN
-      can :manage, :all
+      #can :manage, :all
       if user.role? :super_admin
         can :manage, :all
       else

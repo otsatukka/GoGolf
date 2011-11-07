@@ -2,6 +2,9 @@
 %html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
 	%head
 		<link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Actor' rel='stylesheet' type='text/css'>
+		
 		:javascript
 			var _gaq = _gaq || [];
 			_gaq.push(['_setAccount', 'UA-12546091-2']);
@@ -85,15 +88,17 @@
 			     
 				.span-8.last
 					- flash.each do |name, msg|
-						.notice
-							= content_tag :div, msg, :id => "flash_\#{name}"
+						.widgetcontainer
+							.widgetcontent
+								= content_tag :div, msg, :id => "flash_\#{name}"
+						#emptyspace
 					=yield(:sidebar)
 					-#= content_for?(:sidebar) ? yield(:sidebar) : render('shared/sidebar')
 					=render('shared/sidebar')
-					.widgetcontainer
-						.widgetcontent
-							-if ENV["RAILS_ENV"] != "development"
-							= debug(params)
+					-#.widgetcontainer
+					-#	.widgetcontent
+					-#		-if ENV["RAILS_ENV"] != "development"
+					-#		= debug(params)
 					-#emptyspace
 					-#=render :partial => 'shared/sidebar2'
 			.span-24.last

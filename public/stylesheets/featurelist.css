@@ -57,7 +57,7 @@ ul#tabs li #title {
 }
 ul#tabs li #title .text {
   color: #0F5564;
-  font: 14px/14px title_font,Arial;
+  font: 14px/14px title_font,'Actor', 'Ubuntu Condensed',Arial;
 }
 ul#tabs li #title .border {
   border-right-color: #0F5564;
@@ -65,7 +65,7 @@ ul#tabs li #title .border {
   border-right-width: 1px;
   padding-right: 1px; 
   color: #0F5564;
-  font: 10px/2px title_font,Arial;
+  font: 10px/2px title_font,'Actor', 'Ubuntu Condensed',Arial;
 }
 ul#tabs li #title .day {
   color: #0F5564;
@@ -197,7 +197,7 @@ ul#tabit li #title {
 ul#tabit li #title .text {
   color: #0F5564;
   text-transform:uppercase;
-  font: 14px/16px title_font,Arial;
+  font: 14px/16px title_font,'Actor', 'Ubuntu Condensed',Arial;
 }
 ul#tabit li #title .border {
   border-right-color: #0F5564;
@@ -205,7 +205,7 @@ ul#tabit li #title .border {
   border-right-width: 1px;
   padding-right: 1px; 
   color: #0F5564;
-  font: 7px/2px title_font,Arial;
+  font: 7px/2px title_font,'Actor', 'Ubuntu Condensed',Arial;
 }
 ul#tabit li #title .day {
   color: #0F5564;
@@ -240,7 +240,7 @@ ul#tabit li a {
 	text-decoration: none;	
 	display: block;
 	padding: 6px 56px 6px 6px;
-	font: 14px/2px title_font,Arial;
+	font: 14px/2px title_font,'Actor', 'Ubuntu Condensed',Arial;
 
 	height: 86px;
 	outline: none;
@@ -323,7 +323,7 @@ ul#kg_tab li #title {
 ul#kg_tab li #title .text {
   color: #0F5564;
   text-transform:uppercase;
-  font: 13px/14px title_font,Arial;
+  font: 13px/14px title_font,'Actor', 'Ubuntu Condensed',Arial;
 }
 ul#kg_tab li #title .border {
   border-right-color: #0F5564;
@@ -331,7 +331,7 @@ ul#kg_tab li #title .border {
   border-right-width: 1px;
   padding-right: 1px; 
   color: #0F5564;
-  font: 7px/2px title_font,Arial;
+  font: 7px/2px title_font,'Actor', 'Ubuntu Condensed',Arial;
 }
 ul#kg_tab li #title .day {
   color: #0F5564;
@@ -370,7 +370,7 @@ ul#kg_tab li.plain a{
 	text-decoration: none;	
 	display: block;
 	padding: 6px 6px 6px 6px;
-	font: 14px/2px title_font,Arial;
+	font: 14px/2px title_font,'Actor', 'Ubuntu Condensed',Arial;
 	height: 86px;
 	outline: none;
 }
@@ -379,14 +379,14 @@ ul#kg_tab li a {
 	text-decoration: none;	
 	display: block;
 	padding: 6px 56px 6px 6px;
-	font: 14px/2px title_font,Arial;
+	font: 14px/2px title_font,'Actor', 'Ubuntu Condensed',Arial;
 	height: 86px;
 	outline: none;
 }
 
 ul#kg_tab li a:hover {
     color:#1E96A0;
-    font: 14px/2px title_font,Arial;
+    font: 14px/2px title_font,'Actor', 'Ubuntu Condensed',Arial;
 	text-decoration: none;
 }
 
@@ -429,7 +429,7 @@ ul#kg_output li a:hover {
 
 .barbg{  
  color: #0F5564;
-  font: 20px/20px title_font,Arial;
+  font: 20px/20px title_font,'Actor', 'Ubuntu Condensed',Arial;
   height:25px;  
   border:1px solid #eEeEeE;  
   background-color:#eEeEeE;
@@ -489,7 +489,7 @@ div#side_list ul {
 #side_list ul#tabs li #title .text {
   color: #0F5564;
   text-transform:uppercase;
-  font: 14px/16px title_font,Arial;
+  font: 14px/16px title_font,'Actor', 'Ubuntu Condensed',Arial;
 }
 #side_list ul#tabs li #title .border {
   border-right-color: #0F5564;
@@ -497,7 +497,7 @@ div#side_list ul {
   border-right-width: 1px;
   padding-right: 1px; 
   color: #0F5564;
-  font: 7px/2px title_font,Arial;
+  font: 7px/2px title_font,'Actor', 'Ubuntu Condensed',Arial;
 }
 #side_list ul#tabs li #title .day {
   color: #0F5564;
@@ -535,7 +535,7 @@ ul#tabit li a {
 	text-decoration: none;	
 	display: block;
 	padding: 6px 56px 6px 6px;
-	font: 14px/2px title_font,Arial;
+	font: 14px/2px title_font,'Actor', 'Ubuntu Condensed',Arial;
 
 	height: 86px;
 	outline: none;

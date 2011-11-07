@@ -12,7 +12,7 @@
       %span.text
         =@mainvideo.first.name
       %br    
-      -#=@mainvideo.first.user.end_user_name    
+      =@mainvideo.first.user.end_user_name    
       %span.border
       %span.day=@mainvideo.first.created_at.strftime("%d.%m %Y")
     =@mainvideo.first.content
@@ -37,7 +37,7 @@
                     %span.smalltext
                       = truncate_html(v.name,:length => 10).html_safe 
                     %br    
-                    -#=v.user.end_user_name    
+                    =v.user.end_user_name    
                     %span.border
                     %span.day=v.created_at.strftime("%d.%m %Y")
                     	
