@@ -43,6 +43,8 @@ class Post < ActiveRecord::Base
     end
   end
    def self.leaveoutcategory(category)
-   where('CAST(category_id AS char) NOT LIKE ?', "%#{category}%")
+    if category
+      where('CAST(category_id AS char) NOT LIKE ?', "%#{category}%")
+   end
   end
 end

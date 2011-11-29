@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="youtube_video">
 <object width="425" height="355">
 <param name="movie" value="http://www.youtube.com/v=yR9-Q3zdFLY&feature=related"></param>
@@ -5,3 +6,60 @@
 <embed src="http://www.youtube.com/v=yR9-Q3zdFLY&feature=related" type="application/x-shockwave-flash" wmode="transparent" width="425" height="355"></embed>
 </object>
 </div>
+=======
+.ui-widget
+  .ui-widget-header{:class => "ui-corner-all"}
+    Luetuimmat
+  .ui-widget-content
+    #luetuimmat
+      %h4
+        Uutiset
+        %hr/
+        %ul
+          - @top5_posts_of_week.each do |post|
+            %li
+              = link_to post.title, post
+              %br/
+              %i
+                = link_to post.user.end_user_name, post.user
+                |
+                = post.unique_impression_count
+      %h4
+        Avaukset
+        %hr/
+        %ul
+          - @top5_openings_of_week.each do |post|
+            %li
+              = link_to post.title, post
+              %br/
+              %i
+                = link_to post.user.end_user_name, post.user
+                |
+                = post.unique_impression_count
+              %br/
+.ui-widget
+  .ui-widget-content
+    %center
+      =link_to image_tag('/images/Vuosaari_banneri.gif',:alt => "Vuosaari Golf"), 'http://www.vuosaarigolf.fi'
+.ui-widget
+  .ui-widget-header{:class => "ui-corner-all"}
+    Viihde
+  .ui-widget-content
+    #luetuimmat
+      %h4
+        Parhaat linkit
+        %hr/
+        %ul
+          - @top5_links.each do |link|
+            %li
+              = link_to link.title, link
+              %br/
+              %i
+                = link_to link.user.end_user_name, link.user
+                |
+                = link.votes_for
+              %br/
+.ui-widget
+  .ui-widget-content{:class => "ui-corner-all"}
+    = link_to "YHTEYSTIEDOT JA EHDOT", "/site/help"
+>>>>>>> 21953fa6fa7f157896c41d8317cbddfc63d1c0db

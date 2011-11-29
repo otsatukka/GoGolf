@@ -37,6 +37,7 @@ class CoursesController < ApplicationController
       end
     end
   end
+  
   def update
     @course = Course.find(params[:id])
 

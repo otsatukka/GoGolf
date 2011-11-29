@@ -33,8 +33,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # PUT /admin/categories/1
-  # PUT /admin/categories/1.xml
   def update
     @category = Category.find(params[:id])
 
@@ -47,8 +45,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # DELETE /admin/categories/1
-  # DELETE /admin/categories/1.xml
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
