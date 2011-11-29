@@ -38,22 +38,7 @@
 		<!-- Anything Slider -->
 		=javascript_include_tag "jquery.anythingslider.js"
 	
-		:javascript
-
-			$(document).ready(function(){
-				$('#slider').anythingSlider();
-				var j = jQuery.noConflict();
-				j(document).ready(function(){
-					j("#screams").everyTime(5000,function(i){
-						j.ajax(
-						{
-							url: "/refreshable",
-							cache: false,
-						})
-					})
-				});
-			});
-			
+		
 		
 	
 		-#=javascript_include_tag "slider.js"

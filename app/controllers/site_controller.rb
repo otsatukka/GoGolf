@@ -62,7 +62,7 @@ class SiteController < ApplicationController
 	end
 
 	def picks
-		@title = "Toimituksen valinta"
+		@title = "Toimituksen valinta" 
 		@nikke = User.find_by_id("1")
 		@viikon_aiheet = Post.where(:weektopic => true)
 		@uusin_niken_juttu = @viikon_aiheet.find_by_user_id(@nikke.id)
