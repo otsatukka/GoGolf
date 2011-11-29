@@ -1,3 +1,4 @@
+# encoding: utf-8
 class FriendshipController < ApplicationController
   before_filter :setup_friends
   skip_before_filter :top_lists
@@ -25,9 +26,9 @@ class FriendshipController < ApplicationController
   def decline
     if @user.requested_friends.include?(@friend)
       Friendship.breakup(@user, @friend)
-      flash[:notice] = "Kaveripyyntö käyttäjältä #{@friend.end_user_name} hylätty."
+      flash[:notice] = "Kaveripyynto kayttajalta #{@friend.end_user_name} hylatty."
     else
-      flash[:notice] = "Ei kaveripyyntöä käyttäjältä #{@friend.end_user_name}."
+      flash[:notice] = "Ei kaveripyyntoa kayttajalta #{@friend.end_user_name}."
     end
     redirect_to user_url
   end
@@ -35,7 +36,7 @@ class FriendshipController < ApplicationController
   def cancel
     if @user.pending_friends.include?(@friend)
       Friendship.breakup(@user, @friend)
-      flash[:notice] = "Kaveripyyntö peruttu."
+      flash[:notice] = "Kaveripyynto peruttu."
     else
       flash[:notice] = "No request for friendship with #{@friend.end_user_name}"
     end

@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
     @order.status = 'created'
     @order.deal = Deal.find(params[:deal_id])
     if @order.quantity > @order.deal.quantity
-      @order.errors[:base] << "Maara on suurempi kuin mitä on jaljella."
+      @order.errors[:base] << "Maara on suurempi kuin mita on jaljella."
     end
 
     respond_to do |format|
