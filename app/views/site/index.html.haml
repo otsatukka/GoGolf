@@ -1,53 +1,5 @@
 -#= render 'mygolf'
 -#emptyspace
-.widgetcontainer
-	#gamers_list
-		%ul#tabit
-			%li.first
-  
-				#title
-					%span.text
-						Mihin pyrimme
-  
-				
-				%img{:src => "/images/missing.jpg", :height => "94", :width => "200",:align=>"right"} 
-				
-				%span
-					Helpottamaan golfaamista
-					%br
-					Madaltamaan kynnystä aloittamiselle
-					%br
-					Murtamaan käsityksiä
-			%li.first
-  
-				#title
-					%span.text
-						Mitä olemme 
-  
-				
-				%img{:src => "/images/missing.jpg", :height => "94", :width => "200",:align=>"right"} 
-				
-				%span
-					Helpottamaan golfaamista
-					%br
-					Madaltamaan kynnystä aloittamiselle
-					%br
-					Murtamaan käsityksiä
-			%li.first
-  
-				#title
-					%span.text
-						Mitä teemme
-  
-				%img{:src => "/images/missing.jpg", :height => "94", :width => "200",:align=>"right"} 
-				%span
-					Helpottamaan golfaamista
-					%br
-					Madaltamaan kynnystä aloittamiselle
-					%br
-					Murtamaan käsityksiä
-				
-			
 
 
 #emptyspace
@@ -123,20 +75,29 @@
 								= v.unique_impression_count
 								
 -content_for :sidebar do
+	.widgetcontainer
+		.widgetsidebartitle	
+			Keitä olemme
+		.widgetcontent
+			%ul
+				%li
+					Pelaajalähtöisen golfin sanansaattajia
+	#emptyspace	
+-#	
 	-if @dealssit.first != nil
-		.widgetcontainer
-			.widgetsidebartitle
-				GOGOLF SUOSITTAA
-			.widgetcontent
-				#side_list
-					%ul#tabs
-						%a{:href=> post_url(@dealssit.first)}
-							%img{:src => find_img_medium(@dealssit.first),:class => "right", :height => "51", :width => "51"}
-							%li
-								= @dealssit.first.title
-								
-		#emptyspace
-		
+	.widgetcontainer
+	.widgetsidebartitle
+	GOGOLF SUOSITTAA
+	.widgetcontent
+	#side_list
+	%ul#tabs
+	%a{:href=> post_url(@dealssit.first)}
+	%img{:src => find_img_medium(@dealssit.first),:class => "right", :height => "51", :width => "51"}
+	%li
+	= @dealssit.first.title
+	
+	#emptyspace
+
 -#@videos.each_with_index do |v,index|
 -#	<input type="hidden" id="numero#{index+1}" name="age" value="#{v.name}" />
 
@@ -289,6 +250,55 @@
 	</div>
 	   
 	  
+-#
+	.widgetcontainer
+	#gamers_list
+	%ul#tabit
+	%li.first
+	  
+	#title
+	%span.text
+	Mihin pyrimme
+	  
+					
+	%img{:src => "/images/missing.jpg", :height => "94", :width => "200",:align=>"right"} 
+	
+	%span
+	Helpottamaan golfaamista
+	%br
+	Madaltamaan kynnystä aloittamiselle
+	%br
+	Murtamaan käsityksiä
+	%li.first
+	  
+	#title
+	%span.text
+	Mitä olemme 
+	  
+					
+	%img{:src => "/images/missing.jpg", :height => "94", :width => "200",:align=>"right"} 
+	
+	%span
+	Helpottamaan golfaamista
+	%br
+	Madaltamaan kynnystä aloittamiselle
+	%br
+	Murtamaan käsityksiä
+	%li.first
+	  
+	#title
+	%span.text
+	Mitä teemme
+	  
+	%img{:src => "/images/missing.jpg", :height => "94", :width => "200",:align=>"right"} 
+	%span
+	Helpottamaan golfaamista
+	%br
+	Madaltamaan kynnystä aloittamiselle
+	%br
+	Murtamaan käsityksiä
+					
+			
 	
 	
 	
