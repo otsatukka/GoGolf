@@ -546,6 +546,7 @@ text-decoration: none;
 
 .writenewpostplease{
   color: rgb(15,85,100);
+  padding: 4px;
   font: 23px/23px bread_font,'Cantarell',Arial;
 }
 .writenewpostplease .smalltext{
