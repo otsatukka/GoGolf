@@ -5,7 +5,8 @@ class Video < ActiveRecord::Base
   
   has_many :comments, :as => :commentable, :dependent => :destroy  
   accepts_nested_attributes_for :comments
-  
+  SUBVIDEO = [ 'Kisa Golf','Oma Golf']
+  SUBCLASSVIDEO = ['KISAENNAKOT JA VEDONLYÖNTIVINKIT', 'KISAKATSAUKSET','GOLFHAHMOT JA HAASTATTELUT','GOLF SCENE','MAILAMATKAT','SE NYT VAAN ON TYHMÄÄ MAKSAA LIIKAA']
   def self.search(search)
     if search
       where('video_id LIKE ?', "%#{search}%")

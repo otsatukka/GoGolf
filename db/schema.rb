@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111014161043) do
+ActiveRecord::Schema.define(:version => 20111205154414) do
 
   create_table "achievements", :force => true do |t|
     t.string   "type"
@@ -351,6 +351,8 @@ ActiveRecord::Schema.define(:version => 20111014161043) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category"
+    t.string   "subcategory"
   end
 
   create_table "votes", :force => true do |t|

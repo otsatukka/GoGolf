@@ -29,7 +29,7 @@
         = f.file_field :photo, :id => "field1"
         %br/
         Nykyinen kuva
-        = image_tag find_img_medium(@opening)
+        = image_tag find_img_medium(@opening), :width=> "150px"
       .field
         = f.cktext_area :body, :toolbar => 'Post', :width=>'600px', :height=>'500px', :language=>'fi', :uiColor => '#AADC6E', :resize_enabled => 'false'
       %br/

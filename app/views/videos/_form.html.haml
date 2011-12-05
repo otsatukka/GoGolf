@@ -25,7 +25,11 @@
 		= f.input :name, :label => 'Nimi'
 		= f.input :video_id ,:label => 'Videon osoite / id: huom kirjoita muodossa youtube.com... tai vimeo.com...'
 		= f.input :thumbnail_address,:onclick=>'gettheaddress()', :label => 'pikkukuvan osoite'
-		
+		Kategoria
+		= select( :video, :category, Video::SUBVIDEO)
+		Alaluokka
+		= select( :video, :subcategory, Video::SUBCLASSVIDEO)
+		%br
 		Videon aihe tarkemmin (optional)
 		%br
 		= f.text_area :content, :label => 'sisältö'

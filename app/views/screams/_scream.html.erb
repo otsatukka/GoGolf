@@ -2,7 +2,7 @@
   <span class="dateandoptions">
     <%= scream.name %>
     <%=time_ago_in_words(scream.created_at)%> sitten
-    <%= link_to 'Delete', scream_path(scream), :method => :delete, :class => "delete", :remote => true  %>
+    <!--%= link_to 'Delete', scream_path(scream), :method => :delete, :class => "delete", :remote => true  %-->
   </span>
 	
   <%= content_tag(:p, scream.body, :class => "scream-body") %>

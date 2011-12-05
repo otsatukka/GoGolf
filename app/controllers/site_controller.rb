@@ -11,7 +11,7 @@ class SiteController < ApplicationController
 		@editors_picks_opening = Opening.where(:editors_pick => true).order('created_at DESC').limit(3)
 		@editors_picks_post = Post.where(:editors_pick => true).order('created_at DESC').limit(3)
 		@recent_posts = Post.all(:order => 'created_at DESC', :limit => 1)
-
+		@openings = Opening.all(:order => 'created_at DESC', :limit => 6)
 		@videos = Video.all(:order => 'created_at DESC', :limit => 1)
 		@videonumber = Array.new(3,"A")
 		@vimeo = Array.new
@@ -27,9 +27,9 @@ class SiteController < ApplicationController
 		
 	
 
-		@recent_posts = Post.where(:user_id => "29").leaveoutcategory(1).order('created_at DESC').limit(1)
-		@recent_posts+=Post.where(:user_id => "31").leaveoutcategory(1).order('created_at DESC').limit(1)
-		@recent_posts+=Post.where(:user_id => "34").leaveoutcategory(1).order('created_at DESC').limit(1)
+		@recent_posts = Post.where(:user_id => "29").order('created_at DESC').limit(1)
+		@recent_posts+=Post.where(:user_id => "31").order('created_at DESC').limit(1)
+		@recent_posts+=Post.where(:user_id => "34").order('created_at DESC').limit(1) #.leaveoutcategory(1).
 
 	#@nikke = User.find_by_realname("Nikke Tyry")
 	#@nikke = User.find_by_realname("Mikko Pulli")
@@ -44,6 +44,7 @@ class SiteController < ApplicationController
 
 	def goproduct
 		@active_tab = "goproduct"
+		@title = "ota yhteyttä"
 	end
 
 

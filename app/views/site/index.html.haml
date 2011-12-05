@@ -3,6 +3,24 @@
 
 .widgetcontainer
 	.widgettitle
+		AJANKOHTAISTA
+	.widgetcontent
+		#generaltitle
+			.generaltext
+				%p
+					Hei, ja mahtavaa kun tulit käymään! Joulukuussa täällä seurataan paikan päältä käsin Euroopan Tourin finaaleita ja Dubain Golf sceneä. Ensin pelataan Dubai World Championship 7-11.12 ja heti perään naisten kisa Omega Dubai Ladies Masters 14-17.12.
+				%p
+					Nikke ja Juho raportoivat omalla letkeällä tyylillään tunnelmia suoraan paikan päältä. Jos olet vielä näidenkin videoiden jälkeen sitä mieltä, että golf on tylsää, otamme sinut seuraavalle reissulle mukaan ja todistamme luulosi vääräksi.
+				%p
+					Voit lopettaa joululahjoista stressaamisen. Meillä on nimittäin mukana upeita yhteistyökumppaneita. Tykkää videoista ja voita pukinkonttiin mm. Igor Designin putteri ja St. Laurencen peliliput.
+				%p
+					Iso kiitos myös Golfpisteelle, joka on tälläkin kertaa vahvasti mukana. Golfpisteen sivuilta löydät videoiden lisäksi perinteiseen tapaan myös kisauutiset.
+				%p
+					Tervetuloa mukaan!
+			
+#emptyspace
+.widgetcontainer
+	.widgettitle
 		UUSIN VIDEO
 	.widgetcontent
 		-@videos.each_with_index do |v,index|
@@ -15,25 +33,26 @@
  
 			#gamers_list
 				%ul#tabit
-					%li.first
-          
-						#title
-							%span.text
-								=v.name
-          
-						#title
-							=v.user.end_user_name
-							%span.border
-							%span.day=v.created_at.strftime("%d.%m %Y")
-						%span
-							=v.content
-							
+					%a{:href => video_path(v)}
+						%li.first
+	          
+							#title
+								%span.text
+									=v.name
+	          
+							#title
+								=v.user.end_user_name
+								%span.border
+								%span.day=v.created_at.strftime("%d.%m %Y")
+							%span
+								=v.content
+
 -@recent_posts.each_with_index do |v,index|
 	<input type="hidden" id="numero#{index+1}" value="#{v.title}" />
 #emptyspace
 .widgetcontainer
 	.widgettitle
-		UUSIMMAT BLOGIT 
+		UUSIMMAT ARTIKKELIT 
 		
 	.widgetcontent
 		#mikon
@@ -71,14 +90,56 @@
 							%td
 								Katsottu:	
 								= v.unique_impression_count
-								
+
+
+#emptyspace
+.widgetcontainer
+	.widgettitle
+		Pelaajilta
+	.widgetcontent 
+		-if @openings != nil
+			%img{:src => find_img_medium(@openings.first),:height => "260", :width => "697"}         
+			#gamers_list
+				%ul#tabit
+					%li.first
+					  
+						#title
+							%span.text
+								=@openings.first.title
+	
+						#title
+							=@openings.first.user.end_user_name
+							%span.border
+							%span.day=@openings.first.created_at.strftime("%d.%m %Y")
+							%span
+						= truncate_html(@openings.first.body,:length => 250).html_safe 
+	 	
+					- @openings.each_with_index do |post,index|
+						-if index !=0
+							%a{:href => opening_path(post)}
+								%li.rest
+									%img{:src => find_img_medium(post),:height => "110", :width => "180"}
+									#title
+										%span.text
+											=post.title
+									  
+									#title
+										=post.user.end_user_name
+										%span.border
+										%span.day=post.created_at.strftime("%d.%m %Y")
+										%span
+									= truncate_html(post.body,:length => 250).html_safe
+			  
+		        						
+					
 -content_for :sidebar do
 	.widgetcontainer
 		.widgetsidebartitle	
 			Mikä on GoGolf?
 		.widgetcontent
-			.writenewpostplease
-				GoGolf on meidän tapamme seurata ja pelata golfia. Lähde mukaan ja huomaa, että golf on huomattavasti hauskempaa GoGolfin tapaan
+			%a{:href=>"goproduct"}
+				.writenewpostplease
+					GoGolf on meidän tapamme seurata ja pelata golfia. Lähde mukaan ja huomaa, että golf on huomattavasti hauskempaa GoGolfin tapaan
 	#emptyspace	
 -#	
 	-if @dealssit.first != nil
@@ -145,41 +206,7 @@
 
 
 -#
-	#emptyspace
-	.widgetcontainer
-	.widgettitle
-	Pelaajilta
-	.widgetcontent 
-	%img{:src => find_img_medium(@editors_picks_post.first),:height => "260", :width => "697"}         
-	#gamers_list
-	%ul#tabit
-	%li.first
-	  
-	#title
-	%span.text
-	=@editors_picks_post.first.title
-	  
-	#title
-	=@editors_picks_post.first.user.end_user_name
-	%span.border
-	%span.day=@editors_picks_post.first.created_at.strftime("%d.%m %Y")
-	%span
-	= truncate_html(@editors_picks_post.first.body,:length => 250).html_safe 
-	- @editors_picks_post.each do |post|
-	%li.rest
-	%img{:src => find_img_medium(post),:height => "110", :width => "180"}
-	#title
-	%span.text
-	=post.title
-	  
-	#title
-	=post.user.end_user_name
-	%span.border
-	%span.day=post.created_at.strftime("%d.%m %Y")
-	%span
-	= truncate_html(post.body,:length => 250).html_safe
-	  
-	        
+	
         
 	<div id="wrapper">
 		

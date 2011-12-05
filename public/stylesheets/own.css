@@ -546,7 +546,7 @@ text-decoration: none;
 
 .writenewpostplease{
   color: rgb(15,85,100);
-  padding: 4px;
+  padding: 4px 4px 4px 0px;
   font: 23px/23px bread_font,'Cantarell',Arial;
 }
 .writenewpostplease .smalltext{
@@ -705,6 +705,11 @@ table.sd td.kentatright {
   margin-bottom:10px;
 }
 
+#generaltitle .generaltext {
+  color: #000;
+  font: 14px/14px bread_font,'Actor', 'Ubuntu Condensed',Arial;
+  margin-bottom:10px;
+}
 #generaltitle .smalltext {
   color: #0F5564;
   font: 20px/20px title_font,'Actor', 'Ubuntu Condensed',Arial;

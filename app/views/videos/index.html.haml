@@ -12,10 +12,18 @@
       %span.text
         =@mainvideo.first.name
       %br    
-      =@mainvideo.first.user.end_user_name    
+      =@mainvideo.first.user.end_user_name 
+      %br
+      =@mainvideo.first.category
       %span.border
       %span.day=@mainvideo.first.created_at.strftime("%d.%m %Y")
     =@mainvideo.first.content
+    %br
+    -if @vimeo == true
+      <div class="fb-like" data-href="http://www.gogolf.fi/videos?search=vimeo.com%2F#{@videonumber}" data-send="false" data-width="450" data-show-faces="false"></div>
+    -else
+      <div class="fb-like" data-href="http://www.gogolf.fi/videos?search=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D#{@videonumber}" data-send="false" data-width="450" data-show-faces="false"></div>
+  
     #emptyspace
     .barbg
       GoGolf TV

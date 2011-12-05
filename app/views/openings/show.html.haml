@@ -14,7 +14,7 @@
         %td
           Katsottu
           = @opening.unique_impression_count
-    = image_tag find_img_medium(@opening)
+    = image_tag find_img_medium(@opening), :width=> "150px"
     #post_text
       :erb
         <%= @opening.body %>
