@@ -8,6 +8,7 @@
       -else
         %object{:width =>"600", :height =>"320"}
           %embed{:src => "http://www.youtube.com/v/#{@videonumber}", :type => "application/x-shockwave-flash", :wmode => "transparent", :width => "640", :height => "390"}  
+     
     #generaltitle
       %span.text
         =@mainvideo.first.name
@@ -27,7 +28,7 @@
       <div class="fb-like" data-href="http://www.gogolf.fi/videos?search=vimeo.com%2F#{@videonumber}" data-send="false" data-width="450" data-show-faces="false"></div>
     -else
       <div class="fb-like" data-href="http://www.gogolf.fi/videos?search=youtube.com%2Fwatch%3Fv%3D#{@videonumber}" data-send="false" data-width="450" data-show-faces="false"></div>
-  
+      
     #emptyspace
     .barbg
       GoGolf TV

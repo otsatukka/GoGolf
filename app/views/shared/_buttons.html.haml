@@ -19,12 +19,12 @@
   .buttondeal
     = link_to image_tag("/images/layout/buttons/golfdiilit.png",  :alt => "GoGolf", :mouseover => "/images/layout/buttons/golfdiilitaktiivinen.png"), posts_path
   
-- if @active_tab == "goproduct" # Home tab
-  .buttonguide
-    = link_to image_tag("/images/layout/buttons/guideaktiivinen.png", :alt => "GoGolf", :border => 0), "/site/goproduct"
-- else
-  .buttonguide
-    = link_to image_tag("/images/layout/buttons/golfguide.png", :alt => "GoGolf", :mouseover => "/images/layout/buttons/guideaktiivinen.png"), "/site/goproduct"
+-#- if @active_tab == "goproduct" # Home tab
+-#  .buttonguide
+-#    = link_to image_tag("/images/layout/buttons/guideaktiivinen.png", :alt => "GoGolf", :border => 0), "/site/goproduct"
+-#- else
+-#  .buttonguide
+-#    = link_to image_tag("/images/layout/buttons/golfguide.png", :alt => "GoGolf", :mouseover => "/images/layout/buttons/guideaktiivinen.png"), "/site/goproduct"
   
 
 -#- if user_signed_in?
