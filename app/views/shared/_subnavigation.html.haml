@@ -2,6 +2,9 @@
   %ul
     - if @active_tab == "gogolf"
       %li= nav_link "Etusivu", "/site"
+      %li= link_to "Postaukset", posts_path(:user_id =>"29")
+      
+      %li= nav_link "GoGolf Oy", "site", "goproduct"
       -#%li= nav_link "Toimituksen valinta", "site", "topic"
       -#%li= nav_link "Avaukset", openings_path
     - elsif @active_tab == "goblogi"

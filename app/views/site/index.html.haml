@@ -6,7 +6,7 @@
 		AJANKOHTAISTA
 	.widgetcontent
 		#generaltitle
-			.generaltext
+			.mainpagetext
 				%p
 					Hei, ja mahtavaa kun tulit käymään! Joulukuussa täällä seurataan paikan päältä käsin Euroopan Tourin finaaleita ja Dubain Golf sceneä. Ensin pelataan Dubai World Championship 7-11.12 ja heti perään naisten kisa Omega Dubai Ladies Masters 14-17.12.
 				%p
@@ -33,7 +33,7 @@
  
 			#gamers_list
 				%ul#tabit
-					%a{:href => video_path(v)}
+					%a{:href => videos_url}
 						%li.first
 	          
 							#title
@@ -46,13 +46,16 @@
 								%span.day=v.created_at.strftime("%d.%m %Y")
 							%span
 								=v.content
-
+		#generaltitle
+			.text
+				%a{:href=>videos_url}
+					Katso kaikki videot
 -@recent_posts.each_with_index do |v,index|
 	<input type="hidden" id="numero#{index+1}" value="#{v.title}" />
 #emptyspace
 .widgetcontainer
 	.widgettitle
-		UUSIMMAT ARTIKKELIT 
+		UUSIMMAT POSTAUKSET 
 		
 	.widgetcontent
 		#mikon
@@ -61,7 +64,7 @@
 				%li
 					%a{:href => posts_path(:user_id => v.user.id,:id=>v.id) }
 						#generaltitle
-							Blogi 
+							Postaus
 							%span.border
 							%span.day=v.created_at.strftime("%d.%m %Y")
 							%br
@@ -79,57 +82,58 @@
 						
 					
 					#post_text
-						= truncate_html(v.body.last(v.body.size),:length => v.body.size).html_safe 
-					%table
-						%tr
-							%td
-								= link_to v.user.end_user_name, v.user
-							%td
-								= time_ago_in_words(v.created_at)
-								sitten
-							%td
-								Katsottu:	
-								= v.unique_impression_count
+						= truncate_html(v.body.last(v.body.size),:length => 950).html_safe 
+-#
+	%table
+	%tr
+	%td
+	= link_to v.user.end_user_name, v.user
+	%td
+	= time_ago_in_words(v.created_at)
+	sitten
+	%td
+	Katsottu:	
+	= v.unique_impression_count
 
-
-#emptyspace
-.widgetcontainer
+-#
+	#emptyspace
+	.widgetcontainer
 	.widgettitle
-		Pelaajilta
+	Pelaajilta
 	.widgetcontent 
-		-if @openings != nil
-			%img{:src => find_img_medium(@openings.first),:height => "260", :width => "697"}         
-			#gamers_list
-				%ul#tabit
-					%li.first
-					  
-						#title
-							%span.text
-								=@openings.first.title
+	-if @openings != nil
+	%img{:src => find_img_medium(@openings.first),:height => "260", :width => "697"}         
+	#gamers_list
+	%ul#tabit
+	%li.first
+	  
+	#title
+	%span.text
+	=@openings.first.title
 	
-						#title
-							=@openings.first.user.end_user_name
-							%span.border
-							%span.day=@openings.first.created_at.strftime("%d.%m %Y")
-							%span
-						= truncate_html(@openings.first.body,:length => 250).html_safe 
-	 	
-					- @openings.each_with_index do |post,index|
-						-if index !=0
-							%a{:href => opening_path(post)}
-								%li.rest
-									%img{:src => find_img_medium(post),:height => "110", :width => "180"}
-									#title
-										%span.text
-											=post.title
-									  
-									#title
-										=post.user.end_user_name
-										%span.border
-										%span.day=post.created_at.strftime("%d.%m %Y")
-										%span
-									= truncate_html(post.body,:length => 250).html_safe
-			  
+	#title
+	=@openings.first.user.end_user_name
+	%span.border
+	%span.day=@openings.first.created_at.strftime("%d.%m %Y")
+	%span
+	= truncate_html(@openings.first.body,:length => 250).html_safe 
+	
+	- @openings.each_with_index do |post,index|
+	-if index !=0
+	%a{:href => opening_path(post)}
+	%li.rest
+	%img{:src => find_img_medium(post),:height => "110", :width => "180"}
+	#title
+	%span.text
+	=post.title
+	  
+	#title
+	=post.user.end_user_name
+	%span.border
+	%span.day=post.created_at.strftime("%d.%m %Y")
+	%span
+	= truncate_html(post.body,:length => 250).html_safe
+	  
 		        						
 					
 -content_for :sidebar do

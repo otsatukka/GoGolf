@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 	load_and_authorize_resource
 	skip_load_resource :only => [:index, :create]
 	def tabify
-		@active_tab = "goblogi"
+		@active_tab = "gogolf"
 	end
 
 	def log_impressions

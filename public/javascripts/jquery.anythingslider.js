@@ -18,11 +18,11 @@
 function messme(index,panel) {
 	var nimi
 	if (index == 1)
-		nimi = "NIKKE: "
+		nimi = "Uusin: "
 	else if (index == 2)
-		nimi = "HANNI: "
+		nimi = "2. "
 	else if (index == 3)
-		nimi = "GOGOLF: "
+		nimi = "3. "
 	else 
 		nimi =""
 

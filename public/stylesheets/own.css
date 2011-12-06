@@ -704,10 +704,24 @@ table.sd td.kentatright {
   font: 30px/30px title_font,'Actor', 'Ubuntu Condensed',Arial;
   margin-bottom:10px;
 }
-
+#generaltitle a  {
+  color: #0F5564;
+  font: 30px/30px title_font,'Actor', 'Ubuntu Condensed',Arial;
+  margin-bottom:10px;
+}
+#generaltitle a:hover {
+  color: #ccc;
+  font: 30px/30px title_font,'Actor', 'Ubuntu Condensed',Arial;
+  margin-bottom:10px;
+}
 #generaltitle .generaltext {
   color: #000;
   font: 14px/14px bread_font,'Actor', 'Ubuntu Condensed',Arial;
+  margin-bottom:10px;
+}
+#generaltitle .mainpagetext{
+  color: #0F5564;
+  font: 18px/18px bread_font,'Actor', 'Ubuntu Condensed',Arial;
   margin-bottom:10px;
 }
 #generaltitle .smalltext {
