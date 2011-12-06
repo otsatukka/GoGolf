@@ -6,18 +6,18 @@
 		<link href='http://fonts.googleapis.com/css?family=Actor' rel='stylesheet' type='text/css'>
 		
 		-if @like != nil
-			<meta property="og:title" content="GoGolf" />
+			<meta property="og:title" content="GoGolf TV - #{@mainvideo.first.name}" />
 			<meta property="og:type" content="website" />
 			<meta property="og:url" content="#{@fb_like_url}" />
 			<meta property="og:image" content="#{@fb_image_url}" />
-			<meta property="og:site_name" content="GoGolf TV - #{@mainvideo.first.name}" />
+			<meta property="og:site_name" content="GoGolf" />
 			<meta property="fb:app_id" content="190322544333196" />
 		-if @likepost != nil
-			<meta property="og:title" content="GoGolf" />
+			<meta property="og:title" content="GoGolf - #{@mainpost.title}" />
 			<meta property="og:type" content="website" />
 			<meta property="og:url" content="#{@fb_like_url}" />
 			<meta property="og:image" content="#{find_img_medium(@mainpost)}" />
-			<meta property="og:site_name" content="GoGolf - #{@mainpost.title}" />
+			<meta property="og:site_name" content="GoGolf" />
 			<meta property="fb:app_id" content="190322544333196" />
 		
 		:javascript
