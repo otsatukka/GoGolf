@@ -5,20 +5,20 @@
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Actor' rel='stylesheet' type='text/css'>
 		
-		-if @like != nil
-			<meta property="og:title" content="GoGolf" />
-			<meta property="og:type" content="website" />
-			<meta property="og:url" content="#{@fb_like_url}" />
-			<meta property="og:image" content="#{@fb_image_url}" />
-			<meta property="og:site_name" content="GoGolf" />
-			<meta property="fb:admins" content="100000120726494" />
-		-if @likepost != nil
-			<meta property="og:title" content="GoGolf" />
-			<meta property="og:type" content="website" />
-			<meta property="og:url" content="#{@fb_like_url}" />
-			<meta property="og:image" content="#{find_img_medium(@mainpost)}" />
-			<meta property="og:site_name" content="GoGolf" />
-			<meta property="fb:admins" content="100000120726494" />
+		-#-if @like != nil
+		-#	<meta property="og:title" content="GoGolf" />
+		-#	<meta property="og:type" content="website" />
+		-#	<meta property="og:url" content="#{@fb_like_url}" />
+		-#	<meta property="og:image" content="#{@fb_image_url}" />
+		-#	<meta property="og:site_name" content="GoGolf" />
+		-#	<meta property="fb:admins" content="100000120726494" />
+		-#-if @likepost != nil
+		-#	<meta property="og:title" content="GoGolf" />
+		-#	<meta property="og:type" content="website" />
+		-#	<meta property="og:url" content="#{@fb_like_url}" />
+		-#	<meta property="og:image" content="#{find_img_medium(@mainpost)}" />
+		-#	<meta property="og:site_name" content="GoGolf" />
+		-#	<meta property="fb:admins" content="100000120726494" />
 		-#GoGolf - #{@mainpost.title} GoGolf TV - #{@mainvideo.first.name}
 		:javascript
 			var _gaq = _gaq || [];
