@@ -5,12 +5,20 @@
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Actor' rel='stylesheet' type='text/css'>
 		
-		<meta property="og:title" content="Rhino" />
-		<meta property="og:type" content="actor" />
-		<meta property="og:url" content="http://www.gogolf.fi/site/goproduct" />
-		<meta property="og:image" content="http://i2.ytimg.com/vi/137my72KWzc/hqdefault.jpg" />
-		<meta property="og:site_name" content="GoGolf" />
-		<meta property="fb:admins" content="100000120726494" />
+		-if @like != nil
+			<meta property="og:title" content="GoGolf" />
+			<meta property="og:type" content="website" />
+			<meta property="og:url" content="#{@fb_like_url}" />
+			<meta property="og:image" content="#{@fb_image_url}" />
+			<meta property="og:site_name" content="GoGolf TV - #{@mainvideo.first.name}" />
+			<meta property="fb:app_id" content="190322544333196" />
+		-if @likepost != nil
+			<meta property="og:title" content="GoGolf" />
+			<meta property="og:type" content="website" />
+			<meta property="og:url" content="#{@fb_like_url}" />
+			<meta property="og:image" content="#{find_img_medium(@mainpost)}" />
+			<meta property="og:site_name" content="GoGolf - #{@mainpost.title}" />
+			<meta property="fb:app_id" content="190322544333196" />
 		
 		:javascript
 			var _gaq = _gaq || [];

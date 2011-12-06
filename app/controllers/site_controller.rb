@@ -43,7 +43,7 @@ class SiteController < ApplicationController
 	end
 
 	def goproduct
-		@active_tab = "goproduct"
+		@active_tab = "gogolf"
 		@title = "ota yhteyttä"
 	end
 

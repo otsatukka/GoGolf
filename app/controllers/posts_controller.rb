@@ -28,18 +28,27 @@ def index
 		@categories = Category.all
 		@categories.sort! { |a,b| a.name <=> b.name }
 		#@posts = Post.search(params[:search]).category(params[:category]).order("created_at DESC").paginate(:per_page => 2, :page => params[:page])
+	
 		@user = User.find_by_id("29")
 		if params[:user_id]
 			@user = User.find_by_id(params[:user_id] )
 
 		end
-		@posts = Post.where(:user_id => @user.id).leaveoutcategory(1).order('created_at DESC').paginate(:per_page => 8, :page => params[:page])
+		@posts = Post.where(:user_id => @user.id).order('created_at DESC').paginate(:per_page => 8, :page => params[:page])
 
 		if params[:id]
 			@mainpost =Post.find(params[:id])
 		else
 		    @mainpost =@posts.first
 		end
+		@likepost = true
+	   	if (params[:id]) != nil
+	   		@fb_like_url ="http://www.gogolf.fi/posts?id="+ "#{params[:id]}"
+	   	else
+	   		@fb_like_url ="http://www.gogolf.fi/posts?id="+ "#{@mainpost.id}"
+		end
+	    
+		#"http://gogolfprod.s3.amazonaws.com/uploads/imagebank/medium_89211171.jpg"
 		@comments = @mainpost.comments
 		@mainpost.comments.build
 		#@posts = Post.search(params[:search]).category(params[:category]).order("created_at DESC").paginate(:per_page => 5, :page => params[:page])

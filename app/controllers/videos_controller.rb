@@ -17,12 +17,18 @@ class VideosController < ApplicationController
 		@mainvideo = Video.search(params[:search]).order("created_at DESC")
 	    @comments = @mainvideo.first.comments
 		@mainvideo.first.comments.build
-	   
+	   	@like = true
+	   	if (params[:search]) != nil
+	   		@fb_like_url ="http://www.gogolf.fi/videos?search="+ "#{params[:search]}"
+		end
+	    @fb_image_url = @mainvideo.first.thumbnail_address
 		if @mainvideo.first.video_id.split(".").first == "vimeo"
 			@videonumber = @mainvideo.first.video_id.split("/").last
 			@vimeo = true
+			@fb_like_url ="http://www.gogolf.fi/videos?search=vimeo.com%2F"+"#{@mainvideo }"
 	   else
 	   	    @videonumber = @mainvideo.first.video_id.split("=").last
+	   	    @fb_like_url ="http://www.gogolf.fi/videos?search=youtube.com%2Fwatch%3Fv%3D"+"#{@videonumber}"
 	   	    @vimeo = false
 	    end
 		respond_to do |format|
