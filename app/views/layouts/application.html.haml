@@ -10,16 +10,16 @@
 			<meta property="og:type" content="website" />
 			<meta property="og:url" content="#{@fb_like_url}" />
 			<meta property="og:image" content="#{@fb_image_url}" />
-			<meta property="og:site_name" content="GoGolf TV - #{@mainvideo.first.name}" />
-			<meta property="fb:app_id" content="167372463313922" />
+			<meta property="og:site_name" content="GoGolf" />
+			<meta property="fb:admins" content="100000120726494" />
 		-if @likepost != nil
 			<meta property="og:title" content="GoGolf" />
 			<meta property="og:type" content="website" />
 			<meta property="og:url" content="#{@fb_like_url}" />
 			<meta property="og:image" content="#{find_img_medium(@mainpost)}" />
-			<meta property="og:site_name" content="GoGolf - #{@mainpost.title}" />
-			<meta property="fb:app_id" content="167372463313922" />
-		
+			<meta property="og:site_name" content="GoGolf" />
+			<meta property="fb:admins" content="100000120726494" />
+		-#GoGolf - #{@mainpost.title} GoGolf TV - #{@mainvideo.first.name}
 		:javascript
 			var _gaq = _gaq || [];
 			_gaq.push(['_setAccount', 'UA-12546091-2']);
