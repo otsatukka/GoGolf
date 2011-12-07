@@ -83,6 +83,9 @@
 					
 					#post_text
 						= truncate_html(v.body.last(v.body.size),:length => 950).html_safe 
+					#post_text
+						%a{:href=>posts_path(:user_id => v.user.id,:id=>v.id)}
+							Lue lisää
 -#
 	%table
 	%tr
