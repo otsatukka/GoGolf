@@ -10,7 +10,7 @@
 			%span.text
 				=@mainpost.title
 		#post_text
-			%img{:src => find_img_medium(@mainpost),:class => "right", :height => "260", :width => "350"}
+			%img{:src => find_img_medium(@mainpost),:class => "right", :height => "300", :width => "400"}
 		 
 		#post_text
 			= truncate_html(@mainpost.body.last(@mainpost.body.size),:length => @mainpost.body.size).html_safe 
