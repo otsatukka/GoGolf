@@ -3,8 +3,10 @@
 		Uusi kuva
 	.widgetcontent
 		%table
-			- @imagebanks.each do |image|
-				%tr
-					%td= image_tag image.image_url(:thumb).to_s
+			- @imagebanks.each_with_index do |image,index|
+				- if index.remainder(4) == 0
+					%tr
+				
+				%td= image_tag image.image_url(:thumb).to_s
 		%br
 		= link_to 'New Image', new_imagebank_path
