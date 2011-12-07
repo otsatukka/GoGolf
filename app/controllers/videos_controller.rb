@@ -25,7 +25,7 @@ class VideosController < ApplicationController
 		if @mainvideo.first.video_id.split(".").first == "vimeo"
 			@videonumber = @mainvideo.first.video_id.split("/").last
 			@vimeo = true
-			@fb_like_url ="http://www.gogolf.fi/videos?search=vimeo.com%2F"+"#{@mainvideo }"
+			@fb_like_url ="http://www.gogolf.fi/videos?search=vimeo.com%2F"+"#{@videonumber }"
 	   else
 	   	    @videonumber = @mainvideo.first.video_id.split("=").last
 	   	    @fb_like_url ="http://www.gogolf.fi/videos?search=youtube.com%2Fwatch%3Fv%3D"+"#{@videonumber}"

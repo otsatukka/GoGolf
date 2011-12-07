@@ -3,6 +3,8 @@
     links
   .widgetcontent
     =render 'links'
+    %br
+    = link_to 'Lisää kuvia', imagebanks_path
 #emptyspace
 .widgetcontainer
   .widgettitle
@@ -10,7 +12,7 @@
   .widgetcontent
     - if logged_in? 
       -if current_user.role?(:super_admin) || current_user.role?(:super_admin)
-        = link_to 'Lisää kuvia', imagebanks_path
+       
       %table
         %tr
           %th Category name
