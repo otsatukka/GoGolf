@@ -1,3 +1,4 @@
+# encoding: utf-8
 class SiteController < ApplicationController
 	before_filter :tabify
 	def tabify
