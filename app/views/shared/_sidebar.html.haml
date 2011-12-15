@@ -3,20 +3,22 @@
 		%a{:href=>"/screams"}
 			LIVE TERASSIKESKUSTELU
 	.widgetcontent
-		= form_for Scream.new, :remote => true do |f|
-			#japo
-				= f.text_area :body , :cols => "28",:rows=> "3"
-			= f.submit "Julkaise"
-		<script type="text/javascript">
+		#japo
+			= semantic_form_for Scream.new,  :remote => true do |f| -#
+			
+				=f.inputs do
+					= f.input :message, :label => "Huuda"
+				= f.submit "Julkaise"
+		-#<script type="text/javascript">
 		
-		txt =  navigator.appName ;
-		if (txt == "Microsoft Internet Explorer")
-		{
-		txt="<textarea cols=\"28\" id=\"scream_body\" name=\"scream[body]\" rows=\"5\"></textarea>";
-		document.getElementById("japo").innerHTML=txt;
-		}
-		
-		</script>
+			txt =  navigator.appName ;
+			if (txt == "Microsoft Internet Explorer")
+			{
+			txt="<textarea cols=\"28\" id=\"scream_body\" name=\"scream[body]\" rows=\"5\"></textarea>";
+			document.getElementById("japo").innerHTML=txt;
+			}
+			
+			</script>
 		.chatborders
 			#screams
 				-if @screams == nil

@@ -721,12 +721,12 @@ table.sd td.kentatright {
 }
 #generaltitle .mainpagetext{
   color: #0F5564;
-  font: 18px/18px bread_font,'Actor', 'Ubuntu Condensed',Arial;
+  font: 14px/14px bread_font,'Actor', 'Ubuntu Condensed',Arial;
   margin-bottom:10px;
 }
 #generaltitle .smalltext {
   color: #0F5564;
-  font: 20px/20px title_font,'Actor', 'Ubuntu Condensed',Arial;
+  font: 15px/15px title_font,'Actor', 'Ubuntu Condensed',Arial;
   margin-bottom:10px;
 }
 

@@ -34,32 +34,39 @@
 		UUSIN VIDEO
 	.widgetcontent
 		-@videos.each_with_index do |v,index|
-			-if @vimeo[index] == true
-				%iframe{:src=>"http://player.vimeo.com/video/#{@videonumber[index]}", :width=>"697", :height=>"400", :autoplay=>"1"}
-				-#<iframe src="http://player.vimeo.com/video/30484462?title=0&amp;byline=0&amp;portrait=0" width="697" height="455" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>
-			-else
-				%object{:width =>"697", :height =>"400"}
-					%embed{:src => "http://www.youtube.com/v/#{@videonumber[index]}", :type => "application/x-shockwave-flash", :wmode => "transparent", :width => "697", :height => "400"}  
- 
-			#gamers_list
-				%ul#tabit
-					%a{:href => videos_url}
-						%li.first
-	          
-							#title
-								%span.text
-									=v.name
-	          
-							#title
-								=v.user.end_user_name
-								%span.border
-								%span.day=v.created_at.strftime("%d.%m %Y")
-							%span
-								=v.content
+			-if index == 0
+				-if @vimeo[index] == true
+					%iframe{:src=>"http://player.vimeo.com/video/#{@videonumber[index]}", :width=>"697", :height=>"400", :autoplay=>"1"}
+					-#<iframe src="http://player.vimeo.com/video/30484462?title=0&amp;byline=0&amp;portrait=0" width="697" height="455" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>
+				-else
+					%object{:width =>"697", :height =>"400"}
+						%embed{:src => "http://www.youtube.com/v/#{@videonumber[index]}", :type => "application/x-shockwave-flash", :wmode => "transparent", :width => "697", :height => "400"}  
+	 
+				#gamers_list
+					%ul#tabit
+						%a{:href => videos_url}
+							%li.first
+		          
+								#generaltitle
+									%span.text
+										=v.name
+		          
+								#title
+									=v.user.end_user_name
+									%span.border
+									%span.day=v.created_at.strftime("%d.%m %Y")
+								%span
+									=v.content
 		#generaltitle
 			.text
 				%a{:href=>videos_url}
-					Katso kaikki videot
+					Katso uusimmat videot
+		-@videos.each_with_index do |v,index|
+			- if index>0
+				= link_to videos_path(:search => v.video_id) do
+					%img{ :src => "#{v.thumbnail_address}",:height=> "95",:width=>"136"}
+              
+		
 -@recent_posts.each_with_index do |v,index|
 	<input type="hidden" id="numero#{index+1}" value="#{v.title}" />
 #emptyspace
@@ -155,8 +162,9 @@
 			Mikä on GoGolf?
 		.widgetcontent
 			%a{:href=>"goproduct"}
-				.writenewpostplease
-					GoGolf on meidän tapamme seurata ja pelata golfia. Lähde mukaan ja huomaa, että golf on huomattavasti hauskempaa GoGolfin tapaan
+				#generaltitle
+					.mainpagetext
+						GoGolf on meidän tapamme seurata ja pelata golfia. Lähde mukaan ja huomaa, että golf on huomattavasti hauskempaa GoGolfin tapaan
 	#emptyspace	
 -#	
 	-if @dealssit.first != nil

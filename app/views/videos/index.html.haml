@@ -10,19 +10,21 @@
           %embed{:src => "http://www.youtube.com/v/#{@videonumber}", :type => "application/x-shockwave-flash", :wmode => "transparent", :width => "640", :height => "390"}  
      
     #generaltitle
-      %span.text
-        =@mainvideo.first.name
-      %br    
-      =@mainvideo.first.user.end_user_name 
-     
-      %span.border
-      %span.day=@mainvideo.first.created_at.strftime("%d.%m %Y")
-      %br
-      =@mainvideo.first.category
-      %span.border
+      
+      
+      -#=@mainvideo.first.category
+      
       
       =@mainvideo.first.subcategory
-    =@mainvideo.first.content
+      %span.border
+      =@mainvideo.first.user.end_user_name 
+      %span.day=@mainvideo.first.created_at.strftime("%d.%m %Y")
+      
+      %br
+      %span.text
+        =@mainvideo.first.name
+    #post_text
+      =@mainvideo.first.content
     %br
     -if @vimeo == true
       <div class="fb-like" data-href="http://www.gogolf.fi/videos?search=vimeo.com%2F#{@videonumber}" data-send="false" data-width="450" data-show-faces="false"></div>
@@ -44,11 +46,13 @@
             = link_to params.merge(:search => v.video_id, :page => nil) do
               %img{ :src => "#{v.thumbnail_address}",:height=> "100",:width=>"150"}
               %ul
+                
+              
                 %li
           
                   #generaltitle
                     %span.smalltext
-                      = truncate_html(v.name,:length => 10).html_safe 
+                      = truncate_html(v.name,:length => 35).html_safe 
                     %br    
                     =v.user.end_user_name    
                     %span.border

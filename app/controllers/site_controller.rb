@@ -12,7 +12,7 @@ class SiteController < ApplicationController
 		@editors_picks_post = Post.where(:editors_pick => true).order('created_at DESC').limit(3)
 		@recent_posts = Post.all(:order => 'created_at DESC', :limit => 1)
 		@openings = Opening.all(:order => 'created_at DESC', :limit => 6)
-		@videos = Video.all(:order => 'created_at DESC', :limit => 1)
+		@videos = Video.all(:order => 'created_at DESC', :limit => 6)
 		@videonumber = Array.new(3,"A")
 		@vimeo = Array.new
 		@videos.each_with_index do |v,index|
