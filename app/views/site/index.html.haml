@@ -1,37 +1,29 @@
 -#= render 'mygolf'
 -#emptyspace
 
-.widgetcontainer
+-#.widgetcontainer
 	.widgettitle
-		AJANKOHTAISTA
+	AJANKOHTAISTA
 	.widgetcontent
-		#generaltitle
-			.mainpagetext
-				%p
-					Hei, ja mahtavaa kun tulit käymään! Joulukuussa täällä seurataan paikan päältä käsin Euroopan Tourin finaaleita ja Dubain Golf sceneä. Ensin pelataan Dubai World Championship 7-11.12 ja heti perään naisten kisa Omega Dubai Ladies Masters 14-17.12.
-				%p
-					Nikke ja Juho raportoivat omalla letkeällä tyylillään tunnelmia suoraan paikan päältä. Jos olet vielä näidenkin videoiden jälkeen sitä mieltä, että golf on tylsää, otamme sinut seuraavalle reissulle mukaan ja todistamme luulosi vääräksi.
-				%p
-					Voit lopettaa joululahjoista stressaamisen. Meillä on nimittäin mukana upeita yhteistyökumppaneita. Tykkää videoista ja voita pukinkonttiin mm. Igor Designin putteri ja St. Laurencen peliliput.
-				%p
-					Iso kiitos myös Golfpisteelle, joka on tälläkin kertaa vahvasti mukana. Golfpisteen sivuilta löydät videoiden lisäksi perinteiseen tapaan myös kisauutiset.
-				%p
-					Tervetuloa mukaan!
-#emptyspace
-.widgetcontainer
+	#generaltitle
+	.mainpagetext
+
+	#emptyspace
+	.widgetcontainer
 	%table
-		%tr
-			%td
-				%a{:href=>"http://www.facebook.com/pages/Golf-Center-Oy/136608179780910"}
-					%img{:src => "/images/golfcenter_banneri.jpg", :alt => "GoGolf.fi", :height => "250", :width => "300"}  
-			%td
-			%td{:class=>"right"}
-				%a{:href=>"http://www.korukolmio.fi/ystavamyynti-joulumyyjaiset/"}
-					%img{:src => "/images/korukolmio_banneri.jpg", :alt => "GoGolf.fi", :height => "250", :width => "300"}  
-#emptyspace
+	%tr
+	%td
+	%a{:href=>"http://www.facebook.com/pages/Golf-Center-Oy/136608179780910"}
+	%img{:src => "/images/golfcenter_banneri.jpg", :alt => "GoGolf.fi", :height => "250", :width => "300"}  
+	%td
+	%td{:class=>"right"}
+	%a{:href=>"http://www.korukolmio.fi/ystavamyynti-joulumyyjaiset/"}
+	%img{:src => "/images/korukolmio_banneri.jpg", :alt => "GoGolf.fi", :height => "250", :width => "300"}  
+	#emptyspace
 .widgetcontainer
 	.widgettitle
-		UUSIN VIDEO
+		UUSIN VIDEO - 
+		=@videos.first.name
 	.widgetcontent
 		-@videos.each_with_index do |v,index|
 			-if index == 0
